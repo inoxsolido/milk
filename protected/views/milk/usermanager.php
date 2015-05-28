@@ -1,80 +1,10 @@
-<style type="text/css">
-    div.sea{
-        display:inline-block;
-    }
-</style>
+<div class="btn-group btn-group-justified">
+    <a class='btn btn-success btn-sm' id='regis'>เพิ่มผู้ใช้รายใหม่</a>
+    <a class="btn btn-info btn-sm" id='findshow'>ค้นหา</a>
+    <a class='btn btn-warning btn-sm' id='setting'>ตั้งค่าการแสดงผล</a>
+</div>
+<div class='container' >
 
-<div class='container'>
-    <div class='row'>
-        <div class='col-md-2' style="float:right;">
-            <button class='btn btn-success btn-block' " id='regis'>เพิ่มผู้ใช้รายใหม่</button>
-        </div>
-    </div>
-    <!-- search -->
-    <div class="row">
-        <form id="search" class="form-inline">
-            <span class="row">
-                <div class="col-md-2">
-                    <h3>ค้นหาโดย</h3>
-                </div>
-                <div class="col-md-2 col-md-offset-8">
-                    
-                </div>
-            </span>
-            <div class="col-md-12" style="padding-right:0">
-                <div class="form-group-sm sea">
-                    <input type="checkbox" id="cuser">
-                    <label for="tuser">Username</label>
-                    <input type="text" id="tuser" class="form-control">
-                </div>
-                <div class="form-group-sm sea">
-                    <input type="checkbox" id="cfname">
-                    <label for="tfname">ชื่อจริง</label>
-                    <input type="text" id="tfname" class="form-control">
-                </div>
-                <div class="form-group-sm sea">
-                    <input type="checkbox" id="clname">
-                    <label for="tlname">นามสกุล</label>
-                    <input type="text" id="tlname" class="form-control">
-                </div>
-                <div class="form-group-sm sea">
-                    <input type="checkbox" id="cpersonid">
-                    <label for="tpersonid">รหัสประจำตัวประชาชน</label>
-                    <input type="text" id="tpersonid" class="form-control">
-                </div>
-                <div class="form-group-sm sea">
-                    <input type="checkbox" id="cdep">
-                    <label for="tdep">แผนก</label>
-                    <select id='tdep'>
-                        <?php foreach ($dep as $row): ?>
-                            <option value="<?= $row->dep_id ?>"><?= $row->dep_name ?></option>
-                        <?php endforeach; ?>
-                    </select>
-                </div>
-                <div class="form-group-sm sea">
-                    <input type="checkbox" id="cfac">
-                    <label for="tfac">ฝ่าย</label>
-                    <select id='tfac'>
-                        <?php foreach ($fac as $row): ?>
-                            <option value="<?= $row->faction_id ?>"><?= $row->faction_name ?></option>
-                        <?php endforeach; ?>
-                    </select>
-                </div>
-                <div class="form-group-sm sea">
-                    <input type="checkbox" id="cposition">
-                    <label for="tposition">ตำแหน่ง</label>
-                    <select id='tposition'>
-                        <?php foreach ($pos as $row): ?>
-                            <option value="<?= $row->position_id ?>"><?= $row->position_name ?></option>
-                        <?php endforeach; ?>
-                    </select>
-                </div>
-                <div class="col-md-2"  style="float:right;padding:0px;margin:0px;" >
-                <button class='btn btn-default btn-sm btn-block'>ค้นหา</button>
-                </div>
-            </div>
-        </form>
-    </div><p>
     <div class='row'>
         <div class='table-responsive'>
             <div>
