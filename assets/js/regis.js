@@ -219,9 +219,10 @@ $(function () {
                     dep.val("0");
                     fac.val("0");
                     pos.val("0");
-                    dep.hide();
-                    fac.hide();
+                    dep.parent().hide();
+                    fac.parent().hide();
                     $("#mregis").modal('hide');
+                    $(".feedback").txt("");
                 } else {
                     alert("การเพิ่มข้อมูลไม่สำเร็จ");
                 }
@@ -229,7 +230,12 @@ $(function () {
         }
     });
     function ReqData() {
-        $.post('./../data/FillUsr', {ajax: 0}, function (data) {
+        $.post('./../data/FillUsr',
+                {
+                    ajax: 0,
+                    searchtxt: $("#txtfind").val()
+                },
+        function (data) {
             $("#usrbody").html(data);
         });
     }
@@ -255,13 +261,142 @@ $(function () {
     });
     $("#search").children('div').children().children(".form-control").hide();
     $("#search").children('div').children().children("select").hide();
-    $("[type^=checkbox]").click(function(){
-        $(this).siblings("[type^=text]").toggle('fast','linear');
-        $(this).siblings("select").toggle('fast','swing');
+    $("[type^=checkbox]").click(function () {
+        $(this).siblings("[type^=text]").toggle('fast', 'linear');
+        $(this).siblings("select").toggle('fast', 'swing');
+    });
+    $("#find").hide();
+    $("#findshow").click(function () {
+        $("#find").fadeToggle();
+    });
+    $("#txtfind").keyup(function(ev){
+        if(ev.keyCode == 13){
+            $("#btnfind").click();
+        }
+    });
+    $("#btnfind").click(function () {
+        ReqData();
+        $("#txtfind").val("");
+        $("#find").fadeToggle();
+    });
+    //edit btn
+    var eid;
+    $("#usrbody").on('click', '.edit', function () {
+        eid = $(this).attr('data-id');
+        id = eid;
+        $.post('../data/AskUser', {uid: id}, function (data) {
+            $("#eusername").val(data);
+        });
+        $.post('../data/AskPerId', {uid: id}, function (data) {
+            $("#epersonid").val(data);
+        });
+        $.post('../data/AskFname', {uid: id}, function (data) {
+            $("#efname").val(data);
+        });
+        $.post('../data/AskLname', {uid: id}, function (data) {
+            $("#elname").val(data);
+        });
+        $.post('../data/AskPosId', {uid: id}, function (data) {
+            $("#eposition").val(data);
+            if (data == '1') {
+                $(".edep").show();
+                $(".efac").hide();
+            } else if (data == '2') {
+                $(".efac").show();
+                $(".edep").hide();
+            } else if (data == '3') {
+                $(".edep").hide();
+                $(".efac").hide();
+            }
+        });
+        $.post('../data/AskDepId', {uid: id}, function (data) {
+            $("#edep").val(data);
+        });
+        $.post('../data/AskFacId', {uid: id}, function (data) {
+            $("#efac").val(data);
+        });
+        $.post('../data/AskGen', {uid: id}, function (data) {
+            $("#egender").val(data);
+        });
+        $("#epassword").val("");
+        $("#medit").modal('show');
+    });
+    var epos = $("#eposition");
+    var efac = $("#efac");
+    var edep = $("#edep");
+    efac.parent().hide();
+    edep.parent().hide();
+    epos.change(function () {
+        if (epos.val() == 3) {
+            edep.parent().hide();
+            efac.parent().hide();
+            edep.val("");
+            efac.val("");
+        } else if (epos.val() == 2) {
+            edep.parent().hide();
+            efac.parent().show();
+            edep.val("");
+        } else if (epos.val() == 1) {
+            edep.parent().show();
+            efac.parent().hide();
+            efac.val("");
+        }
+    });
+    $("#btnedit").click(function () {
+        euser = $("#eusername");
+        var letters = /^[\u0E01-\u0E5B]+$/;
+        ok = false;
+        if (euser.val() == "") {
+            alert("การแก้ไขข้อมูล Username ต้องไม่เป็นค่าว่าง");
+        } else if ($("#efname").val() == "") {
+            alert("ชื่อจริงต้องไม่ว่าง");
+        } else if (letters.test($("#efname").val()) == false) {
+            alert("ชื่อจริงต้องเป็นภาษาไทยเท่านั้น");
+        } else if ($("#elname").val() == "") {
+            alert("นามสกุลต้องไม่ว่าง");
+        } else if (letters.test($("#elname").val()) == false) {
+            alert("นามสกุลต้องเป็นภาษาไทยเท่านั้น");
+        } else if ($("#epersonid").val() == false) {
+            alert("รหัสประจำตัวประชาชนต้องไม่เป็นค่าว่าง");
+        } else if (checkID($("#epersonid").val()) == false) {
+            alert("รหัสประจำตัวประชาชนไม่ถูกต้อง");
+        } else {
+            ok = true;
+        }
+        if (!ok)
+            return;
+
+        $.post('../Data/MemberEdit',
+                {
+                    uid: eid,
+                    username: $("#eusername").val(),
+                    password: $("#epassword").val(),
+                    fname: $("#efname").val(),
+                    lname: $("#elname").val(),
+                    gen: $("#egender").val(),
+                    perid: $("#epersonid").val(),
+                    pos: $("#eposition").val(),
+                    fac: $("#efac").val(),
+                    dep: $("#edep").val()
+                }, function (data) {
+            if (data == 'usrdup') {
+                alert("Username นี้มีอยู่แล้วในระบบ");
+            } else if (data == 'perdup') {
+                alert("รหัสประจำตัวประชาชนนี้มีอยู่แล้วในระบบ");
+            } else if (data == 'ok') {
+                alert("การเปลี่ยนแปลงข้อมูลเสร็จสิ้น");
+                $("#frmedit")[0].reset();
+                edep.val("0");
+                efac.val("0");
+                epos.val("0");
+                edep.parent().hide();
+                efac.parent().hide();
+                $("#medit").modal('hide');
+                ReqData();
+            }
+        });
     });
     
-    
-    //edit btn
 });
 function checkID(id) {
     if (id.length !== 13)

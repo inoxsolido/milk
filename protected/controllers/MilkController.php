@@ -49,7 +49,7 @@ class MilkController extends Controller {
     
     public function actionUserManager(){
         if(!Yii::app()->user->isGuest){
-            if(Yii::app()->user->isAdmin()){
+            if(Yii::app()->user->isAdmin){
                 $dep = TbDepartment::model()->findall();
                 $fac = TbFaction::model()->findall();
                 $position = TbPosition::model()->findall();
