@@ -51,11 +51,23 @@
                                 ['label' => 'ยืนยันคำขอ', 'url' => '#', 'visible' => Yii::app()->user->isDivision || Yii::app()->user->isAdmin],
                                 ['label' => 'สรุปผล', 'url' => '#', 'visible' => !Yii::app()->user->isGuest],
                                 ['label' => 'จัดการบัญชี', 'url' => '#', 'visible' => Yii::app()->user->isAdmin],
-                                ['label' => 'จัดการสาขา', 'url' => '#', 'visible' => Yii::app()->user->isAdmin],
+                                ['label' => "จัดการสาขา <i class='caret'></i>", 'url' => '#', 'visible' => Yii::app()->user->isAdmin,
+                                    'linkOptions' => [
+                                        'class' => 'dropdown-toggle',
+                                        'data-toggle' => 'dropdown',
+                                        'role' => 'button',
+                                    ],
+                                    'items' => [
+                                        ['label' => 'จัดการแผนก', 'url' => '#', 'class' => 'dropdown-toggle', 'role' => 'menu'],
+                                        ['label' => 'จัดการฝ่าย', 'url' => '#'],
+                                    ]
+                                ],
                                 ['label' => 'จัดการผู้ใช้', 'url' => 'usermanager', 'visible' => Yii::app()->user->isAdmin],
                             ),
                             'activeCssClass' => 'active',
-                            'htmlOptions' => ['class' => 'nav navbar-nav']
+                            'htmlOptions' => ['class' => 'nav navbar-nav'],
+                            'submenuHtmlOptions' => ['class' => 'dropdown-menu', 'role' => 'menu'],
+                            'encodeLabel' => false
                         ));
                         ?>
                         <?php
@@ -90,12 +102,12 @@
         <div class="clear"></div>
 
         <div style="background-color:#afd9ee; opacity: 50%;position:relative;bottom:0px;float:left;clear: both; z-index:-1;" class="col-lg-12">
-        <div id="footer"  style="text-align: center;">
-            
+            <div id="footer"  style="text-align: center;">
+
                 Copyright &copy; Mr.Ritthichai Skulthong and Mr.Thanakhan Pariput 
                 <br>All Rights Reserved.<br/>
-            
-        </div><!-- footer -->
+
+            </div><!-- footer -->
         </div>
 
     </body>
