@@ -1,21 +1,22 @@
 <?php
 
 /**
- * This is the model class for table "tb_department".
+ * This is the model class for table "tb_division".
  *
- * The followings are the available columns in table 'tb_department':
- * @property integer $deparment_id
- * @property string $dep_name
+ * The followings are the available columns in table 'tb_division':
+ * @property integer $division_id
+ * @property integer $erp_id
+ * @property string $division_name
  * @property integer $enable
  */
-class TbDepartment extends CActiveRecord
+class TbDivision extends CActiveRecord
 {
 	/**
 	 * @return string the associated database table name
 	 */
 	public function tableName()
 	{
-		return 'tb_department';
+		return 'tb_division';
 	}
 
 	/**
@@ -26,12 +27,12 @@ class TbDepartment extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('dep_name', 'required'),
-			array('enable', 'numerical', 'integerOnly'=>true),
-			array('dep_name', 'length', 'max'=>40),
+			array('erp_id, division_name', 'required'),
+			array('erp_id, enable', 'numerical', 'integerOnly'=>true),
+			array('division_name', 'length', 'max'=>50),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('deparment_id, dep_name, enable', 'safe', 'on'=>'search'),
+			array('division_id, erp_id, division_name, enable', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -52,8 +53,9 @@ class TbDepartment extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'deparment_id' => 'รหัสแผนก',
-			'dep_name' => 'ชื่อแผนก',
+			'division_id' => 'รหัสฝ่าย',
+			'erp_id' => 'รหัส ERP',
+			'division_name' => 'ชื่อฝ่าย',
 			'enable' => 'กำหนดให้ใช้งาน',
 		);
 	}
@@ -76,8 +78,9 @@ class TbDepartment extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
-		$criteria->compare('deparment_id',$this->deparment_id);
-		$criteria->compare('dep_name',$this->dep_name,true);
+		$criteria->compare('division_id',$this->division_id);
+		$criteria->compare('erp_id',$this->erp_id);
+		$criteria->compare('division_name',$this->division_name,true);
 		$criteria->compare('enable',$this->enable);
 
 		return new CActiveDataProvider($this, array(
@@ -89,7 +92,7 @@ class TbDepartment extends CActiveRecord
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!
 	 * @param string $className active record class name.
-	 * @return TbDepartment the static model class
+	 * @return TbDivision the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{
