@@ -18,18 +18,10 @@
             div#content{
                 position: relative;
                 top: -21px;
-                min-height: 100%;
-                height: auto !important;
-                height: 100%;
-                margin-bottom: -30px;
+                height: 85vh;
             }
             .row{
                 margin-right:0px;
-            }
-            div#footer{
-                height:40px;
-                width:100%;
-                
             }
         </style>
 
@@ -43,7 +35,7 @@
                 <div class="container-fluid">
                     <!-- Brand and toggle get grouped for better mobile display -->
                     <div class="navbar-header">
-                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-data-collapse">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                             <span class="sr-only">Toggle navigation</span>
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
@@ -51,7 +43,7 @@
                         </button>
                         <a class="navbar-brand" href="<?= Yii::app()->createUrl('./') ?>"><?php echo Yii::app()->name ?></a>
                     </div>
-                    <div class="collapse navbar-collapse" id="navbar-data-collapse">
+                    <div class="collapse navbar-collapse">
                         <?php
                         $this->widget('zii.widgets.CMenu', array(
                             'items' => array(
@@ -59,15 +51,15 @@
                                 ['label' => 'ยืนยันคำขอ', 'url' => '#', 'visible' => Yii::app()->user->isDivision || Yii::app()->user->isAdmin],
                                 ['label' => 'สรุปผล', 'url' => '#', 'visible' => !Yii::app()->user->isGuest],
                                 ['label' => 'จัดการบัญชี', 'url' => '#', 'visible' => Yii::app()->user->isAdmin],
-                                ['label' => "จัดการสังกัด <i class='caret'></i>", 'url' => '#', 'visible' => Yii::app()->user->isAdmin,
+                                ['label' => "จัดการสาขา <i class='caret'></i>", 'url' => '#', 'visible' => Yii::app()->user->isAdmin,
                                     'linkOptions' => [
                                         'class' => 'dropdown-toggle',
                                         'data-toggle' => 'dropdown',
                                         'role' => 'button',
                                     ],
                                     'items' => [
-                                        ['label' => 'จัดการแผนก', 'url' => 'depManager', 'class' => 'dropdown-toggle', 'role' => 'menu'],
-                                        ['label' => 'จัดการฝ่าย', 'url' => 'divManager'],
+                                        ['label' => 'จัดการแผนก', 'url' => '#', 'class' => 'dropdown-toggle', 'role' => 'menu'],
+                                        ['label' => 'จัดการฝ่าย', 'url' => '#'],
                                     ]
                                 ],
                                 ['label' => 'จัดการผู้ใช้', 'url' => 'usermanager', 'visible' => Yii::app()->user->isAdmin],
@@ -103,15 +95,15 @@
                         ));
                         ?>
                     </div>
-                </div>
             </nav>
 
         </div><!-- mainmenu -->
         <?php echo $content; ?>
         <div class="clear"></div>
 
-        <div id="footer" style="background-color:#afd9ee; opacity: 50%;clear: both; z-index:-1;" class="col-lg-12">
-            <div   style="text-align: center;">
+        <div style="background-color:#afd9ee; opacity: 50%;position:relative;bottom:0px;float:left;clear: both; z-index:-1;" class="col-lg-12">
+            <div id="footer"  style="text-align: center;">
+
                 Copyright &copy; Mr.Ritthichai Skulthong and Mr.Thanakhan Pariput 
                 <br>All Rights Reserved.<br/>
 

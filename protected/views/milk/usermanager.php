@@ -93,11 +93,11 @@
                             <?php endforeach; ?>
                         </select>
                     </div>
-                    <div class='form-group div'>
-                        <label for="div">ฝ่าย</label>
-                        <select id='div'>
-                            <?php foreach ($div as $row): ?>
-                                <option value="<?= $row->division_id ?>"><?= $row->division_name ?></option>
+                    <div class='form-group fac'>
+                        <label for="fac">ฝ่าย</label>
+                        <select id='fac'>
+                            <?php foreach ($fac as $row): ?>
+                                <option value="<?= $row->faction_id ?>"><?= $row->faction_name ?></option>
                             <?php endforeach; ?>
                         </select>
                     </div>
@@ -105,7 +105,7 @@
                         <label for='dep'>แผนก/ตำแหน่งพิเศษ</label>
                         <select id='dep'>
                             <?php foreach ($dep as $row): ?>
-                                <option value="<?= $row->department_id ?>"><?= $row->department_name ?></option>
+                                <option value="<?= $row->dep_id ?>"><?= $row->dep_name ?></option>
                             <?php endforeach; ?>
                         </select>
                     </div>
@@ -169,11 +169,11 @@
                             <?php endforeach; ?>
                         </select>
                     </div>
-                    <div class='form-group ediv'>
-                        <label for="div">ฝ่าย</label>
-                        <select id='ediv'>
-                            <?php foreach ($div as $row): ?>
-                                <option value="<?= $row->division_id ?>"><?= $row->division_name ?></option>
+                    <div class='form-group efac'>
+                        <label for="fac">ฝ่าย</label>
+                        <select id='efac'>
+                            <?php foreach ($fac as $row): ?>
+                                <option value="<?= $row->faction_id ?>"><?= $row->faction_name ?></option>
                             <?php endforeach; ?>
                         </select>
                     </div>
@@ -181,7 +181,7 @@
                         <label for='dep'>แผนก/ตำแหน่งพิเศษ</label>
                         <select id='edep'>
                             <?php foreach ($dep as $row): ?>
-                                <option value="<?= $row->department_id ?>"><?= $row->department_name ?></option>
+                                <option value="<?= $row->dep_id ?>"><?= $row->dep_name ?></option>
                             <?php endforeach; ?>
                         </select>
                     </div>

@@ -4,8 +4,9 @@
  * This is the model class for table "tb_department".
  *
  * The followings are the available columns in table 'tb_department':
- * @property integer $deparment_id
+ * @property integer $dep_id
  * @property string $dep_name
+ * @property integer $faction_id
  * @property integer $enable
  */
 class TbDepartment extends CActiveRecord
@@ -26,12 +27,12 @@ class TbDepartment extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('dep_name', 'required'),
-			array('enable', 'numerical', 'integerOnly'=>true),
+			array('dep_name, faction_id', 'required'),
+			array('faction_id, enable', 'numerical', 'integerOnly'=>true),
 			array('dep_name', 'length', 'max'=>40),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('deparment_id, dep_name, enable', 'safe', 'on'=>'search'),
+			array('dep_id, dep_name, faction_id, enable', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -52,8 +53,9 @@ class TbDepartment extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'deparment_id' => 'รหัสแผนก',
+			'dep_id' => 'รหัสแผนก',
 			'dep_name' => 'ชื่อแผนก',
+			'faction_id' => 'รหัสฝ่าย',
 			'enable' => 'กำหนดให้ใช้งาน',
 		);
 	}
@@ -76,8 +78,9 @@ class TbDepartment extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
-		$criteria->compare('deparment_id',$this->deparment_id);
+		$criteria->compare('dep_id',$this->dep_id);
 		$criteria->compare('dep_name',$this->dep_name,true);
+		$criteria->compare('faction_id',$this->faction_id);
 		$criteria->compare('enable',$this->enable);
 
 		return new CActiveDataProvider($this, array(
