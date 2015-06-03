@@ -12,7 +12,7 @@ $(function () {
     var gender = $("#gender");
     var personid = $("#personid");
     var pos = $("#position");
-    var fac = $("#fac");
+    var div = $("#div");
     var dep = $("#dep");
     var userfail = 0;
     var pfail = 0;
@@ -110,21 +110,21 @@ $(function () {
         }
     });
     dep.parent().hide();
-    fac.parent().hide();
+    div.parent().hide();
     pos.change(function () {
         if (pos.val() == 3) {
             dep.parent().hide();
-            fac.parent().hide();
+            div.parent().hide();
             dep.val("");
-            fac.val("");
+            div.val("");
         } else if (pos.val() == 2) {
             dep.parent().hide();
-            fac.parent().show();
+            div.parent().show();
             dep.val("");
         } else if (pos.val() == 1) {
             dep.parent().show();
-            fac.parent().hide();
-            fac.val("");
+            div.parent().hide();
+            div.val("");
         }
     });
     fname.focusout(function () {
@@ -184,9 +184,10 @@ $(function () {
         fname.focus();
         lname.focus();
         personid.focus();
+        ok=0;
         $("#add").focus();
         if (pos.val() == 2) {
-            if (fac.val() != 0)
+            if (div.val() != 0)
                 ok = 1;
             else
                 ok = 0;
@@ -210,17 +211,17 @@ $(function () {
                 g: gender.val(),
                 pid: personid.val(),
                 pos: pos.val(),
-                fac: fac.val(),
+                div: div.val(),
                 dep: dep.val()
             }, function (data) {
                 if (data == 'ok') {
                     alert("การเพิ่มข้อมูลสำเร็จ");
                     $("#frmregis")[0].reset();
                     dep.val("0");
-                    fac.val("0");
+                    div.val("0");
                     pos.val("0");
                     dep.parent().hide();
-                    fac.parent().hide();
+                    div.parent().hide();
                     $("#mregis").modal('hide');
                     $(".feedback").txt("");
                 } else {
@@ -300,20 +301,20 @@ $(function () {
             $("#eposition").val(data);
             if (data == '1') {
                 $(".edep").show();
-                $(".efac").hide();
+                $(".ediv").hide();
             } else if (data == '2') {
-                $(".efac").show();
+                $(".ediv").show();
                 $(".edep").hide();
             } else if (data == '3') {
                 $(".edep").hide();
-                $(".efac").hide();
+                $(".ediv").hide();
             }
         });
         $.post('../data/AskDepId', {uid: id}, function (data) {
             $("#edep").val(data);
         });
         $.post('../data/AskFacId', {uid: id}, function (data) {
-            $("#efac").val(data);
+            $("#ediv").val(data);
         });
         $.post('../data/AskGen', {uid: id}, function (data) {
             $("#egender").val(data);
@@ -322,24 +323,24 @@ $(function () {
         $("#medit").modal('show');
     });
     var epos = $("#eposition");
-    var efac = $("#efac");
+    var ediv = $("#ediv");
     var edep = $("#edep");
-    efac.parent().hide();
+    ediv.parent().hide();
     edep.parent().hide();
     epos.change(function () {
         if (epos.val() == 3) {
             edep.parent().hide();
-            efac.parent().hide();
+            ediv.parent().hide();
             edep.val("");
-            efac.val("");
+            ediv.val("");
         } else if (epos.val() == 2) {
             edep.parent().hide();
-            efac.parent().show();
+            ediv.parent().show();
             edep.val("");
         } else if (epos.val() == 1) {
             edep.parent().show();
-            efac.parent().hide();
-            efac.val("");
+            ediv.parent().hide();
+            ediv.val("");
         }
     });
     $("#btnedit").click(function () {
@@ -376,7 +377,7 @@ $(function () {
                     gen: $("#egender").val(),
                     perid: $("#epersonid").val(),
                     pos: $("#eposition").val(),
-                    fac: $("#efac").val(),
+                    div: $("#ediv").val(),
                     dep: $("#edep").val()
                 }, function (data) {
             if (data == 'usrdup') {
@@ -387,10 +388,10 @@ $(function () {
                 alert("การเปลี่ยนแปลงข้อมูลเสร็จสิ้น");
                 $("#frmedit")[0].reset();
                 edep.val("0");
-                efac.val("0");
+                ediv.val("0");
                 epos.val("0");
                 edep.parent().hide();
-                efac.parent().hide();
+                ediv.parent().hide();
                 $("#medit").modal('hide');
                 ReqData();
             }
