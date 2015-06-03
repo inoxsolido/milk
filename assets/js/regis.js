@@ -224,6 +224,8 @@ $(function () {
                     div.parent().hide();
                     $("#mregis").modal('hide');
                     $(".feedback").txt("");
+                    $(".feedback").parent().removeClass("has-error");
+                    $(".feedback").parent().removeClass("has-success");
                 } else {
                     alert("การเพิ่มข้อมูลไม่สำเร็จ");
                 }
@@ -277,7 +279,6 @@ $(function () {
     });
     $("#btnfind").click(function () {
         ReqData();
-        $("#txtfind").val("");
         $("#find").fadeToggle();
     });
     //edit btn

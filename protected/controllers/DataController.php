@@ -81,25 +81,17 @@ class DataController extends Controller {
     public function actionFillUsr() {
         if (!isset($_POST['ajax']))
             return;
-        $stxt = $_POST['searchtxt'] == "" || $_POST['searchtxt'] == NULL ? "" : $_POST['searchtxt'];
-        $shwsql;
-        if ($stxt != "") {
-            $shwsql = "SELECT u.*, department_name, division_name, position_name "
+        $stxt = $_POST['searchtxt'];
+        $shwsql = "SELECT u.*, department_name, division_name, position_name "
                     . "FROM tb_user as u "
-                    . "LEFT JOIN tb_position Using position_id "
-                    . "LEFT JOIN tb_department Using Department_id "
-                    . "LEFT JOIN tb_division Using division_id "
-                    . "WHERE u.username LIKE '%$stxt%' OR "
+                    . "LEFT JOIN tb_position ON  u.position_id = tb_position.position_id "
+                    . "LEFT JOIN tb_department ON u.Department_id = tb_department.department_id "
+                    . "LEFT JOIN tb_division ON u.division_id = tb_division.division_id " ;
+        if ($stxt != "") {
+            $shwsql .= "WHERE u.username LIKE '%$stxt%' OR "
                     . "u.fname LIKE '%$stxt%' OR u.lname LIKE '%$stxt%' OR "
                     . "u.person_id LIKE '%$stxt%' OR tb_position.position_name LIKE '%$stxt%' "
                     . "OR department_name LIKE '%$stxt%' OR division_name LIKE '%$stxt%' ";
-        } else {
-
-            $shwsql = "SELECT u.*, department_name, division_name, position_name "
-                    . "FROM tb_user as u "
-                    . "LEFT JOIN tb_position ON u.position_id = tb_position.position_id "
-                    . "LEFT JOIN tb_department ON u.department_id = tb_department.department_id "
-                    . "LEFT JOIN tb_division ON u.division_id = tb_division.division_id ";
             //."WHERE u.username != '$usr'";
         }
         $userinfo = Yii::app()->db->createCommand($shwsql)->queryAll();
@@ -252,6 +244,55 @@ class DataController extends Controller {
             $result = $model->save();
             if ($result == 1) {
                 echo 'ok';
+            }
+        }
+    }
+    
+    public function actionAddDiv(){
+        if(isset($_POST['divname'])){
+            $name = $_POST['divname'];
+            $erp = $_POST['erp'];
+            
+            $sql = "INSERT INTO tb_division VALUES(NULL, $erp, '$name', 1)";
+            echo Yii::app()->db->createCommand($sql)->execute()?'ok':'fail';
+        }
+    }
+    public function actionDivEdit(){
+        if(isset($_POST['did'])){
+            $did = $_POST['did'];
+            $dname = $_POST['dname'];
+            $derp = $_POST['derp'];
+            
+            $oldname = TbDivision::model()->findByPk(intval($did))->division_name;
+            $olderp = TbDivision::model()->findByPk(intval($did))->erp_id;
+            
+            $chknamedup = TbDivision::model()->findAll("division_name = '$dname' AND division_name <> '$oldname'");
+            $chkerpdup = TbDivision::model()->findAll("erp_id = $derp AND erp_id <> $olderp");
+            
+            if(count($chknamedup)){
+                echo "namedup";
+                return;
+            }else if(count($chkerpdup)){
+                echo "erpdup";
+                return;
+            }
+            
+            $sql = "UPDATE tb_division SET division_name = '$dname', erp_id = $derp "
+                    . "WHERE division_id = $did ";
+            echo Yii::app()->db->createCommand($sql)->execute()?"ok":"fail";
+        }
+    }
+    public function actionAskDivInfo(){
+        if(isset($_POST['did'])){
+            $did = $_POST['did'];
+            $model = TbDivision::model()->findByPk(intval($did));
+            
+            if($model){
+                $x = array(
+                    'divname'=>$model->division_name,
+                    'erp_id'=>$model->erp_id
+                );
+                echo json_encode($x);
             }
         }
     }

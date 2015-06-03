@@ -6177,3 +6177,338 @@ Stack trace:
 REQUEST_URI=/yii/milk/index.php/milk/%3C?=Yii::app()-%3Erequest-%3EbaseUrl?%3E/images/cow_loading.gif
 HTTP_REFERER=http://localhost/yii/milk/index.php/milk/divManager
 ---
+2015/06/03 20:22:51 [error] [exception.CException] exception 'CException' with message 'Property "TbUser.faction_id" is not defined.' in G:\My\OOP\xampp\htdocs\Yii\framework\base\CComponent.php:130
+Stack trace:
+#0 G:\My\OOP\xampp\htdocs\Yii\framework\db\ar\CActiveRecord.php(145): CComponent->__get('faction_id')
+#1 G:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\DataController.php(182): CActiveRecord->__get('faction_id')
+#2 G:\My\OOP\xampp\htdocs\Yii\framework\web\actions\CInlineAction.php(49): DataController->actionAskFacId()
+#3 G:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 G:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#5 G:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 G:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): CController->run('AskFacId')
+#7 G:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('data/AskFacId')
+#8 G:\My\OOP\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#9 G:\My\OOP\xampp\htdocs\Yii\milk\index.php(13): CApplication->run()
+#10 {main}
+REQUEST_URI=/yii/milk/index.php/data/AskFacId
+HTTP_REFERER=http://localhost/yii/milk/index.php/milk/usermanager
+---
+2015/06/03 20:23:09 [error] [exception.CException] exception 'CException' with message 'Property "TbUser.faction_id" is not defined.' in G:\My\OOP\xampp\htdocs\Yii\framework\base\CComponent.php:130
+Stack trace:
+#0 G:\My\OOP\xampp\htdocs\Yii\framework\db\ar\CActiveRecord.php(145): CComponent->__get('faction_id')
+#1 G:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\DataController.php(182): CActiveRecord->__get('faction_id')
+#2 G:\My\OOP\xampp\htdocs\Yii\framework\web\actions\CInlineAction.php(49): DataController->actionAskFacId()
+#3 G:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 G:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#5 G:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 G:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): CController->run('AskFacId')
+#7 G:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('data/AskFacId')
+#8 G:\My\OOP\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#9 G:\My\OOP\xampp\htdocs\Yii\milk\index.php(13): CApplication->run()
+#10 {main}
+REQUEST_URI=/yii/milk/index.php/data/AskFacId
+HTTP_REFERER=http://localhost/yii/milk/index.php/milk/usermanager
+---
+2015/06/03 20:46:27 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S22]: Column not found: 1054 Unknown column '$erp' in 'where clause'. The SQL statement executed was: SELECT * FROM `tb_division` `t` WHERE erp_id = $erp.
+in G:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\ValidController.php (93)
+in G:\My\OOP\xampp\htdocs\Yii\milk\index.php (13)
+2015/06/03 20:46:27 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42S22]: Column not found: 1054 Unknown column '$erp' in 'where clause'. The SQL statement executed was: SELECT * FROM `tb_division` `t` WHERE erp_id = $erp' in G:\My\OOP\xampp\htdocs\Yii\framework\db\CDbCommand.php:543
+Stack trace:
+#0 G:\My\OOP\xampp\htdocs\Yii\framework\db\CDbCommand.php(396): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 G:\My\OOP\xampp\htdocs\Yii\framework\db\ar\CActiveRecord.php(1356): CDbCommand->queryAll()
+#2 G:\My\OOP\xampp\htdocs\Yii\framework\db\ar\CActiveRecord.php(1475): CActiveRecord->query(Object(CDbCriteria), true)
+#3 G:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\ValidController.php(93): CActiveRecord->findAll('erp_id = $erp')
+#4 G:\My\OOP\xampp\htdocs\Yii\framework\web\actions\CInlineAction.php(49): ValidController->actionChkDivErpDup()
+#5 G:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#6 G:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#7 G:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 G:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): CController->run('ChkDivErpDup')
+#9 G:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('Valid/ChkDivErp...')
+#10 G:\My\OOP\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#11 G:\My\OOP\xampp\htdocs\Yii\milk\index.php(13): CApplication->run()
+#12 {main}
+REQUEST_URI=/yii/milk/index.php/Valid/ChkDivErpDup
+HTTP_REFERER=http://localhost/yii/milk/index.php/milk/divManager
+---
+2015/06/03 21:01:56 [error] [system.db.CDbCommand] CDbCommand::execute() failed: SQLSTATE[21S01]: Insert value list does not match column list: 1136 Column count doesn't match value count at row 1. The SQL statement executed was: INSERT INTO tb_division VALUES(NULL, 'ทดสอบ', 0).
+in G:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\DataController.php (265)
+in G:\My\OOP\xampp\htdocs\Yii\milk\index.php (13)
+2015/06/03 21:01:56 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[21S01]: Insert value list does not match column list: 1136 Column count doesn't match value count at row 1. The SQL statement executed was: INSERT INTO tb_division VALUES(NULL, 'ทดสอบ', 0)' in G:\My\OOP\xampp\htdocs\Yii\framework\db\CDbCommand.php:358
+Stack trace:
+#0 G:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\DataController.php(265): CDbCommand->execute()
+#1 G:\My\OOP\xampp\htdocs\Yii\framework\web\actions\CInlineAction.php(49): DataController->actionAddDiv()
+#2 G:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#3 G:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#4 G:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#5 G:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): CController->run('AddDiv')
+#6 G:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('Data/AddDiv')
+#7 G:\My\OOP\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#8 G:\My\OOP\xampp\htdocs\Yii\milk\index.php(13): CApplication->run()
+#9 {main}
+REQUEST_URI=/yii/milk/index.php/Data/AddDiv
+HTTP_REFERER=http://localhost/yii/milk/index.php/milk/divManager
+---
+2015/06/03 21:02:05 [error] [system.db.CDbCommand] CDbCommand::execute() failed: SQLSTATE[21S01]: Insert value list does not match column list: 1136 Column count doesn't match value count at row 1. The SQL statement executed was: INSERT INTO tb_division VALUES(NULL, 'ทดสอบ', 0).
+in G:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\DataController.php (265)
+in G:\My\OOP\xampp\htdocs\Yii\milk\index.php (13)
+2015/06/03 21:02:05 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[21S01]: Insert value list does not match column list: 1136 Column count doesn't match value count at row 1. The SQL statement executed was: INSERT INTO tb_division VALUES(NULL, 'ทดสอบ', 0)' in G:\My\OOP\xampp\htdocs\Yii\framework\db\CDbCommand.php:358
+Stack trace:
+#0 G:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\DataController.php(265): CDbCommand->execute()
+#1 G:\My\OOP\xampp\htdocs\Yii\framework\web\actions\CInlineAction.php(49): DataController->actionAddDiv()
+#2 G:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#3 G:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#4 G:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#5 G:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): CController->run('AddDiv')
+#6 G:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('Data/AddDiv')
+#7 G:\My\OOP\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#8 G:\My\OOP\xampp\htdocs\Yii\milk\index.php(13): CApplication->run()
+#9 {main}
+REQUEST_URI=/yii/milk/index.php/Data/AddDiv
+HTTP_REFERER=http://localhost/yii/milk/index.php/milk/divManager
+---
+2015/06/03 21:02:19 [error] [system.db.CDbCommand] CDbCommand::execute() failed: SQLSTATE[21S01]: Insert value list does not match column list: 1136 Column count doesn't match value count at row 1. The SQL statement executed was: INSERT INTO tb_division VALUES(NULL, 'ทดสอบ', 1).
+in G:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\DataController.php (265)
+in G:\My\OOP\xampp\htdocs\Yii\milk\index.php (13)
+2015/06/03 21:02:19 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[21S01]: Insert value list does not match column list: 1136 Column count doesn't match value count at row 1. The SQL statement executed was: INSERT INTO tb_division VALUES(NULL, 'ทดสอบ', 1)' in G:\My\OOP\xampp\htdocs\Yii\framework\db\CDbCommand.php:358
+Stack trace:
+#0 G:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\DataController.php(265): CDbCommand->execute()
+#1 G:\My\OOP\xampp\htdocs\Yii\framework\web\actions\CInlineAction.php(49): DataController->actionAddDiv()
+#2 G:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#3 G:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#4 G:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#5 G:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): CController->run('AddDiv')
+#6 G:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('Data/AddDiv')
+#7 G:\My\OOP\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#8 G:\My\OOP\xampp\htdocs\Yii\milk\index.php(13): CApplication->run()
+#9 {main}
+REQUEST_URI=/yii/milk/index.php/Data/AddDiv
+HTTP_REFERER=http://localhost/yii/milk/index.php/milk/divManager
+---
+2015/06/03 21:32:14 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'position_id LEFT JOIN tb_department Using Department_id LEFT JOIN tb_division Us' at line 1. The SQL statement executed was: SELECT u.*, department_name, division_name, position_name FROM tb_user as u LEFT JOIN tb_position Using position_id LEFT JOIN tb_department Using Department_id LEFT JOIN tb_division Using division_id WHERE u.username LIKE '%ฟก%' OR u.fname LIKE '%ฟก%' OR u.lname LIKE '%ฟก%' OR u.person_id LIKE '%ฟก%' OR tb_position.position_name LIKE '%ฟก%' OR department_name LIKE '%ฟก%' OR division_name LIKE '%ฟก%' .
+in G:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\DataController.php (105)
+in G:\My\OOP\xampp\htdocs\Yii\milk\index.php (13)
+2015/06/03 21:32:14 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'position_id LEFT JOIN tb_department Using Department_id LEFT JOIN tb_division Us' at line 1. The SQL statement executed was: SELECT u.*, department_name, division_name, position_name FROM tb_user as u LEFT JOIN tb_position Using position_id LEFT JOIN tb_department Using Department_id LEFT JOIN tb_division Using division_id WHERE u.username LIKE '%ฟก%' OR u.fname LIKE '%ฟก%' OR u.lname LIKE '%ฟก%' OR u.person_id LIKE '%ฟก%' OR tb_position.position_name LIKE '%ฟก%' OR department_name LIKE '%ฟก%' OR division_name LIKE '%ฟก%' ' in G:\My\OOP\xampp\htdocs\Yii\framework\db\CDbCommand.php:543
+Stack trace:
+#0 G:\My\OOP\xampp\htdocs\Yii\framework\db\CDbCommand.php(396): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 G:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\DataController.php(105): CDbCommand->queryAll()
+#2 G:\My\OOP\xampp\htdocs\Yii\framework\web\actions\CInlineAction.php(49): DataController->actionFillUsr()
+#3 G:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 G:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#5 G:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 G:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): CController->run('FillUsr')
+#7 G:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('data/FillUsr')
+#8 G:\My\OOP\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#9 G:\My\OOP\xampp\htdocs\Yii\milk\index.php(13): CApplication->run()
+#10 {main}
+REQUEST_URI=/yii/milk/index.php/data/FillUsr
+HTTP_REFERER=http://localhost/yii/milk/index.php/milk/usermanager
+---
+2015/06/03 21:32:18 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'position_id LEFT JOIN tb_department Using Department_id LEFT JOIN tb_division Us' at line 1. The SQL statement executed was: SELECT u.*, department_name, division_name, position_name FROM tb_user as u LEFT JOIN tb_position Using position_id LEFT JOIN tb_department Using Department_id LEFT JOIN tb_division Using division_id WHERE u.username LIKE '%ad%' OR u.fname LIKE '%ad%' OR u.lname LIKE '%ad%' OR u.person_id LIKE '%ad%' OR tb_position.position_name LIKE '%ad%' OR department_name LIKE '%ad%' OR division_name LIKE '%ad%' .
+in G:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\DataController.php (105)
+in G:\My\OOP\xampp\htdocs\Yii\milk\index.php (13)
+2015/06/03 21:32:18 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'position_id LEFT JOIN tb_department Using Department_id LEFT JOIN tb_division Us' at line 1. The SQL statement executed was: SELECT u.*, department_name, division_name, position_name FROM tb_user as u LEFT JOIN tb_position Using position_id LEFT JOIN tb_department Using Department_id LEFT JOIN tb_division Using division_id WHERE u.username LIKE '%ad%' OR u.fname LIKE '%ad%' OR u.lname LIKE '%ad%' OR u.person_id LIKE '%ad%' OR tb_position.position_name LIKE '%ad%' OR department_name LIKE '%ad%' OR division_name LIKE '%ad%' ' in G:\My\OOP\xampp\htdocs\Yii\framework\db\CDbCommand.php:543
+Stack trace:
+#0 G:\My\OOP\xampp\htdocs\Yii\framework\db\CDbCommand.php(396): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 G:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\DataController.php(105): CDbCommand->queryAll()
+#2 G:\My\OOP\xampp\htdocs\Yii\framework\web\actions\CInlineAction.php(49): DataController->actionFillUsr()
+#3 G:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 G:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#5 G:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 G:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): CController->run('FillUsr')
+#7 G:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('data/FillUsr')
+#8 G:\My\OOP\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#9 G:\My\OOP\xampp\htdocs\Yii\milk\index.php(13): CApplication->run()
+#10 {main}
+REQUEST_URI=/yii/milk/index.php/data/FillUsr
+HTTP_REFERER=http://localhost/yii/milk/index.php/milk/usermanager
+---
+2015/06/03 21:32:27 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'position_id LEFT JOIN tb_department Using Department_id LEFT JOIN tb_division Us' at line 1. The SQL statement executed was: SELECT u.*, department_name, division_name, position_name FROM tb_user as u LEFT JOIN tb_position Using position_id LEFT JOIN tb_department Using Department_id LEFT JOIN tb_division Using division_id WHERE u.username LIKE '%ad%' OR u.fname LIKE '%ad%' OR u.lname LIKE '%ad%' OR u.person_id LIKE '%ad%' OR tb_position.position_name LIKE '%ad%' OR department_name LIKE '%ad%' OR division_name LIKE '%ad%' .
+in G:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\DataController.php (105)
+in G:\My\OOP\xampp\htdocs\Yii\milk\index.php (13)
+2015/06/03 21:32:27 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'position_id LEFT JOIN tb_department Using Department_id LEFT JOIN tb_division Us' at line 1. The SQL statement executed was: SELECT u.*, department_name, division_name, position_name FROM tb_user as u LEFT JOIN tb_position Using position_id LEFT JOIN tb_department Using Department_id LEFT JOIN tb_division Using division_id WHERE u.username LIKE '%ad%' OR u.fname LIKE '%ad%' OR u.lname LIKE '%ad%' OR u.person_id LIKE '%ad%' OR tb_position.position_name LIKE '%ad%' OR department_name LIKE '%ad%' OR division_name LIKE '%ad%' ' in G:\My\OOP\xampp\htdocs\Yii\framework\db\CDbCommand.php:543
+Stack trace:
+#0 G:\My\OOP\xampp\htdocs\Yii\framework\db\CDbCommand.php(396): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 G:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\DataController.php(105): CDbCommand->queryAll()
+#2 G:\My\OOP\xampp\htdocs\Yii\framework\web\actions\CInlineAction.php(49): DataController->actionFillUsr()
+#3 G:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 G:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#5 G:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 G:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): CController->run('FillUsr')
+#7 G:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('data/FillUsr')
+#8 G:\My\OOP\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#9 G:\My\OOP\xampp\htdocs\Yii\milk\index.php(13): CApplication->run()
+#10 {main}
+REQUEST_URI=/yii/milk/index.php/data/FillUsr
+HTTP_REFERER=http://localhost/yii/milk/index.php/milk/usermanager
+---
+2015/06/03 21:32:37 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'position_id LEFT JOIN tb_department Using Department_id LEFT JOIN tb_division Us' at line 1. The SQL statement executed was: SELECT u.*, department_name, division_name, position_name FROM tb_user as u LEFT JOIN tb_position Using position_id LEFT JOIN tb_department Using Department_id LEFT JOIN tb_division Using division_id WHERE u.username LIKE '%test%' OR u.fname LIKE '%test%' OR u.lname LIKE '%test%' OR u.person_id LIKE '%test%' OR tb_position.position_name LIKE '%test%' OR department_name LIKE '%test%' OR division_name LIKE '%test%' .
+in G:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\DataController.php (105)
+in G:\My\OOP\xampp\htdocs\Yii\milk\index.php (13)
+2015/06/03 21:32:37 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'position_id LEFT JOIN tb_department Using Department_id LEFT JOIN tb_division Us' at line 1. The SQL statement executed was: SELECT u.*, department_name, division_name, position_name FROM tb_user as u LEFT JOIN tb_position Using position_id LEFT JOIN tb_department Using Department_id LEFT JOIN tb_division Using division_id WHERE u.username LIKE '%test%' OR u.fname LIKE '%test%' OR u.lname LIKE '%test%' OR u.person_id LIKE '%test%' OR tb_position.position_name LIKE '%test%' OR department_name LIKE '%test%' OR division_name LIKE '%test%' ' in G:\My\OOP\xampp\htdocs\Yii\framework\db\CDbCommand.php:543
+Stack trace:
+#0 G:\My\OOP\xampp\htdocs\Yii\framework\db\CDbCommand.php(396): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 G:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\DataController.php(105): CDbCommand->queryAll()
+#2 G:\My\OOP\xampp\htdocs\Yii\framework\web\actions\CInlineAction.php(49): DataController->actionFillUsr()
+#3 G:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 G:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#5 G:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 G:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): CController->run('FillUsr')
+#7 G:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('data/FillUsr')
+#8 G:\My\OOP\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#9 G:\My\OOP\xampp\htdocs\Yii\milk\index.php(13): CApplication->run()
+#10 {main}
+REQUEST_URI=/yii/milk/index.php/data/FillUsr
+HTTP_REFERER=http://localhost/yii/milk/index.php/milk/usermanager
+---
+2015/06/03 21:33:06 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'position_id LEFT JOIN tb_department Using Department_id LEFT JOIN tb_division Us' at line 1. The SQL statement executed was: SELECT u.*, department_name, division_name, position_name FROM tb_user as u LEFT JOIN tb_position Using position_id LEFT JOIN tb_department Using Department_id LEFT JOIN tb_division Using division_id WHERE u.username LIKE '%admin%' OR u.fname LIKE '%admin%' OR u.lname LIKE '%admin%' OR u.person_id LIKE '%admin%' OR tb_position.position_name LIKE '%admin%' OR department_name LIKE '%admin%' OR division_name LIKE '%admin%' .
+in G:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\DataController.php (105)
+in G:\My\OOP\xampp\htdocs\Yii\milk\index.php (13)
+2015/06/03 21:33:06 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'position_id LEFT JOIN tb_department Using Department_id LEFT JOIN tb_division Us' at line 1. The SQL statement executed was: SELECT u.*, department_name, division_name, position_name FROM tb_user as u LEFT JOIN tb_position Using position_id LEFT JOIN tb_department Using Department_id LEFT JOIN tb_division Using division_id WHERE u.username LIKE '%admin%' OR u.fname LIKE '%admin%' OR u.lname LIKE '%admin%' OR u.person_id LIKE '%admin%' OR tb_position.position_name LIKE '%admin%' OR department_name LIKE '%admin%' OR division_name LIKE '%admin%' ' in G:\My\OOP\xampp\htdocs\Yii\framework\db\CDbCommand.php:543
+Stack trace:
+#0 G:\My\OOP\xampp\htdocs\Yii\framework\db\CDbCommand.php(396): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 G:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\DataController.php(105): CDbCommand->queryAll()
+#2 G:\My\OOP\xampp\htdocs\Yii\framework\web\actions\CInlineAction.php(49): DataController->actionFillUsr()
+#3 G:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 G:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#5 G:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 G:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): CController->run('FillUsr')
+#7 G:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('data/FillUsr')
+#8 G:\My\OOP\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#9 G:\My\OOP\xampp\htdocs\Yii\milk\index.php(13): CApplication->run()
+#10 {main}
+REQUEST_URI=/yii/milk/index.php/data/FillUsr
+HTTP_REFERER=http://localhost/yii/milk/index.php/milk/usermanager
+---
+2015/06/03 21:33:40 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'position_id LEFT JOIN tb_department Using Department_id LEFT JOIN tb_division Us' at line 1. The SQL statement executed was: SELECT u.*, department_name, division_name, position_name FROM tb_user as u LEFT JOIN tb_position Using position_id LEFT JOIN tb_department Using Department_id LEFT JOIN tb_division Using division_id WHERE u.username LIKE '%admin%' OR u.fname LIKE '%admin%' OR u.lname LIKE '%admin%' OR u.person_id LIKE '%admin%' OR tb_position.position_name LIKE '%admin%' OR department_name LIKE '%admin%' OR division_name LIKE '%admin%' .
+in G:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\DataController.php (105)
+in G:\My\OOP\xampp\htdocs\Yii\milk\index.php (13)
+2015/06/03 21:33:40 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'position_id LEFT JOIN tb_department Using Department_id LEFT JOIN tb_division Us' at line 1. The SQL statement executed was: SELECT u.*, department_name, division_name, position_name FROM tb_user as u LEFT JOIN tb_position Using position_id LEFT JOIN tb_department Using Department_id LEFT JOIN tb_division Using division_id WHERE u.username LIKE '%admin%' OR u.fname LIKE '%admin%' OR u.lname LIKE '%admin%' OR u.person_id LIKE '%admin%' OR tb_position.position_name LIKE '%admin%' OR department_name LIKE '%admin%' OR division_name LIKE '%admin%' ' in G:\My\OOP\xampp\htdocs\Yii\framework\db\CDbCommand.php:543
+Stack trace:
+#0 G:\My\OOP\xampp\htdocs\Yii\framework\db\CDbCommand.php(396): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 G:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\DataController.php(105): CDbCommand->queryAll()
+#2 G:\My\OOP\xampp\htdocs\Yii\framework\web\actions\CInlineAction.php(49): DataController->actionFillUsr()
+#3 G:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 G:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#5 G:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 G:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): CController->run('FillUsr')
+#7 G:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('data/FillUsr')
+#8 G:\My\OOP\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#9 G:\My\OOP\xampp\htdocs\Yii\milk\index.php(13): CApplication->run()
+#10 {main}
+REQUEST_URI=/yii/milk/index.php/data/FillUsr
+HTTP_REFERER=http://localhost/yii/milk/index.php/milk/usermanager
+---
+2015/06/03 21:33:47 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'position_id LEFT JOIN tb_department Using Department_id LEFT JOIN tb_division Us' at line 1. The SQL statement executed was: SELECT u.*, department_name, division_name, position_name FROM tb_user as u LEFT JOIN tb_position Using position_id LEFT JOIN tb_department Using Department_id LEFT JOIN tb_division Using division_id WHERE u.username LIKE '%f%' OR u.fname LIKE '%f%' OR u.lname LIKE '%f%' OR u.person_id LIKE '%f%' OR tb_position.position_name LIKE '%f%' OR department_name LIKE '%f%' OR division_name LIKE '%f%' .
+in G:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\DataController.php (105)
+in G:\My\OOP\xampp\htdocs\Yii\milk\index.php (13)
+2015/06/03 21:33:47 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'position_id LEFT JOIN tb_department Using Department_id LEFT JOIN tb_division Us' at line 1. The SQL statement executed was: SELECT u.*, department_name, division_name, position_name FROM tb_user as u LEFT JOIN tb_position Using position_id LEFT JOIN tb_department Using Department_id LEFT JOIN tb_division Using division_id WHERE u.username LIKE '%f%' OR u.fname LIKE '%f%' OR u.lname LIKE '%f%' OR u.person_id LIKE '%f%' OR tb_position.position_name LIKE '%f%' OR department_name LIKE '%f%' OR division_name LIKE '%f%' ' in G:\My\OOP\xampp\htdocs\Yii\framework\db\CDbCommand.php:543
+Stack trace:
+#0 G:\My\OOP\xampp\htdocs\Yii\framework\db\CDbCommand.php(396): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 G:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\DataController.php(105): CDbCommand->queryAll()
+#2 G:\My\OOP\xampp\htdocs\Yii\framework\web\actions\CInlineAction.php(49): DataController->actionFillUsr()
+#3 G:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 G:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#5 G:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 G:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): CController->run('FillUsr')
+#7 G:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('data/FillUsr')
+#8 G:\My\OOP\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#9 G:\My\OOP\xampp\htdocs\Yii\milk\index.php(13): CApplication->run()
+#10 {main}
+REQUEST_URI=/yii/milk/index.php/data/FillUsr
+HTTP_REFERER=http://localhost/yii/milk/index.php/milk/usermanager
+---
+2015/06/03 21:33:52 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'position_id LEFT JOIN tb_department Using Department_id LEFT JOIN tb_division Us' at line 1. The SQL statement executed was: SELECT u.*, department_name, division_name, position_name FROM tb_user as u LEFT JOIN tb_position Using position_id LEFT JOIN tb_department Using Department_id LEFT JOIN tb_division Using division_id WHERE u.username LIKE '%www%' OR u.fname LIKE '%www%' OR u.lname LIKE '%www%' OR u.person_id LIKE '%www%' OR tb_position.position_name LIKE '%www%' OR department_name LIKE '%www%' OR division_name LIKE '%www%' .
+in G:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\DataController.php (105)
+in G:\My\OOP\xampp\htdocs\Yii\milk\index.php (13)
+2015/06/03 21:33:52 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'position_id LEFT JOIN tb_department Using Department_id LEFT JOIN tb_division Us' at line 1. The SQL statement executed was: SELECT u.*, department_name, division_name, position_name FROM tb_user as u LEFT JOIN tb_position Using position_id LEFT JOIN tb_department Using Department_id LEFT JOIN tb_division Using division_id WHERE u.username LIKE '%www%' OR u.fname LIKE '%www%' OR u.lname LIKE '%www%' OR u.person_id LIKE '%www%' OR tb_position.position_name LIKE '%www%' OR department_name LIKE '%www%' OR division_name LIKE '%www%' ' in G:\My\OOP\xampp\htdocs\Yii\framework\db\CDbCommand.php:543
+Stack trace:
+#0 G:\My\OOP\xampp\htdocs\Yii\framework\db\CDbCommand.php(396): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 G:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\DataController.php(105): CDbCommand->queryAll()
+#2 G:\My\OOP\xampp\htdocs\Yii\framework\web\actions\CInlineAction.php(49): DataController->actionFillUsr()
+#3 G:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 G:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#5 G:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 G:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): CController->run('FillUsr')
+#7 G:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('data/FillUsr')
+#8 G:\My\OOP\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#9 G:\My\OOP\xampp\htdocs\Yii\milk\index.php(13): CApplication->run()
+#10 {main}
+REQUEST_URI=/yii/milk/index.php/data/FillUsr
+HTTP_REFERER=http://localhost/yii/milk/index.php/milk/usermanager
+---
+2015/06/03 21:36:12 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'position_id LEFT JOIN tb_department Using Department_id LEFT JOIN tb_division Us' at line 1. The SQL statement executed was: SELECT u.*, department_name, division_name, position_name FROM tb_user as u LEFT JOIN tb_position Using position_id LEFT JOIN tb_department Using Department_id LEFT JOIN tb_division Using division_id WHERE u.username LIKE '%ad%' OR u.fname LIKE '%ad%' OR u.lname LIKE '%ad%' OR u.person_id LIKE '%ad%' OR tb_position.position_name LIKE '%ad%' OR department_name LIKE '%ad%' OR division_name LIKE '%ad%' .
+in G:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\DataController.php (105)
+in G:\My\OOP\xampp\htdocs\Yii\milk\index.php (13)
+2015/06/03 21:36:12 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'position_id LEFT JOIN tb_department Using Department_id LEFT JOIN tb_division Us' at line 1. The SQL statement executed was: SELECT u.*, department_name, division_name, position_name FROM tb_user as u LEFT JOIN tb_position Using position_id LEFT JOIN tb_department Using Department_id LEFT JOIN tb_division Using division_id WHERE u.username LIKE '%ad%' OR u.fname LIKE '%ad%' OR u.lname LIKE '%ad%' OR u.person_id LIKE '%ad%' OR tb_position.position_name LIKE '%ad%' OR department_name LIKE '%ad%' OR division_name LIKE '%ad%' ' in G:\My\OOP\xampp\htdocs\Yii\framework\db\CDbCommand.php:543
+Stack trace:
+#0 G:\My\OOP\xampp\htdocs\Yii\framework\db\CDbCommand.php(396): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 G:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\DataController.php(105): CDbCommand->queryAll()
+#2 G:\My\OOP\xampp\htdocs\Yii\framework\web\actions\CInlineAction.php(49): DataController->actionFillUsr()
+#3 G:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 G:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#5 G:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 G:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): CController->run('FillUsr')
+#7 G:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('data/FillUsr')
+#8 G:\My\OOP\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#9 G:\My\OOP\xampp\htdocs\Yii\milk\index.php(13): CApplication->run()
+#10 {main}
+REQUEST_URI=/yii/milk/index.php/data/FillUsr
+HTTP_REFERER=http://localhost/yii/milk/index.php/milk/usermanager
+---
+2015/06/03 21:37:50 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'position_id LEFT JOIN tb_department Using Department_id LEFT JOIN tb_division Us' at line 1. The SQL statement executed was: SELECT u.*, department_name, division_name, position_name FROM tb_user as u LEFT JOIN tb_position Using position_id LEFT JOIN tb_department Using Department_id LEFT JOIN tb_division Using division_id .
+in G:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\DataController.php (97)
+in G:\My\OOP\xampp\htdocs\Yii\milk\index.php (13)
+2015/06/03 21:37:50 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'position_id LEFT JOIN tb_department Using Department_id LEFT JOIN tb_division Us' at line 1. The SQL statement executed was: SELECT u.*, department_name, division_name, position_name FROM tb_user as u LEFT JOIN tb_position Using position_id LEFT JOIN tb_department Using Department_id LEFT JOIN tb_division Using division_id ' in G:\My\OOP\xampp\htdocs\Yii\framework\db\CDbCommand.php:543
+Stack trace:
+#0 G:\My\OOP\xampp\htdocs\Yii\framework\db\CDbCommand.php(396): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 G:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\DataController.php(97): CDbCommand->queryAll()
+#2 G:\My\OOP\xampp\htdocs\Yii\framework\web\actions\CInlineAction.php(49): DataController->actionFillUsr()
+#3 G:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 G:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#5 G:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 G:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): CController->run('FillUsr')
+#7 G:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('data/FillUsr')
+#8 G:\My\OOP\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#9 G:\My\OOP\xampp\htdocs\Yii\milk\index.php(13): CApplication->run()
+#10 {main}
+REQUEST_URI=/yii/milk/index.php/data/FillUsr
+HTTP_REFERER=http://localhost/yii/milk/index.php/milk/usermanager
+---
+2015/06/03 21:40:39 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'u.username LIKE '%f%' OR u.fname LIKE '%f%' OR u.lname LIKE '%f%' OR u.person_id' at line 1. The SQL statement executed was: SELECT u.*, department_name, division_name, position_name FROM tb_user as u LEFT JOIN tb_position ON  u.position_id = tb_position.position_id LEFT JOIN tb_department ON u.Department_id = tb_department.department_id LEFT JOIN tb_division ON u.division_id = tb_division.division_idWHERE u.username LIKE '%f%' OR u.fname LIKE '%f%' OR u.lname LIKE '%f%' OR u.person_id LIKE '%f%' OR tb_position.position_name LIKE '%f%' OR department_name LIKE '%f%' OR division_name LIKE '%f%' .
+in G:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\DataController.php (97)
+in G:\My\OOP\xampp\htdocs\Yii\milk\index.php (13)
+2015/06/03 21:40:39 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'u.username LIKE '%f%' OR u.fname LIKE '%f%' OR u.lname LIKE '%f%' OR u.person_id' at line 1. The SQL statement executed was: SELECT u.*, department_name, division_name, position_name FROM tb_user as u LEFT JOIN tb_position ON  u.position_id = tb_position.position_id LEFT JOIN tb_department ON u.Department_id = tb_department.department_id LEFT JOIN tb_division ON u.division_id = tb_division.division_idWHERE u.username LIKE '%f%' OR u.fname LIKE '%f%' OR u.lname LIKE '%f%' OR u.person_id LIKE '%f%' OR tb_position.position_name LIKE '%f%' OR department_name LIKE '%f%' OR division_name LIKE '%f%' ' in G:\My\OOP\xampp\htdocs\Yii\framework\db\CDbCommand.php:543
+Stack trace:
+#0 G:\My\OOP\xampp\htdocs\Yii\framework\db\CDbCommand.php(396): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 G:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\DataController.php(97): CDbCommand->queryAll()
+#2 G:\My\OOP\xampp\htdocs\Yii\framework\web\actions\CInlineAction.php(49): DataController->actionFillUsr()
+#3 G:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 G:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#5 G:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 G:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): CController->run('FillUsr')
+#7 G:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('data/FillUsr')
+#8 G:\My\OOP\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#9 G:\My\OOP\xampp\htdocs\Yii\milk\index.php(13): CApplication->run()
+#10 {main}
+REQUEST_URI=/yii/milk/index.php/data/FillUsr
+HTTP_REFERER=http://localhost/yii/milk/index.php/milk/usermanager
+---
+2015/06/03 21:43:23 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'u.username LIKE '%Adminis%' OR u.fname LIKE '%Adminis%' OR u.lname LIKE '%Admini' at line 1. The SQL statement executed was: SELECT u.*, department_name, division_name, position_name FROM tb_user as u LEFT JOIN tb_position ON  u.position_id = tb_position.position_id LEFT JOIN tb_department ON u.Department_id = tb_department.department_id LEFT JOIN tb_division ON u.division_id = tb_division.division_idWHERE u.username LIKE '%Adminis%' OR u.fname LIKE '%Adminis%' OR u.lname LIKE '%Adminis%' OR u.person_id LIKE '%Adminis%' OR tb_position.position_name LIKE '%Adminis%' OR department_name LIKE '%Adminis%' OR division_name LIKE '%Adminis%' .
+in G:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\DataController.php (97)
+in G:\My\OOP\xampp\htdocs\Yii\milk\index.php (13)
+2015/06/03 21:43:23 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'u.username LIKE '%Adminis%' OR u.fname LIKE '%Adminis%' OR u.lname LIKE '%Admini' at line 1. The SQL statement executed was: SELECT u.*, department_name, division_name, position_name FROM tb_user as u LEFT JOIN tb_position ON  u.position_id = tb_position.position_id LEFT JOIN tb_department ON u.Department_id = tb_department.department_id LEFT JOIN tb_division ON u.division_id = tb_division.division_idWHERE u.username LIKE '%Adminis%' OR u.fname LIKE '%Adminis%' OR u.lname LIKE '%Adminis%' OR u.person_id LIKE '%Adminis%' OR tb_position.position_name LIKE '%Adminis%' OR department_name LIKE '%Adminis%' OR division_name LIKE '%Adminis%' ' in G:\My\OOP\xampp\htdocs\Yii\framework\db\CDbCommand.php:543
+Stack trace:
+#0 G:\My\OOP\xampp\htdocs\Yii\framework\db\CDbCommand.php(396): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 G:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\DataController.php(97): CDbCommand->queryAll()
+#2 G:\My\OOP\xampp\htdocs\Yii\framework\web\actions\CInlineAction.php(49): DataController->actionFillUsr()
+#3 G:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 G:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#5 G:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 G:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): CController->run('FillUsr')
+#7 G:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('data/FillUsr')
+#8 G:\My\OOP\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#9 G:\My\OOP\xampp\htdocs\Yii\milk\index.php(13): CApplication->run()
+#10 {main}
+REQUEST_URI=/yii/milk/index.php/data/FillUsr
+HTTP_REFERER=http://localhost/yii/milk/index.php/milk/usermanager
+---

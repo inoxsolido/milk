@@ -76,5 +76,25 @@ class ValidController extends Controller {
             }
         }
     }
+    
+    public function actionChkDivNameDup(){
+        if(isset($_POST['divname'])){
+            $divname = $_POST['divname'];
+            $result = TbDivision::model()->findAll("division_name = '$divname'");
+            if(count($result)){
+                echo 'dup';
+            }
+        }
+    }
+    public function actionChkDivErpDup(){
+        if(isset($_POST['erpid'])){
+            $erp = $_POST['erpid'];
+            $result = TbDivision::model()->findAll("erp_id = $erp");
+            if(count($result)){
+                echo 'dup';
+            }
+        }
+    }
+    
 
 }
