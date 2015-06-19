@@ -50,8 +50,8 @@ class TbType extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'type_id' => 'รหัสประเภท',
-			'type_name' => 'ประเภท',
+			'type_id' => 'Type',
+			'type_name' => 'Type Name',
 		);
 	}
 

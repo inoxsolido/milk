@@ -26,8 +26,8 @@ class TbGroup extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('group_id, group_name, type_id', 'required'),
-			array('group_id, type_id', 'numerical', 'integerOnly'=>true),
+			array('group_name, type_id', 'required'),
+			array('type_id', 'numerical', 'integerOnly'=>true),
 			array('group_name', 'length', 'max'=>50),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
@@ -52,9 +52,9 @@ class TbGroup extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'group_id' => 'รหัสหมวด',
-			'group_name' => 'ชื่อหมวด',
-			'type_id' => 'รหัสประเภท',
+			'group_id' => 'Group',
+			'group_name' => 'Group Name',
+			'type_id' => 'Type',
 		);
 	}
 

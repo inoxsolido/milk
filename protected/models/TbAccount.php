@@ -5,11 +5,9 @@
  *
  * The followings are the available columns in table 'tb_account':
  * @property integer $acc_id
- * @property integer $erp_id
  * @property string $acc_name
  * @property integer $group_id
  * @property integer $parent_acc_id
- * @property integer $enable
  */
 class TbAccount extends CActiveRecord
 {
@@ -29,12 +27,12 @@ class TbAccount extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('acc_id, erp_id, acc_name, group_id', 'required'),
-			array('acc_id, erp_id, group_id, parent_acc_id, enable', 'numerical', 'integerOnly'=>true),
+			array('acc_id, acc_name, group_id', 'required'),
+			array('acc_id, group_id, parent_acc_id', 'numerical', 'integerOnly'=>true),
 			array('acc_name', 'length', 'max'=>50),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('acc_id, erp_id, acc_name, group_id, parent_acc_id, enable', 'safe', 'on'=>'search'),
+			array('acc_id, acc_name, group_id, parent_acc_id', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -55,12 +53,10 @@ class TbAccount extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'acc_id' => 'รหัสบัญชี',
-			'erp_id' => 'รหัส ERP',
+			'acc_id' => 'Acc',
 			'acc_name' => 'Acc Name',
 			'group_id' => 'Group',
 			'parent_acc_id' => 'Parent Acc',
-			'enable' => 'กำหนดให้ใช้งาน',
 		);
 	}
 
@@ -83,11 +79,9 @@ class TbAccount extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('acc_id',$this->acc_id);
-		$criteria->compare('erp_id',$this->erp_id);
 		$criteria->compare('acc_name',$this->acc_name,true);
 		$criteria->compare('group_id',$this->group_id);
 		$criteria->compare('parent_acc_id',$this->parent_acc_id);
-		$criteria->compare('enable',$this->enable);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

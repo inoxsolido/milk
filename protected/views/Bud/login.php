@@ -43,23 +43,6 @@
                 pass.siblings("span").hide();
 
             if (user.val() != "" && pass.val() != "") {
-                /*
-                 $.post('../Valid/chklogin',
-                 {
-                 'user': user.val(),
-                 'pass': pass.val()
-                 },
-                 function (data) {
-                 if (data == '1') {
-                 location.reload();
-                 }
-                 else {
-                 $("#frmlogin")[0].reset();
-                 $(".error").hide();
-                 $(".error").show();
-                 }
-                 });
-                 */
                 $.post('../Valid/Login',
                         {
                             'user': user.val(),

@@ -5,8 +5,11 @@
  *
  * The followings are the available columns in table 'tb_division':
  * @property integer $division_id
- * @property integer $erp_id
  * @property string $division_name
+ * @property integer $parent_division
+ * @property string $office_id
+ * @property string $erp_id
+ * @property integer $isposition
  * @property integer $enable
  */
 class TbDivision extends CActiveRecord
@@ -27,12 +30,14 @@ class TbDivision extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('erp_id, division_name', 'required'),
-			array('erp_id, enable', 'numerical', 'integerOnly'=>true),
+			array('division_name, office_id, isposition', 'required'),
+			array('parent_division, isposition, enable', 'numerical', 'integerOnly'=>true),
 			array('division_name', 'length', 'max'=>50),
+			array('office_id', 'length', 'max'=>2),
+			array('erp_id', 'length', 'max'=>5),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('division_id, erp_id, division_name, enable', 'safe', 'on'=>'search'),
+			array('division_id, division_name, parent_division, office_id, erp_id, isposition, enable', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -53,10 +58,13 @@ class TbDivision extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'division_id' => 'รหัสฝ่าย',
-			'erp_id' => 'รหัส ERP',
-			'division_name' => 'ชื่อฝ่าย',
-			'enable' => 'กำหนดให้ใช้งาน',
+			'division_id' => 'Division',
+			'division_name' => 'Division Name',
+			'parent_division' => 'Parent Division',
+			'office_id' => 'Office',
+			'erp_id' => 'Erp',
+			'isposition' => 'Isposition',
+			'enable' => 'Enable',
 		);
 	}
 
@@ -79,8 +87,11 @@ class TbDivision extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('division_id',$this->division_id);
-		$criteria->compare('erp_id',$this->erp_id);
 		$criteria->compare('division_name',$this->division_name,true);
+		$criteria->compare('parent_division',$this->parent_division);
+		$criteria->compare('office_id',$this->office_id,true);
+		$criteria->compare('erp_id',$this->erp_id,true);
+		$criteria->compare('isposition',$this->isposition);
 		$criteria->compare('enable',$this->enable);
 
 		return new CActiveDataProvider($this, array(

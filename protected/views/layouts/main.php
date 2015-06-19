@@ -14,6 +14,11 @@
         <!--submenu -->
         <link rel="stylesheet" href="<?= Yii::app()->request->baseUrl ?>/assets/css/submenu.css">
         <script src="<?= Yii::app()->request->baseUrl; ?>/assets/js/submenu.js"></script>
+        <script type="text/javascript">
+            $(function(){
+                $("div.loading").hide();
+            });
+        </script>
         <style type="text/css">
             div#content{
                 position: relative;
@@ -29,7 +34,21 @@
             div#footer{
                 height:40px;
                 width:100%;
-                
+
+            }
+            div.loading{
+                    width: 150px;
+                    height: 25px;
+                    position: absolute;
+                    left: 50%;
+                    top: 50%; 
+                    margin-left: -75px;
+                    margin-top: -12.5px;
+                    background-color:white;
+                    text-align: center;
+                    border: 2px solid black;
+                    box-shadow: 2px 2px 2px 10px black;
+                    z-index: 5000;
             }
         </style>
 
@@ -66,8 +85,8 @@
                                         'role' => 'button',
                                     ],
                                     'items' => [
-                                        ['label' => 'จัดการแผนก', 'url' => 'depManager', 'class' => 'dropdown-toggle', 'role' => 'menu'],
-                                        ['label' => 'จัดการฝ่าย', 'url' => 'divManager'],
+                                        ['label' => 'จัดการรายละเอียดสังกัด', 'url' => 'divManager', 'class' => 'dropdown-toggle', 'role' => 'menu'],
+                                        ['label' => 'จัดการการกรอกของสังกัด', 'url' => '#'],
                                     ]
                                 ],
                                 ['label' => 'จัดการผู้ใช้', 'url' => 'usermanager', 'visible' => Yii::app()->user->isAdmin],
@@ -117,6 +136,6 @@
 
             </div><!-- footer -->
         </div>
-
+        <div class="loading">loading ...</div>
     </body>
 </html>

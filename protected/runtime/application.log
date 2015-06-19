@@ -6512,3 +6512,664 @@ Stack trace:
 REQUEST_URI=/yii/milk/index.php/data/FillUsr
 HTTP_REFERER=http://localhost/yii/milk/index.php/milk/usermanager
 ---
+2015/06/16 16:39:12 [error] [exception.CException] exception 'CException' with message 'BudController cannot find the requested view "faq".' in E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php:878
+Stack trace:
+#0 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(782): CController->renderPartial('faq', NULL, true)
+#1 E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\BudController.php(25): CController->render('faq')
+#2 E:\My\OOP\xampp\htdocs\Yii\framework\web\actions\CInlineAction.php(49): BudController->actionFaq()
+#3 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#5 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): CController->run('faq')
+#7 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('Bud/faq')
+#8 E:\My\OOP\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#9 E:\My\OOP\xampp\htdocs\Yii\milk\index.php(13): CApplication->run()
+#10 {main}
+REQUEST_URI=/Yii/milk/Bud/faq
+---
+2015/06/16 17:15:10 [error] [exception.CException] exception 'CException' with message 'BudController cannot find the requested view "faq".' in E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php:878
+Stack trace:
+#0 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(782): CController->renderPartial('faq', NULL, true)
+#1 E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\BudController.php(25): CController->render('faq')
+#2 E:\My\OOP\xampp\htdocs\Yii\framework\web\actions\CInlineAction.php(49): BudController->actionFaq()
+#3 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#5 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): CController->run('faq')
+#7 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('Bud/faq')
+#8 E:\My\OOP\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#9 E:\My\OOP\xampp\htdocs\Yii\milk\index.php(13): CApplication->run()
+#10 {main}
+REQUEST_URI=/Yii/milk/Bud/faq
+---
+2015/06/16 17:21:26 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'dpo_budget.tb_department' doesn't exist. The SQL statement executed was: SHOW FULL COLUMNS FROM `tb_department`.
+in E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\BudController.php (52)
+in E:\My\OOP\xampp\htdocs\Yii\milk\index.php (13)
+2015/06/16 17:21:26 [error] [exception.CDbException] exception 'CDbException' with message 'The table "tb_department" for active record class "TbDepartment" cannot be found in the database.' in E:\My\OOP\xampp\htdocs\Yii\framework\db\ar\CActiveRecord.php:2385
+Stack trace:
+#0 E:\My\OOP\xampp\htdocs\Yii\framework\db\ar\CActiveRecord.php(411): CActiveRecordMetaData->__construct(Object(TbDepartment))
+#1 E:\My\OOP\xampp\htdocs\Yii\framework\db\ar\CActiveRecord.php(661): CActiveRecord->getMetaData()
+#2 E:\My\OOP\xampp\htdocs\Yii\framework\db\ar\CActiveRecord.php(1355): CActiveRecord->getTableSchema()
+#3 E:\My\OOP\xampp\htdocs\Yii\framework\db\ar\CActiveRecord.php(1475): CActiveRecord->query(Object(CDbCriteria), true)
+#4 E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\BudController.php(52): CActiveRecord->findAll()
+#5 E:\My\OOP\xampp\htdocs\Yii\framework\web\actions\CInlineAction.php(49): BudController->actionUserManager()
+#6 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#7 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#8 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#9 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): CController->run('usermanager')
+#10 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('Bud/usermanager')
+#11 E:\My\OOP\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#12 E:\My\OOP\xampp\htdocs\Yii\milk\index.php(13): CApplication->run()
+#13 {main}
+REQUEST_URI=/Yii/milk/Bud/usermanager
+HTTP_REFERER=http://localhost/Yii/milk/Bud/faq
+---
+2015/06/16 18:09:27 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'dpo_budget.tb_department' doesn't exist. The SQL statement executed was: SHOW FULL COLUMNS FROM `tb_department`.
+in E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\BudController.php (52)
+in E:\My\OOP\xampp\htdocs\Yii\milk\index.php (13)
+2015/06/16 18:09:27 [error] [exception.CDbException] exception 'CDbException' with message 'The table "tb_department" for active record class "TbDepartment" cannot be found in the database.' in E:\My\OOP\xampp\htdocs\Yii\framework\db\ar\CActiveRecord.php:2385
+Stack trace:
+#0 E:\My\OOP\xampp\htdocs\Yii\framework\db\ar\CActiveRecord.php(411): CActiveRecordMetaData->__construct(Object(TbDepartment))
+#1 E:\My\OOP\xampp\htdocs\Yii\framework\db\ar\CActiveRecord.php(661): CActiveRecord->getMetaData()
+#2 E:\My\OOP\xampp\htdocs\Yii\framework\db\ar\CActiveRecord.php(1355): CActiveRecord->getTableSchema()
+#3 E:\My\OOP\xampp\htdocs\Yii\framework\db\ar\CActiveRecord.php(1475): CActiveRecord->query(Object(CDbCriteria), true)
+#4 E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\BudController.php(52): CActiveRecord->findAll()
+#5 E:\My\OOP\xampp\htdocs\Yii\framework\web\actions\CInlineAction.php(49): BudController->actionUserManager()
+#6 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#7 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#8 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#9 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): CController->run('usermanager')
+#10 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('Bud/usermanager')
+#11 E:\My\OOP\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#12 E:\My\OOP\xampp\htdocs\Yii\milk\index.php(13): CApplication->run()
+#13 {main}
+REQUEST_URI=/Yii/milk/Bud/usermanager
+HTTP_REFERER=http://localhost/Yii/milk/Bud/faq
+---
+2015/06/16 18:09:31 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "depManager".' in E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php:483
+Stack trace:
+#0 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(270): CController->missingAction('depManager')
+#1 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): CController->run('depManager')
+#2 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('Bud/depManager')
+#3 E:\My\OOP\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#4 E:\My\OOP\xampp\htdocs\Yii\milk\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/Yii/milk/Bud/depManager
+HTTP_REFERER=http://localhost/Yii/milk/Bud/faq
+---
+2015/06/16 19:02:24 [error] [php] Undefined index: enable (E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\DataController.php:30)
+Stack trace:
+#0 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(286): DataController->runAction()
+#1 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(265): DataController->runActionWithFilters()
+#2 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): DataController->run()
+#3 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 E:\My\OOP\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#5 E:\My\OOP\xampp\htdocs\Yii\milk\index.php(13): CWebApplication->run()
+REQUEST_URI=/Yii/milk/data/FillDiv
+in E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\DataController.php (30)
+in E:\My\OOP\xampp\htdocs\Yii\milk\index.php (13)
+2015/06/16 19:02:31 [error] [php] Undefined index: enable (E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\DataController.php:30)
+Stack trace:
+#0 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(286): DataController->runAction()
+#1 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(265): DataController->runActionWithFilters()
+#2 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): DataController->run()
+#3 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 E:\My\OOP\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#5 E:\My\OOP\xampp\htdocs\Yii\milk\index.php(13): CWebApplication->run()
+REQUEST_URI=/Yii/milk/data/FillDiv
+in E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\DataController.php (30)
+in E:\My\OOP\xampp\htdocs\Yii\milk\index.php (13)
+2015/06/16 19:02:56 [error] [php] Undefined index: enable (E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\DataController.php:30)
+Stack trace:
+#0 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(286): DataController->runAction()
+#1 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(265): DataController->runActionWithFilters()
+#2 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): DataController->run()
+#3 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 E:\My\OOP\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#5 E:\My\OOP\xampp\htdocs\Yii\milk\index.php(13): CWebApplication->run()
+REQUEST_URI=/Yii/milk/data/FillDiv
+in E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\DataController.php (30)
+in E:\My\OOP\xampp\htdocs\Yii\milk\index.php (13)
+2015/06/16 19:03:03 [error] [php] Undefined index: enable (E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\DataController.php:30)
+Stack trace:
+#0 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(286): DataController->runAction()
+#1 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(265): DataController->runActionWithFilters()
+#2 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): DataController->run()
+#3 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 E:\My\OOP\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#5 E:\My\OOP\xampp\htdocs\Yii\milk\index.php(13): CWebApplication->run()
+REQUEST_URI=/Yii/milk/data/FillDiv
+in E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\DataController.php (30)
+in E:\My\OOP\xampp\htdocs\Yii\milk\index.php (13)
+2015/06/16 19:21:46 [error] [system.db.CDbCommand] CDbCommand::() failed: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1. The SQL statement executed was: SELECT * FROM tb_division d LEFT JOIN (SELECT division_id, division_name as par_name FROM tb_division) dd ON d.parent_division = dd.division_id WHERE d.division_id = .
+in E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\DataController.php (307)
+in E:\My\OOP\xampp\htdocs\Yii\milk\index.php (13)
+2015/06/16 19:21:46 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1. The SQL statement executed was: SELECT * FROM tb_division d LEFT JOIN (SELECT division_id, division_name as par_name FROM tb_division) dd ON d.parent_division = dd.division_id WHERE d.division_id = ' in E:\My\OOP\xampp\htdocs\Yii\framework\db\CDbCommand.php:543
+Stack trace:
+#0 E:\My\OOP\xampp\htdocs\Yii\framework\db\CDbCommand.php(377): CDbCommand->queryInternal('', 0, Array)
+#1 E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\DataController.php(307): CDbCommand->query()
+#2 E:\My\OOP\xampp\htdocs\Yii\framework\web\actions\CInlineAction.php(49): DataController->actionAskDivInfo()
+#3 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#5 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): CController->run('AskDivInfo')
+#7 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('Data/AskDivInfo')
+#8 E:\My\OOP\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#9 E:\My\OOP\xampp\htdocs\Yii\milk\index.php(13): CApplication->run()
+#10 {main}
+REQUEST_URI=/Yii/milk/Data/AskDivInfo
+HTTP_REFERER=http://localhost/Yii/milk/Bud/divManager
+---
+2015/06/16 19:26:32 [error] [system.db.CDbCommand] CDbCommand::() failed: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1. The SQL statement executed was: SELECT * FROM tb_division d LEFT JOIN (SELECT division_id, division_name as par_name FROM tb_division) dd ON d.parent_division = dd.division_id WHERE d.division_id = .
+in E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\DataController.php (307)
+in E:\My\OOP\xampp\htdocs\Yii\milk\index.php (13)
+2015/06/16 19:26:32 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1. The SQL statement executed was: SELECT * FROM tb_division d LEFT JOIN (SELECT division_id, division_name as par_name FROM tb_division) dd ON d.parent_division = dd.division_id WHERE d.division_id = ' in E:\My\OOP\xampp\htdocs\Yii\framework\db\CDbCommand.php:543
+Stack trace:
+#0 E:\My\OOP\xampp\htdocs\Yii\framework\db\CDbCommand.php(377): CDbCommand->queryInternal('', 0, Array)
+#1 E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\DataController.php(307): CDbCommand->query()
+#2 E:\My\OOP\xampp\htdocs\Yii\framework\web\actions\CInlineAction.php(49): DataController->actionAskDivInfo()
+#3 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#5 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): CController->run('AskDivInfo')
+#7 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('Data/AskDivInfo')
+#8 E:\My\OOP\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#9 E:\My\OOP\xampp\htdocs\Yii\milk\index.php(13): CApplication->run()
+#10 {main}
+REQUEST_URI=/Yii/milk/Data/AskDivInfo
+HTTP_REFERER=http://localhost/Yii/milk/Bud/divManager
+---
+2015/06/16 19:30:04 [error] [exception.CException] exception 'CException' with message 'Property "CDbDataReader.division_name" is not defined.' in E:\My\OOP\xampp\htdocs\Yii\framework\base\CComponent.php:130
+Stack trace:
+#0 E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\DataController.php(311): CComponent->__get('division_name')
+#1 E:\My\OOP\xampp\htdocs\Yii\framework\web\actions\CInlineAction.php(49): DataController->actionAskDivInfo()
+#2 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#3 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#4 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#5 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): CController->run('AskDivInfo')
+#6 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('Data/AskDivInfo')
+#7 E:\My\OOP\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#8 E:\My\OOP\xampp\htdocs\Yii\milk\index.php(13): CApplication->run()
+#9 {main}
+REQUEST_URI=/Yii/milk/Data/AskDivInfo
+HTTP_REFERER=http://localhost/Yii/milk/Bud/divManager
+---
+2015/06/16 19:31:16 [error] [php] Undefined index: division_name (E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\DataController.php:311)
+Stack trace:
+#0 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(286): DataController->runAction()
+#1 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(265): DataController->runActionWithFilters()
+#2 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): DataController->run()
+#3 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 E:\My\OOP\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#5 E:\My\OOP\xampp\htdocs\Yii\milk\index.php(13): CWebApplication->run()
+REQUEST_URI=/Yii/milk/Data/AskDivInfo
+in E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\DataController.php (311)
+in E:\My\OOP\xampp\htdocs\Yii\milk\index.php (13)
+2015/06/16 19:32:00 [error] [php] Undefined index: d.division_name (E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\DataController.php:311)
+Stack trace:
+#0 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(286): DataController->runAction()
+#1 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(265): DataController->runActionWithFilters()
+#2 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): DataController->run()
+#3 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 E:\My\OOP\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#5 E:\My\OOP\xampp\htdocs\Yii\milk\index.php(13): CWebApplication->run()
+REQUEST_URI=/Yii/milk/Data/AskDivInfo
+in E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\DataController.php (311)
+in E:\My\OOP\xampp\htdocs\Yii\milk\index.php (13)
+2015/06/16 19:32:34 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[23000]: Integrity constraint violation: 1052 Column 'division_id' in field list is ambiguous. The SQL statement executed was: SELECT division_id, division_name FROM tb_division d LEFT JOIN (SELECT division_id, division_name as par_name FROM tb_division) dd ON d.parent_division = dd.division_id WHERE d.division_id = 1.
+in E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\DataController.php (307)
+in E:\My\OOP\xampp\htdocs\Yii\milk\index.php (13)
+2015/06/16 19:32:34 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[23000]: Integrity constraint violation: 1052 Column 'division_id' in field list is ambiguous. The SQL statement executed was: SELECT division_id, division_name FROM tb_division d LEFT JOIN (SELECT division_id, division_name as par_name FROM tb_division) dd ON d.parent_division = dd.division_id WHERE d.division_id = 1' in E:\My\OOP\xampp\htdocs\Yii\framework\db\CDbCommand.php:543
+Stack trace:
+#0 E:\My\OOP\xampp\htdocs\Yii\framework\db\CDbCommand.php(396): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\DataController.php(307): CDbCommand->queryAll()
+#2 E:\My\OOP\xampp\htdocs\Yii\framework\web\actions\CInlineAction.php(49): DataController->actionAskDivInfo()
+#3 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#5 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): CController->run('AskDivInfo')
+#7 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('Data/AskDivInfo')
+#8 E:\My\OOP\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#9 E:\My\OOP\xampp\htdocs\Yii\milk\index.php(13): CApplication->run()
+#10 {main}
+REQUEST_URI=/Yii/milk/Data/AskDivInfo
+HTTP_REFERER=http://localhost/Yii/milk/Bud/divManager
+---
+2015/06/16 19:33:41 [error] [php] Undefined index: division_name (E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\DataController.php:311)
+Stack trace:
+#0 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(286): DataController->runAction()
+#1 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(265): DataController->runActionWithFilters()
+#2 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): DataController->run()
+#3 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 E:\My\OOP\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#5 E:\My\OOP\xampp\htdocs\Yii\milk\index.php(13): CWebApplication->run()
+REQUEST_URI=/Yii/milk/Data/AskDivInfo
+in E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\DataController.php (311)
+in E:\My\OOP\xampp\htdocs\Yii\milk\index.php (13)
+2015/06/16 19:34:34 [error] [php] Undefined index: d.division_name (E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\DataController.php:311)
+Stack trace:
+#0 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(286): DataController->runAction()
+#1 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(265): DataController->runActionWithFilters()
+#2 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): DataController->run()
+#3 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 E:\My\OOP\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#5 E:\My\OOP\xampp\htdocs\Yii\milk\index.php(13): CWebApplication->run()
+REQUEST_URI=/Yii/milk/Data/AskDivInfo
+in E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\DataController.php (311)
+in E:\My\OOP\xampp\htdocs\Yii\milk\index.php (13)
+2015/06/16 19:34:55 [error] [php] Undefined index: division_name (E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\DataController.php:311)
+Stack trace:
+#0 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(286): DataController->runAction()
+#1 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(265): DataController->runActionWithFilters()
+#2 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): DataController->run()
+#3 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 E:\My\OOP\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#5 E:\My\OOP\xampp\htdocs\Yii\milk\index.php(13): CWebApplication->run()
+REQUEST_URI=/Yii/milk/Data/AskDivInfo
+in E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\DataController.php (311)
+in E:\My\OOP\xampp\htdocs\Yii\milk\index.php (13)
+2015/06/18 11:31:03 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'dpo_budget.tb_department' doesn't exist. The SQL statement executed was: SHOW FULL COLUMNS FROM `tb_department`.
+in E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\BudController.php (52)
+in E:\My\OOP\xampp\htdocs\Yii\milk\index.php (13)
+2015/06/18 11:31:03 [error] [exception.CDbException] exception 'CDbException' with message 'The table "tb_department" for active record class "TbDepartment" cannot be found in the database.' in E:\My\OOP\xampp\htdocs\Yii\framework\db\ar\CActiveRecord.php:2385
+Stack trace:
+#0 E:\My\OOP\xampp\htdocs\Yii\framework\db\ar\CActiveRecord.php(411): CActiveRecordMetaData->__construct(Object(TbDepartment))
+#1 E:\My\OOP\xampp\htdocs\Yii\framework\db\ar\CActiveRecord.php(661): CActiveRecord->getMetaData()
+#2 E:\My\OOP\xampp\htdocs\Yii\framework\db\ar\CActiveRecord.php(1355): CActiveRecord->getTableSchema()
+#3 E:\My\OOP\xampp\htdocs\Yii\framework\db\ar\CActiveRecord.php(1475): CActiveRecord->query(Object(CDbCriteria), true)
+#4 E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\BudController.php(52): CActiveRecord->findAll()
+#5 E:\My\OOP\xampp\htdocs\Yii\framework\web\actions\CInlineAction.php(49): BudController->actionUserManager()
+#6 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#7 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#8 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#9 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): CController->run('usermanager')
+#10 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('Bud/usermanager')
+#11 E:\My\OOP\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#12 E:\My\OOP\xampp\htdocs\Yii\milk\index.php(13): CApplication->run()
+#13 {main}
+REQUEST_URI=/Yii/milk/Bud/usermanager
+HTTP_REFERER=http://localhost/Yii/milk/Bud/faq
+---
+2015/06/18 17:58:40 [error] [system.db.CDbCommand] CDbCommand::execute() failed: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1. The SQL statement executed was: INSERT INTO tb_division VALUES(NULL,'3','true',NULL,NULL,NULL,NULL.
+in E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\DataController.php (292)
+in E:\My\OOP\xampp\htdocs\Yii\milk\index.php (13)
+2015/06/18 17:58:40 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1. The SQL statement executed was: INSERT INTO tb_division VALUES(NULL,'3','true',NULL,NULL,NULL,NULL' in E:\My\OOP\xampp\htdocs\Yii\framework\db\CDbCommand.php:358
+Stack trace:
+#0 E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\DataController.php(292): CDbCommand->execute()
+#1 E:\My\OOP\xampp\htdocs\Yii\framework\web\actions\CInlineAction.php(49): DataController->actionAddDiv()
+#2 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#3 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#4 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#5 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): CController->run('AddDiv')
+#6 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('Data/AddDiv')
+#7 E:\My\OOP\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#8 E:\My\OOP\xampp\htdocs\Yii\milk\index.php(13): CApplication->run()
+#9 {main}
+REQUEST_URI=/Yii/milk/Data/AddDiv
+HTTP_REFERER=http://localhost/Yii/milk/Bud/divManager
+---
+2015/06/18 20:25:54 [error] [php] Use of undefined constant haserp - assumed 'haserp' (E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\DataController.php:285)
+Stack trace:
+#0 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(286): DataController->runAction()
+#1 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(265): DataController->runActionWithFilters()
+#2 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): DataController->run()
+#3 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 E:\My\OOP\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#5 E:\My\OOP\xampp\htdocs\Yii\milk\index.php(13): CWebApplication->run()
+REQUEST_URI=/Yii/milk/Data/AddDiv
+in E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\DataController.php (285)
+in E:\My\OOP\xampp\htdocs\Yii\milk\index.php (13)
+2015/06/18 20:26:16 [error] [php] Use of undefined constant haserp - assumed 'haserp' (E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\DataController.php:285)
+Stack trace:
+#0 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(286): DataController->runAction()
+#1 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(265): DataController->runActionWithFilters()
+#2 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): DataController->run()
+#3 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 E:\My\OOP\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#5 E:\My\OOP\xampp\htdocs\Yii\milk\index.php(13): CWebApplication->run()
+REQUEST_URI=/Yii/milk/Data/AddDiv
+in E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\DataController.php (285)
+in E:\My\OOP\xampp\htdocs\Yii\milk\index.php (13)
+2015/06/18 20:27:38 [error] [php] Use of undefined constant haserp - assumed 'haserp' (E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\DataController.php:285)
+Stack trace:
+#0 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(286): DataController->runAction()
+#1 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(265): DataController->runActionWithFilters()
+#2 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): DataController->run()
+#3 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 E:\My\OOP\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#5 E:\My\OOP\xampp\htdocs\Yii\milk\index.php(13): CWebApplication->run()
+REQUEST_URI=/Yii/milk/Data/AddDiv
+in E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\DataController.php (285)
+in E:\My\OOP\xampp\htdocs\Yii\milk\index.php (13)
+2015/06/18 20:29:08 [error] [system.db.CDbCommand] CDbCommand::execute() failed: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1. The SQL statement executed was: INSERT INTO tb_division VALUES(NULL,'C',1,01,'',1.
+in E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\DataController.php (293)
+in E:\My\OOP\xampp\htdocs\Yii\milk\index.php (13)
+2015/06/18 20:29:08 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1. The SQL statement executed was: INSERT INTO tb_division VALUES(NULL,'C',1,01,'',1' in E:\My\OOP\xampp\htdocs\Yii\framework\db\CDbCommand.php:358
+Stack trace:
+#0 E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\DataController.php(293): CDbCommand->execute()
+#1 E:\My\OOP\xampp\htdocs\Yii\framework\web\actions\CInlineAction.php(49): DataController->actionAddDiv()
+#2 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#3 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#4 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#5 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): CController->run('AddDiv')
+#6 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('Data/AddDiv')
+#7 E:\My\OOP\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#8 E:\My\OOP\xampp\htdocs\Yii\milk\index.php(13): CApplication->run()
+#9 {main}
+REQUEST_URI=/Yii/milk/Data/AddDiv
+HTTP_REFERER=http://localhost/Yii/milk/Bud/divManager
+---
+2015/06/18 20:30:36 [error] [system.db.CDbCommand] CDbCommand::execute() failed: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1. The SQL statement executed was: INSERT INTO tb_division VALUES(NULL,'C',1,01,'',1.
+in E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\DataController.php (293)
+in E:\My\OOP\xampp\htdocs\Yii\milk\index.php (13)
+2015/06/18 20:30:36 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1. The SQL statement executed was: INSERT INTO tb_division VALUES(NULL,'C',1,01,'',1' in E:\My\OOP\xampp\htdocs\Yii\framework\db\CDbCommand.php:358
+Stack trace:
+#0 E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\DataController.php(293): CDbCommand->execute()
+#1 E:\My\OOP\xampp\htdocs\Yii\framework\web\actions\CInlineAction.php(49): DataController->actionAddDiv()
+#2 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#3 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#4 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#5 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): CController->run('AddDiv')
+#6 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('Data/AddDiv')
+#7 E:\My\OOP\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#8 E:\My\OOP\xampp\htdocs\Yii\milk\index.php(13): CApplication->run()
+#9 {main}
+REQUEST_URI=/Yii/milk/Data/AddDiv
+HTTP_REFERER=http://localhost/Yii/milk/Bud/divManager
+---
+2015/06/18 20:36:01 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "FillDivParent".' in E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php:483
+Stack trace:
+#0 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(270): CController->missingAction('FillDivParent')
+#1 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): CController->run('FillDivParent')
+#2 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('Data/FillDivPar...')
+#3 E:\My\OOP\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#4 E:\My\OOP\xampp\htdocs\Yii\milk\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/Yii/milk/Data/FillDivParent
+HTTP_REFERER=http://localhost/Yii/milk/Bud/divManager
+---
+2015/06/18 20:53:32 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'undefined' in 'where clause'. The SQL statement executed was: SELECT * FROM `tb_division` `t` WHERE erp_id = undefined.
+in E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\ValidController.php (79)
+in E:\My\OOP\xampp\htdocs\Yii\milk\index.php (13)
+2015/06/18 20:53:32 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'undefined' in 'where clause'. The SQL statement executed was: SELECT * FROM `tb_division` `t` WHERE erp_id = undefined' in E:\My\OOP\xampp\htdocs\Yii\framework\db\CDbCommand.php:543
+Stack trace:
+#0 E:\My\OOP\xampp\htdocs\Yii\framework\db\CDbCommand.php(396): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 E:\My\OOP\xampp\htdocs\Yii\framework\db\ar\CActiveRecord.php(1356): CDbCommand->queryAll()
+#2 E:\My\OOP\xampp\htdocs\Yii\framework\db\ar\CActiveRecord.php(1475): CActiveRecord->query(Object(CDbCriteria), true)
+#3 E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\ValidController.php(79): CActiveRecord->findAll('erp_id = undefi...')
+#4 E:\My\OOP\xampp\htdocs\Yii\framework\web\actions\CInlineAction.php(49): ValidController->actionChkDivErpDup()
+#5 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#6 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#7 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): CController->run('ChkDivErpDup')
+#9 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('Valid/ChkDivErp...')
+#10 E:\My\OOP\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#11 E:\My\OOP\xampp\htdocs\Yii\milk\index.php(13): CApplication->run()
+#12 {main}
+REQUEST_URI=/Yii/milk/Valid/ChkDivErpDup
+HTTP_REFERER=http://localhost/Yii/milk/Bud/divManager
+---
+2015/06/18 21:01:26 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'undefined' in 'where clause'. The SQL statement executed was: SELECT * FROM `tb_division` `t` WHERE erp_id = undefined.
+in E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\ValidController.php (79)
+in E:\My\OOP\xampp\htdocs\Yii\milk\index.php (13)
+2015/06/18 21:01:26 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'undefined' in 'where clause'. The SQL statement executed was: SELECT * FROM `tb_division` `t` WHERE erp_id = undefined' in E:\My\OOP\xampp\htdocs\Yii\framework\db\CDbCommand.php:543
+Stack trace:
+#0 E:\My\OOP\xampp\htdocs\Yii\framework\db\CDbCommand.php(396): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 E:\My\OOP\xampp\htdocs\Yii\framework\db\ar\CActiveRecord.php(1356): CDbCommand->queryAll()
+#2 E:\My\OOP\xampp\htdocs\Yii\framework\db\ar\CActiveRecord.php(1475): CActiveRecord->query(Object(CDbCriteria), true)
+#3 E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\ValidController.php(79): CActiveRecord->findAll('erp_id = undefi...')
+#4 E:\My\OOP\xampp\htdocs\Yii\framework\web\actions\CInlineAction.php(49): ValidController->actionChkDivErpDup()
+#5 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#6 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#7 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): CController->run('ChkDivErpDup')
+#9 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('Valid/ChkDivErp...')
+#10 E:\My\OOP\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#11 E:\My\OOP\xampp\htdocs\Yii\milk\index.php(13): CApplication->run()
+#12 {main}
+REQUEST_URI=/Yii/milk/Valid/ChkDivErpDup
+HTTP_REFERER=http://localhost/Yii/milk/Bud/divManager
+---
+2015/06/19 21:43:24 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '= 1' at line 1. The SQL statement executed was: SELECT * FROM `tb_division` `t` WHERE enable=1 AND erp_id != '' AND isposition += 1.
+in E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\DataController.php (245)
+in E:\My\OOP\xampp\htdocs\Yii\milk\index.php (13)
+2015/06/19 21:43:24 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '= 1' at line 1. The SQL statement executed was: SELECT * FROM `tb_division` `t` WHERE enable=1 AND erp_id != '' AND isposition += 1' in E:\My\OOP\xampp\htdocs\Yii\framework\db\CDbCommand.php:543
+Stack trace:
+#0 E:\My\OOP\xampp\htdocs\Yii\framework\db\CDbCommand.php(396): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 E:\My\OOP\xampp\htdocs\Yii\framework\db\ar\CActiveRecord.php(1356): CDbCommand->queryAll()
+#2 E:\My\OOP\xampp\htdocs\Yii\framework\db\ar\CActiveRecord.php(1475): CActiveRecord->query(Object(CDbCriteria), true)
+#3 E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\DataController.php(245): CActiveRecord->findAll('enable=1 AND er...')
+#4 E:\My\OOP\xampp\htdocs\Yii\framework\web\actions\CInlineAction.php(49): DataController->actionFillDivParentAdd()
+#5 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#6 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#7 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): CController->run('FillDivParentAd...')
+#9 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('Data/FillDivPar...')
+#10 E:\My\OOP\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#11 E:\My\OOP\xampp\htdocs\Yii\milk\index.php(13): CApplication->run()
+#12 {main}
+REQUEST_URI=/Yii/milk/Data/FillDivParentAdd
+HTTP_REFERER=http://localhost/Yii/milk/Bud/divManager
+---
+2015/06/19 21:45:31 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '= 1' at line 1. The SQL statement executed was: SELECT * FROM `tb_division` `t` WHERE enable=1 AND erp_id != '' AND isposition += 1.
+in E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\DataController.php (245)
+in E:\My\OOP\xampp\htdocs\Yii\milk\index.php (13)
+2015/06/19 21:45:31 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '= 1' at line 1. The SQL statement executed was: SELECT * FROM `tb_division` `t` WHERE enable=1 AND erp_id != '' AND isposition += 1' in E:\My\OOP\xampp\htdocs\Yii\framework\db\CDbCommand.php:543
+Stack trace:
+#0 E:\My\OOP\xampp\htdocs\Yii\framework\db\CDbCommand.php(396): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 E:\My\OOP\xampp\htdocs\Yii\framework\db\ar\CActiveRecord.php(1356): CDbCommand->queryAll()
+#2 E:\My\OOP\xampp\htdocs\Yii\framework\db\ar\CActiveRecord.php(1475): CActiveRecord->query(Object(CDbCriteria), true)
+#3 E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\DataController.php(245): CActiveRecord->findAll('enable=1 AND er...')
+#4 E:\My\OOP\xampp\htdocs\Yii\framework\web\actions\CInlineAction.php(49): DataController->actionFillDivParentAdd()
+#5 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#6 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#7 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): CController->run('FillDivParentAd...')
+#9 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('Data/FillDivPar...')
+#10 E:\My\OOP\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#11 E:\My\OOP\xampp\htdocs\Yii\milk\index.php(13): CApplication->run()
+#12 {main}
+REQUEST_URI=/Yii/milk/Data/FillDivParentAdd
+HTTP_REFERER=http://localhost/Yii/milk/Bud/divManager
+---
+2015/06/19 22:07:28 [error] [php] Undefined variable: s (E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\DataController.php:218)
+Stack trace:
+#0 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(286): DataController->runAction()
+#1 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(265): DataController->runActionWithFilters()
+#2 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): DataController->run()
+#3 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 E:\My\OOP\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#5 E:\My\OOP\xampp\htdocs\Yii\milk\index.php(13): CWebApplication->run()
+REQUEST_URI=/Yii/milk/data/FillDiv
+in E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\DataController.php (218)
+in E:\My\OOP\xampp\htdocs\Yii\milk\index.php (13)
+2015/06/19 22:08:50 [error] [php] Undefined variable: s (E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\DataController.php:218)
+Stack trace:
+#0 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(286): DataController->runAction()
+#1 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(265): DataController->runActionWithFilters()
+#2 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): DataController->run()
+#3 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 E:\My\OOP\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#5 E:\My\OOP\xampp\htdocs\Yii\milk\index.php(13): CWebApplication->run()
+REQUEST_URI=/Yii/milk/data/FillDiv
+in E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\DataController.php (218)
+in E:\My\OOP\xampp\htdocs\Yii\milk\index.php (13)
+2015/06/19 22:22:43 [error] [php] Undefined index: searchtxt (E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\DataController.php:210)
+Stack trace:
+#0 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(286): DataController->runAction()
+#1 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(265): DataController->runActionWithFilters()
+#2 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): DataController->run()
+#3 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 E:\My\OOP\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#5 E:\My\OOP\xampp\htdocs\Yii\milk\index.php(13): CWebApplication->run()
+REQUEST_URI=/Yii/milk/data/FillDiv
+in E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\DataController.php (210)
+in E:\My\OOP\xampp\htdocs\Yii\milk\index.php (13)
+2015/06/19 22:23:11 [error] [php] Undefined index: searchtxt (E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\DataController.php:210)
+Stack trace:
+#0 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(286): DataController->runAction()
+#1 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(265): DataController->runActionWithFilters()
+#2 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): DataController->run()
+#3 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 E:\My\OOP\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#5 E:\My\OOP\xampp\htdocs\Yii\milk\index.php(13): CWebApplication->run()
+REQUEST_URI=/Yii/milk/data/FillDiv
+in E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\DataController.php (210)
+in E:\My\OOP\xampp\htdocs\Yii\milk\index.php (13)
+2015/06/19 22:23:41 [error] [php] Undefined index: searchtxt (E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\DataController.php:210)
+Stack trace:
+#0 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(286): DataController->runAction()
+#1 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(265): DataController->runActionWithFilters()
+#2 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): DataController->run()
+#3 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 E:\My\OOP\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#5 E:\My\OOP\xampp\htdocs\Yii\milk\index.php(13): CWebApplication->run()
+REQUEST_URI=/Yii/milk/data/FillDiv
+in E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\DataController.php (210)
+in E:\My\OOP\xampp\htdocs\Yii\milk\index.php (13)
+2015/06/19 22:24:16 [error] [php] Undefined index: searchtxt (E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\DataController.php:210)
+Stack trace:
+#0 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(286): DataController->runAction()
+#1 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(265): DataController->runActionWithFilters()
+#2 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): DataController->run()
+#3 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 E:\My\OOP\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#5 E:\My\OOP\xampp\htdocs\Yii\milk\index.php(13): CWebApplication->run()
+REQUEST_URI=/Yii/milk/data/FillDiv
+in E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\DataController.php (210)
+in E:\My\OOP\xampp\htdocs\Yii\milk\index.php (13)
+2015/06/19 22:24:24 [error] [php] Undefined index: searchtxt (E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\DataController.php:210)
+Stack trace:
+#0 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(286): DataController->runAction()
+#1 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(265): DataController->runActionWithFilters()
+#2 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): DataController->run()
+#3 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 E:\My\OOP\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#5 E:\My\OOP\xampp\htdocs\Yii\milk\index.php(13): CWebApplication->run()
+REQUEST_URI=/Yii/milk/data/FillDiv
+in E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\DataController.php (210)
+in E:\My\OOP\xampp\htdocs\Yii\milk\index.php (13)
+2015/06/19 22:24:36 [error] [php] Undefined index: searchtxt (E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\DataController.php:210)
+Stack trace:
+#0 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(286): DataController->runAction()
+#1 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(265): DataController->runActionWithFilters()
+#2 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): DataController->run()
+#3 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 E:\My\OOP\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#5 E:\My\OOP\xampp\htdocs\Yii\milk\index.php(13): CWebApplication->run()
+REQUEST_URI=/Yii/milk/data/FillDiv
+in E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\DataController.php (210)
+in E:\My\OOP\xampp\htdocs\Yii\milk\index.php (13)
+2015/06/19 22:26:12 [error] [php] Undefined variable: stxt (E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\DataController.php:214)
+Stack trace:
+#0 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(286): DataController->runAction()
+#1 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(265): DataController->runActionWithFilters()
+#2 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): DataController->run()
+#3 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 E:\My\OOP\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#5 E:\My\OOP\xampp\htdocs\Yii\milk\index.php(13): CWebApplication->run()
+REQUEST_URI=/Yii/milk/data/FillDiv
+in E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\DataController.php (214)
+in E:\My\OOP\xampp\htdocs\Yii\milk\index.php (13)
+2015/06/19 22:49:30 [error] [php] Object of class stdClass could not be converted to string (E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\DataController.php:216)
+Stack trace:
+#0 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(286): DataController->runAction()
+#1 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(265): DataController->runActionWithFilters()
+#2 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): DataController->run()
+#3 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 E:\My\OOP\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#5 E:\My\OOP\xampp\htdocs\Yii\milk\index.php(13): CWebApplication->run()
+REQUEST_URI=/Yii/milk/data/FillDiv
+in E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\DataController.php (216)
+in E:\My\OOP\xampp\htdocs\Yii\milk\index.php (13)
+2015/06/19 22:49:54 [error] [php] Object of class stdClass could not be converted to string (E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\DataController.php:216)
+Stack trace:
+#0 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(286): DataController->runAction()
+#1 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(265): DataController->runActionWithFilters()
+#2 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): DataController->run()
+#3 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 E:\My\OOP\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#5 E:\My\OOP\xampp\htdocs\Yii\milk\index.php(13): CWebApplication->run()
+REQUEST_URI=/Yii/milk/data/FillDiv
+in E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\DataController.php (216)
+in E:\My\OOP\xampp\htdocs\Yii\milk\index.php (13)
+2015/06/19 22:49:58 [error] [php] Object of class stdClass could not be converted to string (E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\DataController.php:216)
+Stack trace:
+#0 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(286): DataController->runAction()
+#1 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(265): DataController->runActionWithFilters()
+#2 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): DataController->run()
+#3 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 E:\My\OOP\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#5 E:\My\OOP\xampp\htdocs\Yii\milk\index.php(13): CWebApplication->run()
+REQUEST_URI=/Yii/milk/data/FillDiv
+in E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\DataController.php (216)
+in E:\My\OOP\xampp\htdocs\Yii\milk\index.php (13)
+2015/06/19 22:52:16 [error] [php] json_decode() expects parameter 1 to be string, array given (E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\DataController.php:211)
+Stack trace:
+#0 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#1 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(286): DataController->runAction()
+#2 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(265): DataController->runActionWithFilters()
+#3 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): DataController->run()
+#4 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#5 E:\My\OOP\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#6 E:\My\OOP\xampp\htdocs\Yii\milk\index.php(13): CWebApplication->run()
+REQUEST_URI=/Yii/milk/data/FillDiv
+in E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\DataController.php (211)
+in E:\My\OOP\xampp\htdocs\Yii\milk\index.php (13)
+2015/06/19 23:16:02 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'dd.par' in 'on clause'. The SQL statement executed was: SELECT * FROM tb_division d LEFT JOIN (SELECT division_id as par_id, division_name as par_name FROM tb_division) dd ON d.parent_division = dd.par.
+in E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\DataController.php (237)
+in E:\My\OOP\xampp\htdocs\Yii\milk\index.php (13)
+2015/06/19 23:16:02 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'dd.par' in 'on clause'. The SQL statement executed was: SELECT * FROM tb_division d LEFT JOIN (SELECT division_id as par_id, division_name as par_name FROM tb_division) dd ON d.parent_division = dd.par' in E:\My\OOP\xampp\htdocs\Yii\framework\db\CDbCommand.php:543
+Stack trace:
+#0 E:\My\OOP\xampp\htdocs\Yii\framework\db\CDbCommand.php(396): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\DataController.php(237): CDbCommand->queryAll()
+#2 E:\My\OOP\xampp\htdocs\Yii\framework\web\actions\CInlineAction.php(49): DataController->actionFillDiv()
+#3 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#5 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): CController->run('FillDiv')
+#7 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('data/FillDiv')
+#8 E:\My\OOP\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#9 E:\My\OOP\xampp\htdocs\Yii\milk\index.php(13): CApplication->run()
+#10 {main}
+REQUEST_URI=/Yii/milk/data/FillDiv
+HTTP_REFERER=http://localhost/Yii/milk/Bud/divManager
+---
+2015/06/19 23:17:25 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'dd.par' in 'on clause'. The SQL statement executed was: SELECT * FROM tb_division d LEFT JOIN (SELECT division_id as par_id, division_name as par_name FROM tb_division) dd ON d.parent_division = dd.par.
+in E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\DataController.php (237)
+in E:\My\OOP\xampp\htdocs\Yii\milk\index.php (13)
+2015/06/19 23:17:25 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'dd.par' in 'on clause'. The SQL statement executed was: SELECT * FROM tb_division d LEFT JOIN (SELECT division_id as par_id, division_name as par_name FROM tb_division) dd ON d.parent_division = dd.par' in E:\My\OOP\xampp\htdocs\Yii\framework\db\CDbCommand.php:543
+Stack trace:
+#0 E:\My\OOP\xampp\htdocs\Yii\framework\db\CDbCommand.php(396): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\DataController.php(237): CDbCommand->queryAll()
+#2 E:\My\OOP\xampp\htdocs\Yii\framework\web\actions\CInlineAction.php(49): DataController->actionFillDiv()
+#3 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#5 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): CController->run('FillDiv')
+#7 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('data/FillDiv')
+#8 E:\My\OOP\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#9 E:\My\OOP\xampp\htdocs\Yii\milk\index.php(13): CApplication->run()
+#10 {main}
+REQUEST_URI=/Yii/milk/data/FillDiv
+HTTP_REFERER=http://localhost/Yii/milk/Bud/divManager
+---
+2015/06/19 23:21:16 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'WHE' at line 1. The SQL statement executed was: SELECT * FROM tb_division d LEFT JOIN (SELECT division_id as par_id, division_name as par_name FROM tb_division) dd ON d.parent_division = dd.par_id WHE.
+in E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\DataController.php (238)
+in E:\My\OOP\xampp\htdocs\Yii\milk\index.php (13)
+2015/06/19 23:21:16 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'WHE' at line 1. The SQL statement executed was: SELECT * FROM tb_division d LEFT JOIN (SELECT division_id as par_id, division_name as par_name FROM tb_division) dd ON d.parent_division = dd.par_id WHE' in E:\My\OOP\xampp\htdocs\Yii\framework\db\CDbCommand.php:543
+Stack trace:
+#0 E:\My\OOP\xampp\htdocs\Yii\framework\db\CDbCommand.php(396): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\DataController.php(238): CDbCommand->queryAll()
+#2 E:\My\OOP\xampp\htdocs\Yii\framework\web\actions\CInlineAction.php(49): DataController->actionFillDiv()
+#3 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#5 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): CController->run('FillDiv')
+#7 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('data/FillDiv')
+#8 E:\My\OOP\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#9 E:\My\OOP\xampp\htdocs\Yii\milk\index.php(13): CApplication->run()
+#10 {main}
+REQUEST_URI=/Yii/milk/data/FillDiv
+HTTP_REFERER=http://localhost/Yii/milk/Bud/divManager
+---

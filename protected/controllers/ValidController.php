@@ -13,31 +13,17 @@
  */
 class ValidController extends Controller {
 
-    public function actionChkLogin() {
-        if (isset($_POST['user']) && isset($_POST['pass'])) {
-            $user = $_POST['user'];
-            $pass = $_POST['pass'];
-            $result = TbUser::model()->findAll("username = '$user' AND password = '$pass'");
-
-//check result must found only one row !
-            if (count($result) == 1) {
-//add value to session 
-                Yii::app()->session['username'] = $user;
-                Yii::app()->session['password'] = $pass;
-                Yii::app()->session['user_id'] = $result[0]->user_id;
-                Yii::app()->session['position'] = $result[0]->position_id;
-                echo 1;
-            } else {
-                echo 0;
-            }
-        }
+    public function actionCheckEncrypt() {
+        echo Yii::app()->Encryption->EncryptPassword("1234");
     }
 
     public function actionLogin() {
         if (isset($_POST['user']) && isset($_POST['pass'])) {
             $model = new TbUser;
             $model->username = $_POST['user'];
-            $model->password = $_POST['pass'];
+            $pass = $_POST['pass'];
+            $encryptpass = Yii::app()->Encryption->EncryptPassword($pass);
+            $model->password = $encryptpass;
             $errorCode = 1;
             $identity = new UserIdentity($model->username, $model->password);
             $identity->authenticate();
@@ -76,25 +62,25 @@ class ValidController extends Controller {
             }
         }
     }
-    
-    public function actionChkDivNameDup(){
-        if(isset($_POST['divname'])){
+
+    public function actionChkDivNameDup() {
+        if (isset($_POST['divname'])) {
             $divname = $_POST['divname'];
             $result = TbDivision::model()->findAll("division_name = '$divname'");
-            if(count($result)){
+            if (count($result)) {
                 echo 'dup';
             }
         }
     }
-    public function actionChkDivErpDup(){
-        if(isset($_POST['erpid'])){
+
+    public function actionChkDivErpDup() {
+        if (isset($_POST['erpid'])) {
             $erp = $_POST['erpid'];
-            $result = TbDivision::model()->findAll("erp_id = $erp");
-            if(count($result)){
+            $result = TbDivision::model()->findAll("erp_id = '$erp'");
+            if (count($result)) {
                 echo 'dup';
             }
         }
     }
-    
 
 }

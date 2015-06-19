@@ -1,22 +1,20 @@
 <?php
 
 /**
- * This is the model class for table "tb_faction".
+ * This is the model class for table "tb_profile_fill".
  *
- * The followings are the available columns in table 'tb_faction':
- * @property integer $faction_id
- * @property integer $erp_id
- * @property string $faction_name
- * @property integer $enable
+ * The followings are the available columns in table 'tb_profile_fill':
+ * @property integer $owner_div_id
+ * @property integer $division_id
  */
-class TbFaction extends CActiveRecord
+class TbProfileFill extends CActiveRecord
 {
 	/**
 	 * @return string the associated database table name
 	 */
 	public function tableName()
 	{
-		return 'tb_faction';
+		return 'tb_profile_fill';
 	}
 
 	/**
@@ -27,12 +25,11 @@ class TbFaction extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('erp_id', 'required'),
-			array('erp_id, enable', 'numerical', 'integerOnly'=>true),
-			array('faction_name', 'length', 'max'=>50),
+			array('owner_div_id, division_id', 'required'),
+			array('owner_div_id, division_id', 'numerical', 'integerOnly'=>true),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('faction_id, erp_id, faction_name, enable', 'safe', 'on'=>'search'),
+			array('owner_div_id, division_id', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -53,10 +50,8 @@ class TbFaction extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'faction_id' => 'รหัสฝ่าย',
-			'erp_id' => 'รหัส ERP',
-			'faction_name' => 'ชื่อฝ่าย',
-			'enable' => 'กำหนดให้ใช้งาน',
+			'owner_div_id' => 'Owner Div',
+			'division_id' => 'Division',
 		);
 	}
 
@@ -78,10 +73,8 @@ class TbFaction extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
-		$criteria->compare('faction_id',$this->faction_id);
-		$criteria->compare('erp_id',$this->erp_id);
-		$criteria->compare('faction_name',$this->faction_name,true);
-		$criteria->compare('enable',$this->enable);
+		$criteria->compare('owner_div_id',$this->owner_div_id);
+		$criteria->compare('division_id',$this->division_id);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
@@ -92,7 +85,7 @@ class TbFaction extends CActiveRecord
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!
 	 * @param string $className active record class name.
-	 * @return TbFaction the static model class
+	 * @return TbProfileFill the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{
