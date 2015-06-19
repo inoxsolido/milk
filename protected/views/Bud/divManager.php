@@ -22,6 +22,7 @@
                         <td><input type="text" class="form-control" id="fdpar"></td>
                         <td><input type="text" class="form-control" id="fdof"></td>
                         <td><select id="fdispos">
+                                <option value="99" selected="selected">--ไม่เลือก--</option>
                                 <option value="0">ไม่เป็น</option>
                                 <option value="1">เป็น</option>
                             </select>

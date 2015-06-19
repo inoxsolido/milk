@@ -212,14 +212,8 @@ class DataController extends Controller {
                 $stxt = ($_POST['searchtxt']);
             $sql = "SELECT * FROM tb_division d LEFT JOIN (SELECT division_id as par_id, division_name as par_name FROM tb_division) dd "
                     . "ON d.parent_division = dd.par_id";
-            if ($stxt != "") {
-                //$sql .= "WHERE erp_id LIKE '%$stxt%' OR division_name LIKE '%$stxt%'";
-                print_r($stxt);
-                if (!empty($stxt['erp']))
-                    echo $stxt['name'];
-            }
 
-            if (!empty($stxt['name']) || !empty($txt['erp']) || !empty($stxt['par']) || !empty($stxt['office']) || !empty($stxt['ispos'])) {
+            if (!empty($stxt['name']) || !empty($txt['erp']) || !empty($stxt['par']) || !empty($stxt['office']) || $stxt['ispos']!=99) {
                 $sql .= " WHERE";
                 if (!empty($stxt['name']))
                     $sql .= " d.division_name LIKE '%" . $stxt['name'] . "%' AND";
@@ -227,14 +221,14 @@ class DataController extends Controller {
                     $sql .= " d.erp_id LIKE '" . $stxt['erp'] . "' AND";
                 if (!empty($stxt['office']))
                     $sql .= " d.office_id LIKE '" . $stxt['office'] . "' AND";
-                if (!empty($stxt['ispos']))
+                if (($stxt['ispos'])!=99)
                     $sql .= " d.isposition = " . $stxt['ispos']. " AND";
                 if(!empty($stxt['par']))
                     $sql .= " dd.par_name LIKE '%". $stxt['par_name'] ."%' AND";
                 $sql = substr($sql, 0,-3);
             }
             
-
+            
             $div = Yii::app()->db->createCommand($sql)->queryAll();
             foreach ($div as $row) {
                 ?><tr>
@@ -249,6 +243,8 @@ class DataController extends Controller {
                     </td>
                 </tr><?php
             }
+             
+             
         }
     }
 
