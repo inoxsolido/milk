@@ -86,7 +86,7 @@
                                     ],
                                     'items' => [
                                         ['label' => 'จัดการรายละเอียดสังกัด', 'url' => 'divManager', 'class' => 'dropdown-toggle', 'role' => 'menu'],
-                                        ['label' => 'จัดการการกรอกของสังกัด', 'url' => '#'],
+                                        ['label' => 'จัดการการกรอกของสังกัด', 'url' => 'fillingManager'],
                                     ]
                                 ],
                                 ['label' => 'จัดการผู้ใช้', 'url' => 'usermanager', 'visible' => Yii::app()->user->isAdmin],

@@ -7363,3 +7363,831 @@ Stack trace:
 REQUEST_URI=/Yii/milk/data/FillDiv
 HTTP_REFERER=http://localhost/Yii/milk/Bud/divManager
 ---
+2015/06/20 03:24:12 [error] [php] Illegal string offset 'ispos' (E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\DataController.php:216)
+Stack trace:
+#0 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(286): DataController->runAction()
+#1 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(265): DataController->runActionWithFilters()
+#2 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): DataController->run()
+#3 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 E:\My\OOP\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#5 E:\My\OOP\xampp\htdocs\Yii\milk\index.php(13): CWebApplication->run()
+REQUEST_URI=/Yii/milk/data/FillDiv
+in E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\DataController.php (216)
+in E:\My\OOP\xampp\htdocs\Yii\milk\index.php (13)
+2015/06/20 03:25:49 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "FillFilling".' in E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php:483
+Stack trace:
+#0 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(270): CController->missingAction('FillFilling')
+#1 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): CController->run('FillFilling')
+#2 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('data/FillFillin...')
+#3 E:\My\OOP\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#4 E:\My\OOP\xampp\htdocs\Yii\milk\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/Yii/milk/data/FillFilling
+HTTP_REFERER=http://localhost/Yii/milk/Bud/fillingManager
+---
+2015/06/20 11:35:16 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "FillFilling".' in E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php:483
+Stack trace:
+#0 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(270): CController->missingAction('FillFilling')
+#1 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): CController->run('FillFilling')
+#2 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('data/FillFillin...')
+#3 E:\My\OOP\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#4 E:\My\OOP\xampp\htdocs\Yii\milk\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/Yii/milk/data/FillFilling
+HTTP_REFERER=http://localhost/Yii/milk/Bud/fillingManager
+---
+2015/06/20 15:45:34 [error] [system.db.CDbCommand] CDbCommand::execute() failed: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '1)' at line 1. The SQL statement executed was: INSERT INTO tb_division VALUES(NULL,'qwe',1,'11',NULL,,1).
+in E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\DataController.php (303)
+in E:\My\OOP\xampp\htdocs\Yii\milk\index.php (13)
+2015/06/20 15:45:34 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '1)' at line 1. The SQL statement executed was: INSERT INTO tb_division VALUES(NULL,'qwe',1,'11',NULL,,1)' in E:\My\OOP\xampp\htdocs\Yii\framework\db\CDbCommand.php:358
+Stack trace:
+#0 E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\DataController.php(303): CDbCommand->execute()
+#1 E:\My\OOP\xampp\htdocs\Yii\framework\web\actions\CInlineAction.php(49): DataController->actionAddDiv()
+#2 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#3 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#4 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#5 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): CController->run('AddDiv')
+#6 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('Data/AddDiv')
+#7 E:\My\OOP\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#8 E:\My\OOP\xampp\htdocs\Yii\milk\index.php(13): CApplication->run()
+#9 {main}
+REQUEST_URI=/Yii/milk/Data/AddDiv
+HTTP_REFERER=http://localhost/Yii/milk/Bud/divManager
+---
+2015/06/20 17:55:50 [error] [php] include(TbDepartment.php): failed to open stream: No such file or directory (E:\My\OOP\xampp\htdocs\Yii\framework\YiiBase.php:432)
+Stack trace:
+#0 E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\BudController.php(52): spl_autoload_call()
+#1 E:\My\OOP\xampp\htdocs\Yii\framework\web\actions\CInlineAction.php(49): BudController->actionUserManager()
+#2 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#3 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(286): BudController->runAction()
+#4 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(265): BudController->runActionWithFilters()
+#5 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): BudController->run()
+#6 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#7 E:\My\OOP\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#8 E:\My\OOP\xampp\htdocs\Yii\milk\index.php(13): CWebApplication->run()
+REQUEST_URI=/Yii/milk/Bud/usermanager
+in E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\BudController.php (52)
+in E:\My\OOP\xampp\htdocs\Yii\milk\index.php (13)
+2015/06/20 17:57:12 [error] [php] include(TbDepartment.php): failed to open stream: No such file or directory (E:\My\OOP\xampp\htdocs\Yii\framework\YiiBase.php:432)
+Stack trace:
+#0 E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\BudController.php(52): spl_autoload_call()
+#1 E:\My\OOP\xampp\htdocs\Yii\framework\web\actions\CInlineAction.php(49): BudController->actionUserManager()
+#2 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#3 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(286): BudController->runAction()
+#4 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(265): BudController->runActionWithFilters()
+#5 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): BudController->run()
+#6 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#7 E:\My\OOP\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#8 E:\My\OOP\xampp\htdocs\Yii\milk\index.php(13): CWebApplication->run()
+REQUEST_URI=/Yii/milk/Bud/usermanager
+in E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\BudController.php (52)
+in E:\My\OOP\xampp\htdocs\Yii\milk\index.php (13)
+2015/06/20 17:57:17 [error] [php] include(TbDepartment.php): failed to open stream: No such file or directory (E:\My\OOP\xampp\htdocs\Yii\framework\YiiBase.php:432)
+Stack trace:
+#0 E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\BudController.php(52): spl_autoload_call()
+#1 E:\My\OOP\xampp\htdocs\Yii\framework\web\actions\CInlineAction.php(49): BudController->actionUserManager()
+#2 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#3 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(286): BudController->runAction()
+#4 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(265): BudController->runActionWithFilters()
+#5 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): BudController->run()
+#6 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#7 E:\My\OOP\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#8 E:\My\OOP\xampp\htdocs\Yii\milk\index.php(13): CWebApplication->run()
+REQUEST_URI=/Yii/milk/Bud/usermanager
+in E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\BudController.php (52)
+in E:\My\OOP\xampp\htdocs\Yii\milk\index.php (13)
+2015/06/20 17:58:42 [error] [php] Undefined variable: shwsql (E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\DataController.php:70)
+Stack trace:
+#0 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(286): DataController->runAction()
+#1 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(265): DataController->runActionWithFilters()
+#2 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): DataController->run()
+#3 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 E:\My\OOP\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#5 E:\My\OOP\xampp\htdocs\Yii\milk\index.php(13): CWebApplication->run()
+REQUEST_URI=/Yii/milk/data/FillUsr
+in E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\DataController.php (70)
+in E:\My\OOP\xampp\htdocs\Yii\milk\index.php (13)
+2015/06/20 17:59:09 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'division_id' in 'field list'. The SQL statement executed was: SELECT u.*, division_name, position_name FROM tb_user as u INNER JOIN tb_position ON  u.position_id = tb_position.position_id INNER JOIN (SELECT division_id as div_id, division_name as div_name, parent_division as par_id) d ON u.division_id = d.div_id INNER JOIN (SELECT division_id as par_id, division_name as par_name) p ON d.par_id = p.par_id .
+in E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\DataController.php (70)
+in E:\My\OOP\xampp\htdocs\Yii\milk\index.php (13)
+2015/06/20 17:59:09 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'division_id' in 'field list'. The SQL statement executed was: SELECT u.*, division_name, position_name FROM tb_user as u INNER JOIN tb_position ON  u.position_id = tb_position.position_id INNER JOIN (SELECT division_id as div_id, division_name as div_name, parent_division as par_id) d ON u.division_id = d.div_id INNER JOIN (SELECT division_id as par_id, division_name as par_name) p ON d.par_id = p.par_id ' in E:\My\OOP\xampp\htdocs\Yii\framework\db\CDbCommand.php:543
+Stack trace:
+#0 E:\My\OOP\xampp\htdocs\Yii\framework\db\CDbCommand.php(396): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\DataController.php(70): CDbCommand->queryAll()
+#2 E:\My\OOP\xampp\htdocs\Yii\framework\web\actions\CInlineAction.php(49): DataController->actionFillUsr()
+#3 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#5 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): CController->run('FillUsr')
+#7 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('data/FillUsr')
+#8 E:\My\OOP\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#9 E:\My\OOP\xampp\htdocs\Yii\milk\index.php(13): CApplication->run()
+#10 {main}
+REQUEST_URI=/Yii/milk/data/FillUsr
+HTTP_REFERER=http://localhost/Yii/milk/Bud/usermanager
+---
+2015/06/20 18:01:37 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'division_name' in 'field list'. The SQL statement executed was: SELECT u.*, division_name, position_name FROM tb_user as u INNER JOIN tb_position ON  u.position_id = tb_position.position_id INNER JOIN (SELECT division_id as div_id, division_name as div_name, parent_division as par_id FROM tb_division) d ON u.division_id = d.div_id INNER JOIN (SELECT division_id as par_id, division_name as par_name FROM tb_division) p ON d.par_id = p.par_id .
+in E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\DataController.php (70)
+in E:\My\OOP\xampp\htdocs\Yii\milk\index.php (13)
+2015/06/20 18:01:37 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'division_name' in 'field list'. The SQL statement executed was: SELECT u.*, division_name, position_name FROM tb_user as u INNER JOIN tb_position ON  u.position_id = tb_position.position_id INNER JOIN (SELECT division_id as div_id, division_name as div_name, parent_division as par_id FROM tb_division) d ON u.division_id = d.div_id INNER JOIN (SELECT division_id as par_id, division_name as par_name FROM tb_division) p ON d.par_id = p.par_id ' in E:\My\OOP\xampp\htdocs\Yii\framework\db\CDbCommand.php:543
+Stack trace:
+#0 E:\My\OOP\xampp\htdocs\Yii\framework\db\CDbCommand.php(396): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\DataController.php(70): CDbCommand->queryAll()
+#2 E:\My\OOP\xampp\htdocs\Yii\framework\web\actions\CInlineAction.php(49): DataController->actionFillUsr()
+#3 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#5 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): CController->run('FillUsr')
+#7 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('data/FillUsr')
+#8 E:\My\OOP\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#9 E:\My\OOP\xampp\htdocs\Yii\milk\index.php(13): CApplication->run()
+#10 {main}
+REQUEST_URI=/Yii/milk/data/FillUsr
+HTTP_REFERER=http://localhost/Yii/milk/Bud/usermanager
+---
+2015/06/20 18:29:32 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[23000]: Integrity constraint violation: 1052 Column 'position_id' in where clause is ambiguous. The SQL statement executed was: SELECT u.*, position_name, d.div_name, par_name  FROM tb_user as u INNER JOIN tb_position ON  u.position_id = tb_position.position_id LEFT JOIN (SELECT division_id as div_id, division_name as div_name, parent_division as par_id FROM tb_division) d ON u.division_id = d.div_id LEFT JOIN (SELECT division_id as par_id, division_name as par_name FROM tb_division) p ON d.par_id = p.par_id WHERE  position_id = 1 .
+in E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\DataController.php (68)
+in E:\My\OOP\xampp\htdocs\Yii\milk\index.php (13)
+2015/06/20 18:29:32 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[23000]: Integrity constraint violation: 1052 Column 'position_id' in where clause is ambiguous. The SQL statement executed was: SELECT u.*, position_name, d.div_name, par_name  FROM tb_user as u INNER JOIN tb_position ON  u.position_id = tb_position.position_id LEFT JOIN (SELECT division_id as div_id, division_name as div_name, parent_division as par_id FROM tb_division) d ON u.division_id = d.div_id LEFT JOIN (SELECT division_id as par_id, division_name as par_name FROM tb_division) p ON d.par_id = p.par_id WHERE  position_id = 1 ' in E:\My\OOP\xampp\htdocs\Yii\framework\db\CDbCommand.php:543
+Stack trace:
+#0 E:\My\OOP\xampp\htdocs\Yii\framework\db\CDbCommand.php(396): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\DataController.php(68): CDbCommand->queryAll()
+#2 E:\My\OOP\xampp\htdocs\Yii\framework\web\actions\CInlineAction.php(49): DataController->actionFillUsr()
+#3 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#5 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): CController->run('FillUsr')
+#7 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('data/FillUsr')
+#8 E:\My\OOP\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#9 E:\My\OOP\xampp\htdocs\Yii\milk\index.php(13): CApplication->run()
+#10 {main}
+REQUEST_URI=/Yii/milk/data/FillUsr
+HTTP_REFERER=http://localhost/Yii/milk/Bud/usermanager
+---
+2015/06/20 18:29:39 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[23000]: Integrity constraint violation: 1052 Column 'position_id' in where clause is ambiguous. The SQL statement executed was: SELECT u.*, position_name, d.div_name, par_name  FROM tb_user as u INNER JOIN tb_position ON  u.position_id = tb_position.position_id LEFT JOIN (SELECT division_id as div_id, division_name as div_name, parent_division as par_id FROM tb_division) d ON u.division_id = d.div_id LEFT JOIN (SELECT division_id as par_id, division_name as par_name FROM tb_division) p ON d.par_id = p.par_id WHERE  position_id = 1 .
+in E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\DataController.php (68)
+in E:\My\OOP\xampp\htdocs\Yii\milk\index.php (13)
+2015/06/20 18:29:39 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[23000]: Integrity constraint violation: 1052 Column 'position_id' in where clause is ambiguous. The SQL statement executed was: SELECT u.*, position_name, d.div_name, par_name  FROM tb_user as u INNER JOIN tb_position ON  u.position_id = tb_position.position_id LEFT JOIN (SELECT division_id as div_id, division_name as div_name, parent_division as par_id FROM tb_division) d ON u.division_id = d.div_id LEFT JOIN (SELECT division_id as par_id, division_name as par_name FROM tb_division) p ON d.par_id = p.par_id WHERE  position_id = 1 ' in E:\My\OOP\xampp\htdocs\Yii\framework\db\CDbCommand.php:543
+Stack trace:
+#0 E:\My\OOP\xampp\htdocs\Yii\framework\db\CDbCommand.php(396): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\DataController.php(68): CDbCommand->queryAll()
+#2 E:\My\OOP\xampp\htdocs\Yii\framework\web\actions\CInlineAction.php(49): DataController->actionFillUsr()
+#3 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#5 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): CController->run('FillUsr')
+#7 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('data/FillUsr')
+#8 E:\My\OOP\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#9 E:\My\OOP\xampp\htdocs\Yii\milk\index.php(13): CApplication->run()
+#10 {main}
+REQUEST_URI=/Yii/milk/data/FillUsr
+HTTP_REFERER=http://localhost/Yii/milk/Bud/usermanager
+---
+2015/06/20 18:59:23 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'division_id' in 'field list'. The SQL statement executed was: SELECT division_id, division_name, parent_division as par_id FROM tb_division dLEFT JOIN (SELECT division_id as ppar_id, division_name as par_name) p ON d.par_id = p.ppar_id.
+in E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\BudController.php (55)
+in E:\My\OOP\xampp\htdocs\Yii\milk\index.php (13)
+2015/06/20 18:59:23 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'division_id' in 'field list'. The SQL statement executed was: SELECT division_id, division_name, parent_division as par_id FROM tb_division dLEFT JOIN (SELECT division_id as ppar_id, division_name as par_name) p ON d.par_id = p.ppar_id' in E:\My\OOP\xampp\htdocs\Yii\framework\db\CDbCommand.php:543
+Stack trace:
+#0 E:\My\OOP\xampp\htdocs\Yii\framework\db\CDbCommand.php(396): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\BudController.php(55): CDbCommand->queryAll()
+#2 E:\My\OOP\xampp\htdocs\Yii\framework\web\actions\CInlineAction.php(49): BudController->actionUserManager()
+#3 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#5 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): CController->run('usermanager')
+#7 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('Bud/usermanager')
+#8 E:\My\OOP\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#9 E:\My\OOP\xampp\htdocs\Yii\milk\index.php(13): CApplication->run()
+#10 {main}
+REQUEST_URI=/Yii/milk/Bud/usermanager
+HTTP_REFERER=http://localhost/Yii/milk/Bud/fillingManager
+---
+2015/06/20 18:59:25 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'division_id' in 'field list'. The SQL statement executed was: SELECT division_id, division_name, parent_division as par_id FROM tb_division dLEFT JOIN (SELECT division_id as ppar_id, division_name as par_name) p ON d.par_id = p.ppar_id.
+in E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\BudController.php (55)
+in E:\My\OOP\xampp\htdocs\Yii\milk\index.php (13)
+2015/06/20 18:59:25 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'division_id' in 'field list'. The SQL statement executed was: SELECT division_id, division_name, parent_division as par_id FROM tb_division dLEFT JOIN (SELECT division_id as ppar_id, division_name as par_name) p ON d.par_id = p.ppar_id' in E:\My\OOP\xampp\htdocs\Yii\framework\db\CDbCommand.php:543
+Stack trace:
+#0 E:\My\OOP\xampp\htdocs\Yii\framework\db\CDbCommand.php(396): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\BudController.php(55): CDbCommand->queryAll()
+#2 E:\My\OOP\xampp\htdocs\Yii\framework\web\actions\CInlineAction.php(49): BudController->actionUserManager()
+#3 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#5 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): CController->run('usermanager')
+#7 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('Bud/usermanager')
+#8 E:\My\OOP\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#9 E:\My\OOP\xampp\htdocs\Yii\milk\index.php(13): CApplication->run()
+#10 {main}
+REQUEST_URI=/Yii/milk/Bud/usermanager
+---
+2015/06/20 18:59:43 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'division_id' in 'field list'. The SQL statement executed was: SELECT division_id, division_name, parent_division as par_id FROM tb_division d LEFT JOIN (SELECT division_id as ppar_id, division_name as par_name) p ON d.par_id = p.ppar_id.
+in E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\BudController.php (55)
+in E:\My\OOP\xampp\htdocs\Yii\milk\index.php (13)
+2015/06/20 18:59:43 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'division_id' in 'field list'. The SQL statement executed was: SELECT division_id, division_name, parent_division as par_id FROM tb_division d LEFT JOIN (SELECT division_id as ppar_id, division_name as par_name) p ON d.par_id = p.ppar_id' in E:\My\OOP\xampp\htdocs\Yii\framework\db\CDbCommand.php:543
+Stack trace:
+#0 E:\My\OOP\xampp\htdocs\Yii\framework\db\CDbCommand.php(396): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\BudController.php(55): CDbCommand->queryAll()
+#2 E:\My\OOP\xampp\htdocs\Yii\framework\web\actions\CInlineAction.php(49): BudController->actionUserManager()
+#3 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#5 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): CController->run('usermanager')
+#7 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('Bud/usermanager')
+#8 E:\My\OOP\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#9 E:\My\OOP\xampp\htdocs\Yii\milk\index.php(13): CApplication->run()
+#10 {main}
+REQUEST_URI=/Yii/milk/Bud/usermanager
+HTTP_REFERER=http://localhost/Yii/milk/Bud/fillingManager
+---
+2015/06/20 18:59:44 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'division_id' in 'field list'. The SQL statement executed was: SELECT division_id, division_name, parent_division as par_id FROM tb_division d LEFT JOIN (SELECT division_id as ppar_id, division_name as par_name) p ON d.par_id = p.ppar_id.
+in E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\BudController.php (55)
+in E:\My\OOP\xampp\htdocs\Yii\milk\index.php (13)
+2015/06/20 18:59:44 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'division_id' in 'field list'. The SQL statement executed was: SELECT division_id, division_name, parent_division as par_id FROM tb_division d LEFT JOIN (SELECT division_id as ppar_id, division_name as par_name) p ON d.par_id = p.ppar_id' in E:\My\OOP\xampp\htdocs\Yii\framework\db\CDbCommand.php:543
+Stack trace:
+#0 E:\My\OOP\xampp\htdocs\Yii\framework\db\CDbCommand.php(396): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\BudController.php(55): CDbCommand->queryAll()
+#2 E:\My\OOP\xampp\htdocs\Yii\framework\web\actions\CInlineAction.php(49): BudController->actionUserManager()
+#3 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#5 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): CController->run('usermanager')
+#7 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('Bud/usermanager')
+#8 E:\My\OOP\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#9 E:\My\OOP\xampp\htdocs\Yii\milk\index.php(13): CApplication->run()
+#10 {main}
+REQUEST_URI=/Yii/milk/Bud/usermanager
+---
+2015/06/20 19:00:48 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'division_id' in 'field list'. The SQL statement executed was: SELECT d.division_id, d.division_name, d.parent_division as par_id FROM tb_division d LEFT JOIN (SELECT division_id as ppar_id, division_name as par_name) p ON d.par_id = p.ppar_id.
+in E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\BudController.php (55)
+in E:\My\OOP\xampp\htdocs\Yii\milk\index.php (13)
+2015/06/20 19:00:48 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'division_id' in 'field list'. The SQL statement executed was: SELECT d.division_id, d.division_name, d.parent_division as par_id FROM tb_division d LEFT JOIN (SELECT division_id as ppar_id, division_name as par_name) p ON d.par_id = p.ppar_id' in E:\My\OOP\xampp\htdocs\Yii\framework\db\CDbCommand.php:543
+Stack trace:
+#0 E:\My\OOP\xampp\htdocs\Yii\framework\db\CDbCommand.php(396): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\BudController.php(55): CDbCommand->queryAll()
+#2 E:\My\OOP\xampp\htdocs\Yii\framework\web\actions\CInlineAction.php(49): BudController->actionUserManager()
+#3 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#5 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): CController->run('usermanager')
+#7 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('Bud/usermanager')
+#8 E:\My\OOP\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#9 E:\My\OOP\xampp\htdocs\Yii\milk\index.php(13): CApplication->run()
+#10 {main}
+REQUEST_URI=/Yii/milk/Bud/usermanager
+HTTP_REFERER=http://localhost/Yii/milk/Bud/fillingManager
+---
+2015/06/20 19:00:50 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'division_id' in 'field list'. The SQL statement executed was: SELECT d.division_id, d.division_name, d.parent_division as par_id FROM tb_division d LEFT JOIN (SELECT division_id as ppar_id, division_name as par_name) p ON d.par_id = p.ppar_id.
+in E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\BudController.php (55)
+in E:\My\OOP\xampp\htdocs\Yii\milk\index.php (13)
+2015/06/20 19:00:50 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'division_id' in 'field list'. The SQL statement executed was: SELECT d.division_id, d.division_name, d.parent_division as par_id FROM tb_division d LEFT JOIN (SELECT division_id as ppar_id, division_name as par_name) p ON d.par_id = p.ppar_id' in E:\My\OOP\xampp\htdocs\Yii\framework\db\CDbCommand.php:543
+Stack trace:
+#0 E:\My\OOP\xampp\htdocs\Yii\framework\db\CDbCommand.php(396): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\BudController.php(55): CDbCommand->queryAll()
+#2 E:\My\OOP\xampp\htdocs\Yii\framework\web\actions\CInlineAction.php(49): BudController->actionUserManager()
+#3 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#5 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): CController->run('usermanager')
+#7 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('Bud/usermanager')
+#8 E:\My\OOP\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#9 E:\My\OOP\xampp\htdocs\Yii\milk\index.php(13): CApplication->run()
+#10 {main}
+REQUEST_URI=/Yii/milk/Bud/usermanager
+---
+2015/06/20 19:01:14 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S02]: Base table or view not found: 1109 Unknown table 'p' in field list. The SQL statement executed was: SELECT d.division_id, d.division_name, d.parent_division as par_id FROM tb_division d LEFT JOIN (SELECT p.division_id as ppar_id, p.division_name as par_name) p ON d.par_id = p.ppar_id.
+in E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\BudController.php (55)
+in E:\My\OOP\xampp\htdocs\Yii\milk\index.php (13)
+2015/06/20 19:01:14 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42S02]: Base table or view not found: 1109 Unknown table 'p' in field list. The SQL statement executed was: SELECT d.division_id, d.division_name, d.parent_division as par_id FROM tb_division d LEFT JOIN (SELECT p.division_id as ppar_id, p.division_name as par_name) p ON d.par_id = p.ppar_id' in E:\My\OOP\xampp\htdocs\Yii\framework\db\CDbCommand.php:543
+Stack trace:
+#0 E:\My\OOP\xampp\htdocs\Yii\framework\db\CDbCommand.php(396): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\BudController.php(55): CDbCommand->queryAll()
+#2 E:\My\OOP\xampp\htdocs\Yii\framework\web\actions\CInlineAction.php(49): BudController->actionUserManager()
+#3 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#5 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): CController->run('usermanager')
+#7 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('Bud/usermanager')
+#8 E:\My\OOP\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#9 E:\My\OOP\xampp\htdocs\Yii\milk\index.php(13): CApplication->run()
+#10 {main}
+REQUEST_URI=/Yii/milk/Bud/usermanager
+HTTP_REFERER=http://localhost/Yii/milk/Bud/fillingManager
+---
+2015/06/20 19:01:17 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S02]: Base table or view not found: 1109 Unknown table 'p' in field list. The SQL statement executed was: SELECT d.division_id, d.division_name, d.parent_division as par_id FROM tb_division d LEFT JOIN (SELECT p.division_id as ppar_id, p.division_name as par_name) p ON d.par_id = p.ppar_id.
+in E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\BudController.php (55)
+in E:\My\OOP\xampp\htdocs\Yii\milk\index.php (13)
+2015/06/20 19:01:17 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42S02]: Base table or view not found: 1109 Unknown table 'p' in field list. The SQL statement executed was: SELECT d.division_id, d.division_name, d.parent_division as par_id FROM tb_division d LEFT JOIN (SELECT p.division_id as ppar_id, p.division_name as par_name) p ON d.par_id = p.ppar_id' in E:\My\OOP\xampp\htdocs\Yii\framework\db\CDbCommand.php:543
+Stack trace:
+#0 E:\My\OOP\xampp\htdocs\Yii\framework\db\CDbCommand.php(396): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\BudController.php(55): CDbCommand->queryAll()
+#2 E:\My\OOP\xampp\htdocs\Yii\framework\web\actions\CInlineAction.php(49): BudController->actionUserManager()
+#3 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#5 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): CController->run('usermanager')
+#7 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('Bud/usermanager')
+#8 E:\My\OOP\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#9 E:\My\OOP\xampp\htdocs\Yii\milk\index.php(13): CApplication->run()
+#10 {main}
+REQUEST_URI=/Yii/milk/Bud/usermanager
+---
+2015/06/20 19:01:42 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'division_id' in 'field list'. The SQL statement executed was: SELECT d.division_id, d.division_name, d.parent_division as par_id FROM tb_division d LEFT JOIN (SELECT division_id as ppar_id, division_name as par_name) p ON d.par_id = p.ppar_id.
+in E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\BudController.php (55)
+in E:\My\OOP\xampp\htdocs\Yii\milk\index.php (13)
+2015/06/20 19:01:42 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'division_id' in 'field list'. The SQL statement executed was: SELECT d.division_id, d.division_name, d.parent_division as par_id FROM tb_division d LEFT JOIN (SELECT division_id as ppar_id, division_name as par_name) p ON d.par_id = p.ppar_id' in E:\My\OOP\xampp\htdocs\Yii\framework\db\CDbCommand.php:543
+Stack trace:
+#0 E:\My\OOP\xampp\htdocs\Yii\framework\db\CDbCommand.php(396): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\BudController.php(55): CDbCommand->queryAll()
+#2 E:\My\OOP\xampp\htdocs\Yii\framework\web\actions\CInlineAction.php(49): BudController->actionUserManager()
+#3 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#5 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): CController->run('usermanager')
+#7 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('Bud/usermanager')
+#8 E:\My\OOP\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#9 E:\My\OOP\xampp\htdocs\Yii\milk\index.php(13): CApplication->run()
+#10 {main}
+REQUEST_URI=/Yii/milk/Bud/usermanager
+HTTP_REFERER=http://localhost/Yii/milk/Bud/fillingManager
+---
+2015/06/20 19:01:44 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'division_id' in 'field list'. The SQL statement executed was: SELECT d.division_id, d.division_name, d.parent_division as par_id FROM tb_division d LEFT JOIN (SELECT division_id as ppar_id, division_name as par_name) p ON d.par_id = p.ppar_id.
+in E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\BudController.php (55)
+in E:\My\OOP\xampp\htdocs\Yii\milk\index.php (13)
+2015/06/20 19:01:44 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'division_id' in 'field list'. The SQL statement executed was: SELECT d.division_id, d.division_name, d.parent_division as par_id FROM tb_division d LEFT JOIN (SELECT division_id as ppar_id, division_name as par_name) p ON d.par_id = p.ppar_id' in E:\My\OOP\xampp\htdocs\Yii\framework\db\CDbCommand.php:543
+Stack trace:
+#0 E:\My\OOP\xampp\htdocs\Yii\framework\db\CDbCommand.php(396): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\BudController.php(55): CDbCommand->queryAll()
+#2 E:\My\OOP\xampp\htdocs\Yii\framework\web\actions\CInlineAction.php(49): BudController->actionUserManager()
+#3 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#5 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): CController->run('usermanager')
+#7 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('Bud/usermanager')
+#8 E:\My\OOP\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#9 E:\My\OOP\xampp\htdocs\Yii\milk\index.php(13): CApplication->run()
+#10 {main}
+REQUEST_URI=/Yii/milk/Bud/usermanager
+---
+2015/06/20 19:02:04 [error] [php] Undefined index: par_name (E:\My\OOP\xampp\htdocs\Yii\milk\protected\views\Bud\usermanager.php:123)
+Stack trace:
+#0 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(869): BudController->renderFile()
+#1 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(782): BudController->renderPartial()
+#2 E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\BudController.php(61): BudController->render()
+#3 E:\My\OOP\xampp\htdocs\Yii\framework\web\actions\CInlineAction.php(49): BudController->actionUserManager()
+#4 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#5 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(286): BudController->runAction()
+#6 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(265): BudController->runActionWithFilters()
+#7 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): BudController->run()
+#8 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#9 E:\My\OOP\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#10 E:\My\OOP\xampp\htdocs\Yii\milk\index.php(13): CWebApplication->run()
+REQUEST_URI=/Yii/milk/Bud/usermanager
+in E:\My\OOP\xampp\htdocs\Yii\milk\protected\views\Bud\usermanager.php (123)
+in E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\BudController.php (61)
+in E:\My\OOP\xampp\htdocs\Yii\milk\index.php (13)
+2015/06/20 19:02:10 [error] [php] Undefined index: par_name (E:\My\OOP\xampp\htdocs\Yii\milk\protected\views\Bud\usermanager.php:123)
+Stack trace:
+#0 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(869): BudController->renderFile()
+#1 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(782): BudController->renderPartial()
+#2 E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\BudController.php(61): BudController->render()
+#3 E:\My\OOP\xampp\htdocs\Yii\framework\web\actions\CInlineAction.php(49): BudController->actionUserManager()
+#4 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#5 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(286): BudController->runAction()
+#6 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(265): BudController->runActionWithFilters()
+#7 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): BudController->run()
+#8 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#9 E:\My\OOP\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#10 E:\My\OOP\xampp\htdocs\Yii\milk\index.php(13): CWebApplication->run()
+REQUEST_URI=/Yii/milk/Bud/usermanager
+in E:\My\OOP\xampp\htdocs\Yii\milk\protected\views\Bud\usermanager.php (123)
+in E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\BudController.php (61)
+in E:\My\OOP\xampp\htdocs\Yii\milk\index.php (13)
+2015/06/20 19:02:29 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'd.par_id' in 'on clause'. The SQL statement executed was: SELECT d.division_id, d.division_name, d.parent_division as par_id FROM tb_division d LEFT JOIN (SELECT division_id as ppar_id, division_name as par_name FROM tb_division) p ON d.par_id = p.ppar_id.
+in E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\BudController.php (55)
+in E:\My\OOP\xampp\htdocs\Yii\milk\index.php (13)
+2015/06/20 19:02:29 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'd.par_id' in 'on clause'. The SQL statement executed was: SELECT d.division_id, d.division_name, d.parent_division as par_id FROM tb_division d LEFT JOIN (SELECT division_id as ppar_id, division_name as par_name FROM tb_division) p ON d.par_id = p.ppar_id' in E:\My\OOP\xampp\htdocs\Yii\framework\db\CDbCommand.php:543
+Stack trace:
+#0 E:\My\OOP\xampp\htdocs\Yii\framework\db\CDbCommand.php(396): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\BudController.php(55): CDbCommand->queryAll()
+#2 E:\My\OOP\xampp\htdocs\Yii\framework\web\actions\CInlineAction.php(49): BudController->actionUserManager()
+#3 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#5 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): CController->run('usermanager')
+#7 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('Bud/usermanager')
+#8 E:\My\OOP\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#9 E:\My\OOP\xampp\htdocs\Yii\milk\index.php(13): CApplication->run()
+#10 {main}
+REQUEST_URI=/Yii/milk/Bud/usermanager
+HTTP_REFERER=http://localhost/Yii/milk/Bud/fillingManager
+---
+2015/06/20 19:02:30 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'd.par_id' in 'on clause'. The SQL statement executed was: SELECT d.division_id, d.division_name, d.parent_division as par_id FROM tb_division d LEFT JOIN (SELECT division_id as ppar_id, division_name as par_name FROM tb_division) p ON d.par_id = p.ppar_id.
+in E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\BudController.php (55)
+in E:\My\OOP\xampp\htdocs\Yii\milk\index.php (13)
+2015/06/20 19:02:30 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'd.par_id' in 'on clause'. The SQL statement executed was: SELECT d.division_id, d.division_name, d.parent_division as par_id FROM tb_division d LEFT JOIN (SELECT division_id as ppar_id, division_name as par_name FROM tb_division) p ON d.par_id = p.ppar_id' in E:\My\OOP\xampp\htdocs\Yii\framework\db\CDbCommand.php:543
+Stack trace:
+#0 E:\My\OOP\xampp\htdocs\Yii\framework\db\CDbCommand.php(396): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\BudController.php(55): CDbCommand->queryAll()
+#2 E:\My\OOP\xampp\htdocs\Yii\framework\web\actions\CInlineAction.php(49): BudController->actionUserManager()
+#3 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#5 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): CController->run('usermanager')
+#7 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('Bud/usermanager')
+#8 E:\My\OOP\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#9 E:\My\OOP\xampp\htdocs\Yii\milk\index.php(13): CApplication->run()
+#10 {main}
+REQUEST_URI=/Yii/milk/Bud/usermanager
+---
+2015/06/20 19:02:50 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'd.par_id' in 'on clause'. The SQL statement executed was: SELECT division_id, d.division_name, parent_division as par_id FROM tb_division d LEFT JOIN (SELECT division_id as ppar_id, division_name as par_name FROM tb_division) p ON d.par_id = p.ppar_id.
+in E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\BudController.php (55)
+in E:\My\OOP\xampp\htdocs\Yii\milk\index.php (13)
+2015/06/20 19:02:50 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'd.par_id' in 'on clause'. The SQL statement executed was: SELECT division_id, d.division_name, parent_division as par_id FROM tb_division d LEFT JOIN (SELECT division_id as ppar_id, division_name as par_name FROM tb_division) p ON d.par_id = p.ppar_id' in E:\My\OOP\xampp\htdocs\Yii\framework\db\CDbCommand.php:543
+Stack trace:
+#0 E:\My\OOP\xampp\htdocs\Yii\framework\db\CDbCommand.php(396): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\BudController.php(55): CDbCommand->queryAll()
+#2 E:\My\OOP\xampp\htdocs\Yii\framework\web\actions\CInlineAction.php(49): BudController->actionUserManager()
+#3 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#5 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): CController->run('usermanager')
+#7 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('Bud/usermanager')
+#8 E:\My\OOP\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#9 E:\My\OOP\xampp\htdocs\Yii\milk\index.php(13): CApplication->run()
+#10 {main}
+REQUEST_URI=/Yii/milk/Bud/usermanager
+HTTP_REFERER=http://localhost/Yii/milk/Bud/fillingManager
+---
+2015/06/20 19:02:51 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'd.par_id' in 'on clause'. The SQL statement executed was: SELECT division_id, d.division_name, parent_division as par_id FROM tb_division d LEFT JOIN (SELECT division_id as ppar_id, division_name as par_name FROM tb_division) p ON d.par_id = p.ppar_id.
+in E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\BudController.php (55)
+in E:\My\OOP\xampp\htdocs\Yii\milk\index.php (13)
+2015/06/20 19:02:51 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'd.par_id' in 'on clause'. The SQL statement executed was: SELECT division_id, d.division_name, parent_division as par_id FROM tb_division d LEFT JOIN (SELECT division_id as ppar_id, division_name as par_name FROM tb_division) p ON d.par_id = p.ppar_id' in E:\My\OOP\xampp\htdocs\Yii\framework\db\CDbCommand.php:543
+Stack trace:
+#0 E:\My\OOP\xampp\htdocs\Yii\framework\db\CDbCommand.php(396): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\BudController.php(55): CDbCommand->queryAll()
+#2 E:\My\OOP\xampp\htdocs\Yii\framework\web\actions\CInlineAction.php(49): BudController->actionUserManager()
+#3 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#5 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): CController->run('usermanager')
+#7 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('Bud/usermanager')
+#8 E:\My\OOP\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#9 E:\My\OOP\xampp\htdocs\Yii\milk\index.php(13): CApplication->run()
+#10 {main}
+REQUEST_URI=/Yii/milk/Bud/usermanager
+---
+2015/06/20 19:03:48 [error] [php] Undefined index: par_name (E:\My\OOP\xampp\htdocs\Yii\milk\protected\views\Bud\usermanager.php:123)
+Stack trace:
+#0 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(869): BudController->renderFile()
+#1 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(782): BudController->renderPartial()
+#2 E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\BudController.php(61): BudController->render()
+#3 E:\My\OOP\xampp\htdocs\Yii\framework\web\actions\CInlineAction.php(49): BudController->actionUserManager()
+#4 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#5 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(286): BudController->runAction()
+#6 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(265): BudController->runActionWithFilters()
+#7 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): BudController->run()
+#8 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#9 E:\My\OOP\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#10 E:\My\OOP\xampp\htdocs\Yii\milk\index.php(13): CWebApplication->run()
+REQUEST_URI=/Yii/milk/Bud/usermanager
+in E:\My\OOP\xampp\htdocs\Yii\milk\protected\views\Bud\usermanager.php (123)
+in E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\BudController.php (61)
+in E:\My\OOP\xampp\htdocs\Yii\milk\index.php (13)
+2015/06/20 19:03:51 [error] [php] Undefined index: par_name (E:\My\OOP\xampp\htdocs\Yii\milk\protected\views\Bud\usermanager.php:123)
+Stack trace:
+#0 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(869): BudController->renderFile()
+#1 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(782): BudController->renderPartial()
+#2 E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\BudController.php(61): BudController->render()
+#3 E:\My\OOP\xampp\htdocs\Yii\framework\web\actions\CInlineAction.php(49): BudController->actionUserManager()
+#4 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#5 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(286): BudController->runAction()
+#6 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(265): BudController->runActionWithFilters()
+#7 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): BudController->run()
+#8 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#9 E:\My\OOP\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#10 E:\My\OOP\xampp\htdocs\Yii\milk\index.php(13): CWebApplication->run()
+REQUEST_URI=/Yii/milk/Bud/usermanager
+in E:\My\OOP\xampp\htdocs\Yii\milk\protected\views\Bud\usermanager.php (123)
+in E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\BudController.php (61)
+in E:\My\OOP\xampp\htdocs\Yii\milk\index.php (13)
+2015/06/20 19:34:31 [error] [php] Undefined index: par_name (E:\My\OOP\xampp\htdocs\Yii\milk\protected\views\Bud\usermanager.php:123)
+Stack trace:
+#0 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(869): BudController->renderFile()
+#1 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(782): BudController->renderPartial()
+#2 E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\BudController.php(61): BudController->render()
+#3 E:\My\OOP\xampp\htdocs\Yii\framework\web\actions\CInlineAction.php(49): BudController->actionUserManager()
+#4 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#5 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(286): BudController->runAction()
+#6 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(265): BudController->runActionWithFilters()
+#7 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): BudController->run()
+#8 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#9 E:\My\OOP\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#10 E:\My\OOP\xampp\htdocs\Yii\milk\index.php(13): CWebApplication->run()
+REQUEST_URI=/Yii/milk/Bud/usermanager
+in E:\My\OOP\xampp\htdocs\Yii\milk\protected\views\Bud\usermanager.php (123)
+in E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\BudController.php (61)
+in E:\My\OOP\xampp\htdocs\Yii\milk\index.php (13)
+2015/06/20 19:34:35 [error] [php] Undefined index: par_name (E:\My\OOP\xampp\htdocs\Yii\milk\protected\views\Bud\usermanager.php:123)
+Stack trace:
+#0 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(869): BudController->renderFile()
+#1 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(782): BudController->renderPartial()
+#2 E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\BudController.php(61): BudController->render()
+#3 E:\My\OOP\xampp\htdocs\Yii\framework\web\actions\CInlineAction.php(49): BudController->actionUserManager()
+#4 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#5 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(286): BudController->runAction()
+#6 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(265): BudController->runActionWithFilters()
+#7 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): BudController->run()
+#8 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#9 E:\My\OOP\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#10 E:\My\OOP\xampp\htdocs\Yii\milk\index.php(13): CWebApplication->run()
+REQUEST_URI=/Yii/milk/Bud/usermanager
+in E:\My\OOP\xampp\htdocs\Yii\milk\protected\views\Bud\usermanager.php (123)
+in E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\BudController.php (61)
+in E:\My\OOP\xampp\htdocs\Yii\milk\index.php (13)
+2015/06/20 19:36:56 [error] [php] Undefined index: par_name (E:\My\OOP\xampp\htdocs\Yii\milk\protected\views\Bud\usermanager.php:123)
+Stack trace:
+#0 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(869): BudController->renderFile()
+#1 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(782): BudController->renderPartial()
+#2 E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\BudController.php(61): BudController->render()
+#3 E:\My\OOP\xampp\htdocs\Yii\framework\web\actions\CInlineAction.php(49): BudController->actionUserManager()
+#4 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#5 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(286): BudController->runAction()
+#6 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(265): BudController->runActionWithFilters()
+#7 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): BudController->run()
+#8 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#9 E:\My\OOP\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#10 E:\My\OOP\xampp\htdocs\Yii\milk\index.php(13): CWebApplication->run()
+REQUEST_URI=/Yii/milk/Bud/usermanager
+in E:\My\OOP\xampp\htdocs\Yii\milk\protected\views\Bud\usermanager.php (123)
+in E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\BudController.php (61)
+in E:\My\OOP\xampp\htdocs\Yii\milk\index.php (13)
+2015/06/20 19:36:59 [error] [php] Undefined index: par_name (E:\My\OOP\xampp\htdocs\Yii\milk\protected\views\Bud\usermanager.php:123)
+Stack trace:
+#0 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(869): BudController->renderFile()
+#1 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(782): BudController->renderPartial()
+#2 E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\BudController.php(61): BudController->render()
+#3 E:\My\OOP\xampp\htdocs\Yii\framework\web\actions\CInlineAction.php(49): BudController->actionUserManager()
+#4 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#5 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(286): BudController->runAction()
+#6 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(265): BudController->runActionWithFilters()
+#7 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): BudController->run()
+#8 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#9 E:\My\OOP\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#10 E:\My\OOP\xampp\htdocs\Yii\milk\index.php(13): CWebApplication->run()
+REQUEST_URI=/Yii/milk/Bud/usermanager
+in E:\My\OOP\xampp\htdocs\Yii\milk\protected\views\Bud\usermanager.php (123)
+in E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\BudController.php (61)
+in E:\My\OOP\xampp\htdocs\Yii\milk\index.php (13)
+2015/06/20 20:01:23 [error] [php] Undefined index: par_name (E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\DataController.php:260)
+Stack trace:
+#0 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(286): DataController->runAction()
+#1 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(265): DataController->runActionWithFilters()
+#2 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): DataController->run()
+#3 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 E:\My\OOP\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#5 E:\My\OOP\xampp\htdocs\Yii\milk\index.php(13): CWebApplication->run()
+REQUEST_URI=/Yii/milk/data/FillDiv
+in E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\DataController.php (260)
+in E:\My\OOP\xampp\htdocs\Yii\milk\index.php (13)
+2015/06/20 20:02:52 [error] [php] Undefined index: par_name (E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\DataController.php:197)
+Stack trace:
+#0 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(286): DataController->runAction()
+#1 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(265): DataController->runActionWithFilters()
+#2 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): DataController->run()
+#3 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 E:\My\OOP\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#5 E:\My\OOP\xampp\htdocs\Yii\milk\index.php(13): CWebApplication->run()
+REQUEST_URI=/Yii/milk/data/FillDiv
+in E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\DataController.php (197)
+in E:\My\OOP\xampp\htdocs\Yii\milk\index.php (13)
+2015/06/20 20:03:06 [error] [php] Undefined index: par_name (E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\DataController.php:197)
+Stack trace:
+#0 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(286): DataController->runAction()
+#1 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(265): DataController->runActionWithFilters()
+#2 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): DataController->run()
+#3 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 E:\My\OOP\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#5 E:\My\OOP\xampp\htdocs\Yii\milk\index.php(13): CWebApplication->run()
+REQUEST_URI=/Yii/milk/data/FillDiv
+in E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\DataController.php (197)
+in E:\My\OOP\xampp\htdocs\Yii\milk\index.php (13)
+2015/06/20 20:04:04 [error] [php] Undefined index: par_name (E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\DataController.php:197)
+Stack trace:
+#0 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(286): DataController->runAction()
+#1 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(265): DataController->runActionWithFilters()
+#2 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): DataController->run()
+#3 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 E:\My\OOP\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#5 E:\My\OOP\xampp\htdocs\Yii\milk\index.php(13): CWebApplication->run()
+REQUEST_URI=/Yii/milk/data/FillDiv
+in E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\DataController.php (197)
+in E:\My\OOP\xampp\htdocs\Yii\milk\index.php (13)
+2015/06/20 20:05:22 [error] [php] Undefined index: par_name (E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\DataController.php:197)
+Stack trace:
+#0 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(286): DataController->runAction()
+#1 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(265): DataController->runActionWithFilters()
+#2 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): DataController->run()
+#3 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 E:\My\OOP\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#5 E:\My\OOP\xampp\htdocs\Yii\milk\index.php(13): CWebApplication->run()
+REQUEST_URI=/Yii/milk/data/FillDiv
+in E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\DataController.php (197)
+in E:\My\OOP\xampp\htdocs\Yii\milk\index.php (13)
+2015/06/20 20:06:12 [error] [php] Undefined index: parname (E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\DataController.php:197)
+Stack trace:
+#0 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(286): DataController->runAction()
+#1 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(265): DataController->runActionWithFilters()
+#2 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): DataController->run()
+#3 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 E:\My\OOP\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#5 E:\My\OOP\xampp\htdocs\Yii\milk\index.php(13): CWebApplication->run()
+REQUEST_URI=/Yii/milk/data/FillDiv
+in E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\DataController.php (197)
+in E:\My\OOP\xampp\htdocs\Yii\milk\index.php (13)
+2015/06/20 20:46:49 [error] [exception.CException] exception 'CException' with message 'Property "TbUser.department_id" is not defined.' in E:\My\OOP\xampp\htdocs\Yii\framework\base\CComponent.php:173
+Stack trace:
+#0 E:\My\OOP\xampp\htdocs\Yii\framework\db\ar\CActiveRecord.php(161): CComponent->__set('department_id', '')
+#1 E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\DataController.php(170): CActiveRecord->__set('department_id', '')
+#2 E:\My\OOP\xampp\htdocs\Yii\framework\web\actions\CInlineAction.php(49): DataController->actionMemberEdit()
+#3 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#5 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): CController->run('MemberEdit')
+#7 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('Data/MemberEdit')
+#8 E:\My\OOP\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#9 E:\My\OOP\xampp\htdocs\Yii\milk\index.php(13): CApplication->run()
+#10 {main}
+REQUEST_URI=/Yii/milk/Data/MemberEdit
+HTTP_REFERER=http://localhost/Yii/milk/Bud/usermanager
+---
+2015/06/20 20:56:58 [error] [php] Undefined variable: fac (E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\DataController.php:29)
+Stack trace:
+#0 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(286): DataController->runAction()
+#1 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(265): DataController->runActionWithFilters()
+#2 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): DataController->run()
+#3 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 E:\My\OOP\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#5 E:\My\OOP\xampp\htdocs\Yii\milk\index.php(13): CWebApplication->run()
+REQUEST_URI=/Yii/milk/data/addmember
+in E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\DataController.php (29)
+in E:\My\OOP\xampp\htdocs\Yii\milk\index.php (13)
+2015/06/20 21:02:22 [error] [system.db.CDbCommand] CDbCommand::execute() failed: SQLSTATE[HY093]: Invalid parameter number: no parameters were bound. The SQL statement executed was: INSERT INTO tb_user VALUES(NULL,'hdiv','1234','ทดสอบ','ฝ่าย','หญิง','1100000000008',2==3?NULL:2==2?2:,'2',1).
+in E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\DataController.php (29)
+in E:\My\OOP\xampp\htdocs\Yii\milk\index.php (13)
+2015/06/20 21:02:22 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[HY093]: Invalid parameter number: no parameters were bound. The SQL statement executed was: INSERT INTO tb_user VALUES(NULL,'hdiv','1234','ทดสอบ','ฝ่าย','หญิง','1100000000008',2==3?NULL:2==2?2:,'2',1)' in E:\My\OOP\xampp\htdocs\Yii\framework\db\CDbCommand.php:358
+Stack trace:
+#0 E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\DataController.php(29): CDbCommand->execute()
+#1 E:\My\OOP\xampp\htdocs\Yii\framework\web\actions\CInlineAction.php(49): DataController->actionAddMember()
+#2 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#3 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#4 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#5 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): CController->run('addmember')
+#6 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('data/addmember')
+#7 E:\My\OOP\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#8 E:\My\OOP\xampp\htdocs\Yii\milk\index.php(13): CApplication->run()
+#9 {main}
+REQUEST_URI=/Yii/milk/data/addmember
+HTTP_REFERER=http://localhost/Yii/milk/Bud/usermanager
+---
+2015/06/20 21:59:58 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[23000]: Integrity constraint violation: 1052 Column 'division_id' in field list is ambiguous. The SQL statement executed was: SELECT * FROM tb_profile_fill INNER JOIN (SELECT division_id as div_id, division_name as own_name, parent_division FROM tb_division d LEFT JOIN (SELECT division_id, division_name as own_par_name FROM tb_division) oo ON d.parent_division = oo.division_id ) ow ON tb_profile_fill.owner_div_id = ow.div_id INNER JOIN (SELECT division_id as div_id, division_name as tar_name, parent_division FROM tb_division d LEFT JOIN (SELECT division_id, division_name as tar_par_name FROM tb_division) tt ON pt.division_id = d.parent_division ) tp ON tb_profile_fill.division_id = tp.div_id.
+in E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\DataController.php (352)
+in E:\My\OOP\xampp\htdocs\Yii\milk\index.php (13)
+2015/06/20 21:59:58 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[23000]: Integrity constraint violation: 1052 Column 'division_id' in field list is ambiguous. The SQL statement executed was: SELECT * FROM tb_profile_fill INNER JOIN (SELECT division_id as div_id, division_name as own_name, parent_division FROM tb_division d LEFT JOIN (SELECT division_id, division_name as own_par_name FROM tb_division) oo ON d.parent_division = oo.division_id ) ow ON tb_profile_fill.owner_div_id = ow.div_id INNER JOIN (SELECT division_id as div_id, division_name as tar_name, parent_division FROM tb_division d LEFT JOIN (SELECT division_id, division_name as tar_par_name FROM tb_division) tt ON pt.division_id = d.parent_division ) tp ON tb_profile_fill.division_id = tp.div_id' in E:\My\OOP\xampp\htdocs\Yii\framework\db\CDbCommand.php:543
+Stack trace:
+#0 E:\My\OOP\xampp\htdocs\Yii\framework\db\CDbCommand.php(396): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\DataController.php(352): CDbCommand->queryAll()
+#2 E:\My\OOP\xampp\htdocs\Yii\framework\web\actions\CInlineAction.php(49): DataController->actionFillFilling()
+#3 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#5 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): CController->run('FillFilling')
+#7 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('data/FillFillin...')
+#8 E:\My\OOP\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#9 E:\My\OOP\xampp\htdocs\Yii\milk\index.php(13): CApplication->run()
+#10 {main}
+REQUEST_URI=/Yii/milk/data/FillFilling
+HTTP_REFERER=http://localhost/Yii/milk/Bud/fillingManager
+---
+2015/06/20 22:03:33 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[23000]: Integrity constraint violation: 1052 Column 'division_id' in field list is ambiguous. The SQL statement executed was: SELECT tb_profile_fill.owner_div_id as pk1, tb_profile_fill.division_id as pk2, ow.own_name, ow.own_par_name, tp.tar_name, tp.tar_par_name FROM tb_profile_fill INNER JOIN (SELECT division_id as div_id, division_name as own_name, parent_division FROM tb_division d LEFT JOIN (SELECT division_id, division_name as own_par_name FROM tb_division) oo ON d.parent_division = oo.division_id ) ow ON tb_profile_fill.owner_div_id = ow.div_id INNER JOIN (SELECT division_id as div_id, division_name as tar_name, parent_division FROM tb_division d LEFT JOIN (SELECT division_id, division_name as tar_par_name FROM tb_division) tt ON pt.division_id = d.parent_division ) tp ON tb_profile_fill.division_id = tp.div_id.
+in E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\DataController.php (353)
+in E:\My\OOP\xampp\htdocs\Yii\milk\index.php (13)
+2015/06/20 22:03:33 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[23000]: Integrity constraint violation: 1052 Column 'division_id' in field list is ambiguous. The SQL statement executed was: SELECT tb_profile_fill.owner_div_id as pk1, tb_profile_fill.division_id as pk2, ow.own_name, ow.own_par_name, tp.tar_name, tp.tar_par_name FROM tb_profile_fill INNER JOIN (SELECT division_id as div_id, division_name as own_name, parent_division FROM tb_division d LEFT JOIN (SELECT division_id, division_name as own_par_name FROM tb_division) oo ON d.parent_division = oo.division_id ) ow ON tb_profile_fill.owner_div_id = ow.div_id INNER JOIN (SELECT division_id as div_id, division_name as tar_name, parent_division FROM tb_division d LEFT JOIN (SELECT division_id, division_name as tar_par_name FROM tb_division) tt ON pt.division_id = d.parent_division ) tp ON tb_profile_fill.division_id = tp.div_id' in E:\My\OOP\xampp\htdocs\Yii\framework\db\CDbCommand.php:543
+Stack trace:
+#0 E:\My\OOP\xampp\htdocs\Yii\framework\db\CDbCommand.php(396): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\DataController.php(353): CDbCommand->queryAll()
+#2 E:\My\OOP\xampp\htdocs\Yii\framework\web\actions\CInlineAction.php(49): DataController->actionFillFilling()
+#3 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#5 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): CController->run('FillFilling')
+#7 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('data/FillFillin...')
+#8 E:\My\OOP\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#9 E:\My\OOP\xampp\htdocs\Yii\milk\index.php(13): CApplication->run()
+#10 {main}
+REQUEST_URI=/Yii/milk/data/FillFilling
+HTTP_REFERER=http://localhost/Yii/milk/Bud/fillingManager
+---
+2015/06/20 22:04:54 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'pt.t_div_id' in 'on clause'. The SQL statement executed was: SELECT tb_profile_fill.owner_div_id as pk1, tb_profile_fill.division_id as pk2, ow.own_name, ow.own_par_name, tp.tar_name, tp.tar_par_name FROM tb_profile_fill INNER JOIN (SELECT division_id as div_id1, division_name as own_name, parent_division FROM tb_division d LEFT JOIN (SELECT division_id as o_div_id, division_name as own_par_name FROM tb_division) oo ON d.parent_division = oo.o_div_id ) ow ON tb_profile_fill.owner_div_id = ow.div_id INNER JOIN (SELECT division_id as div_id2, division_name as tar_name, parent_division FROM tb_division d LEFT JOIN (SELECT division_id as t_div_id, division_name as tar_par_name FROM tb_division) tt ON pt.t_div_id = d.parent_division ) tp ON tb_profile_fill.division_id = tp.div_id.
+in E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\DataController.php (353)
+in E:\My\OOP\xampp\htdocs\Yii\milk\index.php (13)
+2015/06/20 22:04:54 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'pt.t_div_id' in 'on clause'. The SQL statement executed was: SELECT tb_profile_fill.owner_div_id as pk1, tb_profile_fill.division_id as pk2, ow.own_name, ow.own_par_name, tp.tar_name, tp.tar_par_name FROM tb_profile_fill INNER JOIN (SELECT division_id as div_id1, division_name as own_name, parent_division FROM tb_division d LEFT JOIN (SELECT division_id as o_div_id, division_name as own_par_name FROM tb_division) oo ON d.parent_division = oo.o_div_id ) ow ON tb_profile_fill.owner_div_id = ow.div_id INNER JOIN (SELECT division_id as div_id2, division_name as tar_name, parent_division FROM tb_division d LEFT JOIN (SELECT division_id as t_div_id, division_name as tar_par_name FROM tb_division) tt ON pt.t_div_id = d.parent_division ) tp ON tb_profile_fill.division_id = tp.div_id' in E:\My\OOP\xampp\htdocs\Yii\framework\db\CDbCommand.php:543
+Stack trace:
+#0 E:\My\OOP\xampp\htdocs\Yii\framework\db\CDbCommand.php(396): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\DataController.php(353): CDbCommand->queryAll()
+#2 E:\My\OOP\xampp\htdocs\Yii\framework\web\actions\CInlineAction.php(49): DataController->actionFillFilling()
+#3 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#5 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): CController->run('FillFilling')
+#7 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('data/FillFillin...')
+#8 E:\My\OOP\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#9 E:\My\OOP\xampp\htdocs\Yii\milk\index.php(13): CApplication->run()
+#10 {main}
+REQUEST_URI=/Yii/milk/data/FillFilling
+HTTP_REFERER=http://localhost/Yii/milk/Bud/fillingManager
+---
+2015/06/20 22:22:18 [error] [php] Undefined index: division_name (E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\DataController.php:357)
+Stack trace:
+#0 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(286): DataController->runAction()
+#1 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(265): DataController->runActionWithFilters()
+#2 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): DataController->run()
+#3 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 E:\My\OOP\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#5 E:\My\OOP\xampp\htdocs\Yii\milk\index.php(13): CWebApplication->run()
+REQUEST_URI=/Yii/milk/data/FillFilling
+in E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\DataController.php (357)
+in E:\My\OOP\xampp\htdocs\Yii\milk\index.php (13)
+2015/06/20 22:23:09 [error] [php] Undefined index: division_name (E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\DataController.php:357)
+Stack trace:
+#0 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(286): DataController->runAction()
+#1 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(265): DataController->runActionWithFilters()
+#2 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): DataController->run()
+#3 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 E:\My\OOP\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#5 E:\My\OOP\xampp\htdocs\Yii\milk\index.php(13): CWebApplication->run()
+REQUEST_URI=/Yii/milk/data/FillFilling
+in E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\DataController.php (357)
+in E:\My\OOP\xampp\htdocs\Yii\milk\index.php (13)
+2015/06/20 22:23:39 [error] [php] Undefined index: owner_div_id (E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\DataController.php:359)
+Stack trace:
+#0 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(286): DataController->runAction()
+#1 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(265): DataController->runActionWithFilters()
+#2 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): DataController->run()
+#3 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 E:\My\OOP\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#5 E:\My\OOP\xampp\htdocs\Yii\milk\index.php(13): CWebApplication->run()
+REQUEST_URI=/Yii/milk/data/FillFilling
+in E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\DataController.php (359)
+in E:\My\OOP\xampp\htdocs\Yii\milk\index.php (13)
+2015/06/20 23:55:14 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'div_id' in 'IN/ALL/ANY subquery'. The SQL statement executed was: SELECT division_id as div_id, division_name as div_name, div_par_name FROM tb_division LEFT JOIN (SELECT division_id as par_id, division_name as div_par_name FROM tb_division) p ON tb_division.parent_division = p.par_id WHERE div_id in (SELECT division_id FROM tb_profile_fill).
+in E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\DataController.php (386)
+in E:\My\OOP\xampp\htdocs\Yii\milk\index.php (13)
+2015/06/20 23:55:14 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'div_id' in 'IN/ALL/ANY subquery'. The SQL statement executed was: SELECT division_id as div_id, division_name as div_name, div_par_name FROM tb_division LEFT JOIN (SELECT division_id as par_id, division_name as div_par_name FROM tb_division) p ON tb_division.parent_division = p.par_id WHERE div_id in (SELECT division_id FROM tb_profile_fill)' in E:\My\OOP\xampp\htdocs\Yii\framework\db\CDbCommand.php:543
+Stack trace:
+#0 E:\My\OOP\xampp\htdocs\Yii\framework\db\CDbCommand.php(396): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\DataController.php(386): CDbCommand->queryAll()
+#2 E:\My\OOP\xampp\htdocs\Yii\framework\web\actions\CInlineAction.php(49): DataController->actionFillFillingTarget()
+#3 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#5 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): CController->run('FillFillingTarg...')
+#7 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('Data/FillFillin...')
+#8 E:\My\OOP\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#9 E:\My\OOP\xampp\htdocs\Yii\milk\index.php(13): CApplication->run()
+#10 {main}
+REQUEST_URI=/Yii/milk/Data/FillFillingTarget
+HTTP_REFERER=http://localhost/Yii/milk/Bud/fillingManager
+---
+2015/06/21 00:47:41 [error] [php] Undefined variable: sql (E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\DataController.php:432)
+Stack trace:
+#0 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(286): DataController->runAction()
+#1 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(265): DataController->runActionWithFilters()
+#2 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): DataController->run()
+#3 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 E:\My\OOP\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#5 E:\My\OOP\xampp\htdocs\Yii\milk\index.php(13): CWebApplication->run()
+REQUEST_URI=/Yii/milk/data/FillingEdit
+in E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\DataController.php (432)
+in E:\My\OOP\xampp\htdocs\Yii\milk\index.php (13)
+2015/06/21 00:49:22 [error] [php] Creating default object from empty value (E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\DataController.php:432)
+Stack trace:
+#0 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(286): DataController->runAction()
+#1 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(265): DataController->runActionWithFilters()
+#2 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): DataController->run()
+#3 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 E:\My\OOP\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#5 E:\My\OOP\xampp\htdocs\Yii\milk\index.php(13): CWebApplication->run()
+REQUEST_URI=/Yii/milk/data/FillingEdit
+in E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\DataController.php (432)
+in E:\My\OOP\xampp\htdocs\Yii\milk\index.php (13)
+2015/06/21 00:52:15 [error] [php] Creating default object from empty value (E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\DataController.php:432)
+Stack trace:
+#0 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(286): DataController->runAction()
+#1 E:\My\OOP\xampp\htdocs\Yii\framework\web\CController.php(265): DataController->runActionWithFilters()
+#2 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): DataController->run()
+#3 E:\My\OOP\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 E:\My\OOP\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#5 E:\My\OOP\xampp\htdocs\Yii\milk\index.php(13): CWebApplication->run()
+REQUEST_URI=/Yii/milk/data/FillingEdit
+in E:\My\OOP\xampp\htdocs\Yii\milk\protected\controllers\DataController.php (432)
+in E:\My\OOP\xampp\htdocs\Yii\milk\index.php (13)

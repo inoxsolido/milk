@@ -1,5 +1,5 @@
 <div class="btn-group btn-group-justified">
-    <a class='btn btn-success btn-sm' id='addm'>เพิ่มฝ่าย ตำแหน่ง/แผนก/กอง/ฝ่ายใหม่</a>
+    <a class='btn btn-success btn-sm' id='addm'>เพิ่ม ตำแหน่ง/แผนก/กอง/ฝ่าย</a>
     <a class="btn btn-info btn-sm" id='findshow'>ค้นหา</a>
 </div>
 <div class="container" id='find'>
@@ -10,7 +10,7 @@
                     <tr>
                         <th>ชื่อตำแหน่ง/แผนก/กอง/ฝ่าย</th>
                         <th>รหัส ERP </th>
-                        <th>แผนก/กอง/ฝ่ายที่สังกัด</th>
+                        <th>ฝ่ายที่สังกัด</th>
                         <th>รหัสสำนักงาน</th>
                         <th>เป็นตำแหน่ง</th>
                     </tr>
@@ -23,8 +23,9 @@
                         <td><input type="text" class="form-control" id="fdof"></td>
                         <td><select id="fdispos">
                                 <option value="99" selected="selected">--ไม่เลือก--</option>
-                                <option value="0">ไม่เป็น</option>
-                                <option value="1">เป็น</option>
+                                <option value="0">เป็นตำแหน่ง</option>
+                                <option value="1">เป็นแผนก/กอง</option>
+                                <option value="2">เป็นฝ่าย</option>
                             </select>
                         </td>
                     </tr>
@@ -44,7 +45,7 @@
                         <tr>
                             <th>ชื่อตำแหน่ง/แผนก/กอง/ฝ่าย</th>
                             <th>รหัส ERP </th>
-                            <th>แผนก/กอง/ฝ่ายที่สังกัด</th>
+                            <th>ฝ่ายที่สังกัด</th>
                             <th>รหัสสำนักงาน</th>
                             <th>เป็นตำแหน่ง</th>
                             <th>จัดการ</th>
@@ -85,7 +86,7 @@
                         <label class='control-label'><input type='checkbox' id='addisdiv'> เป็นฝ่าย</label>
                     </div>
                     <div class="form-group-sm subo">
-                        <label class="control-label">ชื่อแผนก/กอง/ฝ่าย ที่สังกัด</label>
+                        <label class="control-label">ชื่อฝ่ายที่สังกัด</label>
                         <select class="form-control" id="addpar">                            
                         </select>
                     </div>
@@ -135,7 +136,7 @@
                         <label class='control-label'><input type='checkbox' id='editisdiv'> เป็นฝ่าย</label>
                     </div>
                     <div class="form-group-sm subo">
-                        <label class="control-label">ชื่อแผนก/กอง/ฝ่าย ที่สังกัด</label>
+                        <label class="control-label">ชื่อฝ่ายที่สังกัด</label>
                         <select class="form-control" id="editpar">
                         </select>
                     </div>

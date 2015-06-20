@@ -109,7 +109,6 @@ $(function () {
             $(this).parent().addClass("has-success");
         }
     });
-    dep.parent().hide();
     div.parent().hide();
     pos.change(function () {
         if (pos.val() == 3) {
@@ -184,7 +183,7 @@ $(function () {
         fname.focus();
         lname.focus();
         personid.focus();
-        ok=0;
+        ok = 0;
         $("#add").focus();
         if (pos.val() == 2) {
             if (div.val() != 0)
@@ -223,25 +222,49 @@ $(function () {
                     dep.parent().hide();
                     div.parent().hide();
                     $("#mregis").modal('hide');
-                    $(".feedback").txt("");
+                    $("#mregis").find(".feedback").text("");
+                    $("#mregis").find("div.form-group-sm").removeClass("has-error");
+                    $("#mregis").find("div.form-group-sm").removeClass("has-success");
+                    $(".feedback").text("");
                     $(".feedback").parent().removeClass("has-error");
                     $(".feedback").parent().removeClass("has-success");
+                    ReqData();
                 } else {
                     alert("การเพิ่มข้อมูลไม่สำเร็จ");
                 }
             });
         }
     });
+    //search-----
+    $("#find").hide();
+    $("#findshow").click(function () {
+        $("#find").fadeToggle();
+    });
+    $("#btnfind").click(function () {
+        ReqData();
+        $("#find").fadeToggle();
+    });
+    //endsearch----
     function ReqData() {
+        $("#usrbody").html('<image src="./../images/loading.gif">');
         $.post('./../data/FillUsr',
                 {
                     ajax: 0,
-                    searchtxt: $("#txtfind").val()
+                    search: {
+                        usr: $("#fdusr").val(),
+                        fname: $("#fdname").val(),
+                        lname: $("#fdlname").val(),
+                        perid: $("#fdperid").val(),
+                        div: $("#fddiv").val(),
+                        par: $("#fdpar").val(),
+                        pos: $("#fdpos").val()
+                    }
                 },
         function (data) {
             $("#usrbody").html(data);
         });
     }
+    //active-deactive------
     $("#usrbody").on('click', '.deactive', function () {
         $.post('./../data/usrstatechange', {
             uid: $(this).attr('data-id'),
@@ -262,67 +285,11 @@ $(function () {
             }
         });
     });
-    $("#search").children('div').children().children(".form-control").hide();
-    $("#search").children('div').children().children("select").hide();
-    $("[type^=checkbox]").click(function () {
-        $(this).siblings("[type^=text]").toggle('fast', 'linear');
-        $(this).siblings("select").toggle('fast', 'swing');
-    });
-    $("#find").hide();
-    $("#findshow").click(function () {
-        $("#find").fadeToggle();
-    });
-    $("#txtfind").keyup(function(ev){
-        if(ev.keyCode == 13){
-            $("#btnfind").click();
-        }
-    });
-    $("#btnfind").click(function () {
-        ReqData();
-        $("#find").fadeToggle();
-    });
-    //edit btn
-    var eid;
-    $("#usrbody").on('click', '.edit', function () {
-        eid = $(this).attr('data-id');
-        id = eid;
-        $.post('../data/AskUser', {uid: id}, function (data) {
-            $("#eusername").val(data);
-        });
-        $.post('../data/AskPerId', {uid: id}, function (data) {
-            $("#epersonid").val(data);
-        });
-        $.post('../data/AskFname', {uid: id}, function (data) {
-            $("#efname").val(data);
-        });
-        $.post('../data/AskLname', {uid: id}, function (data) {
-            $("#elname").val(data);
-        });
-        $.post('../data/AskPosId', {uid: id}, function (data) {
-            $("#eposition").val(data);
-            if (data == '1') {
-                $(".edep").show();
-                $(".ediv").hide();
-            } else if (data == '2') {
-                $(".ediv").show();
-                $(".edep").hide();
-            } else if (data == '3') {
-                $(".edep").hide();
-                $(".ediv").hide();
-            }
-        });
-        $.post('../data/AskDepId', {uid: id}, function (data) {
-            $("#edep").val(data);
-        });
-        $.post('../data/AskFacId', {uid: id}, function (data) {
-            $("#ediv").val(data);
-        });
-        $.post('../data/AskGen', {uid: id}, function (data) {
-            $("#egender").val(data);
-        });
-        $("#epassword").val("");
-        $("#medit").modal('show');
-    });
+    //endactive-------
+
+
+
+    //--edit zone ---------------
     var epos = $("#eposition");
     var ediv = $("#ediv");
     var edep = $("#edep");
@@ -343,6 +310,31 @@ $(function () {
             ediv.parent().hide();
             ediv.val("");
         }
+    });
+    //edit btn
+    var eid;
+    $("#usrbody").on('click', '.edit', function () {
+        eid = $(this).attr('data-id');
+        id = eid;
+
+        $.ajax({
+            url: "../Data/AskUserInfo",
+            async: false,
+            type: 'POST',
+            data: {id: id},
+            dataType: 'json',
+            success: function (data, textStatus, jqXHR) {
+                $("#eusername").val(data.user);
+                $("#epersonid").val(data.perid);
+                $("#efname").val(data.fname);
+                $("#elname").val(data.lname);
+                epos.val(data.pos).change();
+                $("#ediv").val(data.div);
+                $("#egender").val(data.gen);
+                $("#epassword").val("");
+            }
+        });
+        $("#medit").modal('show');
     });
     $("#btnedit").click(function () {
         euser = $("#eusername");
@@ -398,7 +390,7 @@ $(function () {
             }
         });
     });
-    
+
 });
 function checkID(id) {
     if (id.length !== 13)

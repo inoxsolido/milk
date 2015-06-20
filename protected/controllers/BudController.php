@@ -49,9 +49,16 @@ class BudController extends Controller {
     public function actionUserManager() {
         if (!Yii::app()->user->isGuest) {
             if (Yii::app()->user->isAdmin) {
-                $dep = TbDepartment::model()->findall();
-                $div = TbDivision::model()->findall();
-                $position = TbPosition::model()->findall();
+
+                $sql = "SELECT division_id, d.division_name, parent_division, p.par_name FROM tb_division d "
+                        . "LEFT JOIN (SELECT division_id as ppar_id, division_name as par_name FROM tb_division) p ON d.parent_division = p.ppar_id";
+                $sqldiv = $sql . " WHERE isposition = 0 AND parent_division = 0";
+                $sqldep = $sql . " WHERE parent_division != 0";
+                $div = Yii::app()->db->createCommand($sqldiv)->queryAll();
+                $dep = Yii::app()->db->createCommand($sqldep)->queryAll();
+
+                $position = TbPosition::model()->findAll();
+
                 $this->render('usermanager', array(
                     'dep' => $dep,
                     'div' => $div,
@@ -66,17 +73,38 @@ class BudController extends Controller {
             $this->redirect('../Bud/index');
         }
     }
- 
+
     public function actionDivManager() {
-        if (yii::app()->user->isAdmin) {
-            
+        if (Yii::app()->user->isAdmin) {
+
             $model = TbDivision::model()->findAll();
-            
-            $this->render('divManager',array('par_model' => $model));
+
+            $this->render('divManager', array('par_model' => $model));
         } else {
             echo 'You have not permission to access this pages';
             echo '<br>';
             ?><a href="<?= Yii::app()->createAbsoluteUrl('./Bud/main') ?>">Back to main</a><?php
         }
     }
+
+    public function actionFillingManager() {
+        if (Yii::app()->user->isAdmin) {
+            $this->render('fillingManager');
+        } else {
+            echo 'You have not permission to access this pages';
+            echo '<br>';
+            ?><a href="<?= Yii::app()->createAbsoluteUrl('./Bud/main') ?>">Back to main</a><?php
+        }
+    }
+
+    public function actionAccountManager() {
+        if (Yii::app()->user->isAdmin) {
+            $this->render('AccountManager');
+        } else {
+            echo 'You have not permission to access this pages';
+            echo '<br>';
+            ?><a href="<?= Yii::app()->createAbsoluteUrl('./Bud/main') ?>">Back to main</a><?php
+        }
+    }
+
 }

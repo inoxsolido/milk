@@ -2,22 +2,45 @@
     <a class='btn btn-success btn-sm' id='regis'>เพิ่มผู้ใช้รายใหม่</a>
     <a class="btn btn-info btn-sm" id='findshow'>ค้นหา</a>
 </div>
-<div class='row' id='find'>
+<div class='container' id='find'>
     <br>
-    <div class='col-sm-4 col-sm-offset-4'>
-        <div class='form-horizontal'>
-            <div class='form-group'>
-                <div class='col-sm-8'>
-                <input type='text' placeholder='พิมพ์คำค้นหา' id='txtfind' class='form-control'>
-                </div>
-                <div class='col-sm-4'>
-                <a id='btnfind' class='btn btn-default '>ค้นหา <span class='glyphicon glyphicon-search'></span></a>
-                </div>
-            </div>
-        </div>
+    <div class='form-horizontal'>
+        <table class='table table-bordered form-group-sm' >
+            <thead>
+                <tr>
+                    <th>Username</th>
+                    <th>ชื่อ</th>
+                    <th>นามสกุล</th>
+                    <th>รหัสประจำตัวประชาชน</th>
+                    <th>สังกัด</th>
+                    <th>ฝ่าย</th>
+                    <th>สิทธิ์การเข้าใช้</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><input type="text" class="form-control" id="fdusr"></td>
+                    <td><input type="text" class="form-control" id="fdname"></td>
+                    <td><input type="text" class="form-control" id="fdlname"></td>
+                    <td><input type="text" class="form-control" id="fdperid"></td>
+                    <td><input type="text" class="form-control" id="fddiv"></td>
+                    <td><input type="text" class="form-control" id="fdpar"</td>
+                    <td><select id="fdpos">
+                            <option value="99" selected="selected">--ไม่เลือก--</option>
+                            <option value="1">หัวหน้าแผนก</option>
+                            <option value="2">หัวหน้าฝ่าย</option>
+                            <option value="3">Administrator</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="7"><a id='btnfind' class='btn btn-default btn-block btn-sm'>ค้นหา <span class='glyphicon glyphicon-search'></span></a></td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 </div>
-<div class='container' >
+<div class='container' style="width:90%">
     <div class='row'>
         <div class='table-responsive'>
             <div>
@@ -28,7 +51,7 @@
                             <th>ชื่อ</th>
                             <th>นามสกุล</th>
                             <th>รหัสประจำตัวประชาชน</th>
-                            <th>แผนก</th>
+                            <th>สังกัด</th>
                             <th>ฝ่าย</th>
                             <th>สิทธิ์การเข้าใช้</th>
                             <th>จัดการ</th>
@@ -94,10 +117,10 @@
                         </select>
                     </div>
                     <div class='form-group div'>
-                        <label for="div">ฝ่าย</label>
+                        <label for="div">สังกัด</label>
                         <select id='div'>
                             <?php foreach ($div as $row): ?>
-                                <option value="<?= $row->division_id ?>"><?= $row->division_name ?></option>
+                                <option value="<?= $row['division_id'] ?>"><?= $row['division_name'] . " " . $row['par_name'] ?></option>
                             <?php endforeach; ?>
                         </select>
                     </div>
@@ -105,7 +128,7 @@
                         <label for='dep'>แผนก/ตำแหน่งพิเศษ</label>
                         <select id='dep'>
                             <?php foreach ($dep as $row): ?>
-                                <option value="<?= $row->department_id ?>"><?= $row->department_name ?></option>
+                                <option value="<?= $row['division_id'] ?>"><?= $row['division_name'] . " " . $row['par_name'] ?></option>
                             <?php endforeach; ?>
                         </select>
                     </div>
@@ -170,10 +193,10 @@
                         </select>
                     </div>
                     <div class='form-group ediv'>
-                        <label for="div">ฝ่าย</label>
+                        <label for="div">สังกัด</label>
                         <select id='ediv'>
                             <?php foreach ($div as $row): ?>
-                                <option value="<?= $row->division_id ?>"><?= $row->division_name ?></option>
+                                <option value="<?= $row['division_id'] ?>"><?= $row['division_name'] . " " . $row['par_name'] ?></option>
                             <?php endforeach; ?>
                         </select>
                     </div>
@@ -181,7 +204,7 @@
                         <label for='dep'>แผนก/ตำแหน่งพิเศษ</label>
                         <select id='edep'>
                             <?php foreach ($dep as $row): ?>
-                                <option value="<?= $row->department_id ?>"><?= $row->department_name ?></option>
+                                <option value="<?= $row['division_id'] ?>"><?= $row['division_name'] . " " . $row['par_name'] ?></option>
                             <?php endforeach; ?>
                         </select>
                     </div>

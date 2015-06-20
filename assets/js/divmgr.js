@@ -70,35 +70,17 @@ $(function () {
     function checkname(div) {
         dsib = div.siblings('.feedback');
         par = div.parent();
-        var val = false;
         if (div.val() == "") {
             dsib.text("กรุณากรอกชื่อตำแหน่ง/แผนก/กอง/ฝ่าย");
             par.addClass("has-error");
             par.removeClass("has-success");
-            val = false;
+            return false;
         } else {
-            $.ajax({
-                url: "../Valid/ChkDivNameDup",
-                type: 'POST',
-                async: false,
-                data: {divname: div.val()},
-                success: function (data) {
-                    if (data == 'dup') {
-                        dsib.text("ตำแหน่ง/แผนก/กอง/ฝ่ายนี้มีอยู่แล้วในระบบ กรุณากรอกชื่อตำแหน่ง/แผนก/กอง/ฝ่ายใหม่");
-                        par.addClass("has-error");
-                        par.removeClass("has-success");
-                        val = false;
-                    }
-                    else {
-                        dsib.text("");
-                        par.addClass("has-success");
-                        par.removeClass("has-error");
-                        val = true;
-                    }
-                }
-            });
+            dsib.text("");
+            par.addClass("has-success");
+            par.removeClass("has-error");
+            return true;
         }
-        return val;
     }
     function checkerp(erp, erpstate) {
         sib = erp.siblings('.feedback');
@@ -124,29 +106,13 @@ $(function () {
             par.removeClass("has-success");
             return false;
         } else {
-            val = false;
-            $.ajax({
-                url: '../Valid/ChkDivErpDup',
-                type: 'POST',
-                async: false,
-                data: {erpid: erp.val()},
-                success: function (data, textStatus, jqXHR) {
-                    if (data == 'dup') {
-                        sib.text("รหัส ERP นี้มีอยู่แล้วในระบบ กรุณากรอกรหัส ERP ใหม่");
-                        par.addClass("has-error");
-                        par.removeClass("has-success");
-                        val = false;
-                    }
-                    else {
-                        sib.text("");
-                        par.addClass("has-success");
-                        par.removeClass("has-error");
-                        val = true;
-                    }
-                }
-            });
-            return val;
+            sib.text("");
+            par.addClass("has-success");
+            par.removeClass("has-error");
+            return true;
         }
+
+
     }
     function checkerpoffice(office)
     {
@@ -171,15 +137,15 @@ $(function () {
             par.addClass("has-success");
             return true;
         }
-        return true;
+
     }
-    $("#adderp").change(function () {
+    $("#adderp").focusout(function () {
         checkerp($(this), getCheckbox($("#addhaserp")));
     });
-    $("#addname").change(function () {
+    $("#addname").focusout(function () {
         checkname($(this));
     });
-    $("#addoffice").change(function () {
+    $("#addoffice").focusout(function () {
         checkerpoffice($(this));
     });
     $("#addhaserp").change(function () {
@@ -246,7 +212,10 @@ $(function () {
                         $("#modaladd").find("div.form-group-sm").find(".feedback").text("");
                         $("#modaladd").find("div.form-group-sm").removeClass("has-error");
                         $("#modaladd").find("div.form-group-sm").removeClass("has-success");
-                    } else {
+                    } else if (data == 'dup') {
+                        alert("ข้อมูลนี้มีอยู่แล้วในระบบ");
+                    }
+                    else {
                         alert("การเพิ่มข้อมูลล้มเหลว กรุณาลองใหม่");
                     }
                 }
@@ -285,7 +254,7 @@ $(function () {
                 } else {
                     $("#editisdiv").prop("checked", false).change();
                 }
-                $("#editispos").prop("checked",d.ispos==1?true:false).change();
+                $("#editispos").prop("checked", d.ispos == 1 ? true : false).change();
                 $("#editoffice").val(d.office_id).change();
                 $("#editpar").children('option[value^="' + d.divid + '"]').attr("disabled", true);
                 $("#editpar").val(d.par_id);
@@ -309,26 +278,10 @@ $(function () {
             par.addClass("has-success");
             return true;
         } else {
-            $.ajax({
-                url: "../Valid/ChkDivNameDup",
-                type: 'POST',
-                async: false,
-                data: {divname: div.val()},
-                success: function (data) {
-                    if (data == 'dup') {
-                        dsib.text("ตำแหน่ง/แผนก/กอง/ฝ่ายนี้มีอยู่แล้วในระบบ กรุณากรอกชื่อตำแหน่ง/แผนก/กอง/ฝ่ายใหม่");
-                        par.addClass("has-error");
-                        par.removeClass("has-success");
-                        val = false;
-                    }
-                    else {
-                        dsib.text("");
-                        par.addClass("has-success");
-                        par.removeClass("has-error");
-                        val = true;
-                    }
-                }
-            });
+            dsib.text("");
+            par.addClass("has-success");
+            par.removeClass("has-error");
+            return true;
         }
         return val;
     }
@@ -361,28 +314,10 @@ $(function () {
             par.addClass("has-success");
             return true;
         } else {
-            val = false;
-            $.ajax({
-                url: '../Valid/ChkDivErpDup',
-                type: 'POST',
-                async: false,
-                data: {erpid: erp.val()},
-                success: function (data, textStatus, jqXHR) {
-                    if (data == 'dup') {
-                        sib.text("รหัส ERP นี้มีอยู่แล้วในระบบ กรุณากรอกรหัส ERP ใหม่");
-                        par.addClass("has-error");
-                        par.removeClass("has-success");
-                        val = false;
-                    }
-                    else {
-                        sib.text("");
-                        par.addClass("has-success");
-                        par.removeClass("has-error");
-                        val = true;
-                    }
-                }
-            });
-            return val;
+            sib.text("");
+            par.addClass("has-success");
+            par.removeClass("has-error");
+            return true;
         }
     }
     $("#editisdiv").change(function () {
@@ -415,13 +350,13 @@ $(function () {
             $("#editisdiv").prop("disabled", false).change();
         }
     });
-    $("#editerp").change(function () {
+    $("#editerp").focusout(function () {
         checkerpedit($(this), getCheckbox($("#edithaserp")));
     });
-    $("#editname").change(function () {
+    $("#editname").focusout(function () {
         checknameedit($(this));
     });
-    $("#editoffice").change(function () {
+    $("#editoffice").focusout(function () {
         checkerpoffice($(this));
     });
     $("#btnedit").click(function () {
@@ -429,7 +364,7 @@ $(function () {
         diverp = $("#editerp");
         divoffice = $("#editoffice");
         divpar = $("#editpar");
-        
+
         if (checknameedit(divname) && checkerpedit(diverp, getCheckbox($("#edithaserp"))) && checkerpoffice(divoffice)) {
 
             $.ajax({
@@ -460,7 +395,9 @@ $(function () {
                         $("#modaledit").find("div.form-group-sm").find(".feedback").text("");
                         $("#modaledit").find("div.form-group-sm").removeClass("has-error");
                         $("#modaledit").find("div.form-group-sm").removeClass("has-success");
-                    } else {
+                    }else if(data == 'dup'){
+                        alert("การแก้ไขข้อมูลล้มเหลว ข้อมูลนี้มีอยู่แล้วในระบบ");
+                    }else {
                         alert("การแก้ไขข้อมูลล้มเหลว กรุณาลองใหม่");
                     }
                 }
