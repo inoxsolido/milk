@@ -24,6 +24,7 @@ class DataController extends Controller {
             $div = $_POST['div'];
             $g = $_POST['g'];
             $d = $pos == 3 ? NULL : $pos == 2 ? $div : $dep;
+            $pass = Yii::app()->Encryption->EncryptPassword($pass);
             $result = Yii::app()->db->createCommand("INSERT INTO tb_user VALUES("
                             . "NULL,'$user','$pass','$fname','$lname','$g',"
                             . "'$perid',$d,'$pos',1)")->execute();
@@ -145,7 +146,7 @@ class DataController extends Controller {
             $model = TbUser::model()->findByPk($uid);
             $model->username = $user;
             if ($pass != "")
-                $model->password = $pass;
+                $model->password = Yii::app()->Encryption->EncryptPassword($pass);
             $model->fname = $fname;
             $model->lname = $lname;
             $model->gender = $gen;
