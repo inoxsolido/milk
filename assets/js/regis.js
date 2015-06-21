@@ -329,7 +329,10 @@ $(function () {
                 $("#efname").val(data.fname);
                 $("#elname").val(data.lname);
                 epos.val(data.pos).change();
-                $("#ediv").val(data.div);
+                if(data.pos==1)
+                    edep.val(data.div);
+                else if(data.pos==2);
+                    ediv.val(data.div);
                 $("#egender").val(data.gen);
                 $("#epassword").val("");
             }
