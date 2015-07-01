@@ -48,6 +48,7 @@ return array(
                 '<controller:\w+>/<action:\w+>' => '<controller>/<action>',
             ),
             'showScriptName'=>false,
+            'caseSensitive'=>false,
         ),
         // database settings are configured in database.php
         'db' => require(dirname(__FILE__) . '/database.php'),

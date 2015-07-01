@@ -404,39 +404,184 @@ class DataController extends Controller {
             $result = Yii::app()->db->createCommand($sql)->queryAll();
             foreach ($result as $row) {
                 ?><option value="<?= $row['div_id'] ?>"><?= $row['div_name'] . " " . $row['div_par_name'] ?></option><?php
+                }
+            }
+        }
+
+        public function actionFillingDel() {
+            if (isset($_POST['ajax']) && isset($_POST['id']) && !empty($_POST['id']['id1']) && !empty($_POST['id']['id2'])) {
+                echo TbProfileFill::model()->deleteByPk(array('owner_div_id' => $_POST['id']['id1'], 'division_id' => $_POST['id']['id2']));
+            }
+        }
+
+        public function actionFillingAdd() {
+            if (isset($_POST['pk1']) && isset($_POST['pk2'])) {
+                $pk1 = $_POST['pk1'];
+                $pk2 = $_POST['pk2'];
+
+                $sql = "INSERT INTO tb_profile_fill VALUES ($pk1,$pk2)";
+                echo Yii::app()->db->createCommand($sql)->execute() ? 1 : 0;
+            }
+        }
+
+        public function actionFillingEdit() {
+            if (isset($_POST['pk1']) && isset($_POST['pk2']) && isset($_POST['val1']) && isset($_POST['val2'])) {
+                $pk1 = $_POST['pk1'];
+                $pk2 = $_POST['pk2'];
+                $val1 = $_POST['val1'];
+                $val2 = $_POST['val2'];
+
+                $model = TbProfileFill::model()->findByPk(array("owner_div_id" => $pk1, "division_id" => $pk2));
+
+                $model->owner_div_id = $val1;
+                $model->division_id = $val2;
+                echo $model->save() ? 1 : 0;
+            }
+        }
+
+        //----account-----
+        //--search
+        public function actionFillAcc() {
+            if (isset($_POST['ajax']) && isset($_POST['search'])) {
+                $erp = $_POST['search']['erp'];
+                $name = $_POST['search']['name'];
+                $group = $_POST['search']['group'];
+                $par = $_POST['search']['par'];
+                $haspar = $_POST['search']['haspar'];
+
+                $sql = "SELECT a.*, par.par_name,group_name "
+                        . "FROM tb_account a "
+                        . "LEFT JOIN (SELECT acc_id as par_id, acc_name as par_name FROM tb_account) par ON a.parent_acc_id = par.par_id "
+                        . "LEFT JOIN tb_group g ON a.group_id = g.group_id ";
+                if (!(empty($erp) && empty($name) && empty($group) && empty($par))) {
+                    $sql .= " WHERE ";
+                    if (!empty($erp))
+                        $sql .= " acc_erp LIKE '$erp' AND";
+                    if (!empty($name))
+                        $sql .= " account_name LIKE '%$name%' AND";
+                    if (!empty($group))
+                        $sql .= " a.group_id = $group AND";
+                    if ($haspar == "true" && !empty($par))
+                        $sql .= " par_name LIKE '%$par%' AND";
+                    if ($haspar == "false")
+                        $sql .= " parent_acc_id IS NULL AND";
+                    $sql = substr($sql, 0, -3);
+                }
+
+                $result = Yii::app()->db->createCommand($sql)->queryAll();
+
+                if (count($result)) {
+                    foreach ($result as $row) {
+                        ?>
+                    <tr>
+                        <td style='width:10%'><?= $row['acc_erp'] ?></td>
+                        <td style='width:27.5%'><?= $row['acc_name'] ?></td>
+                        <td style='width:15%'><?= $row['group_name'] ?></td>
+                        <td style='width:27.5%'><?= $row['par_name'] ?></td>
+                        <td style="width:20%"><button class='btn btn-sm btn-warning edit' data-id="<?= $row['acc_id'] ?>">แก้ไข <span class='glyphicon glyphicon-wrench'></span></button>&nbsp;&nbsp;
+                            <button class="btn btn-sm btn-danger delete" data-id ="<?= $row['acc_id'] ?>">ลบ <span class="glyphicon glyphicon-remove"></span></button>
+                        </td>
+                    </tr>
+                <?php
+                }
+            }
+        } else
+            echo 'invalid request';
+    }
+
+    public function actionFillAccPar() {
+        if (isset($_POST['ajax'])) {
+            $model = TbAccount::model()->findAll();
+
+            foreach ($model as $row) {
+                ?><option value="<?= $row['acc_id'] ?>"><?= $row['acc_name'] ?></option><?php
             }
         }
     }
 
-    public function actionFillingDel() {
-        if (isset($_POST['ajax']) && isset($_POST['id']) && !empty($_POST['id']['id1']) && !empty($_POST['id']['id2'])) {
-            echo TbProfileFill::model()->deleteByPk(array('owner_div_id' => $_POST['id']['id1'], 'division_id' => $_POST['id']['id2']));
+    //delete
+    public function actionAccountDel() {
+        if (isset($_POST['ajax']) && isset($_POST['id'])) {
+            echo TbAccount::model()->deleteByPk(intval($_POST['id'])) ? 1 : 0;
         }
     }
 
-    public function actionFillingAdd() {
-        if (isset($_POST['pk1']) && isset($_POST['pk2'])) {
-            $pk1 = $_POST['pk1'];
-            $pk2 = $_POST['pk2'];
+    //add
+    public function actionAccountAdd() {
+        if (isset($_POST['d'])) {
+            $d = $_POST['d'];
+            $name = $d['name'];
+            $erp = $d['erp'];
+            $par = $d['par'];
+            $group = $d['group'];
+            $haserp = $d['haserp'];
+            $haspar = $d['haspar'];
 
-            $sql = "INSERT INTO tb_profile_fill VALUES ($pk1,$pk2)";
-            echo Yii::app()->db->createCommand($sql)->execute() ? 1 : 0;
+            $parent = TbAccount::model()->findByPk(intval($par));
+
+            if (!count($parent) && $haspar == "true") {
+                echo 'invalid parent id';
+                return;
+            }
+
+            
+            $model = new TbAccount();
+
+            if ($model->isNewRecord) {
+
+                $model->acc_name = $name;
+                $model->group_id = $haspar == "true" ? $parent->group_id : $group;
+                $model->acc_erp = $haserp == "true" ? $erp : NULL;
+                $model->parent_acc_id = $parent ? $par : NULL;
+                echo $model->save(false)?"ok":"not";
+            }
         }
     }
 
-    public function actionFillingEdit() {
-        if (isset($_POST['pk1']) && isset($_POST['pk2']) && isset($_POST['val1']) && isset($_POST['val2'])) {
-            $pk1 = $_POST['pk1'];
-            $pk2 = $_POST['pk2'];
-            $val1 = $_POST['val1'];
-            $val2 = $_POST['val2'];
-            
-            $model = TbProfileFill::model()->findByPk(array("owner_div_id"=>$pk1,"division_id"=>$pk2));
-            
-            $model->owner_div_id=$val1;
-            $model->division_id=$val2;
-            echo $model->save()?1:0;
-            
+    public function actionAskAccInfo() {
+        if (isset($_POST['id'])) {
+            $id = $_POST['id'];
+            $model = TbAccount::model()->findByPk(intval($id));
+            if (count($model)) {
+                $result = array(
+                    "name" => $model->acc_name,
+                    "erp" => $model->acc_erp,
+                    "par" => $model->parent_acc_id,
+                    "group" => $model->group_id
+                );
+                echo json_encode($result);
+            }
+        }
+    }
+
+    public function actionAccountEdit() {
+        if (isset($_POST['d'])) {
+            $d = $_POST['d'];
+            $id = $d['id'];
+            $name = $d['name'];
+            $erp = $d['erp'];
+            $par = $d['par'];
+            $group = $d['group'];
+            $haserp = $d['haserp'];
+            $haspar = $d['haspar'];
+
+            $parent = TbAccount::model()->findByPk(intval($par));
+
+            if (!count($parent) && $haspar == "true") {
+                echo 'invalid parent id';
+                return;
+            }
+
+            $model = TbAccount::model()->findByPk(intval($id));
+
+            if (!$model->isNewRecord) {
+                $model->acc_name = $name;
+                $model->group_id = $haspar == "true" ? $parent->group_id : $group;
+                $model->acc_erp = $haserp == "true" ? $erp : NULL;
+                $model->parent_acc_id = $parent ? $parent : NULL;
+                echo $model->save() ? "ok" : "not";
+            } else
+                echo 'invalid id';
         }
     }
 

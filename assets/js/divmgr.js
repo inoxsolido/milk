@@ -208,7 +208,6 @@ $(function () {
                         ReqData();
                         alert("การเพิ่มข้อมูลสำเร็จ");
                         $("#modaladd").modal('hide');
-                        $("#modaladd").find("div.form-group-sm");
                         $("#modaladd").find("div.form-group-sm").find(".feedback").text("");
                         $("#modaladd").find("div.form-group-sm").removeClass("has-error");
                         $("#modaladd").find("div.form-group-sm").removeClass("has-success");

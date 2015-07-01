@@ -20,9 +20,11 @@
             });
         </script>
         <style type="text/css">
+            #menu{
+                margin-bottom: -21px;
+            }
             div#content{
                 position: relative;
-                top: -21px;
                 min-height: 100%;
                 height: auto !important;
                 height: 100%;
@@ -77,7 +79,7 @@
                                 ['label' => 'กรอกงบประมาณ', 'url' => '#', 'visible' => Yii::app()->user->isDepartment],
                                 ['label' => 'ยืนยันคำขอ', 'url' => '#', 'visible' => Yii::app()->user->isDivision || Yii::app()->user->isAdmin],
                                 ['label' => 'สรุปผล', 'url' => '#', 'visible' => !Yii::app()->user->isGuest],
-                                ['label' => 'จัดการบัญชี', 'url' => '#', 'visible' => Yii::app()->user->isAdmin],
+                                ['label' => 'จัดการบัญชี', 'url' => 'AccountManager', 'visible' => Yii::app()->user->isAdmin],
                                 ['label' => "จัดการสังกัด <i class='caret'></i>", 'url' => '#', 'visible' => Yii::app()->user->isAdmin,
                                     'linkOptions' => [
                                         'class' => 'dropdown-toggle',

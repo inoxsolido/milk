@@ -1,23 +1,20 @@
 <?php
 
 /**
- * This is the model class for table "tb_account".
+ * This is the model class for table "tb_acc_year".
  *
- * The followings are the available columns in table 'tb_account':
+ * The followings are the available columns in table 'tb_acc_year':
+ * @property string $year
  * @property integer $acc_id
- * @property string $acc_name
- * @property integer $group_id
- * @property integer $parent_acc_id
- * @property string $acc_erp
  */
-class TbAccount extends CActiveRecord
+class TbAccYear extends CActiveRecord
 {
 	/**
 	 * @return string the associated database table name
 	 */
 	public function tableName()
 	{
-		return 'tb_account';
+		return 'tb_acc_year';
 	}
 
 	/**
@@ -28,13 +25,12 @@ class TbAccount extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('acc_name, group_id', 'required'),
-			array('group_id, parent_acc_id', 'numerical', 'integerOnly'=>true),
-			array('acc_name', 'length', 'max'=>50),
-			array('acc_erp', 'length', 'max'=>8),
+			array('year, acc_id', 'required'),
+			array('acc_id', 'numerical', 'integerOnly'=>true),
+			array('year', 'length', 'max'=>4),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('acc_id, acc_name, group_id, parent_acc_id, acc_erp', 'safe', 'on'=>'search'),
+			array('year, acc_id', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -55,11 +51,8 @@ class TbAccount extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
+			'year' => 'Year',
 			'acc_id' => 'Acc',
-			'acc_name' => 'Acc Name',
-			'group_id' => 'Group',
-			'parent_acc_id' => 'Parent Acc',
-			'acc_erp' => 'Acc Erp',
 		);
 	}
 
@@ -81,11 +74,8 @@ class TbAccount extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
+		$criteria->compare('year',$this->year,true);
 		$criteria->compare('acc_id',$this->acc_id);
-		$criteria->compare('acc_name',$this->acc_name,true);
-		$criteria->compare('group_id',$this->group_id);
-		$criteria->compare('parent_acc_id',$this->parent_acc_id);
-		$criteria->compare('acc_erp',$this->acc_erp,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
@@ -96,7 +86,7 @@ class TbAccount extends CActiveRecord
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!
 	 * @param string $className active record class name.
-	 * @return TbAccount the static model class
+	 * @return TbAccYear the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{

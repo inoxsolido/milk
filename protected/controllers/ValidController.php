@@ -83,4 +83,36 @@ class ValidController extends Controller {
         }
     }
 
+    public function actionCheckAccNameDup() {
+        if (isset($_POST['name'])) {
+            $name = $_POST['name'];
+            echo count(TbAccount::model()->findAll("acc_name LIKE '$name'")) ? "dup" : "ok";
+        }
+    }
+
+    public function actionCheckAccNameDupEdit() {
+        if (isset($_POST['name']) && isset($_POST['id'])) {
+            $name = $_POST['name'];
+            $id = $_POST['id'];
+
+            echo count(TbAccount::model()->findAll("acc_id != $id AND acc_name LIKE '$name'")) ? "dup" : "ok";
+        }
+    }
+
+    public function actionCheckAccErpDup() {
+        if (isset($_POST['erp'])) {
+            $erp = $_POST['erp'];
+            echo count(TbAccount::model()->findAll("acc_erp LIKE '$erp'")) ? "dup" : "ok";
+        }
+    }
+
+    public function actionCheckAccErpDupEdit() {
+        if (isset($_POST['erp']) && isset($_POST['id'])) {
+            $erp = $_POST['erp'];
+            $id = $_POST['id'];
+
+            echo count(TbAccount::model()->findAll("acc_id != $id AND acc_erp LIKE '$name'")) ? "dup" : "ok";
+        }
+    }
+
 }

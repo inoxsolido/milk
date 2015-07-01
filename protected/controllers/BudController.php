@@ -99,7 +99,8 @@ class BudController extends Controller {
 
     public function actionAccountManager() {
         if (Yii::app()->user->isAdmin) {
-            $this->render('AccountManager');
+            $group = TbGroup::model()->findAll();
+            $this->render('AccountManager', array('group'=>$group));
         } else {
             echo 'You have not permission to access this pages';
             echo '<br>';

@@ -7,7 +7,7 @@
  * @property integer $month_id
  * @property string $month_name
  * @property string $month_name_simple
- * @property string $manth_name_erp
+ * @property string $month_name_erp
  */
 class TbMonth extends CActiveRecord
 {
@@ -27,13 +27,13 @@ class TbMonth extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('month_name, month_name_simple, manth_name_erp', 'required'),
+			array('month_name, month_name_simple, month_name_erp', 'required'),
 			array('month_name', 'length', 'max'=>10),
 			array('month_name_simple', 'length', 'max'=>5),
-			array('manth_name_erp', 'length', 'max'=>7),
+			array('month_name_erp', 'length', 'max'=>7),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('month_id, month_name, month_name_simple, manth_name_erp', 'safe', 'on'=>'search'),
+			array('month_id, month_name, month_name_simple, month_name_erp', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -57,7 +57,7 @@ class TbMonth extends CActiveRecord
 			'month_id' => 'Month',
 			'month_name' => 'Month Name',
 			'month_name_simple' => 'Month Name Simple',
-			'manth_name_erp' => 'Manth Name Erp',
+			'month_name_erp' => 'Month Name Erp',
 		);
 	}
 
@@ -82,7 +82,7 @@ class TbMonth extends CActiveRecord
 		$criteria->compare('month_id',$this->month_id);
 		$criteria->compare('month_name',$this->month_name,true);
 		$criteria->compare('month_name_simple',$this->month_name_simple,true);
-		$criteria->compare('manth_name_erp',$this->manth_name_erp,true);
+		$criteria->compare('month_name_erp',$this->month_name_erp,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
