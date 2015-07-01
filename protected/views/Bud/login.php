@@ -4,6 +4,10 @@
         font-style: oblique;
         display:none;
     }
+    .loading{
+        color: blue;
+    }
+    
 </style>
 <div class='container'>
     <div class='row'>
@@ -21,6 +25,7 @@
                 </div>
                 <div class="form-group">
                     <input type='button' class='btn btn-success btn-block' value='Login' id='slogin'/>
+                    <span class="loading"></span>
                     <span class='error'>Username or Password Incorrect </span>
                 </div>
             </form>
@@ -41,7 +46,10 @@
                 pass.siblings("span").show();
             else
                 pass.siblings("span").hide();
-
+            
+            if(user.val() != "" && pass.val() != ""){
+                $(".error").html('<image src="./../images/loading.gif" style="width:20%; height:20%">');
+            }
             if (user.val() != "" && pass.val() != "") {
                 $.post('../Valid/Login',
                         {
@@ -68,11 +76,13 @@
                 });
             }
         });
-        pass.keyup(function (event) {
+        $("input").keyup(function (event) {
             if (event.keyCode == 13) {
                 $("#slogin").click();
             }
         });
+        
+        
 
 
     });
