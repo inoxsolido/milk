@@ -107,5 +107,17 @@ class BudController extends Controller {
             ?><a href="<?= Yii::app()->createAbsoluteUrl('./Bud/main') ?>">Back to main</a><?php
         }
     }
+    
+    public function actionAccountYearAssign(){
+        if (Yii::app()->user->isAdmin) {
+            $acc = TbAccount::model()->findAll( array('order'=>"group_id ASC, acc_name ASC"));
+            $group = TbGroup::model()->findAll();
+            $this->render("AccountYearAssign", array('acc'=>$acc, 'group'=>$group));
+        } else {
+            echo 'You have not permission to access this pages';
+            echo '<br>';
+            ?><a href="<?= Yii::app()->createAbsoluteUrl('./Bud/main') ?>">Back to main</a><?php
+        }
+    }
 
 }

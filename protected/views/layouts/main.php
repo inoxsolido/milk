@@ -79,7 +79,17 @@
                                 ['label' => 'กรอกงบประมาณ', 'url' => '#', 'visible' => Yii::app()->user->isDepartment],
                                 ['label' => 'ยืนยันคำขอ', 'url' => '#', 'visible' => Yii::app()->user->isDivision || Yii::app()->user->isAdmin],
                                 ['label' => 'สรุปผล', 'url' => '#', 'visible' => !Yii::app()->user->isGuest],
-                                ['label' => 'จัดการบัญชี', 'url' => 'AccountManager', 'visible' => Yii::app()->user->isAdmin],
+                                ['label' => "จัดการบัญชี <i class='caret'></i>", 'url' => '#', 'visible' => Yii::app()->user->isAdmin,
+                                    'linkOptions' => [
+                                        'class' => 'dropdown-toggle',
+                                        'data-toggle' => 'dropdown',
+                                        'role' => 'button',
+                                    ],
+                                    'items' => [
+                                        ['label' => 'จัดการรายละเอียดบัญชี', 'url' => 'AccountManager', 'class' => 'dropdown-toggle', 'role' => 'menu'],
+                                        ['label' => 'กำหนดบัญชีที่ใช้แต่ละปี', 'url' => 'AccountYearAssign'],
+                                    ]
+                                ],
                                 ['label' => "จัดการสังกัด <i class='caret'></i>", 'url' => '#', 'visible' => Yii::app()->user->isAdmin,
                                     'linkOptions' => [
                                         'class' => 'dropdown-toggle',
