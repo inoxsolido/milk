@@ -11,6 +11,7 @@
  * @property string $year
  * @property integer $version
  * @property integer $user_id
+ * @property integer $division_id
  * @property string $approve_lv
  */
 class TbMonthGoal extends CActiveRecord
@@ -31,13 +32,13 @@ class TbMonthGoal extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('acc_id, value, month_id, year, user_id, approve_lv', 'required'),
-			array('acc_id, month_id, version, user_id', 'numerical', 'integerOnly'=>true),
+			array('acc_id, value, month_id, year, user_id, division_id, approve_lv', 'required'),
+			array('acc_id, month_id, version, user_id, division_id', 'numerical', 'integerOnly'=>true),
 			array('value', 'length', 'max'=>10),
 			array('approve_lv', 'length', 'max'=>1),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('month_goal_id, acc_id, value, month_id, year, version, user_id, approve_lv', 'safe', 'on'=>'search'),
+			array('month_goal_id, acc_id, value, month_id, year, version, user_id, division_id, approve_lv', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -58,14 +59,15 @@ class TbMonthGoal extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'month_goal_id' => 'รหัสเป้าหมายรายเดือน',
-			'acc_id' => 'รหัสบัญชี',
-			'value' => 'ยอด',
-			'month_id' => 'ลำดับเดือน',
-			'year' => 'ปี',
-			'version' => 'เวอร์ชั่นไฟล์',
-			'user_id' => 'หมายเลขผู้ใช้งาน',
-			'approve_lv' => 'ระดับยืนยันข้อมูล',
+			'month_goal_id' => 'Month Goal',
+			'acc_id' => 'Acc',
+			'value' => 'Value',
+			'month_id' => 'Month',
+			'year' => 'Year',
+			'version' => 'Version',
+			'user_id' => 'User',
+			'division_id' => 'Division',
+			'approve_lv' => 'Approve Lv',
 		);
 	}
 
@@ -94,6 +96,7 @@ class TbMonthGoal extends CActiveRecord
 		$criteria->compare('year',$this->year,true);
 		$criteria->compare('version',$this->version);
 		$criteria->compare('user_id',$this->user_id);
+		$criteria->compare('division_id',$this->division_id);
 		$criteria->compare('approve_lv',$this->approve_lv,true);
 
 		return new CActiveDataProvider($this, array(

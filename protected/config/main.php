@@ -8,7 +8,7 @@ return array(
     'basePath' => dirname(__FILE__) . DIRECTORY_SEPARATOR . '..',
     'name' => 'ระบบส่งคำขอตั้งงบประมาณ',
     //set default controller
-    'defaultController' => 'milk',
+    'defaultController' => 'bud',
     // preloading 'log' component
     'preload' => array('log'),
     // autoloading model and component classes
@@ -32,8 +32,8 @@ return array(
             // enable cookie-based authentication
             'allowAutoLogin' => false,
             'class'=>'WebUser',
-            'loginUrl'=>['./milk/login'],
-            'returnUrl'=>['./milk/faq'],
+            'loginUrl'=>['./Bud/login'],
+            'returnUrl'=>['./Bud/faq'],
             
         ),
         'session' => array(
@@ -47,6 +47,8 @@ return array(
                 '<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
                 '<controller:\w+>/<action:\w+>' => '<controller>/<action>',
             ),
+            'showScriptName'=>false,
+            'caseSensitive'=>false,
         ),
         // database settings are configured in database.php
         'db' => require(dirname(__FILE__) . '/database.php'),
@@ -68,6 +70,9 @@ return array(
               ),
              */
             ),
+        ),
+        'Encryption'=>array(
+            'class'=>'Encryption'
         ),
     ),
     // application-level parameters that can be accessed

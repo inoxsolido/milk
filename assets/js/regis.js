@@ -12,7 +12,7 @@ $(function () {
     var gender = $("#gender");
     var personid = $("#personid");
     var pos = $("#position");
-    var fac = $("#fac");
+    var div = $("#div");
     var dep = $("#dep");
     var userfail = 0;
     var pfail = 0;
@@ -109,22 +109,21 @@ $(function () {
             $(this).parent().addClass("has-success");
         }
     });
-    dep.parent().hide();
-    fac.parent().hide();
+    div.parent().hide();
     pos.change(function () {
         if (pos.val() == 3) {
             dep.parent().hide();
-            fac.parent().hide();
+            div.parent().hide();
             dep.val("");
-            fac.val("");
+            div.val("");
         } else if (pos.val() == 2) {
             dep.parent().hide();
-            fac.parent().show();
+            div.parent().show();
             dep.val("");
         } else if (pos.val() == 1) {
             dep.parent().show();
-            fac.parent().hide();
-            fac.val("");
+            div.parent().hide();
+            div.val("");
         }
     });
     fname.focusout(function () {
@@ -184,9 +183,10 @@ $(function () {
         fname.focus();
         lname.focus();
         personid.focus();
+        ok = 0;
         $("#add").focus();
         if (pos.val() == 2) {
-            if (fac.val() != 0)
+            if (div.val() != 0)
                 ok = 1;
             else
                 ok = 0;
@@ -210,35 +210,61 @@ $(function () {
                 g: gender.val(),
                 pid: personid.val(),
                 pos: pos.val(),
-                fac: fac.val(),
+                div: div.val(),
                 dep: dep.val()
             }, function (data) {
                 if (data == 'ok') {
                     alert("การเพิ่มข้อมูลสำเร็จ");
                     $("#frmregis")[0].reset();
                     dep.val("0");
-                    fac.val("0");
+                    div.val("0");
                     pos.val("0");
                     dep.parent().hide();
-                    fac.parent().hide();
+                    div.parent().hide();
                     $("#mregis").modal('hide');
-                    $(".feedback").txt("");
+                    $("#mregis").find(".feedback").text("");
+                    $("#mregis").find("div.form-group-sm").removeClass("has-error");
+                    $("#mregis").find("div.form-group-sm").removeClass("has-success");
+                    $(".feedback").text("");
+                    $(".feedback").parent().removeClass("has-error");
+                    $(".feedback").parent().removeClass("has-success");
+                    ReqData();
                 } else {
                     alert("การเพิ่มข้อมูลไม่สำเร็จ");
                 }
             });
         }
     });
+    //search-----
+    $("#find").hide();
+    $("#findshow").click(function () {
+        $("#find").fadeToggle();
+    });
+    $("#btnfind").click(function () {
+        ReqData();
+        $("#find").fadeToggle();
+    });
+    //endsearch----
     function ReqData() {
+        $("#usrbody").html('<image src="./../images/loading.gif">');
         $.post('./../data/FillUsr',
                 {
                     ajax: 0,
-                    searchtxt: $("#txtfind").val()
+                    search: {
+                        usr: $("#fdusr").val(),
+                        fname: $("#fdname").val(),
+                        lname: $("#fdlname").val(),
+                        perid: $("#fdperid").val(),
+                        div: $("#fddiv").val(),
+                        par: $("#fdpar").val(),
+                        pos: $("#fdpos").val()
+                    }
                 },
         function (data) {
             $("#usrbody").html(data);
         });
     }
+    //active-deactive------
     $("#usrbody").on('click', '.deactive', function () {
         $.post('./../data/usrstatechange', {
             uid: $(this).attr('data-id'),
@@ -259,88 +285,59 @@ $(function () {
             }
         });
     });
-    $("#search").children('div').children().children(".form-control").hide();
-    $("#search").children('div').children().children("select").hide();
-    $("[type^=checkbox]").click(function () {
-        $(this).siblings("[type^=text]").toggle('fast', 'linear');
-        $(this).siblings("select").toggle('fast', 'swing');
-    });
-    $("#find").hide();
-    $("#findshow").click(function () {
-        $("#find").fadeToggle();
-    });
-    $("#txtfind").keyup(function(ev){
-        if(ev.keyCode == 13){
-            $("#btnfind").click();
+    //endactive-------
+
+
+
+    //--edit zone ---------------
+    var epos = $("#eposition");
+    var ediv = $("#ediv");
+    var edep = $("#edep");
+    ediv.parent().hide();
+    edep.parent().hide();
+    epos.change(function () {
+        if (epos.val() == 3) {
+            edep.parent().hide();
+            ediv.parent().hide();
+            edep.val("");
+            ediv.val("");
+        } else if (epos.val() == 2) {
+            edep.parent().hide();
+            ediv.parent().show();
+            edep.val("");
+        } else if (epos.val() == 1) {
+            edep.parent().show();
+            ediv.parent().hide();
+            ediv.val("");
         }
-    });
-    $("#btnfind").click(function () {
-        ReqData();
-        $("#txtfind").val("");
-        $("#find").fadeToggle();
     });
     //edit btn
     var eid;
     $("#usrbody").on('click', '.edit', function () {
         eid = $(this).attr('data-id');
         id = eid;
-        $.post('../data/AskUser', {uid: id}, function (data) {
-            $("#eusername").val(data);
-        });
-        $.post('../data/AskPerId', {uid: id}, function (data) {
-            $("#epersonid").val(data);
-        });
-        $.post('../data/AskFname', {uid: id}, function (data) {
-            $("#efname").val(data);
-        });
-        $.post('../data/AskLname', {uid: id}, function (data) {
-            $("#elname").val(data);
-        });
-        $.post('../data/AskPosId', {uid: id}, function (data) {
-            $("#eposition").val(data);
-            if (data == '1') {
-                $(".edep").show();
-                $(".efac").hide();
-            } else if (data == '2') {
-                $(".efac").show();
-                $(".edep").hide();
-            } else if (data == '3') {
-                $(".edep").hide();
-                $(".efac").hide();
+
+        $.ajax({
+            url: "../Data/AskUserInfo",
+            async: false,
+            type: 'POST',
+            data: {id: id},
+            dataType: 'json',
+            success: function (data, textStatus, jqXHR) {
+                $("#eusername").val(data.user);
+                $("#epersonid").val(data.perid);
+                $("#efname").val(data.fname);
+                $("#elname").val(data.lname);
+                epos.val(data.pos).change();
+                if(data.pos==1)
+                    edep.val(data.div);
+                else if(data.pos==2);
+                    ediv.val(data.div);
+                $("#egender").val(data.gen);
+                $("#epassword").val("");
             }
         });
-        $.post('../data/AskDepId', {uid: id}, function (data) {
-            $("#edep").val(data);
-        });
-        $.post('../data/AskFacId', {uid: id}, function (data) {
-            $("#efac").val(data);
-        });
-        $.post('../data/AskGen', {uid: id}, function (data) {
-            $("#egender").val(data);
-        });
-        $("#epassword").val("");
         $("#medit").modal('show');
-    });
-    var epos = $("#eposition");
-    var efac = $("#efac");
-    var edep = $("#edep");
-    efac.parent().hide();
-    edep.parent().hide();
-    epos.change(function () {
-        if (epos.val() == 3) {
-            edep.parent().hide();
-            efac.parent().hide();
-            edep.val("");
-            efac.val("");
-        } else if (epos.val() == 2) {
-            edep.parent().hide();
-            efac.parent().show();
-            edep.val("");
-        } else if (epos.val() == 1) {
-            edep.parent().show();
-            efac.parent().hide();
-            efac.val("");
-        }
     });
     $("#btnedit").click(function () {
         euser = $("#eusername");
@@ -376,7 +373,7 @@ $(function () {
                     gen: $("#egender").val(),
                     perid: $("#epersonid").val(),
                     pos: $("#eposition").val(),
-                    fac: $("#efac").val(),
+                    div: $("#ediv").val(),
                     dep: $("#edep").val()
                 }, function (data) {
             if (data == 'usrdup') {
@@ -387,16 +384,16 @@ $(function () {
                 alert("การเปลี่ยนแปลงข้อมูลเสร็จสิ้น");
                 $("#frmedit")[0].reset();
                 edep.val("0");
-                efac.val("0");
+                ediv.val("0");
                 epos.val("0");
                 edep.parent().hide();
-                efac.parent().hide();
+                ediv.parent().hide();
                 $("#medit").modal('hide');
                 ReqData();
             }
         });
     });
-    
+
 });
 function checkID(id) {
     if (id.length !== 13)

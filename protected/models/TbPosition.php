@@ -25,8 +25,7 @@ class TbPosition extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('position_id, position_name', 'required'),
-			array('position_id', 'numerical', 'integerOnly'=>true),
+			array('position_name', 'required'),
 			array('position_name', 'length', 'max'=>20),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
@@ -51,8 +50,8 @@ class TbPosition extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'position_id' => 'รหัสตำแหน่ง',
-			'position_name' => 'ชื่อตำแหน่ง',
+			'position_id' => 'Position',
+			'position_name' => 'Position Name',
 		);
 	}
 
