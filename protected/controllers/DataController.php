@@ -275,12 +275,14 @@ class DataController extends Controller {
             $isdiv = $_POST['isdiv'] == 'true' ? true : false;
             $ispos = $_POST['ispos'] == 'true' ? 1 : 0;
 
+            $parent = $isdiv ? 0 : intval($parent);
+            
             $model = TbDivision::model()->findByPk(intval($id));
             if (count($model)) {
 
                 $oldname = $model->division_name;
                 $oldpar = $model->parent_division;
-                if (!$isdiv && ($oldname != $name || $parent != $oldpar)) {
+                if (($oldname != $name || $parent != $oldpar)) {
                     $result = TbDivision::model()->find("division_name = '$name' AND parent_division = $parent");
                     if (count($result)) {
                         echo 'dup';
@@ -291,7 +293,7 @@ class DataController extends Controller {
                 $model->division_name = $name;
                 $model->erp_id = $haserp ? $erp : '';
                 $model->office_id = $officeerp;
-                $model->parent_division = $isdiv ? intval($parent) : 0;
+                $model->parent_division = $parent;
                 $model->isposition = $ispos ? 1 : 0;
                 echo $model->save() ? 1 : 0;
             } else
