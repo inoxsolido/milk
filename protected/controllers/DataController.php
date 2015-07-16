@@ -563,7 +563,7 @@ class DataController extends Controller
     {
         if (isset($_POST['ajax']))
         {
-            $model = TbAccount::model()->findAll(array('order' => 'group_id ASC, acc_name ASC'));
+            $model = TbAccount::model()->findAll(array('order' => 'group_id ASC, acc_erp ASC'));
 
             foreach ($model as $row)
             {
@@ -658,13 +658,13 @@ class DataController extends Controller
             }
 
             $model = TbAccount::model()->findByPk(intval($id));
-
+            
             if (!$model->isNewRecord)
             {
                 $model->acc_name = $name;
                 $model->group_id = $haspar == "true" ? $parent->group_id : $group;
                 $model->acc_erp = $haserp == "true" ? $erp : NULL;
-                $model->parent_acc_id = $parent ? $parent : NULL;
+                $model->parent_acc_id = $haspar == "true" ? $par : NULL;
                 echo $model->save() ? "ok" : "not";
             } else
                 echo 'invalid id';
@@ -691,7 +691,7 @@ class DataController extends Controller
                 foreach ($resultlv1 as $lv1)//level 1
                 {
                     echo $openli;
-                    ?><input type="checkbox" name="<?= $lv1->acc_id ?>"/><label><?= $lv1->acc_name ?></label><?php
+                    ?><label><input type="checkbox" name="<?= $lv1->acc_id ?>"/><?= $lv1->acc_name ?></label><?php
                     
                     $resultlv2 = TbAccount::model()->findAll(array('condition'=>"parent_acc_id = $lv1->acc_id", 'order'=>"acc_name ASC"));
                     if (count($resultlv2))
@@ -700,7 +700,7 @@ class DataController extends Controller
                         foreach ($resultlv2 as $lv2)//level 2
                         {
                             echo $openli;
-                            ?><input type="checkbox" name="<?= $lv2->acc_id ?>"/><label><?= $lv2->acc_name ?></label><?php
+                            ?><label><input type="checkbox" name="<?= $lv2->acc_id ?>"/><?= $lv2->acc_name ?></label><?php
                             
                             $resultlv3 = TbAccount::model()->findAll(array('condition'=>"parent_acc_id = $lv2->acc_id", 'order'=>"acc_name ASC"));
                             if(count($resultlv3))
@@ -709,14 +709,16 @@ class DataController extends Controller
                                 foreach($resultlv3 as $lv3)//level 3
                                 {
                                     echo $openli;
-                                    ?><input type="checkbox" name="<?= $lv3->acc_id ?>"/><label><?= $lv3->acc_name ?></label><?php 
+                                    ?><label><input type="checkbox" name="<?= $lv3->acc_id ?>"/><?= $lv3->acc_name ?></label><?php 
                                     $resultlv4 = TbAccount::model()->findAll(array('condition'=>"parent_acc_id = $lv3->acc_id", 'order'=>"acc_name ASC"));
                                     if(count($resultlv4))
                                     {
                                         echo $openul;
                                         foreach($resultlv4 as $lv4)
                                         {
-                                            ?><input type="checkbox" name="<?= $lv4->acc_id ?>"/><label><?= $lv4->acc_name ?></label><?php 
+                                            echo $openli;
+                                            ?><label><input type="checkbox" name="<?= $lv4->acc_id ?>"/><?= $lv4->acc_name ?></label><?php 
+                                            echo $closeli;
                                         }
                                         echo $closeul;
                                     }

@@ -339,7 +339,7 @@ $(function () {
         checkname($("#editname"), false);
     });
     $("#editerp").focusout(function () {
-        checkerp($("#editerp"), getCheckbox($("#edithaserp")), false);
+        checkerp($("#editerp"), getCheckbox($("#edithaserp")), true);
     });
 
     var accid;

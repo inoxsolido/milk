@@ -111,7 +111,7 @@ class ValidController extends Controller {
             $erp = $_POST['erp'];
             $id = $_POST['id'];
 
-            echo count(TbAccount::model()->findAll("acc_id != $id AND acc_erp LIKE '$name'")) ? "dup" : "ok";
+            echo count(TbAccount::model()->findAll("acc_id != $id AND acc_erp LIKE '$erp'")) ? "dup" : "ok";
         }
     }
 
