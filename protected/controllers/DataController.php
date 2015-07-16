@@ -496,7 +496,7 @@ class DataController extends Controller {
             $model = TbAccount::model()->findAll(array('order'=>'acc_erp ASC'));
 
             foreach ($model as $row) {
-                ?><option value="<?= $row['acc_id'] ?>"><?= $row['acc_name'] ?></option><?php
+                ?><option value="<?= $row['acc_id'] ?>"><?= $row['acc_erp']?>&nbsp;&nbsp;<?= $row['acc_name'] ?></option><?php
             }
         }
     }
@@ -586,6 +586,22 @@ class DataController extends Controller {
                 echo 'invalid id';
         }
     }
-
+    // AccountYearAssign
+    public function actionFillAccYear()
+    {
+        $group = TbGroup::model()->findAll(array('order'=>"group_id ASC"));
+        echo '<ul>';//main
+        foreach($group as $g)
+        {
+            echo '<li>';
+            $resultlv1 = TbAccount::model()->findAll("group_id = $g->group_id");
+            if(count($resultlv1))
+            {
+                
+            }
+            ?><?php
+        }
+        echo '</ul>';
+    }
 
 }
