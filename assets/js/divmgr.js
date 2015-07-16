@@ -358,7 +358,7 @@ $(function () {
         var diverp = $("#editerp");
         var divoffice = $("#editoffice");
         var divpar = $("#editpar");
-        alert( divpar.val());
+        //alert( divpar.val());
         if (checknameedit(divname) && checkerpedit(diverp, getCheckbox($("#edithaserp"))) && checkerpoffice(divoffice)) {
 
             $.ajax({
