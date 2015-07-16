@@ -106,6 +106,7 @@ $(function () {
             par.removeClass("has-success");
             return false;
         } else {
+            return true // name can be duplicate
             re = false;
             if (edit == false) {
                 $.ajax({
@@ -185,55 +186,56 @@ $(function () {
             par.addClass("has-error");
             par.removeClass("has-success");
             return false;
-        } else {
-            re=false;
-            if (edit == false) {
-                
-                $.ajax({
-                    url: "../Valid/CheckAccErpDup",
-                    async: false,
-                    type: 'POST',
-                    data: {erp: erp.val()},
-                    success: function (data, textStatus, jqXHR) {
-                        if (data == 'dup')
-                        {
-                            sib.text("รหัส ERP นี้มีอยู่แล้วในระบบ");
-                            par.addClass("has-error");
-                            par.removeClass("has-success");
-                            re= false;
-                        } else {
-                            sib.text("");
-                            par.addClass("has-success");
-                            par.removeClass("has-error");
-                            re= true;
-                        }
-                    }
-                });
-                
-            } else if (edit == true) {
-                $.ajax({
-                    url: "../Valid/CheckAccErpDupEdit",
-                    async: false,
-                    type: 'POST',
-                    data: {erp: erp.val(), id: accid},
-                    success: function (data, textStatus, jqXHR) {
-                        if (data == 'dup')
-                        {
-                            sib.text("รหัส ERP นี้มีอยู่แล้วในระบบ");
-                            par.addClass("has-error");
-                            par.removeClass("has-success");
-                            re= false;
-                        } else {
-                            sib.text("");
-                            par.addClass("has-success");
-                            par.removeClass("has-error");
-                            re= true;
-                        }
-                    }
-                });
-            }
-            return re;
-        }
+        }/* else {
+         re=false;
+         if (edit == false) {
+         
+         $.ajax({
+         url: "../Valid/CheckAccErpDup",
+         async: false,
+         type: 'POST',
+         data: {erp: erp.val()},
+         success: function (data, textStatus, jqXHR) {
+         if (data == 'dup')
+         {
+         sib.text("รหัส ERP นี้มีอยู่แล้วในระบบ");
+         par.addClass("has-error");
+         par.removeClass("has-success");
+         re= false;
+         } else {
+         sib.text("");
+         par.addClass("has-success");
+         par.removeClass("has-error");
+         re= true;
+         }
+         }+
+         });
+         
+         } else if (edit == true) {
+         $.ajax({
+         url: "../Valid/CheckAccErpDupEdit",
+         async: false,
+         type: 'POST',
+         data: {erp: erp.val(), id: accid},
+         success: function (data, textStatus, jqXHR) {
+         if (data == 'dup')
+         {
+         sib.text("รหัส ERP นี้มีอยู่แล้วในระบบ");
+         par.addClass("has-error");
+         par.removeClass("has-success");
+         re= false;
+         } else {
+         sib.text("");
+         par.addClass("has-success");
+         par.removeClass("has-error");
+         re= true;
+         }
+         }
+         });
+         }
+         return re;
+         }
+         */
     }
     //----add
     $("#addm").click(function () {
@@ -266,6 +268,7 @@ $(function () {
         checkerp($("#adderp"), getCheckbox($("#addhaserp")), false);
     });
 
+
     $("#btnadd").click(function () {
         var name = $("#addname").val();
         var erp = $("#adderp").val();
@@ -275,7 +278,9 @@ $(function () {
         var haspar = getCheckbox($("#addhaspar"));
         var namestate = checkname($("#addname"), false);
         var erpstate = checkerp($("#adderp"), haserp, false);
-        
+        if (group < 1) {
+            alert('กรุณาเลือกหมวด');
+        }
         if (namestate && erpstate) {
             d = {
                 name: name,
@@ -377,7 +382,9 @@ $(function () {
         var group = $("#editgroup").val();
         var haserp = getCheckbox($("#edithaserp"));
         var haspar = getCheckbox($("#edithaspar"));
-
+        if (group < 1) {
+            alert('กรุณาเลือกหมวด');
+        }
         if (checkname($("#editname"), true) && checkerp($("#editerp"), haserp, true)) {
             $.ajax({
                 url: "../Data/AccountEdit",

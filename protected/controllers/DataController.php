@@ -607,7 +607,6 @@ class DataController extends Controller
 
             if ($model->isNewRecord)
             {
-
                 $model->acc_name = $name;
                 $model->group_id = $haspar == "true" ? $parent->group_id : $group;
                 $model->acc_erp = $haserp == "true" ? $erp : NULL;
@@ -665,7 +664,7 @@ class DataController extends Controller
                 $model->group_id = $haspar == "true" ? $parent->group_id : $group;
                 $model->acc_erp = $haserp == "true" ? $erp : NULL;
                 $model->parent_acc_id = $haspar == "true" ? $par : NULL;
-                echo $model->save() ? "ok" : "not";
+                echo $model->save(false) ? "ok" : "not";
             } else
                 echo 'invalid id';
         }
@@ -684,7 +683,7 @@ class DataController extends Controller
         {
             echo $openli;
             ?><input type="checkbox" name="g<?= $g->group_id ?>"/><label><?= $g->group_name ?></label><?php
-            $resultlv1 = TbAccount::model()->findAll("group_id = $g->group_id");
+            $resultlv1 = TbAccount::model()->findAll("parent_acc_id group_id = $g->group_id");
             if (count($resultlv1))
             {
                 echo $openul;
