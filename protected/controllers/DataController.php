@@ -493,7 +493,7 @@ class DataController extends Controller {
 
     public function actionFillAccPar() {
         if (isset($_POST['ajax'])) {
-            $model = TbAccount::model()->findAll();
+            $model = TbAccount::model()->findAll(array('order'=>'acc_erp ASC'));
 
             foreach ($model as $row) {
                 ?><option value="<?= $row['acc_id'] ?>"><?= $row['acc_name'] ?></option><?php
@@ -586,5 +586,6 @@ class DataController extends Controller {
                 echo 'invalid id';
         }
     }
+
 
 }
