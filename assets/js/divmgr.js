@@ -235,27 +235,22 @@ $(function () {
             async: false,
             data: {did: edivid},
             success: function (data, textStatus, jqXHR) {
-                d = data;
+                var d = data;
                 ediverp = d.erp_id;
                 edivname = d.divname;
                 $("#editname").val(d.divname).change();
-                if (d.erp_id == '')
-                {
-                    $("#edithaserp").prop("checked", false).change();
-                    $("#editerp").val(d.erp_id).change();
-                } else {
-                    $("#edithaserp").prop("checked", true).change();
-                    $("#editerp").val(d.erp_id).change();
-                }
                 if (d.par_id == 0)
                 {
                     $("#editisdiv").prop("checked", true).change();
                 } else {
                     $("#editisdiv").prop("checked", false).change();
                 }
+                
+                $("#edithaserp").prop("checked", d.erp_id != '');
+                $("#editerp").val(d.erp_id).change();
                 $("#editispos").prop("checked", d.ispos == 1 ? true : false).change();
                 $("#editoffice").val(d.office_id).change();
-                $("#editpar").children('option[value^="' + d.divid + '"]').attr("disabled", true);
+                //$("#editpar").children('option[value^="' + d.divid + '"]').attr("disabled", true);
                 $("#editpar").val(d.par_id);
             },
             dataType: 'json'
@@ -327,7 +322,7 @@ $(function () {
         }
         else {
             $("#modaledit").find(".subo").show();
-            $("#edithaserp").prop("checked", false).change();
+            //$("#edithaserp").prop("checked", false).change();
             $("#edithaserp").prop("disabled", false).change();
         }
     });
@@ -359,11 +354,11 @@ $(function () {
         checkerpoffice($(this));
     });
     $("#btnedit").click(function () {
-        divname = $("#editname");
-        diverp = $("#editerp");
-        divoffice = $("#editoffice");
-        divpar = $("#editpar");
-
+        var divname = $("#editname");
+        var diverp = $("#editerp");
+        var divoffice = $("#editoffice");
+        var divpar = $("#editpar");
+        alert( divpar.val());
         if (checknameedit(divname) && checkerpedit(diverp, getCheckbox($("#edithaserp"))) && checkerpoffice(divoffice)) {
 
             $.ajax({
@@ -394,9 +389,9 @@ $(function () {
                         $("#modaledit").find("div.form-group-sm").find(".feedback").text("");
                         $("#modaledit").find("div.form-group-sm").removeClass("has-error");
                         $("#modaledit").find("div.form-group-sm").removeClass("has-success");
-                    }else if(data == 'dup'){
+                    } else if (data == 'dup') {
                         alert("การแก้ไขข้อมูลล้มเหลว ข้อมูลนี้มีอยู่แล้วในระบบ");
-                    }else {
+                    } else {
                         alert("การแก้ไขข้อมูลล้มเหลว กรุณาลองใหม่");
                     }
                 }
