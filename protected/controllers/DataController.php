@@ -10,10 +10,13 @@
  *
  * @author s5602041620019
  */
-class DataController extends Controller {
+class DataController extends Controller
+{
 
-    public function actionAddMember() {
-        if (isset($_POST['u'])) {
+    public function actionAddMember()
+    {
+        if (isset($_POST['u']))
+        {
             $user = $_POST['u'];
             $pass = $_POST['p'];
             $fname = $_POST['f'];
@@ -28,18 +31,22 @@ class DataController extends Controller {
             $result = Yii::app()->db->createCommand("INSERT INTO tb_user VALUES("
                             . "NULL,'$user','$pass','$fname','$lname','$g',"
                             . "'$perid',$d,'$pos',1)")->execute();
-            if ($result == 1) {
+            if ($result == 1)
+            {
                 echo 'ok';
-            } else {
+            } else
+            {
                 echo 'not ok';
             }
         }
     }
 
-    public function actionFillUsr() {
+    public function actionFillUsr()
+    {
         if (isset($_POST['ajax']) && isset($_POST['search']['usr']) && isset($_POST['search']['fname']) && isset($_POST['search']['lname']) &&
                 isset($_POST['search']['perid']) && isset($_POST['search']['div']) && isset($_POST['search']['pos'])
-        ) {
+        )
+        {
             $stxt = $_POST['search'];
             $sql = "SELECT u.*, position_name, d.div_name, par_name  "
                     . "FROM tb_user as u "
@@ -47,7 +54,8 @@ class DataController extends Controller {
                     . "LEFT JOIN (SELECT division_id as div_id, division_name as div_name, parent_division as par_id FROM tb_division) d ON u.division_id = d.div_id "
                     . "LEFT JOIN (SELECT division_id as par_id, division_name as par_name FROM tb_division) p ON d.par_id = p.par_id ";
             if (!(empty($stxt['usr']) && empty($stxt['fname']) && empty($stxt['lname']) &&
-                    empty($stxt['perid']) && empty($stxt['div']) && empty($stxt['par']) && ($stxt['pos'] == 99))) {
+                    empty($stxt['perid']) && empty($stxt['div']) && empty($stxt['par']) && ($stxt['pos'] == 99)))
+            {
                 $sql .= "WHERE ";
                 if (!empty($stxt['usr']))
                     $sql .= " u.username LIKE '%" . $stxt['usr'] . "%' AND";
@@ -68,7 +76,8 @@ class DataController extends Controller {
             echo $sql;
             $userinfo = Yii::app()->db->createCommand($sql)->queryAll();
 
-            foreach ($userinfo as $user) {
+            foreach ($userinfo as $user)
+            {
                 ?>
                 <tr>
                     <td style="width:10%"><?= $user['username'] ?></td>
@@ -80,8 +89,10 @@ class DataController extends Controller {
                     <td style="width:10%"><?= $user['position_name'] ?></td>
                     <td style="width:15%">
                         <button class='btn btn-sm btn-warning edit' data-id="<?= $user['user_id'] ?>">แก้ไข <span class='glyphicon glyphicon-wrench'></span></button>&nbsp;&nbsp;
-                        <?php if ($user['enable'] == 1) { ?><button class='btn btn-sm btn-danger deactive' data-id="<?= $user['user_id'] ?>">ยกเลิก <span class='glyphicon glyphicon-remove'></span></button>
-                        <?php } else if ($user['enable'] == 0) { ?><button class='btn btn-sm btn-success active' data-id="<?= $user['user_id'] ?>">เปิดใช้ <span class='glyphicon glyphicon-ok'></span></button><?php } ?>
+                <?php if ($user['enable'] == 1)
+                { ?><button class='btn btn-sm btn-danger deactive' data-id="<?= $user['user_id'] ?>">ยกเลิก <span class='glyphicon glyphicon-remove'></span></button>
+                <?php } else if ($user['enable'] == 0)
+                { ?><button class='btn btn-sm btn-success active' data-id="<?= $user['user_id'] ?>">เปิดใช้ <span class='glyphicon glyphicon-ok'></span></button><?php } ?>
                     </td>
                 </tr>
                 <?php
@@ -89,8 +100,10 @@ class DataController extends Controller {
         }
     }
 
-    public function actionUsrstatechange() {
-        if (isset($_POST['uid']) && isset($_POST['state'])) {
+    public function actionUsrstatechange()
+    {
+        if (isset($_POST['uid']) && isset($_POST['state']))
+        {
             $st = $_POST['state'];
 
             $uid = $_POST['uid'];
@@ -100,8 +113,10 @@ class DataController extends Controller {
         }
     }
 
-    public function actionAskUserInfo() {
-        if (isset($_POST['id'])) {
+    public function actionAskUserInfo()
+    {
+        if (isset($_POST['id']))
+        {
             $id = $_POST['id'];
             $model = TbUser::model()->findByPk(intval($id));
 
@@ -118,8 +133,10 @@ class DataController extends Controller {
         }
     }
 
-    public function actionMemberEdit() {
-        if (isset($_POST['uid'])) {
+    public function actionMemberEdit()
+    {
+        if (isset($_POST['uid']))
+        {
             $uid = $_POST['uid'];
             $user = $_POST['username'];
             $pass = $_POST['password'];
@@ -132,13 +149,15 @@ class DataController extends Controller {
             $gen = $_POST['gen'];
             $oldusrname = TbUser::model()->findByPk(intval($uid))->username;
             $chkusrdup = TbUser::model()->findAll("username = '$user' AND username <> '$oldusrname'");
-            if (count($chkusrdup) != 0) {
+            if (count($chkusrdup) != 0)
+            {
                 echo 'usrdup';
                 return;
             }
             $oldperid = TbUser::model()->findByPk(intval($uid))->person_id;
             $chkperiddup = TbUser::model()->findAll("person_id = '$perid' AND person_id <> '$oldperid'");
-            if (count($chkperiddup) != 0) {
+            if (count($chkperiddup) != 0)
+            {
                 echo 'perdup';
                 return;
             }
@@ -154,21 +173,25 @@ class DataController extends Controller {
             $model->position_id = $pos;
             $model->division_id = $pos == 3 ? NULL : $pos == 2 ? $div : $dep;
             $result = $model->save();
-            if ($result == 1) {
+            if ($result == 1)
+            {
                 echo 'ok';
             }
         }
     }
 
-    public function actionFillDiv() {
-        if (isset($_POST['ajax'])) {
+    public function actionFillDiv()
+    {
+        if (isset($_POST['ajax']))
+        {
             $stxt = "";
             if (isset($_POST['searchtxt']))
                 $stxt = ($_POST['searchtxt']);
             $sql = "SELECT d.*, par_name FROM tb_division d LEFT JOIN (SELECT division_id as par_id, division_name as par_name FROM tb_division) dd "
                     . "ON d.parent_division = dd.par_id";
 
-            if (!empty($stxt['name']) || !empty($txt['erp']) || !empty($stxt['par']) || !empty($stxt['office']) || $stxt['ispos'] != 99) {
+            if (!empty($stxt['name']) || !empty($txt['erp']) || !empty($stxt['par']) || !empty($stxt['office']) || $stxt['ispos'] != 99)
+            {
                 $sql .= " WHERE";
                 if (!empty($stxt['name']))
                     $sql .= " d.division_name LIKE '%" . $stxt['name'] . "%' AND";
@@ -186,11 +209,13 @@ class DataController extends Controller {
                 if (!empty($stxt['par']))
                     $sql .= " par_name LIKE '%" . $stxt['par'] . "%' AND";
                 $sql = substr($sql, 0, -3);
+                $sql .= "ORDER BY erp_id ASC, division_name ASC";
             }
 
 
             $div = Yii::app()->db->createCommand($sql)->queryAll();
-            foreach ($div as $row) {
+            foreach ($div as $row)
+            {
                 ?><tr>
                     <td style="width:30%"><?= $row['division_name'] ?></td>
                     <td style="width:10%"><?= $row['erp_id'] ?></td>
@@ -198,16 +223,20 @@ class DataController extends Controller {
                     <td style='width:5%'><?= $row['office_id'] ?></td>
                     <td style="width:5%"><?php echo $row['isposition'] ? 'เป็น' : 'ไม่เป็น'; ?></td>
                     <td style="width:20%"><button class='btn btn-sm btn-warning edit' data-id="<?= $row['division_id'] ?>">แก้ไข <span class='glyphicon glyphicon-wrench'></span></button>&nbsp;&nbsp;
-                        <?php if ($row['enable'] == 1) { ?><button class='btn btn-sm btn-danger deactive' data-id="<?= $row['division_id'] ?>">ยกเลิก <span class='glyphicon glyphicon-remove'></span></button>
-                        <?php } else if ($row['enable'] == 0) { ?><button class='btn btn-sm btn-success active' data-id="<?= $row['division_id'] ?>">เปิดใช้ <span class='glyphicon glyphicon-ok'></span></button><?php } ?>
+                <?php if ($row['enable'] == 1)
+                { ?><button class='btn btn-sm btn-danger deactive' data-id="<?= $row['division_id'] ?>">ยกเลิก <span class='glyphicon glyphicon-remove'></span></button>
+                <?php } else if ($row['enable'] == 0)
+                { ?><button class='btn btn-sm btn-success active' data-id="<?= $row['division_id'] ?>">เปิดใช้ <span class='glyphicon glyphicon-ok'></span></button><?php } ?>
                     </td>
                 </tr><?php
             }
         }
     }
 
-    public function actionDivStateChange() {
-        if (isset($_POST['divid']) && isset($_POST['state'])) {
+    public function actionDivStateChange()
+    {
+        if (isset($_POST['divid']) && isset($_POST['state']))
+        {
             $did = $_POST['divid'];
             $st = $_POST['state'];
 
@@ -216,18 +245,23 @@ class DataController extends Controller {
         }
     }
 
-    public function actionFillDivParentAdd() {
-        if (isset($_POST['ajax'])) {
-            $model = TbDivision::model()->findAll("enable=1 AND erp_id != '' AND isposition != 1 AND parent_division = 0");
+    public function actionFillDivParentAdd()
+    {
+        if (isset($_POST['ajax']))
+        {
+            $model = TbDivision::model()->findAll("enable=1 AND erp_id != '' AND isposition != 1 AND parent_division = 0 ORDER BY erp_id ASC, division_name ASC");
             //echo "<option value='0'>ไม่มีสังกัด</option>";
-            foreach ($model as $row) {
+            foreach ($model as $row)
+            {
                 ?><option value="<?= $row->division_id ?>"><?= $row->division_name ?></option><?php
             }
         }
     }
 
-    public function actionAddDiv() {
-        if (isset($_POST['divname']) && isset($_POST['erp']) && isset($_POST['erpoffice']) && isset($_POST['par']) && isset($_POST['haserp']) && isset($_POST['isdiv'])) {
+    public function actionAddDiv()
+    {
+        if (isset($_POST['divname']) && isset($_POST['erp']) && isset($_POST['erpoffice']) && isset($_POST['par']) && isset($_POST['haserp']) && isset($_POST['isdiv']))
+        {
             $name = $_POST['divname'];
             $erp = $_POST['erp'];
             $officeerp = $_POST['erpoffice'];
@@ -236,9 +270,11 @@ class DataController extends Controller {
             $isdiv = $_POST['isdiv'] == 'true' ? true : false;
             $ispos = $_POST['ispos'] == 'true' ? 1 : 0;
 
-            if (!$isdiv) {
+            if (!$isdiv)
+            {
                 $result = TbDivision::model()->find("division_name = '$name' AND parent_division = $parent");
-                if (count($result)) {
+                if (count($result))
+                {
                     echo 'dup';
                     return;
                 }
@@ -264,8 +300,10 @@ class DataController extends Controller {
         }
     }
 
-    public function actionDivEdit() {
-        if (isset($_POST['divid']) && isset($_POST['divname']) && isset($_POST['erp']) && isset($_POST['erpoffice']) && isset($_POST['par']) && isset($_POST['haserp']) && isset($_POST['isdiv'])) {
+    public function actionDivEdit()
+    {
+        if (isset($_POST['divid']) && isset($_POST['divname']) && isset($_POST['erp']) && isset($_POST['erpoffice']) && isset($_POST['par']) && isset($_POST['haserp']) && isset($_POST['isdiv']))
+        {
             $id = $_POST['divid'];
             $name = $_POST['divname'];
             $erp = $_POST['erp'];
@@ -276,15 +314,18 @@ class DataController extends Controller {
             $ispos = $_POST['ispos'] == 'true' ? 1 : 0;
 
             $parent = $isdiv ? 0 : intval($parent);
-            
+
             $model = TbDivision::model()->findByPk(intval($id));
-            if (count($model)) {
+            if (count($model))
+            {
 
                 $oldname = $model->division_name;
                 $oldpar = $model->parent_division;
-                if (($oldname != $name || $parent != $oldpar)) {
+                if (($oldname != $name || $parent != $oldpar))
+                {
                     $result = TbDivision::model()->find("division_name = '$name' AND parent_division = $parent");
-                    if (count($result)) {
+                    if (count($result))
+                    {
                         echo 'dup';
                         return;
                     }
@@ -301,8 +342,10 @@ class DataController extends Controller {
         }
     }
 
-    public function actionAskDivInfo() {
-        if (isset($_POST['did'])) {
+    public function actionAskDivInfo()
+    {
+        if (isset($_POST['did']))
+        {
             $did = $_POST['did'];
 
             $sql = "SELECT * FROM tb_division d LEFT JOIN (SELECT division_id, division_name as par_name FROM tb_division) dd "
@@ -310,7 +353,8 @@ class DataController extends Controller {
                     . "WHERE d.division_id = $did";
             $result = Yii::app()->db->createCommand($sql)->queryAll();
 
-            if ($result) {
+            if ($result)
+            {
                 $x = array(
                     'divid' => $result[0]['division_id'],
                     'divname' => $result[0]['division_name'],
@@ -326,8 +370,10 @@ class DataController extends Controller {
     }
 
     //----filling zone-----
-    public function actionFillFilling() {
-        if (isset($_POST['ajax'])) {
+    public function actionFillFilling()
+    {
+        if (isset($_POST['ajax']))
+        {
             $sql = "SELECT tb_profile_fill.owner_div_id as pk1, tb_profile_fill.division_id as pk2, ow.own_name, ow.own_par_name, "
                     . "tp.tar_name, tp.tar_par_name "
                     . "FROM tb_profile_fill "
@@ -338,7 +384,8 @@ class DataController extends Controller {
                     . "LEFT JOIN (SELECT division_id as t_div_id, division_name as tar_par_name FROM tb_division) tt ON tt.t_div_id = d.parent_division "
                     . ") tp ON tb_profile_fill.division_id = tp.div_id";
             if (isset($_POST['search']['owner']) && isset($_POST['target']) && isset($_POST['search']['ownerpar']) && isset($_POST['search']['targetpar']))
-                if (!empty($_POST['search']['owner']) || !empty($_POST['search']['target']) || !empty($_POST['search']['ownerpar']) || !empty($_POST['search']['targetpar'])) {
+                if (!empty($_POST['search']['owner']) || !empty($_POST['search']['target']) || !empty($_POST['search']['ownerpar']) || !empty($_POST['search']['targetpar']))
+                {
                     $sql .= " WHERE";
                     $s = $_POST['search'];
                     if (!empty($s['owner']))
@@ -355,7 +402,8 @@ class DataController extends Controller {
             $result = Yii::app()->db->createCommand($sql)->queryAll();
             //print_r($result);
 
-            foreach ($result as $row) {
+            foreach ($result as $row)
+            {
                 ?><tr>
                     <td style="width:40%"><?= $row['own_name'] . " " . $row['own_par_name'] ?></td>
                     <td style="width:40%"><?= $row['tar_name'] . " " . $row['tar_par_name'] ?></td>
@@ -363,61 +411,74 @@ class DataController extends Controller {
                         <button class="btn btn-sm btn-danger delete" data-id1="<?= $row['pk1'] ?>" data-id2="<?= $row['pk2'] ?>">ลบ <span class="glyphicon glyphicon-remove"></span></button>
                     </td>
                 </tr><?php
-            }
-        }
-    }
-
-    public function actionFillFillingOwner() {
-        if (isset($_POST['ajax'])) {
-            $sql = "SELECT division_id as div_id, division_name as div_name, div_par_name "
-                    . "FROM tb_division "
-                    . "LEFT JOIN (SELECT division_id as par_id, division_name as div_par_name FROM tb_division) p "
-                    . "ON tb_division.parent_division = p.par_id ";
-            $result = Yii::app()->db->createCommand($sql)->queryAll();
-            foreach ($result as $row) {
-                ?><option value="<?= $row['div_id'] ?>"><?= $row['div_name'] . " " . $row['div_par_name'] ?></option><?php
-            }
-        }
-    }
-
-    public function actionFillFillingTarget() {
-        if (isset($_POST['ajax'])) {
-            $sql = "SELECT division_id as div_id, division_name as div_name, div_par_name "
-                    . "FROM tb_division "
-                    . "LEFT JOIN (SELECT division_id as par_id, division_name as div_par_name FROM tb_division) p "
-                    . "ON tb_division.parent_division = p.par_id "
-                    . "WHERE division_id NOT IN (SELECT division_id FROM tb_profile_fill)";
-            $result = Yii::app()->db->createCommand($sql)->queryAll();
-            foreach ($result as $row) {
-                ?><option value="<?= $row['div_id'] ?>"><?= $row['div_name'] . " " . $row['div_par_name'] ?></option><?php
-            }
-        }
-    }
-
-    public function actionFillFillingTargetEdit() {
-        if (isset($_POST['ajax']) && isset($_POST['pk1']) && isset($_POST['pk2'])) {
-            $pk1 = $_POST['pk1'];
-            $pk2 = $_POST['pk2'];
-            $sql = "SELECT division_id as div_id, division_name as div_name, div_par_name "
-                    . "FROM tb_division "
-                    . "LEFT JOIN (SELECT division_id as par_id, division_name as div_par_name FROM tb_division) p "
-                    . "ON tb_division.parent_division = p.par_id "
-                    . "WHERE division_id NOT IN (SELECT division_id FROM tb_profile_fill) OR division_id IN (SELECT division_id FROM tb_profile_fill WHERE owner_div_id = $pk1 AND division_id = $pk2)";
-            $result = Yii::app()->db->createCommand($sql)->queryAll();
-            foreach ($result as $row) {
-                ?><option value="<?= $row['div_id'] ?>"><?= $row['div_name'] . " " . $row['div_par_name'] ?></option><?php
                 }
             }
         }
 
-        public function actionFillingDel() {
-            if (isset($_POST['ajax']) && isset($_POST['id']) && !empty($_POST['id']['id1']) && !empty($_POST['id']['id2'])) {
+        public function actionFillFillingOwner()
+        {
+            if (isset($_POST['ajax']))
+            {
+                $sql = "SELECT division_id as div_id, division_name as div_name, div_par_name "
+                        . "FROM tb_division "
+                        . "LEFT JOIN (SELECT division_id as par_id, division_name as div_par_name FROM tb_division) p "
+                        . "ON tb_division.parent_division = p.par_id ";
+                $result = Yii::app()->db->createCommand($sql)->queryAll();
+                foreach ($result as $row)
+                {
+                    ?><option value="<?= $row['div_id'] ?>"><?= $row['div_name'] . " " . $row['div_par_name'] ?></option><?php
+                }
+            }
+        }
+
+        public function actionFillFillingTarget()
+        {
+            if (isset($_POST['ajax']))
+            {
+                $sql = "SELECT division_id as div_id, division_name as div_name, div_par_name "
+                        . "FROM tb_division "
+                        . "LEFT JOIN (SELECT division_id as par_id, division_name as div_par_name FROM tb_division) p "
+                        . "ON tb_division.parent_division = p.par_id "
+                        . "WHERE division_id NOT IN (SELECT division_id FROM tb_profile_fill)";
+                $result = Yii::app()->db->createCommand($sql)->queryAll();
+                foreach ($result as $row)
+                {
+                    ?><option value="<?= $row['div_id'] ?>"><?= $row['div_name'] . " " . $row['div_par_name'] ?></option><?php
+                }
+            }
+        }
+
+        public function actionFillFillingTargetEdit()
+        {
+            if (isset($_POST['ajax']) && isset($_POST['pk1']) && isset($_POST['pk2']))
+            {
+                $pk1 = $_POST['pk1'];
+                $pk2 = $_POST['pk2'];
+                $sql = "SELECT division_id as div_id, division_name as div_name, div_par_name "
+                        . "FROM tb_division "
+                        . "LEFT JOIN (SELECT division_id as par_id, division_name as div_par_name FROM tb_division) p "
+                        . "ON tb_division.parent_division = p.par_id "
+                        . "WHERE division_id NOT IN (SELECT division_id FROM tb_profile_fill) OR division_id IN (SELECT division_id FROM tb_profile_fill WHERE owner_div_id = $pk1 AND division_id = $pk2)";
+                $result = Yii::app()->db->createCommand($sql)->queryAll();
+                foreach ($result as $row)
+                {
+                    ?><option value="<?= $row['div_id'] ?>"><?= $row['div_name'] . " " . $row['div_par_name'] ?></option><?php
+                }
+            }
+        }
+
+        public function actionFillingDel()
+        {
+            if (isset($_POST['ajax']) && isset($_POST['id']) && !empty($_POST['id']['id1']) && !empty($_POST['id']['id2']))
+            {
                 echo TbProfileFill::model()->deleteByPk(array('owner_div_id' => $_POST['id']['id1'], 'division_id' => $_POST['id']['id2']));
             }
         }
 
-        public function actionFillingAdd() {
-            if (isset($_POST['pk1']) && isset($_POST['pk2'])) {
+        public function actionFillingAdd()
+        {
+            if (isset($_POST['pk1']) && isset($_POST['pk2']))
+            {
                 $pk1 = $_POST['pk1'];
                 $pk2 = $_POST['pk2'];
 
@@ -426,8 +487,10 @@ class DataController extends Controller {
             }
         }
 
-        public function actionFillingEdit() {
-            if (isset($_POST['pk1']) && isset($_POST['pk2']) && isset($_POST['val1']) && isset($_POST['val2'])) {
+        public function actionFillingEdit()
+        {
+            if (isset($_POST['pk1']) && isset($_POST['pk2']) && isset($_POST['val1']) && isset($_POST['val2']))
+            {
                 $pk1 = $_POST['pk1'];
                 $pk2 = $_POST['pk2'];
                 $val1 = $_POST['val1'];
@@ -443,8 +506,10 @@ class DataController extends Controller {
 
         //----account-----
         //--search
-        public function actionFillAcc() {
-            if (isset($_POST['ajax']) && isset($_POST['search'])) {
+        public function actionFillAcc()
+        {
+            if (isset($_POST['ajax']) && isset($_POST['search']))
+            {
                 $erp = $_POST['search']['erp'];
                 $name = $_POST['search']['name'];
                 $group = $_POST['search']['group'];
@@ -455,7 +520,8 @@ class DataController extends Controller {
                         . "FROM tb_account a "
                         . "LEFT JOIN (SELECT acc_id as par_id, acc_name as par_name FROM tb_account) par ON a.parent_acc_id = par.par_id "
                         . "LEFT JOIN tb_group g ON a.group_id = g.group_id ";
-                if (!(empty($erp) && empty($name) && empty($group) && empty($par))) {
+                if (!(empty($erp) && empty($name) && empty($group) && empty($par)))
+                {
                     $sql .= " WHERE ";
                     if (!empty($erp))
                         $sql .= " acc_erp LIKE '$erp' AND";
@@ -472,8 +538,10 @@ class DataController extends Controller {
 
                 $result = Yii::app()->db->createCommand($sql)->queryAll();
 
-                if (count($result)) {
-                    foreach ($result as $row) {
+                if (count($result))
+                {
+                    foreach ($result as $row)
+                    {
                         ?>
                     <tr>
                         <td style='width:10%'><?= $row['acc_erp'] ?></td>
@@ -484,33 +552,40 @@ class DataController extends Controller {
                             <button class="btn btn-sm btn-danger delete" data-id ="<?= $row['acc_id'] ?>">ลบ <span class="glyphicon glyphicon-remove"></span></button>
                         </td>
                     </tr>
-                <?php
+                    <?php
                 }
             }
         } else
             echo 'invalid request';
     }
 
-    public function actionFillAccPar() {
-        if (isset($_POST['ajax'])) {
-            $model = TbAccount::model()->findAll(array('order'=>'acc_erp ASC'));
+    public function actionFillAccPar()
+    {
+        if (isset($_POST['ajax']))
+        {
+            $model = TbAccount::model()->findAll(array('order' => 'acc_erp ASC'));
 
-            foreach ($model as $row) {
-                ?><option value="<?= $row['acc_id'] ?>"><?= $row['acc_erp']?>&nbsp;&nbsp;<?= $row['acc_name'] ?></option><?php
+            foreach ($model as $row)
+            {
+                ?><option value="<?= $row['acc_id'] ?>"><?= $row['acc_erp'] ?>&nbsp;&nbsp;<?= $row['acc_name'] ?></option><?php
             }
         }
     }
 
     //delete
-    public function actionAccountDel() {
-        if (isset($_POST['ajax']) && isset($_POST['id'])) {
+    public function actionAccountDel()
+    {
+        if (isset($_POST['ajax']) && isset($_POST['id']))
+        {
             echo TbAccount::model()->deleteByPk(intval($_POST['id'])) ? 1 : 0;
         }
     }
 
     //add
-    public function actionAccountAdd() {
-        if (isset($_POST['d'])) {
+    public function actionAccountAdd()
+    {
+        if (isset($_POST['d']))
+        {
             $d = $_POST['d'];
             $name = $d['name'];
             $erp = $d['erp'];
@@ -521,30 +596,35 @@ class DataController extends Controller {
 
             $parent = TbAccount::model()->findByPk(intval($par));
 
-            if (!count($parent) && $haspar == "true") {
+            if (!count($parent) && $haspar == "true")
+            {
                 echo 'invalid parent id';
                 return;
             }
 
-            
+
             $model = new TbAccount();
 
-            if ($model->isNewRecord) {
+            if ($model->isNewRecord)
+            {
 
                 $model->acc_name = $name;
                 $model->group_id = $haspar == "true" ? $parent->group_id : $group;
                 $model->acc_erp = $haserp == "true" ? $erp : NULL;
                 $model->parent_acc_id = $parent ? $par : NULL;
-                echo $model->save(false)?"ok":"not";
+                echo $model->save(false) ? "ok" : "not";
             }
         }
     }
 
-    public function actionAskAccInfo() {
-        if (isset($_POST['id'])) {
+    public function actionAskAccInfo()
+    {
+        if (isset($_POST['id']))
+        {
             $id = $_POST['id'];
             $model = TbAccount::model()->findByPk(intval($id));
-            if (count($model)) {
+            if (count($model))
+            {
                 $result = array(
                     "name" => $model->acc_name,
                     "erp" => $model->acc_erp,
@@ -556,8 +636,10 @@ class DataController extends Controller {
         }
     }
 
-    public function actionAccountEdit() {
-        if (isset($_POST['d'])) {
+    public function actionAccountEdit()
+    {
+        if (isset($_POST['d']))
+        {
             $d = $_POST['d'];
             $id = $d['id'];
             $name = $d['name'];
@@ -569,14 +651,16 @@ class DataController extends Controller {
 
             $parent = TbAccount::model()->findByPk(intval($par));
 
-            if (!count($parent) && $haspar == "true") {
+            if (!count($parent) && $haspar == "true")
+            {
                 echo 'invalid parent id';
                 return;
             }
 
             $model = TbAccount::model()->findByPk(intval($id));
 
-            if (!$model->isNewRecord) {
+            if (!$model->isNewRecord)
+            {
                 $model->acc_name = $name;
                 $model->group_id = $haspar == "true" ? $parent->group_id : $group;
                 $model->acc_erp = $haserp == "true" ? $erp : NULL;
@@ -586,22 +670,73 @@ class DataController extends Controller {
                 echo 'invalid id';
         }
     }
+
     // AccountYearAssign
     public function actionFillAccYear()
     {
-        $group = TbGroup::model()->findAll(array('order'=>"group_id ASC"));
-        echo '<ul>';//main
-        foreach($group as $g)
+        $openli = '<li>';
+        $closeli = '</li>';
+        $openul = '<ul>';
+        $closeul = '</ul>';
+        $group = TbGroup::model()->findAll(array('order' => "group_id ASC"));
+        echo $openul; //main
+        foreach ($group as $g)//group
         {
-            echo '<li>';
+            echo $openli;
+            ?><input type="checkbox" name="g<?= $g->group_id ?>"/><label><?= $g->group_name ?></label><?php
             $resultlv1 = TbAccount::model()->findAll("group_id = $g->group_id");
-            if(count($resultlv1))
+            if (count($resultlv1))
             {
-                
+                echo $openul;
+                foreach ($resultlv1 as $lv1)//level 1
+                {
+                    echo $openli;
+                    ?><input type="checkbox" name="<?= $lv1->acc_id ?>"/><label><?= $lv1->acc_name ?></label><?php
+                    
+                    $resultlv2 = TbAccount::model()->findAll(array('condition'=>"parent_acc_id = $lv1->acc_id", 'order'=>"acc_name ASC"));
+                    if (count($resultlv2))
+                    {
+                        echo $openul;
+                        foreach ($resultlv2 as $lv2)//level 2
+                        {
+                            echo $openli;
+                            ?><input type="checkbox" name="<?= $lv2->acc_id ?>"/><label><?= $lv2->acc_name ?></label><?php
+                            
+                            $resultlv3 = TbAccount::model()->findAll(array('condition'=>"parent_acc_id = $lv2->acc_id", 'order'=>"acc_name ASC"));
+                            if(count($resultlv3))
+                            {
+                                echo $openul;
+                                foreach($resultlv3 as $lv3)//level 3
+                                {
+                                    echo $openli;
+                                    ?><input type="checkbox" name="<?= $lv3->acc_id ?>"/><label><?= $lv3->acc_name ?></label><?php 
+                                    $resultlv4 = TbAccount::model()->findAll("parent_acc_id = $lv3->acc_id");
+                                    if(count($resultlv4))
+                                    {
+                                        echo $openul;
+                                        foreach($resultlv4 as $lv4)
+                                        {
+                                            ?><input type="checkbox" name="<?= $lv4->acc_id ?>"/><label><?= $lv4->acc_name ?></label><?php 
+                                        }
+                                        echo $closeul;
+                                    }
+                                    echo $closeli;
+                                }
+                                
+                                echo $closeul;
+                            }
+                            echo $closeli;
+                        }
+                        echo $closeul;
+                    }
+                    echo $closeli;
+                }
+                echo $closeul;
             }
+            echo $openli;
             ?><?php
         }
-        echo '</ul>';
+        echo $closeul;
     }
 
 }
