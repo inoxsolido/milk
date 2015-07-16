@@ -209,9 +209,9 @@ class DataController extends Controller
                 if (!empty($stxt['par']))
                     $sql .= " par_name LIKE '%" . $stxt['par'] . "%' AND";
                 $sql = substr($sql, 0, -3);
-                $sql .= "ORDER BY erp_id ASC, division_name ASC";
+                
             }
-
+            $sql .= " ORDER BY erp_id ASC, division_name ASC";
 
             $div = Yii::app()->db->createCommand($sql)->queryAll();
             foreach ($div as $row)
@@ -535,7 +535,7 @@ class DataController extends Controller
                         $sql .= " parent_acc_id IS NULL AND";
                     $sql = substr($sql, 0, -3);
                 }
-
+                $sql .= " ORDER BY a.group_id ASC, a.acc_name ";
                 $result = Yii::app()->db->createCommand($sql)->queryAll();
 
                 if (count($result))
@@ -563,7 +563,7 @@ class DataController extends Controller
     {
         if (isset($_POST['ajax']))
         {
-            $model = TbAccount::model()->findAll(array('order' => 'acc_erp ASC'));
+            $model = TbAccount::model()->findAll(array('order' => 'group_id ASC, acc_name ASC'));
 
             foreach ($model as $row)
             {
@@ -710,7 +710,7 @@ class DataController extends Controller
                                 {
                                     echo $openli;
                                     ?><input type="checkbox" name="<?= $lv3->acc_id ?>"/><label><?= $lv3->acc_name ?></label><?php 
-                                    $resultlv4 = TbAccount::model()->findAll("parent_acc_id = $lv3->acc_id");
+                                    $resultlv4 = TbAccount::model()->findAll(array('condition'=>"parent_acc_id = $lv3->acc_id", 'order'=>"acc_name ASC"));
                                     if(count($resultlv4))
                                     {
                                         echo $openul;
