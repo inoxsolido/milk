@@ -551,10 +551,10 @@ class DataController extends Controller
                     {
                         ?>
                     <tr>
-                        <td style='width:10%'><?= $row['acc_erp'] ?></td>
-                        <td style='width:27.5%'><?= $row['acc_name'] ?></td>
+                        <td style='width:8%'><?= $row['acc_erp'] ?></td>
+                        <td style='width:32%'><?= $row['acc_name'] ?></td>
                         <td style='width:15%'><?= $row['group_name'] ?></td>
-                        <td style='width:27.5%'><?= $row['par_name'] ?></td>
+                        <td style='width:25%'><?= $row['par_name'] ?></td>
                         <td style="width:20%"><button class='btn btn-sm btn-warning edit' data-id="<?= $row['acc_id'] ?>">แก้ไข <span class='glyphicon glyphicon-wrench'></span></button>&nbsp;&nbsp;
                             <button class="btn btn-sm btn-danger delete" data-id ="<?= $row['acc_id'] ?>">ลบ <span class="glyphicon glyphicon-remove"></span></button>
                         </td>

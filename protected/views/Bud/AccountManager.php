@@ -48,6 +48,7 @@
                             <th>ชื่อบัญชี</th>
                             <th>หมวด</th>
                             <th>ชื่อบัญชีที่สังกัด</th>
+                            <th>จัดการ</th>
                         </tr>
                     </thead>
                     <tbody id='accbody'>
