@@ -278,7 +278,7 @@ $(function () {
         var haspar = getCheckbox($("#addhaspar"));
         var namestate = checkname($("#addname"), false);
         var erpstate = checkerp($("#adderp"), haserp, false);
-        if (group < 1) {
+        if (!haspar && group < 1){
             alert('กรุณาเลือกหมวด');
         }
         if (namestate && erpstate) {
@@ -382,7 +382,7 @@ $(function () {
         var group = $("#editgroup").val();
         var haserp = getCheckbox($("#edithaserp"));
         var haspar = getCheckbox($("#edithaspar"));
-        if (group < 1) {
+        if (!haspar && group < 1) {
             alert('กรุณาเลือกหมวด');
         }
         if (checkname($("#editname"), true) && checkerp($("#editerp"), haserp, true)) {

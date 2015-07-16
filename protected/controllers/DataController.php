@@ -593,7 +593,8 @@ class DataController extends Controller
             $group = $d['group'];
             $haserp = $d['haserp'];
             $haspar = $d['haspar'];
-
+            
+            
             $parent = TbAccount::model()->findByPk(intval($par));
 
             if (!count($parent) && $haspar == "true")
@@ -656,7 +657,7 @@ class DataController extends Controller
                 return;
             }
 
-            $model = TbAccount::model()->findByPk(intval($id));
+            $model = TbAccount::model()->findByPk(intval($id));//lv1
             
             if (!$model->isNewRecord)
             {
@@ -664,7 +665,31 @@ class DataController extends Controller
                 $model->group_id = $haspar == "true" ? $parent->group_id : $group;
                 $model->acc_erp = $haserp == "true" ? $erp : NULL;
                 $model->parent_acc_id = $haspar == "true" ? $par : NULL;
-                echo $model->save(false) ? "ok" : "not";
+                $result =  $model->save(false) ? "ok" : "not";
+                if($result == "ok")
+                {
+                    //recursive update depth = 4
+                    //ch lv2
+                    $res = TbAccount::model()->updateAll("group_id = $model->group_id", "parent_acc_id = $model->acc_id");
+                    if($res)
+                    {
+                        $level2 = TbAccount::model()->findAll("parent_acc_id = $model->acc_id");
+                        foreach($level2 as $lv2)
+                        {
+                            //ch lv3
+                            $res = TbAccount::model()->updateAll("group_id = $model->group_id", "parent_acc_id = $lv2->acc_id");
+                            if($res)
+                            {
+                                $level3 = TbAccount::model()->findAll("parent_acc_id = $lv2->acc_id");
+                                foreach($level3 as $lv3)
+                                {
+                                    //ch lv4
+                                    $res = TbAccount::model()->updateAll("group_id = $model->group_id", "parent_acc_id = $lv3->acc_id");
+                                }
+                            }
+                        }
+                    }
+                }
             } else
                 echo 'invalid id';
         }
