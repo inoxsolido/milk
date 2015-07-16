@@ -89,10 +89,14 @@ class DataController extends Controller
                     <td style="width:10%"><?= $user['position_name'] ?></td>
                     <td style="width:15%">
                         <button class='btn btn-sm btn-warning edit' data-id="<?= $user['user_id'] ?>">แก้ไข <span class='glyphicon glyphicon-wrench'></span></button>&nbsp;&nbsp;
-                <?php if ($user['enable'] == 1)
-                { ?><button class='btn btn-sm btn-danger deactive' data-id="<?= $user['user_id'] ?>">ยกเลิก <span class='glyphicon glyphicon-remove'></span></button>
-                <?php } else if ($user['enable'] == 0)
-                { ?><button class='btn btn-sm btn-success active' data-id="<?= $user['user_id'] ?>">เปิดใช้ <span class='glyphicon glyphicon-ok'></span></button><?php } ?>
+                        <?php
+                        if ($user['enable'] == 1)
+                        {
+                            ?><button class='btn btn-sm btn-danger deactive' data-id="<?= $user['user_id'] ?>">ยกเลิก <span class='glyphicon glyphicon-remove'></span></button>
+                            <?php
+                            } else if ($user['enable'] == 0)
+                            {
+                                ?><button class='btn btn-sm btn-success active' data-id="<?= $user['user_id'] ?>">เปิดใช้ <span class='glyphicon glyphicon-ok'></span></button><?php } ?>
                     </td>
                 </tr>
                 <?php
@@ -209,7 +213,6 @@ class DataController extends Controller
                 if (!empty($stxt['par']))
                     $sql .= " par_name LIKE '%" . $stxt['par'] . "%' AND";
                 $sql = substr($sql, 0, -3);
-                
             }
             $sql .= " ORDER BY erp_id ASC, division_name ASC";
 
@@ -223,10 +226,14 @@ class DataController extends Controller
                     <td style='width:5%'><?= $row['office_id'] ?></td>
                     <td style="width:5%"><?php echo $row['isposition'] ? 'เป็น' : 'ไม่เป็น'; ?></td>
                     <td style="width:20%"><button class='btn btn-sm btn-warning edit' data-id="<?= $row['division_id'] ?>">แก้ไข <span class='glyphicon glyphicon-wrench'></span></button>&nbsp;&nbsp;
-                <?php if ($row['enable'] == 1)
-                { ?><button class='btn btn-sm btn-danger deactive' data-id="<?= $row['division_id'] ?>">ยกเลิก <span class='glyphicon glyphicon-remove'></span></button>
-                <?php } else if ($row['enable'] == 0)
-                { ?><button class='btn btn-sm btn-success active' data-id="<?= $row['division_id'] ?>">เปิดใช้ <span class='glyphicon glyphicon-ok'></span></button><?php } ?>
+                            <?php
+                            if ($row['enable'] == 1)
+                            {
+                                ?><button class='btn btn-sm btn-danger deactive' data-id="<?= $row['division_id'] ?>">ยกเลิก <span class='glyphicon glyphicon-remove'></span></button>
+                <?php
+                } else if ($row['enable'] == 0)
+                {
+                    ?><button class='btn btn-sm btn-success active' data-id="<?= $row['division_id'] ?>">เปิดใช้ <span class='glyphicon glyphicon-ok'></span></button><?php } ?>
                     </td>
                 </tr><?php
             }
@@ -411,58 +418,58 @@ class DataController extends Controller
                         <button class="btn btn-sm btn-danger delete" data-id1="<?= $row['pk1'] ?>" data-id2="<?= $row['pk2'] ?>">ลบ <span class="glyphicon glyphicon-remove"></span></button>
                     </td>
                 </tr><?php
-                }
             }
         }
+    }
 
-        public function actionFillFillingOwner()
+    public function actionFillFillingOwner()
+    {
+        if (isset($_POST['ajax']))
         {
-            if (isset($_POST['ajax']))
+            $sql = "SELECT division_id as div_id, division_name as div_name, div_par_name "
+                    . "FROM tb_division "
+                    . "LEFT JOIN (SELECT division_id as par_id, division_name as div_par_name FROM tb_division) p "
+                    . "ON tb_division.parent_division = p.par_id ";
+            $result = Yii::app()->db->createCommand($sql)->queryAll();
+            foreach ($result as $row)
             {
-                $sql = "SELECT division_id as div_id, division_name as div_name, div_par_name "
-                        . "FROM tb_division "
-                        . "LEFT JOIN (SELECT division_id as par_id, division_name as div_par_name FROM tb_division) p "
-                        . "ON tb_division.parent_division = p.par_id ";
-                $result = Yii::app()->db->createCommand($sql)->queryAll();
-                foreach ($result as $row)
-                {
-                    ?><option value="<?= $row['div_id'] ?>"><?= $row['div_name'] . " " . $row['div_par_name'] ?></option><?php
-                }
+                ?><option value="<?= $row['div_id'] ?>"><?= $row['div_name'] . " " . $row['div_par_name'] ?></option><?php
             }
         }
+    }
 
-        public function actionFillFillingTarget()
+    public function actionFillFillingTarget()
+    {
+        if (isset($_POST['ajax']))
         {
-            if (isset($_POST['ajax']))
+            $sql = "SELECT division_id as div_id, division_name as div_name, div_par_name "
+                    . "FROM tb_division "
+                    . "LEFT JOIN (SELECT division_id as par_id, division_name as div_par_name FROM tb_division) p "
+                    . "ON tb_division.parent_division = p.par_id "
+                    . "WHERE division_id NOT IN (SELECT division_id FROM tb_profile_fill)";
+            $result = Yii::app()->db->createCommand($sql)->queryAll();
+            foreach ($result as $row)
             {
-                $sql = "SELECT division_id as div_id, division_name as div_name, div_par_name "
-                        . "FROM tb_division "
-                        . "LEFT JOIN (SELECT division_id as par_id, division_name as div_par_name FROM tb_division) p "
-                        . "ON tb_division.parent_division = p.par_id "
-                        . "WHERE division_id NOT IN (SELECT division_id FROM tb_profile_fill)";
-                $result = Yii::app()->db->createCommand($sql)->queryAll();
-                foreach ($result as $row)
-                {
-                    ?><option value="<?= $row['div_id'] ?>"><?= $row['div_name'] . " " . $row['div_par_name'] ?></option><?php
-                }
+                ?><option value="<?= $row['div_id'] ?>"><?= $row['div_name'] . " " . $row['div_par_name'] ?></option><?php
             }
         }
+    }
 
-        public function actionFillFillingTargetEdit()
+    public function actionFillFillingTargetEdit()
+    {
+        if (isset($_POST['ajax']) && isset($_POST['pk1']) && isset($_POST['pk2']))
         {
-            if (isset($_POST['ajax']) && isset($_POST['pk1']) && isset($_POST['pk2']))
+            $pk1 = $_POST['pk1'];
+            $pk2 = $_POST['pk2'];
+            $sql = "SELECT division_id as div_id, division_name as div_name, div_par_name "
+                    . "FROM tb_division "
+                    . "LEFT JOIN (SELECT division_id as par_id, division_name as div_par_name FROM tb_division) p "
+                    . "ON tb_division.parent_division = p.par_id "
+                    . "WHERE division_id NOT IN (SELECT division_id FROM tb_profile_fill) OR division_id IN (SELECT division_id FROM tb_profile_fill WHERE owner_div_id = $pk1 AND division_id = $pk2)";
+            $result = Yii::app()->db->createCommand($sql)->queryAll();
+            foreach ($result as $row)
             {
-                $pk1 = $_POST['pk1'];
-                $pk2 = $_POST['pk2'];
-                $sql = "SELECT division_id as div_id, division_name as div_name, div_par_name "
-                        . "FROM tb_division "
-                        . "LEFT JOIN (SELECT division_id as par_id, division_name as div_par_name FROM tb_division) p "
-                        . "ON tb_division.parent_division = p.par_id "
-                        . "WHERE division_id NOT IN (SELECT division_id FROM tb_profile_fill) OR division_id IN (SELECT division_id FROM tb_profile_fill WHERE owner_div_id = $pk1 AND division_id = $pk2)";
-                $result = Yii::app()->db->createCommand($sql)->queryAll();
-                foreach ($result as $row)
-                {
-                    ?><option value="<?= $row['div_id'] ?>"><?= $row['div_name'] . " " . $row['div_par_name'] ?></option><?php
+                ?><option value="<?= $row['div_id'] ?>"><?= $row['div_name'] . " " . $row['div_par_name'] ?></option><?php
                 }
             }
         }
@@ -563,7 +570,7 @@ class DataController extends Controller
     {
         if (isset($_POST['ajax']))
         {
-            $model = TbAccount::model()->findAll(array('order' => 'group_id ASC, acc_erp ASC'));
+            $model = TbAccount::model()->findAll(array('order' => 'group_id ASC, acc_name ASC'));
 
             foreach ($model as $row)
             {
@@ -593,8 +600,8 @@ class DataController extends Controller
             $group = $d['group'];
             $haserp = $d['haserp'];
             $haspar = $d['haspar'];
-            
-            
+
+
             $parent = TbAccount::model()->findByPk(intval($par));
 
             if (!count($parent) && $haspar == "true")
@@ -657,40 +664,49 @@ class DataController extends Controller
                 return;
             }
 
-            $model = TbAccount::model()->findByPk(intval($id));//lv1
-            
+            $model = TbAccount::model()->findByPk(intval($id)); //lv1
+
             if (!$model->isNewRecord)
             {
                 $model->acc_name = $name;
                 $model->group_id = $haspar == "true" ? $parent->group_id : $group;
                 $model->acc_erp = $haserp == "true" ? $erp : NULL;
                 $model->parent_acc_id = $haspar == "true" ? $par : NULL;
-                $result =  $model->save(false) ? "ok" : "not";
+                $result = $model->save(false) ? "ok" : "not";
                 echo $result;
-                if($result == "ok")
+                if ($result == "ok")
                 {
                     //recursive update depth = 4
                     //ch lv2
-                    $res = TbAccount::model()->updateAll("group_id = $model->group_id", "parent_acc_id = $model->acc_id");
-                    if($res)
+                    $sql1 = "UPDATE tb_account SET group_id = $model->group_id WHERE parent_acc_id = $model->acc_id";
+                    $res1 = Yii::app()->db->createCommand($sql1)->execute();
+                    //$res1 = TbAccount::model()->updateAll("group_id = $model->group_id", "parent_acc_id = $model->acc_id");
+                    if ($res1)
                     {
                         $level2 = TbAccount::model()->findAll("parent_acc_id = $model->acc_id");
-                        foreach($level2 as $lv2)
+                        if (count($level2))
                         {
-                            //ch lv3
-                            $res = TbAccount::model()->updateAll("group_id = $model->group_id", "parent_acc_id = $lv2->acc_id");
-                            if($res)
+                            foreach ($level2 as $lv2)
                             {
-                                $level3 = TbAccount::model()->findAll("parent_acc_id = $lv2->acc_id");
-                                foreach($level3 as $lv3)
+                                //ch lv3
+                                $sql2 = "UPDATE tb_account SET group_id = $model->group_id WHERE parent_acc_id = $lv2->acc_id";
+                                $res2 = Yii::app()->db->createCommand($sql2)->execute();
+                                if ($res2)
                                 {
-                                    //ch lv4
-                                    $res = TbAccount::model()->updateAll("group_id = $model->group_id", "parent_acc_id = $lv3->acc_id");
+                                    $level3 = TbAccount::model()->findAll("parent_acc_id = $lv2->acc_id");
+                                    if (count($level3))
+                                    {
+                                        foreach ($level3 as $lv3)
+                                        {
+                                            //ch lv4
+                                            $sql3 = "UPDATE tb_account SET group_id = $model->group_id WHERE parent_acc_id = $lv3->acc_id";
+                                            $res3 = Yii::app()->db->createCommand($sql3)->execute();
+                                        }
+                                    }
                                 }
                             }
                         }
                     }
-                    
                 }
             } else
                 echo 'invalid id';
@@ -718,39 +734,37 @@ class DataController extends Controller
                 {
                     echo $openli;
                     ?><label><input type="checkbox" name="<?= $lv1->acc_id ?>"/><?= $lv1->acc_name ?></label><?php
-                    
-                    $resultlv2 = TbAccount::model()->findAll(array('condition'=>"parent_acc_id = $lv1->acc_id", 'order'=>"acc_name ASC"));
-                    if (count($resultlv2))
-                    {
-                        echo $openul;
-                        foreach ($resultlv2 as $lv2)//level 2
+                        $resultlv2 = TbAccount::model()->findAll(array('condition' => "parent_acc_id = $lv1->acc_id", 'order' => "acc_name ASC"));
+                        if (count($resultlv2))
                         {
-                            echo $openli;
-                            ?><label><input type="checkbox" name="<?= $lv2->acc_id ?>"/><?= $lv2->acc_name ?></label><?php
-                            
-                            $resultlv3 = TbAccount::model()->findAll(array('condition'=>"parent_acc_id = $lv2->acc_id", 'order'=>"acc_name ASC"));
-                            if(count($resultlv3))
+                            echo $openul;
+                            foreach ($resultlv2 as $lv2)//level 2
                             {
-                                echo $openul;
-                                foreach($resultlv3 as $lv3)//level 3
+                                echo $openli;
+                                ?><label><input type="checkbox" name="<?= $lv2->acc_id ?>"/><?= $lv2->acc_name ?></label><?php
+                                $resultlv3 = TbAccount::model()->findAll(array('condition' => "parent_acc_id = $lv2->acc_id", 'order' => "acc_name ASC"));
+                                if (count($resultlv3))
                                 {
-                                    echo $openli;
-                                    ?><label><input type="checkbox" name="<?= $lv3->acc_id ?>"/><?= $lv3->acc_name ?></label><?php 
-                                    $resultlv4 = TbAccount::model()->findAll(array('condition'=>"parent_acc_id = $lv3->acc_id", 'order'=>"acc_name ASC"));
-                                    if(count($resultlv4))
+                                    echo $openul;
+                                    foreach ($resultlv3 as $lv3)//level 3
                                     {
-                                        echo $openul;
-                                        foreach($resultlv4 as $lv4)
+                                        echo $openli;
+                                        ?><label><input type="checkbox" name="<?= $lv3->acc_id ?>"/><?= $lv3->acc_name ?></label><?php
+                                        $resultlv4 = TbAccount::model()->findAll(array('condition' => "parent_acc_id = $lv3->acc_id", 'order' => "acc_name ASC"));
+                                        if (count($resultlv4))
                                         {
-                                            echo $openli;
-                                            ?><label><input type="checkbox" name="<?= $lv4->acc_id ?>"/><?= $lv4->acc_name ?></label><?php 
+                                            echo $openul;
+                                            foreach ($resultlv4 as $lv4)
+                                            {
+                                                echo $openli;
+                                                ?><label><input type="checkbox" name="<?= $lv4->acc_id ?>"/><?= $lv4->acc_name ?></label><?php
                                             echo $closeli;
                                         }
                                         echo $closeul;
                                     }
                                     echo $closeli;
                                 }
-                                
+
                                 echo $closeul;
                             }
                             echo $closeli;

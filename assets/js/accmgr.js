@@ -289,6 +289,7 @@ $(function () {
         var erpstate = checkerp($("#adderp"), haserp, false);
         if (!haspar && group < 1){
             alert('กรุณาเลือกหมวด');
+            return;
         }
         if (namestate && erpstate) {
             d = {
@@ -374,9 +375,10 @@ $(function () {
                 if (data.par != null) {
                     $("#edithaspar").prop("checked", true).change();
                     $("#editpar").val(data.par).change();
-                    $("#editgroup").val(data.group);
                 } else
                     $("#edithaspar").prop("checked", false).change();
+                
+                $("#editgroup").val(data.group);
 
             },
             dataType: 'json'
@@ -393,6 +395,7 @@ $(function () {
         var haspar = getCheckbox($("#edithaspar"));
         if (!haspar && group < 1) {
             alert('กรุณาเลือกหมวด');
+            return;
         }
         if (checkname($("#editname"), true) && checkerp($("#editerp"), haserp, true)) {
             $.ajax({
