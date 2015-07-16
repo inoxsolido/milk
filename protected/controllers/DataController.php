@@ -666,6 +666,7 @@ class DataController extends Controller
                 $model->acc_erp = $haserp == "true" ? $erp : NULL;
                 $model->parent_acc_id = $haspar == "true" ? $par : NULL;
                 $result =  $model->save(false) ? "ok" : "not";
+                echo $result;
                 if($result == "ok")
                 {
                     //recursive update depth = 4
@@ -689,6 +690,7 @@ class DataController extends Controller
                             }
                         }
                     }
+                    
                 }
             } else
                 echo 'invalid id';
