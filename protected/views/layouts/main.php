@@ -15,8 +15,35 @@
         <link rel="stylesheet" href="<?= Yii::app()->request->baseUrl ?>/assets/css/submenu.css">
         <script src="<?= Yii::app()->request->baseUrl; ?>/assets/js/submenu.js"></script>
         <script type="text/javascript">
-            $(function(){
+            $(function () {
                 $("div.loading").hide();
+                var stickyNavTop = $('.navbar').offset().top;
+                var stickyMenuTop = $('.menu').offset().top;
+                var stickyNav = function () {
+                    var scrollTop = $(window).scrollTop();
+
+                    if (scrollTop > stickyNavTop) {
+                        $('.navbar').addClass('sticky');
+                    } else {
+                        $('.navbar').removeClass('sticky');
+                    }
+                };
+                var stickyMenu = function () {
+                    var scrollTop = $(window).scrollTop();
+
+                    if (scrollTop > stickyMenuTop-50) {
+                        $('.menu').addClass('stickmenu');
+                    } else {
+                        $('.menu').removeClass('stickmenu');
+                    }
+                };
+                stickyNav();
+                stickyMenu();
+
+                $(window).scroll(function () {
+                    stickyNav();
+                    stickyMenu();
+                });
             });
         </script>
         <style type="text/css">
@@ -39,18 +66,34 @@
 
             }
             div.loading{
-                    width: 150px;
-                    height: 25px;
-                    position: absolute;
-                    left: 50%;
-                    top: 50%; 
-                    margin-left: -75px;
-                    margin-top: -12.5px;
-                    background-color:white;
-                    text-align: center;
-                    border: 2px solid black;
-                    box-shadow: 2px 2px 2px 10px black;
-                    z-index: 5000;
+                width: 150px;
+                height: 25px;
+                position: absolute;
+                left: 50%;
+                top: 50%; 
+                margin-left: -75px;
+                margin-top: -12.5px;
+                background-color:white;
+                text-align: center;
+                border: 2px solid black;
+                box-shadow: 2px 2px 2px 10px black;
+                z-index: 5000;
+            }
+            .sticky {
+                position: fixed;
+                width: 100%;
+                left: 0;
+                top: 0;
+                z-index: 100;
+                border-top: 0;
+            }
+            .stickmenu{
+                position: fixed;
+                width: 100%;
+                left: 0;
+                top: 50px;
+                z-index: 100;
+                border-top: 0;
             }
         </style>
 

@@ -1,4 +1,4 @@
-<div class="btn-group btn-group-justified">
+<div class="btn-group btn-group-justified menu">
     <a class='btn btn-success btn-sm' id='addm'>เพิ่มบัญชีใหม่</a>
     <a class="btn btn-info btn-sm" id='findshow'>ค้นหา</a>
 </div>
