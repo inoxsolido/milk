@@ -106,6 +106,9 @@ $(function () {
             par.removeClass("has-success");
             return false;
         } else {
+            sib.text("");
+            par.addClass("has-success");
+            par.removeClass("has-error");
             return true // name can be duplicate
             re = false;
             if (edit == false) {
@@ -186,7 +189,13 @@ $(function () {
             par.addClass("has-error");
             par.removeClass("has-success");
             return false;
-        }/* else {
+        } else {
+            sib.text("");
+            par.removeClass("has-success");
+            par.removeClass("has-error");
+            return true;
+        }
+            /* else {
          re=false;
          if (edit == false) {
          
