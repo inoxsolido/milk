@@ -17,9 +17,11 @@
         <script type="text/javascript">
             $(function () {
                 $("div.loading").hide();
-                var stickyNavTop = $('.navbar').offset().top;
-                var stickyMenuTop = $('.menu').offset().top;
+                
+                
                 var stickyNav = function () {
+                    if(!$('.navbar').length)return;
+                    var stickyNavTop = $('.navbar').offset().top;
                     var scrollTop = $(window).scrollTop();
 
                     if (scrollTop > stickyNavTop) {
@@ -29,6 +31,8 @@
                     }
                 };
                 var stickyMenu = function () {
+                    if(!$('.menu').length)return;
+                    var stickyMenuTop = $('.menu').offset().top;
                     var scrollTop = $(window).scrollTop();
 
                     if (scrollTop > stickyMenuTop-50) {
