@@ -601,8 +601,6 @@ class DataController extends Controller
             $group = $d['group'];
             $haserp = $d['haserp'];
             $haspar = $d['haspar'];
-            
-            $number = preg_replace("/[ก-์\s].{0,}|[a-zA-Z\s].{0,}/", "", $name);
 
             $parent = TbAccount::model()->findByPk(intval($par));
 
@@ -617,7 +615,30 @@ class DataController extends Controller
 
             if ($model->isNewRecord)
             {
-                $model->acc_number = empty($number)?99:$number;
+                $arr;
+                $name = $model->acc_name;
+                $number = preg_replace("/[ก-์\s].{0,}|[a-zA-Z\s].{0,}/", "", $name);
+                $count = preg_match_all("/[0-9]{1,2}\.|[0-9]{1,2}/", $number, $arr);
+                if($count == 0)
+                {
+                    $model->acc_number1 = 99;
+                    $model->acc_number2 = 0;
+                    $model->acc_number3 = 0;
+                    $model->acc_number4 = 0;
+                }
+                if($count > 0){
+                    $model->acc_number1 = $arr[0][0];
+                    $model->acc_number2 = 0;
+                    $model->acc_number3 = 0;
+                    $model->acc_number4 = 0;
+                }
+                if($count > 1)
+                    $model->acc_number2 = $arr[0][1];
+                if($count > 2)
+                    $model->acc_number3 = $arr[0][2];
+                if($count > 3)
+                    $model->acc_number4 = $arr[0][3];
+                
                 $model->acc_name = $name;
                 $model->group_id = $haspar == "true" ? $parent->group_id : $group;
                 $model->acc_erp = $haserp == "true" ? $erp : NULL;
@@ -675,6 +696,31 @@ class DataController extends Controller
 
             if (!$model->isNewRecord)
             {
+                //acc number
+                $arr;
+                $name = $model->acc_name;
+                $number = preg_replace("/[ก-์\s].{0,}|[a-zA-Z\s].{0,}/", "", $name);
+                $count = preg_match_all("/[0-9]{1,2}\.|[0-9]{1,2}/", $number, $arr);
+                if($count == 0)
+                {
+                    $model->acc_number1 = 99;
+                    $model->acc_number2 = 0;
+                    $model->acc_number3 = 0;
+                    $model->acc_number4 = 0;
+                }
+                if($count > 0){
+                    $model->acc_number1 = $arr[0][0];
+                    $model->acc_number2 = 0;
+                    $model->acc_number3 = 0;
+                    $model->acc_number4 = 0;
+                }
+                if($count > 1)
+                    $model->acc_number2 = $arr[0][1];
+                if($count > 2)
+                    $model->acc_number3 = $arr[0][2];
+                if($count > 3)
+                    $model->acc_number4 = $arr[0][3];
+                
                 $model->acc_number = empty($number)?99:$number;
                 $model->acc_name = $name;
                 $model->group_id = $haspar == "true" ? $parent->group_id : $group;
@@ -682,6 +728,7 @@ class DataController extends Controller
                 $model->parent_acc_id = $haspar == "true" ? $par : NULL;
                 $result = $model->save(false) ? "ok" : "not";
                 echo $result;
+                //group recursive
                 if ($result == "ok")
                 {
                     //recursive update depth = 4
