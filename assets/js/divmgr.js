@@ -178,6 +178,21 @@ $(function () {
             $("#addisdiv").prop("disabled", false).change();
         }
     });
+    $("#adderp").keyup(function (event) {
+        if (event.keyCode == 13) {
+            $("#btnadd").click();
+        }
+    });
+    $("#addname").keyup(function (event) {
+        if (event.keyCode == 13) {
+            $("#btnadd").click();
+        }
+    });
+    $("#addoffice").keyup(function (event) {
+        if (event.keyCode == 13) {
+            $("#btnadd").click();
+        }
+    });
     $("#btnadd").click(function () {
         divname = $("#addname");
         diverp = $("#adderp");
@@ -352,6 +367,22 @@ $(function () {
     });
     $("#editoffice").focusout(function () {
         checkerpoffice($(this));
+    });
+    
+    $("#editerp").keyup(function (event) {
+        if (event.keyCode == 13) {
+            $("#btnedit").click();
+        }
+    });
+    $("#editname").keyup(function (event) {
+        if (event.keyCode == 13) {
+            $("#btnedit").click();
+        }
+    });
+    $("#editoffice").keyup(function (event) {
+        if (event.keyCode == 13) {
+            $("#btnedit").click();
+        }
     });
     $("#btnedit").click(function () {
         var divname = $("#editname");
