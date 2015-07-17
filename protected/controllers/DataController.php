@@ -600,7 +600,8 @@ class DataController extends Controller
             $group = $d['group'];
             $haserp = $d['haserp'];
             $haspar = $d['haspar'];
-
+            
+            $number = preg_replace("[ก-์\s].{0,}|[a-zA-Z\s]{0,}", "", $name);
 
             $parent = TbAccount::model()->findByPk(intval($par));
 
@@ -615,6 +616,7 @@ class DataController extends Controller
 
             if ($model->isNewRecord)
             {
+                $model->acc_number = $number;
                 $model->acc_name = $name;
                 $model->group_id = $haspar == "true" ? $parent->group_id : $group;
                 $model->acc_erp = $haserp == "true" ? $erp : NULL;

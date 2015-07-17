@@ -6,5 +6,5 @@ return array (
   'modelPath' => 'application.models',
   'baseClass' => 'CActiveRecord',
   'buildRelations' => '1',
-  'commentsAsLabels' => '0',
+  'commentsAsLabels' => '1',
 );

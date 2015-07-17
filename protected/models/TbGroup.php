@@ -52,9 +52,9 @@ class TbGroup extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'group_id' => 'Group',
-			'group_name' => 'Group Name',
-			'type_id' => 'Type',
+			'group_id' => 'รหัสหมวด',
+			'group_name' => 'ชื่อหมวด',
+			'type_id' => 'รหัสประเภท',
 		);
 	}
 

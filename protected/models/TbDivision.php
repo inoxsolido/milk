@@ -58,11 +58,11 @@ class TbDivision extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'division_id' => 'Division',
+			'division_id' => 'รหัสฝ่าย',
 			'division_name' => 'Division Name',
 			'parent_division' => 'Parent Division',
 			'office_id' => 'Office',
-			'erp_id' => 'Erp',
+			'erp_id' => 'รหัส ERP',
 			'isposition' => 'Isposition',
 			'enable' => 'Enable',
 		);

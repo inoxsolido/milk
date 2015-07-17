@@ -17,8 +17,14 @@
         <script type="text/javascript">
             $(function () {
                 $("div.loading").hide();
-                var stickyNavTop = $('.navbar').offset().top;
-                var stickyMenuTop = $('.menu').offset().top;
+                var stickyNavTop;
+                    if($('.navbar').length)
+                        stickyNavTop = $('.navbar').offset().top;
+                
+                
+                var stickyMenuTop;
+                    if($('.menu').length)
+                        stickyMenuTop = $('.menu').offset().top;
                 
                 var stickyNav = function () {
                     if(!$('.navbar').length)return;
@@ -45,7 +51,7 @@
                     if($('.navbar').length)
                         stickyNav();
                     if($('.menu').length)
-                    stickyMenu();
+                        stickyMenu();
                 });
             });
         </script>

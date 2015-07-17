@@ -59,15 +59,15 @@ class TbMonthGoal extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'month_goal_id' => 'Month Goal',
-			'acc_id' => 'Acc',
-			'value' => 'Value',
-			'month_id' => 'Month',
-			'year' => 'Year',
-			'version' => 'Version',
-			'user_id' => 'User',
+			'month_goal_id' => 'รหัสเป้าหมายรายเดือน',
+			'acc_id' => 'รหัสบัญชี',
+			'value' => 'ยอด',
+			'month_id' => 'ลำดับเดือน',
+			'year' => 'ปี',
+			'version' => 'เวอร์ชั่นไฟล์',
+			'user_id' => 'หมายเลขผู้ใช้งาน',
 			'division_id' => 'Division',
-			'approve_lv' => 'Approve Lv',
+			'approve_lv' => 'ระดับยืนยันข้อมูล',
 		);
 	}
 

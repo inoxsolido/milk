@@ -54,9 +54,9 @@ class TbMonth extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'month_id' => 'Month',
-			'month_name' => 'Month Name',
-			'month_name_simple' => 'Month Name Simple',
+			'month_id' => 'ลำดับเดือน',
+			'month_name' => 'ชื่อเดือน',
+			'month_name_simple' => 'ชื่อย่อเดือน',
 			'month_name_erp' => 'Month Name Erp',
 		);
 	}
