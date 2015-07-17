@@ -276,7 +276,16 @@ $(function () {
     $("#adderp").focusout(function () {
         checkerp($("#adderp"), getCheckbox($("#addhaserp")), false);
     });
-
+    $("#addname").keyup(function (event) {
+        if (event.keyCode == 13) {
+            $("#btnadd").click();
+        }
+    });
+    $("#adderp").keyup(function (event) {
+        if (event.keyCode == 13) {
+            $("#btnadd").click();
+        }
+    });
 
     $("#btnadd").click(function () {
         var name = $("#addname").val();
@@ -328,7 +337,6 @@ $(function () {
             });
         }
     });
-
     //---edit
     $("#edithaserp").change(function () {
         val = getCheckbox($(this));
@@ -357,6 +365,17 @@ $(function () {
         checkerp($("#editerp"), getCheckbox($("#edithaserp")), true);
     });
 
+    $("#editname").keyup(function (event) {
+        if (event.keyCode == 13) {
+            $("#btnedit").click();
+        }
+    });
+    $("#editerp").keyup(function (event) {
+        if (event.keyCode == 13) {
+            $("#btnedit").click();
+        }
+    });
+    
     var accid;
     $("#accbody").on("click", ".edit", function () {
         accid = $(this).attr('data-id');

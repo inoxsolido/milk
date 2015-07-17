@@ -542,7 +542,8 @@ class DataController extends Controller
                         $sql .= " parent_acc_id IS NULL AND";
                     $sql = substr($sql, 0, -3);
                 }
-                $sql .= " ORDER BY a.group_id ASC, a.acc_name ";
+                $sql .= " ORDER BY a.group_id ASC, CAST(a.acc_number as decimal) ";
+                echo $sql;
                 $result = Yii::app()->db->createCommand($sql)->queryAll();
 
                 if (count($result))
@@ -601,7 +602,7 @@ class DataController extends Controller
             $haserp = $d['haserp'];
             $haspar = $d['haspar'];
             
-            $number = preg_replace("[ก-์\s].{0,}|[a-zA-Z\s]{0,}", "", $name);
+            $number = preg_replace("/[ก-์\s].{0,}|[a-zA-Z\s].{0,}/", "", $name);
 
             $parent = TbAccount::model()->findByPk(intval($par));
 
@@ -616,7 +617,7 @@ class DataController extends Controller
 
             if ($model->isNewRecord)
             {
-                $model->acc_number = $number;
+                $model->acc_number = empty($number)?99:$number;
                 $model->acc_name = $name;
                 $model->group_id = $haspar == "true" ? $parent->group_id : $group;
                 $model->acc_erp = $haserp == "true" ? $erp : NULL;
@@ -658,6 +659,10 @@ class DataController extends Controller
             $haserp = $d['haserp'];
             $haspar = $d['haspar'];
 
+            $number = preg_replace("/[ก-์\s].{0,}|[a-zA-Z\s].{0,}/", "", $name);
+            
+            //echo empty($number)?99:$number;
+            
             $parent = TbAccount::model()->findByPk(intval($par));
 
             if (!count($parent) && $haspar == "true")
@@ -670,6 +675,7 @@ class DataController extends Controller
 
             if (!$model->isNewRecord)
             {
+                $model->acc_number = empty($number)?99:$number;
                 $model->acc_name = $name;
                 $model->group_id = $haspar == "true" ? $parent->group_id : $group;
                 $model->acc_erp = $haserp == "true" ? $erp : NULL;
@@ -781,6 +787,43 @@ class DataController extends Controller
             ?><?php
         }
         echo $closeul;
+    }
+    
+    public function actionUpdateAccNumber()
+    {
+        $arr=array();
+        $model = TbAccount::model()->findAll();
+        if(count($model))
+        {
+            foreach($model as $row)
+            {
+                $name = $row->acc_name;
+                $number = preg_replace("/[ก-์\s].{0,}|[a-zA-Z\s].{0,}/", "", $name);
+                $count = preg_match_all("/[0-9]{1,2}\.|[0-9]{1,2}/", $number, $arr);
+                if($count == 0)
+                {
+                    $row->acc_number1 = 99;
+                    $row->acc_number2 = 0;
+                    $row->acc_number3 = 0;
+                    $row->acc_number4 = 0;
+                }
+                if($count > 0){
+                    $row->acc_number1 = $arr[0][0];
+                    $row->acc_number2 = 0;
+                    $row->acc_number3 = 0;
+                    $row->acc_number4 = 0;
+                }
+                if($count > 1)
+                    $row->acc_number2 = $arr[0][1];
+                if($count > 2)
+                    $row->acc_number3 = $arr[0][2];
+                if($count > 3)
+                    $row->acc_number4 = $arr[0][3];
+                $row->save(false);
+            }
+        }
+        
+         
     }
 
 }
