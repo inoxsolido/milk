@@ -542,8 +542,8 @@ class DataController extends Controller
                         $sql .= " parent_acc_id IS NULL AND";
                     $sql = substr($sql, 0, -3);
                 }
-                $sql .= " ORDER BY a.group_id ASC, a.acc_number1 ASC, a.acc_number2 ASC, a.acc_number3 ASC, a.acc_number4 ASC, ";
-                echo $sql;
+                $sql .= " ORDER BY a.group_id ASC, a.acc_number1 ASC, a.acc_number2 ASC, a.acc_number3 ASC, a.acc_number4 ASC ";
+                //echo $sql;
                 $result = Yii::app()->db->createCommand($sql)->queryAll();
 
                 if (count($result))
