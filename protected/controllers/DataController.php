@@ -616,7 +616,6 @@ class DataController extends Controller
             if ($model->isNewRecord)
             {
                 $arr;
-                $name = $model->acc_name;
                 $number = preg_replace("/[ก-์\s].{0,}|[a-zA-Z\s].{0,}/", "", $name);
                 $count = preg_match_all("/[0-9]{1,2}\.|[0-9]{1,2}/", $number, $arr);
                 if($count == 0)
@@ -698,7 +697,6 @@ class DataController extends Controller
             {
                 //acc number
                 $arr;
-                $name = $model->acc_name;
                 $number = preg_replace("/[ก-์\s].{0,}|[a-zA-Z\s].{0,}/", "", $name);
                 $count = preg_match_all("/[0-9]{1,2}\.|[0-9]{1,2}/", $number, $arr);
                 if($count == 0)
@@ -721,7 +719,6 @@ class DataController extends Controller
                 if($count > 3)
                     $model->acc_number4 = $arr[0][3];
                 
-                $model->acc_number = empty($number)?99:$number;
                 $model->acc_name = $name;
                 $model->group_id = $haspar == "true" ? $parent->group_id : $group;
                 $model->acc_erp = $haserp == "true" ? $erp : NULL;
