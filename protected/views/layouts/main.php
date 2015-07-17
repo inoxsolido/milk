@@ -17,13 +17,12 @@
         <script type="text/javascript">
             $(function () {
                 $("div.loading").hide();
-                
+                var stickyNavTop = $('.navbar').offset().top;
+                var stickyMenuTop = $('.menu').offset().top;
                 
                 var stickyNav = function () {
                     if(!$('.navbar').length)return;
-                    var stickyNavTop = $('.navbar').offset().top;
                     var scrollTop = $(window).scrollTop();
-
                     if (scrollTop > stickyNavTop) {
                         $('.navbar').addClass('sticky');
                     } else {
@@ -32,9 +31,7 @@
                 };
                 var stickyMenu = function () {
                     if(!$('.menu').length)return;
-                    var stickyMenuTop = $('.menu').offset().top;
                     var scrollTop = $(window).scrollTop();
-
                     if (scrollTop > stickyMenuTop-50) {
                         $('.menu').addClass('stickmenu');
                     } else {
@@ -45,7 +42,9 @@
                 stickyMenu();
 
                 $(window).scroll(function () {
-                    stickyNav();
+                    if($('.navbar').length)
+                        stickyNav();
+                    if($('.menu').length)
                     stickyMenu();
                 });
             });
