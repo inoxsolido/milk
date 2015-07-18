@@ -93,7 +93,7 @@ class DataController extends Controller
                         if ($user['enable'] == 1)
                         {
                             ?><button class='btn btn-sm btn-danger deactive' data-id="<?= $user['user_id'] ?>">ยกเลิก <span class='glyphicon glyphicon-remove'></span></button>
-                            <?php
+                                <?php
                             } else if ($user['enable'] == 0)
                             {
                                 ?><button class='btn btn-sm btn-success active' data-id="<?= $user['user_id'] ?>">เปิดใช้ <span class='glyphicon glyphicon-ok'></span></button><?php } ?>
@@ -226,14 +226,14 @@ class DataController extends Controller
                     <td style='width:5%'><?= $row['office_id'] ?></td>
                     <td style="width:5%"><?php echo $row['isposition'] ? 'เป็น' : 'ไม่เป็น'; ?></td>
                     <td style="width:20%"><button class='btn btn-sm btn-warning edit' data-id="<?= $row['division_id'] ?>">แก้ไข <span class='glyphicon glyphicon-wrench'></span></button>&nbsp;&nbsp;
-                            <?php
-                            if ($row['enable'] == 1)
+                        <?php
+                        if ($row['enable'] == 1)
+                        {
+                            ?><button class='btn btn-sm btn-danger deactive' data-id="<?= $row['division_id'] ?>">ยกเลิก <span class='glyphicon glyphicon-remove'></span></button>
+                                <?php
+                            } else if ($row['enable'] == 0)
                             {
-                                ?><button class='btn btn-sm btn-danger deactive' data-id="<?= $row['division_id'] ?>">ยกเลิก <span class='glyphicon glyphicon-remove'></span></button>
-                <?php
-                } else if ($row['enable'] == 0)
-                {
-                    ?><button class='btn btn-sm btn-success active' data-id="<?= $row['division_id'] ?>">เปิดใช้ <span class='glyphicon glyphicon-ok'></span></button><?php } ?>
+                                ?><button class='btn btn-sm btn-success active' data-id="<?= $row['division_id'] ?>">เปิดใช้ <span class='glyphicon glyphicon-ok'></span></button><?php } ?>
                     </td>
                 </tr><?php
             }
@@ -618,26 +618,27 @@ class DataController extends Controller
                 $arr;
                 $number = preg_replace("/[ก-์\s].{0,}|[a-zA-Z\s].{0,}/", "", $name);
                 $count = preg_match_all("/[0-9]{1,2}\.|[0-9]{1,2}/", $number, $arr);
-                if($count == 0)
+                if ($count == 0)
                 {
                     $model->acc_number1 = 99;
                     $model->acc_number2 = 0;
                     $model->acc_number3 = 0;
                     $model->acc_number4 = 0;
                 }
-                if($count > 0){
+                if ($count > 0)
+                {
                     $model->acc_number1 = $arr[0][0];
                     $model->acc_number2 = 0;
                     $model->acc_number3 = 0;
                     $model->acc_number4 = 0;
                 }
-                if($count > 1)
+                if ($count > 1)
                     $model->acc_number2 = $arr[0][1];
-                if($count > 2)
+                if ($count > 2)
                     $model->acc_number3 = $arr[0][2];
-                if($count > 3)
+                if ($count > 3)
                     $model->acc_number4 = $arr[0][3];
-                
+
                 $model->acc_name = $name;
                 $model->group_id = $haspar == "true" ? $parent->group_id : $group;
                 $model->acc_erp = $haserp == "true" ? $erp : NULL;
@@ -680,9 +681,9 @@ class DataController extends Controller
             $haspar = $d['haspar'];
 
             $number = preg_replace("/[ก-์\s].{0,}|[a-zA-Z\s].{0,}/", "", $name);
-            
+
             //echo empty($number)?99:$number;
-            
+
             $parent = TbAccount::model()->findByPk(intval($par));
 
             if (!count($parent) && $haspar == "true")
@@ -699,26 +700,27 @@ class DataController extends Controller
                 $arr;
                 $number = preg_replace("/[ก-์\s].{0,}|[a-zA-Z\s].{0,}/", "", $name);
                 $count = preg_match_all("/[0-9]{1,2}\.|[0-9]{1,2}/", $number, $arr);
-                if($count == 0)
+                if ($count == 0)
                 {
                     $model->acc_number1 = 99;
                     $model->acc_number2 = 0;
                     $model->acc_number3 = 0;
                     $model->acc_number4 = 0;
                 }
-                if($count > 0){
+                if ($count > 0)
+                {
                     $model->acc_number1 = $arr[0][0];
                     $model->acc_number2 = 0;
                     $model->acc_number3 = 0;
                     $model->acc_number4 = 0;
                 }
-                if($count > 1)
+                if ($count > 1)
                     $model->acc_number2 = $arr[0][1];
-                if($count > 2)
+                if ($count > 2)
                     $model->acc_number3 = $arr[0][2];
-                if($count > 3)
+                if ($count > 3)
                     $model->acc_number4 = $arr[0][3];
-                
+
                 $model->acc_name = $name;
                 $model->group_id = $haspar == "true" ? $parent->group_id : $group;
                 $model->acc_erp = $haserp == "true" ? $erp : NULL;
@@ -773,101 +775,99 @@ class DataController extends Controller
         $openul = '<ul>';
         $closeul = '</ul>';
         $group = TbGroup::model()->findAll(array('order' => "group_id ASC"));
-        echo $openul; //main
-        foreach ($group as $g)//group
-        {
-            echo $openli;
-            ?><input type="checkbox" name="g<?= $g->group_id ?>"/><label><?= $g->group_name ?></label><?php
-            $resultlv1 = TbAccount::model()->findAll("parent_acc_id group_id = $g->group_id");
-            if (count($resultlv1))
+        ?><ul><?php
+            //main
+            foreach ($group as $g)//group
             {
-                echo $openul;
-                foreach ($resultlv1 as $lv1)//level 1
-                {
-                    echo $openli;
-                    ?><label><input type="checkbox" name="<?= $lv1->acc_id ?>"/><?= $lv1->acc_name ?></label><?php
-                        $resultlv2 = TbAccount::model()->findAll(array('condition' => "parent_acc_id = $lv1->acc_id", 'order' => "acc_name ASC"));
-                        if (count($resultlv2))
+                ?><li><?php
+                ?><input type="checkbox" name="g<?= $g->group_id ?>"/><label><?= $g->group_name ?></label><?php
+                        $resultlv1 = TbAccount::model()->findAll("parent_acc_id IS NULL AND group_id = $g->group_id");
+                        if (count($resultlv1))
                         {
-                            echo $openul;
-                            foreach ($resultlv2 as $lv2)//level 2
-                            {
-                                echo $openli;
-                                ?><label><input type="checkbox" name="<?= $lv2->acc_id ?>"/><?= $lv2->acc_name ?></label><?php
-                                $resultlv3 = TbAccount::model()->findAll(array('condition' => "parent_acc_id = $lv2->acc_id", 'order' => "acc_name ASC"));
-                                if (count($resultlv3))
+                            ?><ul><?php
+                                foreach ($resultlv1 as $lv1)//level 1
                                 {
-                                    echo $openul;
-                                    foreach ($resultlv3 as $lv3)//level 3
-                                    {
-                                        echo $openli;
-                                        ?><label><input type="checkbox" name="<?= $lv3->acc_id ?>"/><?= $lv3->acc_name ?></label><?php
-                                        $resultlv4 = TbAccount::model()->findAll(array('condition' => "parent_acc_id = $lv3->acc_id", 'order' => "acc_name ASC"));
-                                        if (count($resultlv4))
+                                    ?><li><?php
+                                    ?><label><input type="checkbox" name="<?= $lv1->acc_id ?>"/><?= $lv1->acc_name ?></label><?php
+                                        $resultlv2 = TbAccount::model()->findAll(array('condition' => "parent_acc_id = $lv1->acc_id", 'order' => "acc_name ASC"));
+                                        if (count($resultlv2))
                                         {
-                                            echo $openul;
-                                            foreach ($resultlv4 as $lv4)
-                                            {
-                                                echo $openli;
-                                                ?><label><input type="checkbox" name="<?= $lv4->acc_id ?>"/><?= $lv4->acc_name ?></label><?php
-                                            echo $closeli;
-                                        }
-                                        echo $closeul;
+                                            ?><ul><?php
+                                                foreach ($resultlv2 as $lv2)//level 2
+                                                {
+                                                    ?><li><?php
+                                                    ?><label><input type="checkbox" name="<?= $lv2->acc_id ?>"/><?= $lv2->acc_name ?></label><?php
+                                                        $resultlv3 = TbAccount::model()->findAll(array('condition' => "parent_acc_id = $lv2->acc_id", 'order' => "acc_name ASC"));
+                                                        if (count($resultlv3))
+                                                        {
+                                                            ?><ul><?php
+                                                                foreach ($resultlv3 as $lv3)//level 3
+                                                                {
+                                                                    ?><li><?php
+                                                                    ?><label><input type="checkbox" name="<?= $lv3->acc_id ?>"/><?= $lv3->acc_name ?></label><?php
+                                                                        $resultlv4 = TbAccount::model()->findAll(array('condition' => "parent_acc_id = $lv3->acc_id", 'order' => "acc_name ASC"));
+                                                                        if (count($resultlv4))
+                                                                        {
+                                                                            ?><ul><?php
+                                                                                foreach ($resultlv4 as $lv4)
+                                                                                {
+                                                                                    ?><li><?php
+                                                                                    ?><label><input type="checkbox" name="<?= $lv4->acc_id ?>"/><?= $lv4->acc_name ?></label><?php
+                                                                                    ?></li><?php
+                                                                            }
+                                                                            ?></ul><?php
+                                                                    }
+                                                                    ?></li><?php
+                                                            }
+                                                            ?></ul><?php
+                                                    }
+                                                    ?></li><?php
+                                            }
+                                            ?></ul><?php
                                     }
-                                    echo $closeli;
-                                }
-
-                                echo $closeul;
+                                    ?></li><?php
                             }
-                            echo $closeli;
-                        }
-                        echo $closeul;
-                    }
-                    echo $closeli;
-                }
-                echo $closeul;
+                            ?></ul><?php
+                            }
+                ?></li><?php
             }
-            echo $openli;
-            ?><?php
-        }
-        echo $closeul;
+        ?></ul><?php
     }
-    
+
     public function actionUpdateAccNumber()
     {
-        $arr=array();
+        $arr = array();
         $model = TbAccount::model()->findAll();
-        if(count($model))
+        if (count($model))
         {
-            foreach($model as $row)
+            foreach ($model as $row)
             {
                 $name = $row->acc_name;
                 $number = preg_replace("/[ก-์\s].{0,}|[a-zA-Z\s].{0,}/", "", $name);
                 $count = preg_match_all("/[0-9]{1,2}\.|[0-9]{1,2}/", $number, $arr);
-                if($count == 0)
+                if ($count == 0)
                 {
                     $row->acc_number1 = 99;
                     $row->acc_number2 = 0;
                     $row->acc_number3 = 0;
                     $row->acc_number4 = 0;
                 }
-                if($count > 0){
+                if ($count > 0)
+                {
                     $row->acc_number1 = $arr[0][0];
                     $row->acc_number2 = 0;
                     $row->acc_number3 = 0;
                     $row->acc_number4 = 0;
                 }
-                if($count > 1)
+                if ($count > 1)
                     $row->acc_number2 = $arr[0][1];
-                if($count > 2)
+                if ($count > 2)
                     $row->acc_number3 = $arr[0][2];
-                if($count > 3)
+                if ($count > 3)
                     $row->acc_number4 = $arr[0][3];
                 $row->save(false);
             }
         }
-        
-         
     }
 
 }
