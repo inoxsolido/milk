@@ -923,7 +923,7 @@ class DataController extends Controller
                 }
                 $sql = substr($sql, 0, -1);
                 $sql .= ';';
-            } else 
+            } else
                 $sql = "DELETE FROM `tb_acc_year` WHERE `year` = $year;";
             $result = Yii::app()->db->createCommand($sql)->execute();
             if ($result)
@@ -932,6 +932,52 @@ class DataController extends Controller
                 echo isset($_POST['fdata']) ? 'การบันทึกข้อมูลล้มเหลว' : 'การลบข้อมูลล้มเหลว';
         } else
             echo 'year  is not available';
+    }
+
+    //chinfo
+    public function actionAskPersonInfo()
+    {
+        if (isset($_POST['uname']))
+        {
+            $uname = $_POST['uname'];
+            $model = TbUser::model()->find("`username` = '$uname'");
+            if (count($model))
+            {
+                $x = [
+                    'fname' => $model->fname,
+                    'lname' => $model->lname,
+                ];
+                echo json_encode($x);
+            } else
+            {
+                echo 'ไม่มีผู้ใช้นี้ในระบบ';
+            }
+        }
+    }
+
+    public function actionUpdateUserInfo()
+    {
+        if (isset($_POST['uname']) && isset($_POST['fname']) && $_POST['lname'] && $_POST['pwd'])
+        {
+            $usr = $_POST['uname'];
+            $fname = $_POST['fname'];
+            $lname = $_POST['lname'];
+            $pwd = $_POST['pwd'];
+            $sql = "UPDATE tb_user SET `fname` = '$fname', `lname` = '$lname'";
+            if ($pwd != "")
+            {
+                $pwd = Yii::app()->Encryption->EncryptPassword($pwd);
+                $sql .= ",`password` = '$pwd'";
+            }
+            $sql .= " WHERE `username` = '$usr'";
+            $result = Yii::app()->db->createCommand($sql)->execute();
+            if ($result)
+            {
+                echo 'ok';
+            } else
+                echo "update error";
+        } else
+            echo 'some resource missing';
     }
 
 }
