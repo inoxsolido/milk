@@ -768,106 +768,170 @@ class DataController extends Controller
     }
 
     // AccountYearAssign
-    public function actionFillAccYear()
+    public function actionFillAccYearEmpty()
     {
-        $openli = '<li>';
-        $closeli = '</li>';
-        $openul = '<ul>';
-        $closeul = '</ul>';
+        ?><div class="swMain"><?php
         $group = TbGroup::model()->findAll(array('order' => "group_id ASC"));
-        ?><ul><?php
+        $i = 1;
+        ?><ul><!--Stepbar--><?php
+                foreach ($group as $g)
+                {
+                    ?><li><a href="#step-<?= $i++ ?>">
+                            <span class="stepDesc">
+                                ประเภท<?= $g->group_name ?><br />
+                            </span>
+                        </a>
+                    </li><?php
+                }
+                ?></ul><?php
+            $i = 1;
             //main
             foreach ($group as $g)//group
             {
-                ?><li><?php
-                ?><input type="checkbox" name="g<?= $g->group_id ?>"/><label><?= $g->group_name ?></label><?php
-                        $resultlv1 = TbAccount::model()->findAll("parent_acc_id IS NULL AND group_id = $g->group_id");
-                        if (count($resultlv1))
-                        {
-                            ?><ul><?php
-                                foreach ($resultlv1 as $lv1)//level 1
-                                {
-                                    ?><li><?php
-                                    ?><label><input type="checkbox" name="<?= $lv1->acc_id ?>"/><?= $lv1->acc_name ?></label><?php
-                                        $resultlv2 = TbAccount::model()->findAll(array('condition' => "parent_acc_id = $lv1->acc_id", 'order' => "acc_name ASC"));
-                                        if (count($resultlv2))
+                ?><div id="step-<?= $i++ ?>">
+                    <h3 class="StepTitle">บัญชีในประเภท<?= $g->group_name ?></h3>
+                    <ul class="checkbox-tree">
+                        <li><label><input type="checkbox" name="selall"/>เลือกทั้งหมด</label>
+                            <?php
+                            $resultlv1 = TbAccount::model()->findAll("parent_acc_id IS NULL AND group_id = $g->group_id");
+                            if (count($resultlv1))
+                            {
+                                ?><ul><?php
+                                        foreach ($resultlv1 as $lv1)//level 1
                                         {
-                                            ?><ul><?php
-                                                foreach ($resultlv2 as $lv2)//level 2
-                                                {
-                                                    ?><li><?php
-                                                    ?><label><input type="checkbox" name="<?= $lv2->acc_id ?>"/><?= $lv2->acc_name ?></label><?php
-                                                        $resultlv3 = TbAccount::model()->findAll(array('condition' => "parent_acc_id = $lv2->acc_id", 'order' => "acc_name ASC"));
-                                                        if (count($resultlv3))
+                                            ?><li><?php
+                                            ?><label><input type="checkbox" name="<?= $lv1->acc_id ?>"/><?= $lv1->acc_name ?></label><?php
+                                            $resultlv2 = TbAccount::model()->findAll(array('condition' => "parent_acc_id = $lv1->acc_id", 'order' => "acc_name ASC"));
+                                            if (count($resultlv2))
+                                            {
+                                                ?><ul><?php
+                                                        foreach ($resultlv2 as $lv2)//level 2
                                                         {
-                                                            ?><ul><?php
-                                                                foreach ($resultlv3 as $lv3)//level 3
-                                                                {
-                                                                    ?><li><?php
-                                                                    ?><label><input type="checkbox" name="<?= $lv3->acc_id ?>"/><?= $lv3->acc_name ?></label><?php
-                                                                        $resultlv4 = TbAccount::model()->findAll(array('condition' => "parent_acc_id = $lv3->acc_id", 'order' => "acc_name ASC"));
-                                                                        if (count($resultlv4))
+                                                            ?><li><?php
+                                                            ?><label><input type="checkbox" name="<?= $lv2->acc_id ?>"/><?= $lv2->acc_name ?></label><?php
+                                                            $resultlv3 = TbAccount::model()->findAll(array('condition' => "parent_acc_id = $lv2->acc_id", 'order' => "acc_name ASC"));
+                                                            if (count($resultlv3))
+                                                            {
+                                                                ?><ul><?php
+                                                                        foreach ($resultlv3 as $lv3)//level 3
                                                                         {
-                                                                            ?><ul><?php
-                                                                                foreach ($resultlv4 as $lv4)
-                                                                                {
-                                                                                    ?><li><?php
-                                                                                    ?><label><input type="checkbox" name="<?= $lv4->acc_id ?>"/><?= $lv4->acc_name ?></label><?php
-                                                                                    ?></li><?php
-                                                                            }
-                                                                            ?></ul><?php
-                                                                    }
-                                                                    ?></li><?php
-                                                            }
-                                                            ?></ul><?php
-                                                    }
-                                                    ?></li><?php
-                                            }
-                                            ?></ul><?php
-                                    }
-                                    ?></li><?php
-                            }
-                            ?></ul><?php
-                            }
-                ?></li><?php
-            }
-        ?></ul><?php
-    }
+                                                                            ?><li><?php
+                                                                            ?><label><input type="checkbox" name="<?= $lv3->acc_id ?>"/><?= $lv3->acc_name ?></label><?php
+                                                                            $resultlv4 = TbAccount::model()->findAll(array('condition' => "parent_acc_id = $lv3->acc_id", 'order' => "acc_name ASC"));
+                                                                            if (count($resultlv4))
+                                                                            {
+                                                                                ?><ul><?php
+                                                                                        foreach ($resultlv4 as $lv4)
+                                                                                        {
+                                                                                            ?><li><?php
+                                                                                            ?><label><input type="checkbox" name="<?= $lv4->acc_id ?>"/><?= $lv4->acc_name ?></label><?php
+                                                                                            ?></li><?php
+                                                                                    }
+                                                                                    ?></ul><?php
+                                                                                }
+                                                                                ?></li><?php
+                                                                        }
+                                                                        ?></ul><?php
+                                                                }
+                                                                ?></li><?php
+                                                        }
+                                                        ?></ul><?php
+                                                }
+                                                ?></li><?php
+                                        }
+                                        ?></ul><?php
+                                }
+                                ?></li>
+                    </ul><?php ?></div><?php
+            }//foreach group end
+            ?></div><?php
+        }
 
-    public function actionUpdateAccNumber()
-    {
-        $arr = array();
-        $model = TbAccount::model()->findAll();
-        if (count($model))
+        public function actionAccYear_AccinYear()
         {
-            foreach ($model as $row)
+            if (isset($_POST['year']))
             {
-                $name = $row->acc_name;
-                $number = preg_replace("/[ก-์\s].{0,}|[a-zA-Z\s].{0,}/", "", $name);
-                $count = preg_match_all("/[0-9]{1,2}\.|[0-9]{1,2}/", $number, $arr);
-                if ($count == 0)
+                $year = $_POST['year'] - 543; //chirst
+                $sql = "SELECT acc_id FROM tb_acc_year WHERE `year` = $year";
+                $result = Yii::app()->db->createCommand($sql)->queryAll();
+                if (count($result))
                 {
-                    $row->acc_number1 = 99;
-                    $row->acc_number2 = 0;
-                    $row->acc_number3 = 0;
-                    $row->acc_number4 = 0;
-                }
-                if ($count > 0)
+                    echo json_encode($result);
+                } else
                 {
-                    $row->acc_number1 = $arr[0][0];
-                    $row->acc_number2 = 0;
-                    $row->acc_number3 = 0;
-                    $row->acc_number4 = 0;
+                    $year += 543;
+                    echo "ไม่พบบัญชีในปีที่ $year";
                 }
-                if ($count > 1)
-                    $row->acc_number2 = $arr[0][1];
-                if ($count > 2)
-                    $row->acc_number3 = $arr[0][2];
-                if ($count > 3)
-                    $row->acc_number4 = $arr[0][3];
-                $row->save(false);
+            } else
+            {
+                echo 'variable year not available';
             }
         }
+
+        public function actionFillAccYear_Year()
+        {
+            $sql = "SELECT DISTINCT(`year`) FROM `tb_acc_year` ORDER BY `Year` ASC";
+            $result = Yii::app()->db->createCommand($sql)->queryAll();
+            ?><option value=0>เลือกปีที่จะแก้ไข</option><?php
+            foreach ($result as $row)
+            {
+                ?><option value="<?= $row['year'] + 543 ?>">พ.ศ. <?= $row['year'] + 543 ?></option><?php
+        }
+    }
+
+    public function actionAddAccYear()
+    {
+        if (isset($_POST['year']) && isset($_POST['fdata']))
+        {
+            $year = $_POST['year'] - 543;
+            $form = $_POST['fdata'];
+            foreach ($form as $row)
+            {
+                $model = new TbAccYear;
+                if (!$model->isNewRecord)
+                {
+                    echo 'การบันทึกล้มเหลว';
+                } else
+                {
+                    $model->year = $year;
+                    $model->acc_id = intval($row);
+                    if (!$model->save(true))
+                    {
+                        echo 'การบันทึกล้มเหลว';
+                        return false;
+                    }
+                }
+            }
+
+            echo 'ok';
+        } else
+            echo 'year or fdata is not available';
+    }
+
+    public function actionEditAccYear()
+    {
+        if (isset($_POST['year']))
+        {
+            $year = $_POST['year'] - 543;
+            if (isset($_POST['fdata']))
+            {
+                $form = $_POST['fdata'];
+                $sql = "DELETE FROM `tb_acc_year` WHERE `year` = $year; INSERT INTO `tb_acc_year` VALUES";
+                foreach ($form as $row)
+                {
+                    $sql .= "($year,$row),";
+                }
+                $sql = substr($sql, 0, -1);
+                $sql .= ';';
+            } else 
+                $sql = "DELETE FROM `tb_acc_year` WHERE `year` = $year;";
+            $result = Yii::app()->db->createCommand($sql)->execute();
+            if ($result)
+                echo 'ok';
+            else
+                echo isset($_POST['fdata']) ? 'การบันทึกข้อมูลล้มเหลว' : 'การลบข้อมูลล้มเหลว';
+        } else
+            echo 'year  is not available';
     }
 
 }

@@ -14,10 +14,10 @@
         <!--submenu -->
         <link rel="stylesheet" href="<?= Yii::app()->request->baseUrl ?>/assets/css/submenu.css">
         <script src="<?= Yii::app()->request->baseUrl; ?>/assets/js/submenu.js"></script>
-        <script type="text/javascript">
+        <script type="text/javascript"><!--sticky-->
             $(function () {
                 $("div.loading").hide();
-                var stickyNavTop;
+                /*var stickyNavTop;
                     if($('.navbar').length)
                         stickyNavTop = $('.navbar').offset().top;
                 
@@ -53,11 +53,12 @@
                     if($('.menu').length)
                         stickyMenu();
                 });
+                */
             });
         </script>
         <style type="text/css">
-            #menu{
-                margin-bottom: -21px;
+            #menu > nav{
+                margin-bottom: 0px;
             }
             div#content{
                 position: relative;
@@ -96,13 +97,16 @@
                 z-index: 110;
                 border-top: 0;
             }
-            .stickmenu{
+            .menu, .stickmenu{
                 position: fixed;
                 width: 100%;
                 left: 0;
-                top: 50px;
+                top: 52px;
                 z-index: 100;
                 border-top: 0;
+            }
+            #dummy{
+                height: 83.5px;
             }
         </style>
 
@@ -111,7 +115,8 @@
     </head>
 
     <body>
-        <div id="menu">
+        <div id="dummy"></div>
+        <div id="menu" class="sticky">
             <nav class="navbar navbar-inverse top-navbar" role="navigation">
                 <div class="container-fluid">
                     <!-- Brand and toggle get grouped for better mobile display -->
