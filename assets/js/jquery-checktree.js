@@ -1,8 +1,11 @@
 /**
  * jQuery littleTree
+ * 
+ * version 0.2 added indeterminate state
  *
- * @version  0.1
+ * @version  0.2
  * @author   Mikahil Matyunin <free.all.bums@gmail.com>
+ * @editor Ritthichai Sakulthong
  */
 
 /**
@@ -47,7 +50,7 @@
                         siblingsCheckbox = c.parents('ul:eq(0)').find('input[type="checkbox"]').length,
                         rootCheckbox = parentLi.find('input[type="checkbox"]:eq(0)')
                     ;
-                    //alert(siblingsChecked+" "+siblingsCheckbox);
+                    
                     if (c.is(':checked') && siblingsChecked == siblingsCheckbox)
                         rootCheckbox.prop({'checked': true, 'indeterminate': false});
                     else if (siblingsChecked == 0)
