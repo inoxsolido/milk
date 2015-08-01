@@ -74,4 +74,3 @@
         });
 </script>
 <script src="<?= Yii::app()->request->baseUrl ?>/assets/js/AccYearAssign.js" type="text/javascript"></script>
-<!--<script src="<?= Yii::app()->request->baseUrl ?>/assets/js/multilevelcheckbox.js" type="text/javascript"></script>-->
