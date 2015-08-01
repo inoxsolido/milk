@@ -4,7 +4,6 @@
  * This is the model class for table "tb_version".
  *
  * The followings are the available columns in table 'tb_version':
- * @property integer $ver_id
  * @property integer $month_goal_id
  * @property string $value
  * @property integer $version
@@ -32,7 +31,7 @@ class TbVersion extends CActiveRecord
 			array('value', 'length', 'max'=>10),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('ver_id, month_goal_id, value, version', 'safe', 'on'=>'search'),
+			array('month_goal_id, value, version', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -53,7 +52,6 @@ class TbVersion extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'ver_id' => 'Ver',
 			'month_goal_id' => 'Month Goal',
 			'value' => 'Value',
 			'version' => 'Version',
@@ -78,7 +76,6 @@ class TbVersion extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
-		$criteria->compare('ver_id',$this->ver_id);
 		$criteria->compare('month_goal_id',$this->month_goal_id);
 		$criteria->compare('value',$this->value,true);
 		$criteria->compare('version',$this->version);
