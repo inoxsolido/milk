@@ -48,7 +48,7 @@
                 pass.siblings("span").hide();
             
             if(user.val() != "" && pass.val() != ""){
-                $(".error").html('<image src="./../images/loading.gif" style="width:20%; height:20%">');
+                $(".loading").show();
             }
             if (user.val() != "" && pass.val() != "") {
                 $.post('../Valid/Login',
@@ -57,7 +57,9 @@
                             'pass': pass.val()
                         },
                 function (data) {
+                    $(".loading").hide();
                     if (data == '1') {
+                        $(".error").text("");
                         location.reload();
                     }
                     else if (data == '2') {
