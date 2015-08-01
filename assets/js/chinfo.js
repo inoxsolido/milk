@@ -1,6 +1,6 @@
 $(function () {
     $("#chinfo").click(function () {
-        $(".mloading").fadeIn();
+        $(".loading").fadeIn();
         //load data
         $.ajax({
             url: "../Data/AskPersonInfo",
@@ -29,19 +29,19 @@ $(function () {
                 }
             }
         });
-        $(".mloading").hide();
+        $(".loading").hide();
 
     });
 
     $("#chinfosubmit").click(function () {
-        var err = true;
+        var nameerr = true,lnameerr=true,pwderr=true;
         var letter = /^[\u0E01-\u0E5B]+$/;
         if ($("#chname").val() == "") {
             addState($("#chname"), "error", "กรุณากรอกชื่อจริง");
         } else if (!letter.test($("#chname").val())) {
             addState($("#chname"), "error", "กรุณากรอกชื่อจริงเป็นภาษาไทย");
         } else{
-            err = false;
+            nameerr = false;
             addState($("#chname"), "success");
         }
             
@@ -50,19 +50,19 @@ $(function () {
         } else if (!letter.test($("#chlname").val())) {
             addState($("#chlname"), "error", "กรุณากรอกนามสกุลป็นภาษาไทย");
         } else{
-            err = false;
+            lnameerr = false;
             addState($("#chlname"), "success");
         }
         if ($("#chpwd1").val() != "" && ($("#chpwd1").val() != $("#chpwd2").val())) {
             addState($("#chpwd1"), "error", "");
             addState($("#chpwd2"), "error", "กรุณากรอกรหัสผ่านให้ตรงกันทั้งสองช่อง")
         } else{
-            err = false;
+            pwderr = false;
             addState($("#chpwd1"), "success");
             addState($("#chpwd2"), "success");
         }
 
-        if (!err) {
+        if (!(nameerr||lnameerr|pwderr)) {
             $.ajax({
                 url: "../Data/UpdateUserInfo",
                 async: false,
