@@ -31,9 +31,11 @@ class UserIdentity extends CUserIdentity
                 $this->username=$user->username;
                 //set state here
                 $pos = $user->position_id;
-                $this->setState('isAdmin', $pos==3?1:0);
-                $this->setState('isDiv', $pos==2?1:0);
-                $this->setState('isDep', $pos==1?1:0);
+                $this->setState('isAdmin', $pos==3?true:false);
+                $this->setState('isDiv', $pos==2?true:false);
+                $this->setState('isDep', $pos==1?true:false);
+                $this->setState('user_id', $user->user_id);
+                $this->setState('user_division', $user->division_id);
                 
                 //no error
                 $this->errorCode=self::ERROR_NONE;
