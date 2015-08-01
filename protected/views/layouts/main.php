@@ -16,7 +16,7 @@
         <script src="<?= Yii::app()->request->baseUrl; ?>/assets/js/submenu.js"></script>
         <script type="text/javascript">
             $(function () {
-                $("div.mloading").hide();
+                $("div.loading").hide();
                 /*var stickyNavTop;
                  if($('.navbar').length)
                  stickyNavTop = $('.navbar').offset().top;
@@ -76,18 +76,17 @@
 
             }
             div.loading{
-                width: 150px;
-                height: 25px;
-                position: absolute;
-                left: 50%;
-                top: 50%; 
-                margin-left: -75px;
-                margin-top: -12.5px;
-                background-color:white;
-                text-align: center;
-                border: 2px solid black;
-                box-shadow: 2px 2px 2px 10px black;
-                z-index: 5000;
+                position: fixed;    
+                top: 0px;     
+                left: 0px;    
+                background: #ccc;     
+                width: 100%;     
+                height: 100%;     
+                opacity: .75;     
+                filter: alpha(opacity=75);     
+                -moz-opacity: .75;    
+                z-index: 2000;    
+                background: #fff url("<?= Yii::app()->request->baseUrl ?>/images/loading.gif" ) 50% 50% no-repeat;  
             }
             .sticky {
                 position: fixed;
@@ -133,8 +132,8 @@
                         <?php
                         $this->widget('zii.widgets.CMenu', array(
                             'items' => array(
-                                ['label' => 'กรอกงบประมาณ', 'url' => '#', 'visible' => Yii::app()->user->isDepartment || Yii::app()->user->isDivision],
-                                ['label' => 'ยืนยันคำขอ', 'url' => '#', 'visible' => Yii::app()->user->isDivision || Yii::app()->user->isAdmin],
+                                ['label' => 'กรอกงบประมาณ', 'url' => 'MonthGoal', 'visible' => (Yii::app()->user->isDepartment || Yii::app()->user->isDivision)],
+                                ['label' => 'ยืนยันคำขอ', 'url' => '#', 'visible' => (Yii::app()->user->isDivision || Yii::app()->user->isAdmin)],
                                 ['label' => 'สรุปผล', 'url' => '#', 'visible' => !Yii::app()->user->isGuest],
                                 ['label' => "จัดการบัญชี <i class='caret'></i>", 'url' => '#', 'visible' => Yii::app()->user->isAdmin,
                                     'linkOptions' => [
@@ -181,7 +180,6 @@
                                         ['label' => 'แก้ไขข้อมูลส่วนตัว', 'url' => '#',
                                             'linkOptions' => [
                                                 'id' => 'chinfo',
-                                                
                                             ]
                                         ],
                                         ['label' => 'ออกจากระบบ', 'url' => 'logout'],
@@ -210,7 +208,7 @@
 
             </div><!-- footer -->
         </div>
-        <div class="mloading">loading ...</div>
+        <div class="loading"></div>
         <div id='mchinfo' class="modal fade" role="dialog">
             <div class="modal-dialog">
 
