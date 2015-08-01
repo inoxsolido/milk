@@ -1,6 +1,6 @@
 $(function () {
     $("#chinfo").click(function () {
-        $(".loading").fadeIn();
+        $(".loading").show();
         //load data
         $.ajax({
             url: "../Data/AskPersonInfo",
@@ -12,7 +12,7 @@ $(function () {
             }, success: function (data, textStatus, jqXHR) {
                 if (typeof (data) == 'object')
                 {
-                    console.log(data);
+                    //console.log(data);
                     //bind data to field
                     $("#chname").val(data.fname);
                     $("#chlname").val(data.lname);
