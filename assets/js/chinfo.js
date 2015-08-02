@@ -63,6 +63,7 @@ $(function () {
         }
 
         if (!(nameerr||lnameerr|pwderr)) {
+            $(".loading").show();
             $.ajax({
                 url: "../Data/UpdateUserInfo",
                 async: false,
@@ -73,6 +74,7 @@ $(function () {
                     lname: $("#chlname").val(),
                     pwd: $("#chpwd1").val()
                 }, success: function (data, textStatus, jqXHR) {
+                    $(".loading").hide();
                     if (data == 'ok')
                     {
                         alert("การเปลี่ยนแปลงข้อมูลสำเร็จ");
@@ -80,10 +82,12 @@ $(function () {
                         addState("#chlname", "norm");
                         addState("#chpwd1", "norm");
                         addState("#chpwd2", "norm");
+                        $("#mchinfo").modal('hide');//hide modal
                     } else
-                        alert("การเปลี่ยนแปลงข้อมูลล้มเหลว (รหัสผ่านใหม่อาจเหมือนกับรหัสผ่านเดิม)");
+                        alert(data);
                 }
             });
+            $(".loading").hide();
         }
 
     });
