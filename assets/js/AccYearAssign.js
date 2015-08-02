@@ -11,7 +11,7 @@ $(function () {
             success: function (data, textStatus, jqXHR) {
                 $("#accyear").html(data);
                 $(".checkbox-tree").checktree();
-                $(".swMain").smartWizard({
+                $(".swMain2").smartWizard({
                     selected: 0, // Selected Step, 0 = first step   
                     keyNavigation: false, // Enable/Disable key navigation(left and right keys are used if enabled)
                     enableAllSteps: true,
@@ -61,11 +61,11 @@ $(function () {
     }
     function OnShowCallback()
     {
-        var current = $(".swMain").smartWizard("currentStep");
+        var current = $(".swMain2").smartWizard("currentStep");
         if (current == 4)
-            $(".swMain").smartWizard("enableFinish", true);
+            $(".swMain2").smartWizard("enableFinish", true);
         else
-            $(".swMain").smartWizard("enableFinish", false);
+            $(".swMain2").smartWizard("enableFinish", false);
     }
     function OnFinnishCallback()//add
     {
