@@ -12,8 +12,8 @@
  * @property integer $user_id
  * @property integer $division_id
  * @property integer $version
- * @property string $approve1_lv
- * @property string $approve2_lv
+ * @property integer $approve1_lv
+ * @property integer $approve2_lv
  */
 class TbMonthGoal extends CActiveRecord
 {
@@ -34,10 +34,9 @@ class TbMonthGoal extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('acc_id, value, month_id, year, user_id, division_id', 'required'),
-			array('acc_id, month_id, user_id, division_id, version', 'numerical', 'integerOnly'=>true),
+			array('acc_id, month_id, user_id, division_id, version, approve1_lv, approve2_lv', 'numerical', 'integerOnly'=>true),
 			array('value', 'length', 'max'=>10),
 			array('year', 'length', 'max'=>4),
-			array('approve1_lv, approve2_lv', 'length', 'max'=>1),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('month_goal_id, acc_id, value, month_id, year, user_id, division_id, version, approve1_lv, approve2_lv', 'safe', 'on'=>'search'),
@@ -69,7 +68,7 @@ class TbMonthGoal extends CActiveRecord
 			'user_id' => 'หมายเลขผู้ใช้งาน',
 			'division_id' => 'Division',
 			'version' => 'เวอร์ชั่นไฟล์',
-			'approve1_lv' => 'ระดับยืนยันข้อมูลรอบแรก',
+			'approve1_lv' => 'ระดับยืนยันข้อมูลรอบแรก [0-3]',
 			'approve2_lv' => 'Approve2 Lv',
 		);
 	}
@@ -100,8 +99,8 @@ class TbMonthGoal extends CActiveRecord
 		$criteria->compare('user_id',$this->user_id);
 		$criteria->compare('division_id',$this->division_id);
 		$criteria->compare('version',$this->version);
-		$criteria->compare('approve1_lv',$this->approve1_lv,true);
-		$criteria->compare('approve2_lv',$this->approve2_lv,true);
+		$criteria->compare('approve1_lv',$this->approve1_lv);
+		$criteria->compare('approve2_lv',$this->approve2_lv);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
