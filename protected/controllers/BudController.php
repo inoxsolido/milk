@@ -39,7 +39,8 @@ class BudController extends Controller
         if (!Yii::app()->user->isGuest)
         {
             $this->redirect(Yii::app()->createUrl('./Bud/main'));
-        } else
+        }
+        else
         {
             $url = Yii::app()->createUrl('./Bud/faq');
             $this->redirect($url);
@@ -57,7 +58,8 @@ class BudController extends Controller
         {
             //logged in
             $this->redirect(Yii::app()->createAbsoluteUrl('./Bud/main'));
-        } else
+        }
+        else
             $this->render('login');
     }
 
@@ -66,7 +68,8 @@ class BudController extends Controller
         if (Yii::app()->user->isGuest)
         {
             $this->redirect(Yii::app()->createAbsoluteUrl('./Bud/login'));
-        } else
+        }
+        else
         {
             $this->redirect('faq');
         }
@@ -99,13 +102,15 @@ class BudController extends Controller
                     'div' => $div,
                     'pos' => $position,
                 ));
-            } else
+            }
+            else
             {
                 echo 'You have not permission to access this pages';
                 echo '<br>';
                 ?><a href="<?= Yii::app()->createAbsoluteUrl('./Bud/main') ?>">Back to main</a><?php
             }
-        } else
+        }
+        else
         {
             $this->redirect('../Bud/index');
         }
@@ -119,7 +124,8 @@ class BudController extends Controller
             $model = TbDivision::model()->findAll();
 
             $this->render('divManager', array('par_model' => $model));
-        } else
+        }
+        else
         {
             echo 'You have not permission to access this pages';
             echo '<br>';
@@ -132,7 +138,8 @@ class BudController extends Controller
         if (Yii::app()->user->isAdmin)
         {
             $this->render('fillingManager');
-        } else
+        }
+        else
         {
             echo 'You have not permission to access this pages';
             echo '<br>';
@@ -146,7 +153,8 @@ class BudController extends Controller
         {
             $group = TbGroup::model()->findAll();
             $this->render('AccountManager', array('group' => $group));
-        } else
+        }
+        else
         {
             echo 'You have not permission to access this pages';
             echo '<br>';
@@ -161,7 +169,8 @@ class BudController extends Controller
             $acc = TbAccount::model()->findAll(array('order' => "group_id ASC, acc_name ASC"));
             $group = TbGroup::model()->findAll();
             $this->render("AccountYearAssign", array('acc' => $acc, 'group' => $group));
-        } else
+        }
+        else
         {
             echo 'You have not permission to access this pages';
             echo '<br>';
@@ -177,34 +186,41 @@ class BudController extends Controller
         $resource = Yii::app()->db->createCommand()->select("`year`, MAX(approve1_lv) AS approve1, MAX(approve2_lv) AS approve2, COUNT(month_goal_id) AS number")
                         ->from("tb_acc_year")->naturalLeftJoin("tb_month_goal")
                         ->group("tb_acc_year.year")->order("year ASC")->queryAll();
-        $year = 0;
+        $year = intval(0);
+        $approve1_lv = intval(0);
+        $approve2_lv = intval(0);
+        $userlv = Yii::app()->user->isAdmin ? 3 : Yii::app()->user->isDivision ? 2 : Yii::app()->user->isDepartment ? 1 : 0;
         if (!count($resource))
         {
             echo 'ขณะนี้ระบบยังไม่เปิดให้กรอกข้อมูล <a href="#" onclick="window.history.back();">ย้อนกลับ</a>';
-        } else
+        }
+        else
         {
             foreach ($resource as $row)
             {
                 if ($row['approve1'] < 3 || $row['approve2'] < 3)
-                    if ($row['number'] > 0)
-                    {
-                        $year = $row['year'];
-                        break;
-                    }
+                    if ($row['approve1'] < $userlv || $row['approve2'] < $userlv)//เช็คสิทธิ์ในการแก้ไข
+                       // if ($row['number'] > 0)
+                        {
+                            $year = $row['year'];
+                            break;
+                        }
             }
         }
-        if($year != 0){
+        if ($year != 0)
+        {
             $divusertakecare = Yii::app()->db->createCommand()->select("tb_division.division_id, division_name")
-                    ->from("tb_division")->join("tb_profile_fill", "tb_division.division_id = tb_profile_fill.division_id")
-                    ->where("tb_profile_fill.owner_div_id = $userdiv")->queryAll();
-            $this->render ("MonthGoal", array("year"=>$year+543, 'targets'=>$divusertakecare));
+                            ->from("tb_division")->join("tb_profile_fill", "tb_division.division_id = tb_profile_fill.division_id")
+                            ->where("tb_profile_fill.owner_div_id = $userdiv")->queryAll();
+            $this->render("MonthGoal", array("year" => $year + 543, 'targets' => $divusertakecare));
         }
-        else{
-            echo 'ขณะนี้ระบบยังไม่เปิดให้กรอกข้อมูล <a href="#" onclick="window.history.back();">ย้อนกลับ</a>';
+        else
+        {
+            echo 'ขณะนี้ระบบยังไม่เปิดให้กรอกหรือแก้ไขข้อมูล <a href="#" onclick="window.history.back();">ย้อนกลับ</a>';
         }
-        
-        
-        
+
+
+
         return;
         if (!empty($maxapprove))
             if ($maxapprove['approve1'] < 3 || $maxapprove['approve2'] < 3)
@@ -232,13 +248,13 @@ class BudController extends Controller
 
     public function actionChkState()
     {
-        echo 'isDiv:' . Yii::app()->user->isDivision.'<br/>';
-        echo 'isDep:' . Yii::app()->user->isDepartment.'<br/>';
-        echo 'isAdmin:' . Yii::app()->user->isAdmin.'<br/>';
-        echo 'user_id:' . Yii::app()->user->user_id.'<br/>';
+        echo 'isDiv:' . Yii::app()->user->isDivision . '<br/>';
+        echo 'isDep:' . Yii::app()->user->isDepartment . '<br/>';
+        echo 'isAdmin:' . Yii::app()->user->isAdmin . '<br/>';
+        echo 'user_id:' . Yii::app()->user->user_id . '<br/>';
         echo '<hr/><hr/>';
-        $resultUpdate = Yii::app()->db->createCommand()->update("tb_month_goal", ['value' => 234, 'version' => 1], "user_id = 1");
-            echo $resultUpdate;
+        $userlv = Yii::app()->user->isAdmin ? 3 : Yii::app()->user->isDivision ? 2 : Yii::app()->user->isDepartment ? 1 : 0;
+        echo $userlv;
     }
 
 }

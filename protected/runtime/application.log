@@ -11026,3 +11026,57 @@ Stack trace:
 REQUEST_URI=/milk/Data/AddMonthGoal
 in D:\xampp\htdocs\milk\protected\controllers\DataController.php (1284)
 in D:\xampp\htdocs\milk\index.php (13)
+2015/08/03 09:42:50 [error] [system.db.CDbCommand] CDbCommand::execute() failed: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')' at line 1. The SQL statement executed was: INSERT INTO tb_profile_fill VALUES (36,).
+in D:\xampp\htdocs\milk\protected\controllers\DataController.php (497)
+in D:\xampp\htdocs\milk\index.php (13)
+2015/08/03 09:42:50 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')' at line 1. The SQL statement executed was: INSERT INTO tb_profile_fill VALUES (36,)' in D:\xampp\htdocs\Yii\framework\db\CDbCommand.php:358
+Stack trace:
+#0 D:\xampp\htdocs\milk\protected\controllers\DataController.php(497): CDbCommand->execute()
+#1 D:\xampp\htdocs\Yii\framework\web\actions\CInlineAction.php(49): DataController->actionFillingAdd()
+#2 D:\xampp\htdocs\Yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#3 D:\xampp\htdocs\Yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#4 D:\xampp\htdocs\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#5 D:\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): CController->run('fillingadd')
+#6 D:\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('data/FillingAdd')
+#7 D:\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#8 D:\xampp\htdocs\milk\index.php(13): CApplication->run()
+#9 {main}
+REQUEST_URI=/milk/data/FillingAdd
+HTTP_REFERER=http://localhost/milk/Bud/fillingManager
+---
+2015/08/03 09:43:04 [error] [system.db.CDbCommand] CDbCommand::execute() failed: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')' at line 1. The SQL statement executed was: INSERT INTO tb_profile_fill VALUES (36,).
+in D:\xampp\htdocs\milk\protected\controllers\DataController.php (497)
+in D:\xampp\htdocs\milk\index.php (13)
+2015/08/03 09:43:04 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')' at line 1. The SQL statement executed was: INSERT INTO tb_profile_fill VALUES (36,)' in D:\xampp\htdocs\Yii\framework\db\CDbCommand.php:358
+Stack trace:
+#0 D:\xampp\htdocs\milk\protected\controllers\DataController.php(497): CDbCommand->execute()
+#1 D:\xampp\htdocs\Yii\framework\web\actions\CInlineAction.php(49): DataController->actionFillingAdd()
+#2 D:\xampp\htdocs\Yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#3 D:\xampp\htdocs\Yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#4 D:\xampp\htdocs\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#5 D:\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): CController->run('fillingadd')
+#6 D:\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('data/FillingAdd')
+#7 D:\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#8 D:\xampp\htdocs\milk\index.php(13): CApplication->run()
+#9 {main}
+REQUEST_URI=/milk/data/FillingAdd
+HTTP_REFERER=http://localhost/milk/Bud/fillingManager
+---
+2015/08/03 09:58:01 [error] [system.db.CDbCommand] CDbCommand::execute() failed: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '36-0' for key 'PRIMARY'. The SQL statement executed was: INSERT INTO tb_profile_fill VALUES (36,0).
+in D:\xampp\htdocs\milk\protected\controllers\DataController.php (497)
+in D:\xampp\htdocs\milk\index.php (13)
+2015/08/03 09:58:01 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '36-0' for key 'PRIMARY'. The SQL statement executed was: INSERT INTO tb_profile_fill VALUES (36,0)' in D:\xampp\htdocs\Yii\framework\db\CDbCommand.php:358
+Stack trace:
+#0 D:\xampp\htdocs\milk\protected\controllers\DataController.php(497): CDbCommand->execute()
+#1 D:\xampp\htdocs\Yii\framework\web\actions\CInlineAction.php(49): DataController->actionFillingAdd()
+#2 D:\xampp\htdocs\Yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#3 D:\xampp\htdocs\Yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#4 D:\xampp\htdocs\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#5 D:\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): CController->run('fillingadd')
+#6 D:\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('data/FillingAdd')
+#7 D:\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#8 D:\xampp\htdocs\milk\index.php(13): CApplication->run()
+#9 {main}
+REQUEST_URI=/milk/data/FillingAdd
+HTTP_REFERER=http://localhost/milk/Bud/fillingManager
+---

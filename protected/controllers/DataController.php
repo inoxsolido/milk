@@ -490,8 +490,8 @@ class DataController extends Controller
         {
             if (isset($_POST['pk1']) && isset($_POST['pk2']))
             {
-                $pk1 = $_POST['pk1'];
-                $pk2 = $_POST['pk2'];
+                $pk1 = intval($_POST['pk1']);
+                $pk2 = intval($_POST['pk2']);
 
                 $sql = "INSERT INTO tb_profile_fill VALUES ($pk1,$pk2)";
                 echo Yii::app()->db->createCommand($sql)->execute() ? 1 : 0;
@@ -1165,7 +1165,7 @@ class DataController extends Controller
                     $resultlv1 = TbAccount::model()->findAll("parent_acc_id IS NULL AND $in ORDER BY `acc_number1` ASC,`acc_number2` ASC,`acc_number3` ASC,`acc_number4` ASC ");
                     if (count($resultlv1))
                     {
-                        ?><ul><?php
+                        ?><ul class="checkbox-tree"><?php
                             foreach ($resultlv1 as $lv1)//level 1
                             {
                                 ?><li><?php
@@ -1286,11 +1286,12 @@ class DataController extends Controller
                     . "SELECT month_goal_id, `value`, version FROM tb_month_goal "
                     . "WHERE `year` = $year AND `user_id` = $user AND `division_id` = $div AND `version` = $max"; //เติม รหัสผู้ใช้แล้วก็ฝ่าย
             $resultBackup = Yii::app()->db->createCommand($sqlBackup)->execute();
-            
+            $transaction->commit();
             echo 'OK';
             return true;
         } catch (Exception $e)
         {
+            $transaction->rollback();
             echo 'FAIL';
         }
     }

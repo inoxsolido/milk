@@ -183,48 +183,59 @@ $(function () {
         target = $("#target").val();
         $(".page-warp").hide();
     });
-    $("#msubmit").click(function(){
+    $("#msubmit").click(function () {
         var ver = $("#iver").val();
-        if(ver = ""){
+        //alert(ver);
+        if (ver == "0") {
             alert("กรุณาเลือกเวอร์ชั่นก่อนตกลง");
             return false;
-        }else{//can do
+        } else {//can do
             $(".loading").show();
             $.ajax({
                 url: "../Data/AccVersion",
                 type: 'POST',
                 async: false,
-                data:{
+                data: {
                     year: $("#fstep").attr("year"),
                     ver: ver,
                     div: target
-                },success: function (data, textStatus, jqXHR) {
-                    if(typeof (data) == 'object'){
+                }, success: function (data, textStatus, jqXHR) {
+                    if (typeof (data) == 'object') {
                         //back to checkbox
-                        $("[href=#previous]").click();
+                        $("#fstep").steps("previous");
                         //checkbox
                         var temp = data;
                         temp.forEach(function (entry) {
                             var chk = $("input[name='" + entry.acc_id + "']");
-                            if(chk != null)
+                            if (chk != null){
                                 chk.prop("checked", true).change();
+                                console.log("chk");
+                            }
                         });
                         //next to input
-                        $("[href=#next]").click();
-                        temp.forEach(function (entry) {
-                            var txtbox = $("input[name='acc-" + entry.acc_id + "']");
-                            if(txtbox != null)
-                                txtbox.val(entry.value);
-                        });
-                    }else{
+                        //$("[href=#next]").click();
+                        $("#fstep").steps("next");
+                        function filltxtbox(temp)
+                        {
+                            temp.forEach(function (entry) {
+                                var txtbox = $("input[name='acc-" + entry.acc_id + "']");
+                                if (txtbox != null){
+                                    txtbox.val(entry.value);
+                                    console.log("txtbox");
+                                }
+                            });
+                        }
+                        
+                        setTimeout(filltxtbox(temp), 1000);
+                    } else {
                         alert("เกิดข้อผิดพลาดระหว่างการเรียกเวอร์ชั่นก่อนหน้า");
                     }
-                },dataType: 'JSON'
+                }, dataType: 'JSON'
             });
             $(".loading").hide();
         }
     });
-    
+
     ReqEmpty();
 });
 function OnStepChangingCallback(event, currentIndex, newIndex)
