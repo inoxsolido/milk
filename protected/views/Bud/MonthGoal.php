@@ -8,21 +8,63 @@
 <style>
     .center{
         margin: auto 5px 0px auto;
-        width: 100%;
+
         hieght: 100%;
-        border-bottom-width: 3px;
         padding: 10px;
         text-align: center;
+    }
+    .menu-edit{
         border:2px solid #FF6600;
+        border-bottom-width: 3px;
     }
     .text-danger{
         color: #a80026 !important;
         display: inline !important;
     }
-    
-</style>
+    .page-warp{
+        position: fixed;    
+        top: 0px;     
+        left: 0px;    
+        background: #99ccff;     
+        width: 100%;     
+        height: 100%;     
+        opacity: 1;     
+        filter: alpha(opacity=100);     
+        -moz-opacity: 1;    
+        z-index: 799;   
+    }
+    .in-page-warp{
+        width: 50%;
+        margin: 10% auto;
+        background-color: white;
+        opacity: 1;     
+        filter: alpha(opacity=100);     
+        -moz-opacity: 1;  
+        z-index: 800;
 
-<div class="btn-group btn-group-justified menu">
+    }
+
+</style>
+<div class="page-warp">
+    <div class="center in-page-warp form-inline" >
+        <div class='form-group-sm'>
+            <label>ข้อมูลนี้เป็นของ:&nbsp;&nbsp;</label><select id='target' class='form-control'>
+                <?php
+                if (!empty($targets)):
+                    foreach ($targets AS $target):
+                        ?>
+                        <option value="<?= $target['division_id'] ?>"><?= $target['division_name'] ?></option>
+                        <?php
+                    endforeach;
+                else:
+                    ?>
+                    <option value='0'>ไม่มีแผนก/กอง/ฝ่าย ที่คุณสามารถกรอกได้</option>
+                <?php endif; ?>
+            </select>&nbsp;&nbsp;&nbsp;<a class='btn btn-sm btn-success' style='width: 120px' id='btntarget'><b>ตกลง</b></a>
+        </div>
+    </div>
+</div>
+<div class="btn-group btn-group-justified menu menu-edit">
     <a class="btn btn-warning btn-sm" id='verm'  onclick="mver();">เลือกเวอร์ชั่นก่อนหน้า</a>
 </div>
 <div id="mver" class="form-inline center" style="display: none">

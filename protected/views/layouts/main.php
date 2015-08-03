@@ -93,7 +93,7 @@
                 width: 100%;
                 left: 0;
                 top: 0;
-                z-index: 110;
+                z-index: 800;
                 border-top: 0;
             }
             .menu, .stickmenu{
@@ -101,7 +101,7 @@
                 width: 100%;
                 left: 0;
                 top: 52px;
-                z-index: 100;
+                z-index: 790;
                 border-top: 0;
             }
             #dummy{

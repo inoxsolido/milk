@@ -34,7 +34,8 @@ class DataController extends Controller
             if ($result == 1)
             {
                 echo 'ok';
-            } else
+            }
+            else
             {
                 echo 'not ok';
             }
@@ -94,7 +95,8 @@ class DataController extends Controller
                         {
                             ?><button class='btn btn-sm btn-danger deactive' data-id="<?= $user['user_id'] ?>">ยกเลิก <span class='glyphicon glyphicon-remove'></span></button>
                                 <?php
-                            } else if ($user['enable'] == 0)
+                            }
+                            else if ($user['enable'] == 0)
                             {
                                 ?><button class='btn btn-sm btn-success active' data-id="<?= $user['user_id'] ?>">เปิดใช้ <span class='glyphicon glyphicon-ok'></span></button><?php } ?>
                     </td>
@@ -231,7 +233,8 @@ class DataController extends Controller
                         {
                             ?><button class='btn btn-sm btn-danger deactive' data-id="<?= $row['division_id'] ?>">ยกเลิก <span class='glyphicon glyphicon-remove'></span></button>
                                 <?php
-                            } else if ($row['enable'] == 0)
+                            }
+                            else if ($row['enable'] == 0)
                             {
                                 ?><button class='btn btn-sm btn-success active' data-id="<?= $row['division_id'] ?>">เปิดใช้ <span class='glyphicon glyphicon-ok'></span></button><?php } ?>
                     </td>
@@ -344,7 +347,8 @@ class DataController extends Controller
                 $model->parent_division = $parent;
                 $model->isposition = $ispos ? 1 : 0;
                 echo $model->save() ? 1 : 0;
-            } else
+            }
+            else
                 echo 0;
         }
     }
@@ -563,7 +567,8 @@ class DataController extends Controller
                     <?php
                 }
             }
-        } else
+        }
+        else
             echo 'invalid request';
     }
 
@@ -762,7 +767,8 @@ class DataController extends Controller
                         }
                     }
                 }
-            } else
+            }
+            else
                 echo 'invalid id';
         }
     }
@@ -770,7 +776,7 @@ class DataController extends Controller
     // AccountYearAssign
     public function actionFillAccYearEmpty()
     {
-        ?><div class="swMain"><?php
+        ?><div class="swMain2"><?php
         $group = TbGroup::model()->findAll(array('order' => "group_id ASC"));
         $i = 1;
         ?><ul><!--Stepbar--><?php
@@ -789,7 +795,7 @@ class DataController extends Controller
             foreach ($group as $g)//group
             {
                 ?><div id="step-<?= $i++ ?>">
-                    <h3 class="StepTitle">บัญชีในประเภท<?= $g->group_name ?></h3>
+                    <h2 class="StepTitle">บัญชีในประเภท<?= $g->group_name ?></h2>
                     <ul class="checkbox-tree">
                         <li><label><input type="checkbox" name="selall"/>เลือกทั้งหมด</label>
                             <?php
@@ -857,12 +863,14 @@ class DataController extends Controller
                 if (count($result))
                 {
                     echo json_encode($result);
-                } else
+                }
+                else
                 {
                     $year += 543;
                     echo "ไม่พบบัญชีในปีที่ $year";
                 }
-            } else
+            }
+            else
             {
                 echo 'variable year not available';
             }
@@ -872,7 +880,7 @@ class DataController extends Controller
         {
             $sql = "SELECT DISTINCT(`year`) FROM `tb_acc_year` ORDER BY `Year` ASC";
             $result = Yii::app()->db->createCommand($sql)->queryAll();
-            ?><option value=0>เลือกปีที่จะแก้ไข</option><?php
+            ?><option value=0>เลือกปี</option><?php
             foreach ($result as $row)
             {
                 ?><option value="<?= $row['year'] + 543 ?>">พ.ศ. <?= $row['year'] + 543 ?></option><?php
@@ -891,7 +899,8 @@ class DataController extends Controller
                 if (!$model->isNewRecord)
                 {
                     echo 'การบันทึกล้มเหลว';
-                } else
+                }
+                else
                 {
                     $model->year = $year;
                     $model->acc_id = intval($row);
@@ -904,7 +913,8 @@ class DataController extends Controller
             }
 
             echo 'ok';
-        } else
+        }
+        else
             echo 'year or fdata is not available';
     }
 
@@ -923,14 +933,16 @@ class DataController extends Controller
                 }
                 $sql = substr($sql, 0, -1);
                 $sql .= ';';
-            } else
+            }
+            else
                 $sql = "DELETE FROM `tb_acc_year` WHERE `year` = $year;";
             $result = Yii::app()->db->createCommand($sql)->execute();
             if ($result)
                 echo 'ok';
             else
                 echo isset($_POST['fdata']) ? 'การบันทึกข้อมูลล้มเหลว' : 'การลบข้อมูลล้มเหลว';
-        } else
+        }
+        else
             echo 'year  is not available';
     }
 
@@ -948,7 +960,8 @@ class DataController extends Controller
                     'lname' => $model->lname,
                 ];
                 echo json_encode($x);
-            } else
+            }
+            else
             {
                 echo 'ไม่มีผู้ใช้นี้ในระบบ';
             }
@@ -974,10 +987,314 @@ class DataController extends Controller
             if ($result)
             {
                 echo 'ok';
-            } else
-                echo "update error";
-        } else
-            echo 'some resource missing';
+            }
+            else
+                echo "การเปลี่ยนแปลงข้อมูลล้มเหลว: ข้อมูลเหมือนใหม่กับข้อมูลเดิม";
+        }
+        else
+            echo 'การเปลี่ยนแปลงข้อมูลล้มเหลว';
+    }
+
+    //month goal
+    public function actionFillVersionSelector()
+    {
+        if (isset($_POST['year']))
+        {
+            $year = $_POST['year']-543;
+            $user = Yii::app()->user->userId;
+            $div = Yii::app()->user->userDiv;
+            $versions = Yii::app()->db->createCommand("SELECT `version` FROM (tb_acc_year NATURAL JOIN tb_month_goal g)")->queryAll();
+            $versions = Yii::app()->db->createCommand()->selectDistinct("tb_version.version")
+                    ->from("tb_month_goal")->join("tb_version", "tb_month_goal.month_goal_id = tb_version.month_goal_id")
+                    ->where("user_id = $user AND division_id = $div AND year = $year")->queryAll();
+            if (count($versions))
+            {
+                ?><option value="0">เลือกเวอร์ชั่น</option><?php
+                foreach ($versions as $ver)
+                {
+                    ?><option value="<?= $ver['version'] ?>"><?= $ver['version'] ?></option><?php
+                }
+            }
+            else
+            {
+                ?><option value="0">--ไม่มีเวอร์ชั่นสำหรับปีนี้--</option><?php
+            }
+        }
+    }
+
+    public function actionFillMonthGoalAccSelect()
+    {
+        if (!isset($_POST["year"]))
+        {
+            echo "error variable missing !";
+            return FALSE;
+        }
+        $year = $_POST['year'] - 543;
+        $accinyear = Yii::app()->db->createCommand()->select("acc_id")->from("tb_acc_year")->where("year = $year")->queryAll();
+        if (empty($accinyear))
+        {
+            echo 'invalid parameter';
+            return FALSE;
+        }
+        $in = "AND acc_id IN (";
+        foreach ($accinyear AS $acc)
+        {
+            $in .= $acc['acc_id'] . ', ';
+        }
+        $in = substr($in, 0, -2);
+        $in .= ")";
+        ?><div class="swMain2"><?php
+            $group = TbGroup::model()->findAll(array('order' => "group_id ASC"));
+            $i = 1;
+            ?><ul><!--Stepbar--><?php
+                foreach ($group as $g)
+                {
+                    ?><li><a href="#step-<?= $i++ ?>">
+                            <span class="stepDesc">
+                                ประเภท<?= $g->group_name ?><br />
+                            </span>
+                        </a>
+                    </li><?php
+                }
+                ?></ul><?php
+            $i = 1;
+            //main
+            foreach ($group as $g)//group
+            {
+                ?><div id="step-<?= $i++ ?>">
+                    <h2 class="StepTitle">บัญชีในประเภท<?= $g->group_name ?></h2>
+                    <ul class="checkbox-tree">
+                        <li><label><input type="checkbox" name="selall"/>เลือกทั้งหมด</label>
+                            <?php
+                            $resultlv1 = TbAccount::model()->findAll("parent_acc_id IS NULL AND group_id = $g->group_id $in");
+                            if (count($resultlv1))
+                            {
+                                ?><ul><?php
+                                        foreach ($resultlv1 as $lv1)//level 1
+                                        {
+                                            ?><li><?php
+                                            ?><label><input type="checkbox" name="<?= $lv1->acc_id ?>"/><?= $lv1->acc_name ?></label><?php
+                                            $resultlv2 = TbAccount::model()->findAll(array('condition' => "parent_acc_id = $lv1->acc_id $in", 'order' => "acc_name ASC"));
+                                            if (count($resultlv2))
+                                            {
+                                                ?><ul><?php
+                                                        foreach ($resultlv2 as $lv2)//level 2
+                                                        {
+                                                            ?><li><?php
+                                                            ?><label><input type="checkbox" name="<?= $lv2->acc_id ?>"/><?= $lv2->acc_name ?></label><?php
+                                                            $resultlv3 = TbAccount::model()->findAll(array('condition' => "parent_acc_id = $lv2->acc_id $in", 'order' => "acc_name ASC"));
+                                                            if (count($resultlv3))
+                                                            {
+                                                                ?><ul><?php
+                                                                        foreach ($resultlv3 as $lv3)//level 3
+                                                                        {
+                                                                            ?><li><?php
+                                                                            ?><label><input type="checkbox" name="<?= $lv3->acc_id ?>"/><?= $lv3->acc_name ?></label><?php
+                                                                            $resultlv4 = TbAccount::model()->findAll(array('condition' => "parent_acc_id = $lv3->acc_id $in", 'order' => "acc_name ASC"));
+                                                                            if (count($resultlv4))
+                                                                            {
+                                                                                ?><ul><?php
+                                                                                        foreach ($resultlv4 as $lv4)
+                                                                                        {
+                                                                                            ?><li><?php
+                                                                                            ?><label><input type="checkbox" name="<?= $lv4->acc_id ?>"/><?= $lv4->acc_name ?></label><?php
+                                                                                            ?></li><?php
+                                                                                    }
+                                                                                    ?></ul><?php
+                                                                                }
+                                                                                ?></li><?php
+                                                                        }
+                                                                        ?></ul><?php
+                                                                }
+                                                                ?></li><?php
+                                                        }
+                                                        ?></ul><?php
+                                                }
+                                                ?></li><?php
+                                        }
+                                        ?></ul><?php
+                                }
+                                ?></li>
+                    </ul><?php ?></div><?php
+            }//foreach group end
+            ?></div><?php
+        }
+
+        public function actionFillMonthGoalEmpty()
+        {
+            if (!isset($_POST['accarr']) || !is_array($_POST['accarr']))
+            {
+                echo 'parameter invalid';
+                return FALSE;
+            }
+            $checkbox = $_POST['accarr'];
+            $in = "acc_id IN(";
+            foreach ($checkbox as $ch)
+            {
+                $in .= "$ch, ";
+            }
+            $in = substr($in, 0, -2);
+            $in .= ")";
+            //echo $in; return;
+            //$resultlv1 = TbAccount::model()->findAllSql("parent_acc_id IS NULL ORDER BY `acc_number1` ASC,`acc_number2` ASC,`acc_number3` ASC,`acc_number4` ASC ");
+            //print_r($resultlv1);return;
+            ?>
+
+
+        <div class="swMain wizard-2"><?php
+            $month = TbMonth::model()->findAll(array('order' => "`quarter` ASC,`month_id` ASC"));
+            $i = 1;
+            ?><ul><!--Stepbar--><?php
+                foreach ($month as $m)
+                {
+                    ?><li><a href="#step-<?= $i++ ?>">
+                            <span class="stepDesc">
+                                <?= $m->month_name ?><br />
+                            </span>
+                        </a>
+                    </li><?php
+                }
+                ?></ul><?php
+            $i = 1;
+            //main
+            foreach ($month as $m)//group
+            {
+                ?><div id="step-<?= $i++ ?>">
+                    <h3 class="StepTitle">กรอกงบประมาณสำหรับเดือน<?= $m->month_name ?></h3>
+                    <?php
+                    $resultlv1 = TbAccount::model()->findAll("parent_acc_id IS NULL AND $in ORDER BY `acc_number1` ASC,`acc_number2` ASC,`acc_number3` ASC,`acc_number4` ASC ");
+                    if (count($resultlv1))
+                    {
+                        ?><ul><?php
+                            foreach ($resultlv1 as $lv1)//level 1
+                            {
+                                ?><li><?php
+                                ?><label><?= $lv1->acc_name ?> </label><?php if (!$this->hasChild($lv1->acc_id)): ?>:&nbsp;<input type="text" name="acc-<?= $lv1->acc_id ?>" month="<?= $m->month_id ?>" /><span class="text-danger err"></span><?php else: ?>&nbsp;<a href="#" class="sh"><i class="glyphicon glyphicon-minus"></i></a><?php
+                                    endif;
+                                    $resultlv2 = TbAccount::model()->findAll(array('condition' => "parent_acc_id = $lv1->acc_id AND $in", 'order' => "`acc_number1` ASC,`acc_number2` ASC,`acc_number3` ASC,`acc_number4` ASC "));
+                                    if (count($resultlv2))
+                                    {
+                                        ?><ul><?php
+                                                foreach ($resultlv2 as $lv2)//level 2
+                                                {
+                                                    ?><li><?php
+                                                    ?><label><?= $lv2->acc_name ?> </label><?php if (!$this->hasChild($lv2->acc_id)): ?>:&nbsp;<input type="text" name="acc-<?= $lv2->acc_id ?>" month="<?= $m->month_id ?>" /><span class="text-danger err"></span><?php else: ?>&nbsp;<a href="#" class="sh"><i class="glyphicon glyphicon-minus"></i></a><?php
+                                                    endif;
+                                                    $resultlv3 = TbAccount::model()->findAll(array('condition' => "parent_acc_id = $lv2->acc_id AND $in", 'order' => "`acc_number1` ASC,`acc_number2` ASC,`acc_number3` ASC,`acc_number4` ASC "));
+                                                    if (count($resultlv3))
+                                                    {
+                                                        ?><ul><?php
+                                                                foreach ($resultlv3 as $lv3)//level 3
+                                                                {
+                                                                    ?><li><?php
+                                                                    ?><label><?= $lv3->acc_name ?> </label><?php if (!$this->hasChild($lv3->acc_id)): ?>:&nbsp;<input type="text" name="acc-<?= $lv3->acc_id ?>" month="<?= $m->month_id ?>" /><span class="text-danger err"></span><?php else: ?>&nbsp;<a class="sh"><a href="#" class="sh"><i class="glyphicon glyphicon-minus"></i></a><?php
+                                                                    endif;
+                                                                    $resultlv4 = TbAccount::model()->findAll(array('condition' => "parent_acc_id = $lv3->acc_id AND $in", 'order' => "`acc_number1` ASC,`acc_number2` ASC,`acc_number3` ASC,`acc_number4` ASC "));
+                                                                    if (count($resultlv4))
+                                                                    {
+                                                                        ?><ul><?php
+                                                                                    foreach ($resultlv4 as $lv4)
+                                                                                    {
+                                                                                        ?><li><?php
+                                                                                        ?><label><?= $lv4->acc_name ?> </label><?php if (!$this->hasChild($lv4->acc_id)): ?>:&nbsp;<input type="text" name="acc-<?= $lv4->acc_id ?>" month="<?= $m->month_id ?>" /><span class="text-danger err"></span><?php else: ?>&nbsp;<a href="#" class="sh"><i class="glyphicon glyphicon-minus"></i></a><?php endif;
+                                                                                        ?></li><?php
+                                                                                    }
+                                                                                    ?></ul><?php
+                                                                            }
+                                                                            ?></li><?php
+                                                                    }
+                                                                    ?></ul><?php
+                                                        }
+                                                        ?></li><?php
+                                                }
+                                                ?></ul><?php
+                                        }
+                                        ?></li><?php
+                                }
+                                ?></ul><?php
+                        }
+                        ?>
+                        <?php ?></div><?php
+                }//foreach group end
+                ?></div>
+
+        <?php
+    }
+
+    private function hasChild($me)
+    {
+        $result = TbAccount::model()->findAll("`parent_acc_id` = $me");
+        return (count($result)) != 0;
+    }
+
+
+    public function actionAddMonthGoal()
+    {
+        if (!isset($_POST['year']) || !isset($_POST['fdata']) || !is_array($_POST['fdata']) || !isset($_POST['target']) || empty($_POST['target']))
+        {
+            echo 'invalid parameter';
+            return fasle;
+        }
+        $year = $_POST['year'] - 543;
+        $form = $_POST['fdata'];
+
+        $user = Yii::app()->user->userId;
+        $div = $_POST['target'];
+
+        //find max versions
+        //"SELECT MAX(version) AS mversion FROM `tb_month_goal` NATURAL JOIN `tb_acc_year` WHERE `tb_acc_year`.`year` = $year ";
+        //if $max is empty : first
+        $resultResource = Yii::app()->db->createCommand()
+                        ->select("MAX(version) AS mversion, MAX(approve1_lv) AS mapprove1, MAX(approve2_lv) AS mapprove2")
+                        ->from("tb_month_goal")->naturalJoin("tb_acc_year")
+                        ->where("tb_acc_year.`year` = $year AND `user_id` = $user AND `division_id` = $div ")->queryRow();
+        //print_r($resultResource);
+        $approve1 = 0;
+        $approve2 = 0;
+        $approve1 = intval($approve1);
+        $approve2 = intval($approve2);
+        $max = 1;
+        
+        if (!empty($resultResource))//if exist go backup
+        {// has been completed : backup
+            echo 'Resource not empty';
+            $approve1 = intval($resultResource['mapprove1']);
+            $approve2 = intval($resultResource['mapprove2']);
+            $max = intval($resultResource['mversion'])+1;
+            //echo!$this->backupmonthGoal($year, $user, $div, $max) ? "first backup fail" : "";
+        }
+        //echo ($approve1) .' xx '.($approve2). ' xx '.($max);
+        //print_r($form);return;
+        //update or insert data
+        foreach ($form AS $row)
+        {
+            //check old record
+            $accid = intval($row['accid']);
+            $value = floatval($row['value']);
+            $month = intval($row['month']);
+            $sqlInsert = "INSERT INTO tb_month_goal (acc_id, `value`, month_id, `year`, user_id, division_id, `version`, approve1_lv, approve2_lv) "
+                    . "VALUES ('$accid', $value, $month, $year, $user, $div, $max, $approve1, $approve2) "
+                    . "ON DUPLICATE KEY UPDATE `value` = $value, version = $max; ";
+            $resultInsert = Yii::app()->db->createCommand($sqlInsert)->execute();
+            if (empty($resultInsert))
+            {
+                echo 'Insert fail';
+                return false;
+            }
+           
+        } 
+        echo $this->backupMonthGoal($year, $user, $div, $max) ? "OK" : 'fail';
+        return true;
+    }
+
+    private function backupMonthGoal($year, $user, $div, $ver)
+    {
+        $sqlBackup = "UPDATE tb_month_goal SET version = $ver WHERE `year` = $year AND user_id = $user AND division_id = $div;"//update version
+                . "INSERT INTO tb_version (month_goal_id, `value`, version) "
+                . "SELECT month_goal_id, `value`, version FROM tb_month_goal "
+                . "WHERE `year` = $year AND `user_id` = $user AND `division_id` = $div AND `version` = $ver"; //เติม รหัสผู้ใช้แล้วก็ฝ่าย
+        $resultBackup = Yii::app()->db->createCommand($sqlBackup)->execute();
+        return $resultBackup;
     }
 
 }
