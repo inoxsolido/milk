@@ -433,11 +433,11 @@ class DataController extends Controller
             $sql = "SELECT division_id as div_id, division_name as div_name, div_par_name "
                     . "FROM tb_division "
                     . "LEFT JOIN (SELECT division_id as par_id, division_name as div_par_name FROM tb_division) p "
-                    . "ON tb_division.parent_division = p.par_id ";
+                    . "ON tb_division.parent_division = p.par_id ORDER BY tb_division.erp_id";
             $result = Yii::app()->db->createCommand($sql)->queryAll();
             foreach ($result as $row)
             {
-                ?><option value="<?= $row['div_id'] ?>"><?= $row['div_name'] . " " . $row['div_par_name'] ?></option><?php
+                ?><option value="<?= $row['div_id'] ?>"><?= $row['div_par_name'] . " -- " .  $row['div_name'] ?></option><?php
             }
         }
     }
@@ -450,7 +450,7 @@ class DataController extends Controller
                     . "FROM tb_division "
                     . "LEFT JOIN (SELECT division_id as par_id, division_name as div_par_name FROM tb_division) p "
                     . "ON tb_division.parent_division = p.par_id "
-                    . "WHERE division_id NOT IN (SELECT division_id FROM tb_profile_fill)";
+                    . "WHERE division_id NOT IN (SELECT division_id FROM tb_profile_fill) ORDER BY tb_division.erp_id";
             $result = Yii::app()->db->createCommand($sql)->queryAll();
             foreach ($result as $row)
             {
@@ -473,7 +473,7 @@ class DataController extends Controller
             $result = Yii::app()->db->createCommand($sql)->queryAll();
             foreach ($result as $row)
             {
-                ?><option value="<?= $row['div_id'] ?>"><?= $row['div_name'] . " " . $row['div_par_name'] ?></option><?php
+                ?><option value="<?= $row['div_id'] ?>"><?= $row['div_par_name'] . " -- " .  $row['div_name'] ?></option><?php
                 }
             }
         }
