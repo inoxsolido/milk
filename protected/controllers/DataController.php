@@ -454,7 +454,7 @@ class DataController extends Controller
             $result = Yii::app()->db->createCommand($sql)->queryAll();
             foreach ($result as $row)
             {
-                ?><option value="<?= $row['div_id'] ?>"><?= $row['div_name'] . " " . $row['div_par_name'] ?></option><?php
+                ?><option value="<?= $row['div_id'] ?>"><?= $row['div_par_name'] . " -- " .  $row['div_name'] ?></option><?php
             }
         }
     }
