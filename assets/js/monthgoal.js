@@ -59,7 +59,7 @@ $(function () {
             $(".swMain2").smartWizard("enableFinish", false);
     }
 
-    
+
 
     function chkinputasdecimal(input) {
         var val = input.val();
@@ -103,7 +103,7 @@ $(function () {
                 return false;
             }
         });
-        if(!e){
+        if (!e) {
             $(".loading").hide();
             return false;
         }
@@ -120,11 +120,11 @@ $(function () {
                     target: target
                 }, success: function (data, textStatus, jqXHR) {
                     $(".loading").hide();
-                    if(data == "OK"){
+                    if (data == "OK") {
                         alert("การบันทึกสำเร็จ");
                         window.location.reload();
                         return true;
-                    }else{
+                    } else {
                         alert("การบันทึกล้มเหลว กรุณาลองใหม่ ");
                         return false;
                     }
@@ -135,15 +135,16 @@ $(function () {
             alert("serializaData has fail");
         }
     }
-    function ReqVersion(){
+    function ReqVersion() {
         $(".loading").show();
         $.ajax({
             url: "../Data/FillVersionSelector",
             type: 'POST',
             async: false,
-            data:{
-                year: $("#iyear").val()
-            },success: function (data, textStatus, jqXHR) {
+            data: {
+                year: $("#iyear").val(),
+                div: target
+            }, success: function (data, textStatus, jqXHR) {
                 $("#iver").html(data);
             }
         });
@@ -159,6 +160,15 @@ $(function () {
         enableKeyNavigation: false,
         enableAllSteps: false,
         titleTemplate: "#title#",
+        labels: {
+            cancel: "Cancel",
+            current: "current step:",
+            pagination: "Pagination",
+            finish: "บันทึก",
+            next: "ถัดไป",
+            previous: "ย้อนกลับ",
+            loading: "Loading ..."
+        },
         onStepChanging: OnStepChangingCallback,
         onFinishing: OnFinishingCallback
     });
@@ -166,10 +176,10 @@ $(function () {
 
         chkinputasdecimal($(this));
     });
-    $("#iyear").change(function(){
+    $("#iyear").change(function () {
         ReqVersion();
     });
-    $("#btntarget").click(function(){
+    $("#btntarget").click(function () {
         target = $("#target").val();
         $(".page-warp").hide();
     });
@@ -238,6 +248,6 @@ function OnInputShowCallback() {
     else
         $(".swMain").smartWizard("enableFinish", false);
 }
-function OnInputFinish(){
-    $("##finish").click();
+function OnInputFinish() {
+    $("[href=#finish]").click();
 }

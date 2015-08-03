@@ -11015,3 +11015,14 @@ Stack trace:
 REQUEST_URI=/milk/Bud/MonthGoal
 in D:\xampp\htdocs\milk\protected\controllers\BudController.php (198)
 in D:\xampp\htdocs\milk\index.php (13)
+2015/08/03 04:35:22 [error] [php] Undefined variable: ver (D:\xampp\htdocs\milk\protected\controllers\DataController.php:1284)
+Stack trace:
+#0 D:\xampp\htdocs\Yii\framework\web\CController.php(286): DataController->runAction()
+#1 D:\xampp\htdocs\Yii\framework\web\CController.php(265): DataController->runActionWithFilters()
+#2 D:\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): DataController->run()
+#3 D:\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 D:\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#5 D:\xampp\htdocs\milk\index.php(13): CWebApplication->run()
+REQUEST_URI=/milk/Data/AddMonthGoal
+in D:\xampp\htdocs\milk\protected\controllers\DataController.php (1284)
+in D:\xampp\htdocs\milk\index.php (13)

@@ -998,15 +998,15 @@ class DataController extends Controller
     //month goal
     public function actionFillVersionSelector()
     {
-        if (isset($_POST['year']))
+        if (isset($_POST['year']) && isset($_POST['div']))
         {
-            $year = $_POST['year']-543;
+            $year = $_POST['year'] - 543;
             $user = Yii::app()->user->userId;
-            $div = Yii::app()->user->userDiv;
-            $versions = Yii::app()->db->createCommand("SELECT `version` FROM (tb_acc_year NATURAL JOIN tb_month_goal g)")->queryAll();
+            $div = $_POST['div'];
+            //$versions = Yii::app()->db->createCommand("SELECT `version` FROM (tb_acc_year NATURAL JOIN tb_month_goal g)")->queryAll();
             $versions = Yii::app()->db->createCommand()->selectDistinct("tb_version.version")
-                    ->from("tb_month_goal")->join("tb_version", "tb_month_goal.month_goal_id = tb_version.month_goal_id")
-                    ->where("user_id = $user AND division_id = $div AND year = $year")->queryAll();
+                            ->from("tb_month_goal")->join("tb_version", "tb_month_goal.month_goal_id = tb_version.month_goal_id")
+                            ->where("user_id = $user AND division_id = $div AND year = $year")->queryAll();
             if (count($versions))
             {
                 ?><option value="0">เลือกเวอร์ชั่น</option><?php
@@ -1227,10 +1227,9 @@ class DataController extends Controller
         return (count($result)) != 0;
     }
 
-
     public function actionAddMonthGoal()
     {
-        if (!isset($_POST['year']) || !isset($_POST['fdata']) || !is_array($_POST['fdata']) || !isset($_POST['target']) || empty($_POST['target']))
+        if (!isset($_POST['year']) || !isset($_POST['fdata']) || in_array(NULL, $_POST['fdata']) || !isset($_POST['target']) || empty($_POST['target']))
         {
             echo 'invalid parameter';
             return fasle;
@@ -1246,7 +1245,7 @@ class DataController extends Controller
         //if $max is empty : first
         $resultResource = Yii::app()->db->createCommand()
                         ->select("MAX(version) AS mversion, MAX(approve1_lv) AS mapprove1, MAX(approve2_lv) AS mapprove2")
-                        ->from("tb_month_goal")->naturalJoin("tb_acc_year")
+                        ->from("tb_month_goal")->join("tb_acc_year", "tb_month_goal.year = tb_acc_year.year AND tb_month_goal.acc_id = tb_acc_year.acc_id")
                         ->where("tb_acc_year.`year` = $year AND `user_id` = $user AND `division_id` = $div ")->queryRow();
         //print_r($resultResource);
         $approve1 = 0;
@@ -1254,37 +1253,46 @@ class DataController extends Controller
         $approve1 = intval($approve1);
         $approve2 = intval($approve2);
         $max = 1;
-        
-        if (!empty($resultResource))//if exist go backup
+
+        //echo in_array(NULL,$resultResource)?"TRUE":"FALSE";return;
+        if (!in_array(NULL, $resultResource))//if exist go backup
         {// has been completed : backup
-            echo 'Resource not empty';
+            //echo 'Resource not empty';
             $approve1 = intval($resultResource['mapprove1']);
             $approve2 = intval($resultResource['mapprove2']);
-            $max = intval($resultResource['mversion'])+1;
+            $max = intval($resultResource['mversion']) + 1;
             //echo!$this->backupmonthGoal($year, $user, $div, $max) ? "first backup fail" : "";
         }
         //echo ($approve1) .' xx '.($approve2). ' xx '.($max);
         //print_r($form);return;
         //update or insert data
-        foreach ($form AS $row)
+        $sqlBackup = "";
+        $transaction = Yii::app()->db->beginTransaction();
+        try
         {
-            //check old record
-            $accid = intval($row['accid']);
-            $value = floatval($row['value']);
-            $month = intval($row['month']);
-            $sqlInsert = "INSERT INTO tb_month_goal (acc_id, `value`, month_id, `year`, user_id, division_id, `version`, approve1_lv, approve2_lv) "
-                    . "VALUES ('$accid', $value, $month, $year, $user, $div, $max, $approve1, $approve2) "
-                    . "ON DUPLICATE KEY UPDATE `value` = $value, version = $max; ";
-            $resultInsert = Yii::app()->db->createCommand($sqlInsert)->execute();
-            if (empty($resultInsert))
+            foreach ($form AS $row)
             {
-                echo 'Insert fail';
-                return false;
+                //check old record
+                $accid = intval($row['accid']);
+                $value = floatval($row['value']);
+                $month = intval($row['month']);
+                $sqlInsert = "INSERT INTO tb_month_goal (acc_id, `value`, month_id, `year`, user_id, division_id, `version`, approve1_lv, approve2_lv) "
+                        . "VALUES ('$accid', $value, $month, $year, $user, $div, $max, $approve1, $approve2) "
+                        . "ON DUPLICATE KEY UPDATE `value` = $value, version = $max; ";
+                $resultInsert = Yii::app()->db->createCommand($sqlInsert)->execute();
             }
-           
-        } 
-        echo $this->backupMonthGoal($year, $user, $div, $max) ? "OK" : 'fail';
-        return true;
+            $sqlBackup = "UPDATE tb_month_goal SET version = $max WHERE `year` = $year AND user_id = $user AND division_id = $div;"//update version
+                    . "INSERT INTO tb_version (month_goal_id, `value`, version) "
+                    . "SELECT month_goal_id, `value`, version FROM tb_month_goal "
+                    . "WHERE `year` = $year AND `user_id` = $user AND `division_id` = $div AND `version` = $max"; //เติม รหัสผู้ใช้แล้วก็ฝ่าย
+            $resultBackup = Yii::app()->db->createCommand($sqlBackup)->execute();
+            
+            echo 'OK';
+            return true;
+        } catch (Exception $e)
+        {
+            echo 'FAIL';
+        }
     }
 
     private function backupMonthGoal($year, $user, $div, $ver)
