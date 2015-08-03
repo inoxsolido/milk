@@ -1304,5 +1304,24 @@ class DataController extends Controller
         $resultBackup = Yii::app()->db->createCommand($sqlBackup)->execute();
         return $resultBackup;
     }
+    
+    public function actionAccVersion(){
+        if(!(isset($_POST['year']) && isset($_POST['ver']) && isset($_POST['div'])))
+        {
+            echo 'invalid parameter';
+            return false;
+        }
+        //cast
+        $year = $_POST['year']-543;
+        $ver = $_POST['ver'];
+        $div = $_POST['div'];
+        $user = Yii::app()->user->UserId;
+        
+        $result = Yii::app()->db->createCommand()->select("acc_id, tb_version.value")
+                ->from("tb_version")->join("tb_month_goal", "tb_version.month_goal_id = tb_month_goal.month_goal_id")
+                ->where("acc_id in (SELECT acc_id FROM tb_acc_year WHERE tb_acc_year.year = $year) AND user_id = $user AND division_id = $div")
+                ->queryAll();
+        echo json_encode($result);
+    }
 
 }

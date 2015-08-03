@@ -183,6 +183,48 @@ $(function () {
         target = $("#target").val();
         $(".page-warp").hide();
     });
+    $("#msubmit").click(function(){
+        var ver = $("#iver").val();
+        if(ver = ""){
+            alert("กรุณาเลือกเวอร์ชั่นก่อนตกลง");
+            return false;
+        }else{//can do
+            $(".loading").show();
+            $.ajax({
+                url: "../Data/AccVersion",
+                type: 'POST',
+                async: false,
+                data:{
+                    year: $("#fstep").attr("year"),
+                    ver: ver,
+                    div: target
+                },success: function (data, textStatus, jqXHR) {
+                    if(typeof (data) == 'object'){
+                        //back to checkbox
+                        $("[href=#previous]").click();
+                        //checkbox
+                        var temp = data;
+                        temp.forEach(function (entry) {
+                            var chk = $("input[name='" + entry.acc_id + "']");
+                            if(chk != null)
+                                chk.prop("checked", true).change();
+                        });
+                        //next to input
+                        $("[href=#next]").click();
+                        temp.forEach(function (entry) {
+                            var txtbox = $("input[name='acc-" + entry.acc_id + "']");
+                            if(txtbox != null)
+                                txtbox.val(entry.value);
+                        });
+                    }else{
+                        alert("เกิดข้อผิดพลาดระหว่างการเรียกเวอร์ชั่นก่อนหน้า");
+                    }
+                },dataType: 'JSON'
+            });
+            $(".loading").hide();
+        }
+    });
+    
     ReqEmpty();
 });
 function OnStepChangingCallback(event, currentIndex, newIndex)
