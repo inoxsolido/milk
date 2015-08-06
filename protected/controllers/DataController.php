@@ -74,7 +74,7 @@ class DataController extends Controller
                     $sql .=" u.position_id = " . $stxt['pos'] . " AND";
                 $sql = substr($sql, 0, -3);
             }
-            echo $sql;
+            //echo $sql;
             $userinfo = Yii::app()->db->createCommand($sql)->queryAll();
 
             foreach ($userinfo as $user)
