@@ -120,7 +120,7 @@
                         <label for="div">สังกัด</label>
                         <select id='div'>
                             <?php foreach ($div as $row): ?>
-                                <option value="<?= $row['division_id'] ?>"><?= $row['division_name'] . " " . $row['par_name'] ?></option>
+                                <option value="<?= $row['division_id'] ?>"><?= $row['division_name']?></option>
                             <?php endforeach; ?>
                         </select>
                     </div>
@@ -128,7 +128,7 @@
                         <label for='dep'>แผนก/ตำแหน่งพิเศษ</label>
                         <select id='dep'>
                             <?php foreach ($dep as $row): ?>
-                                <option value="<?= $row['division_id'] ?>"><?= $row['division_name'] . " " . $row['par_name'] ?></option>
+                                <option value="<?= $row['division_id'] ?>"><?= $row['par_name'] ." -- ".$row['division_name']?></option>
                             <?php endforeach; ?>
                         </select>
                     </div>
@@ -196,7 +196,7 @@
                         <label for="div">สังกัด</label>
                         <select id='ediv'>
                             <?php foreach ($div as $row): ?>
-                                <option value="<?= $row['division_id'] ?>"><?= $row['division_name'] . " " . $row['par_name'] ?></option>
+                                <option value="<?= $row['division_id'] ?>"><?= $row['division_name']?></option>
                             <?php endforeach; ?>
                         </select>
                     </div>
@@ -204,7 +204,7 @@
                         <label for='dep'>แผนก/ตำแหน่งพิเศษ</label>
                         <select id='edep'>
                             <?php foreach ($dep as $row): ?>
-                                <option value="<?= $row['division_id'] ?>"><?= $row['division_name'] . " " . $row['par_name'] ?></option>
+                                <option value="<?= $row['division_id'] ?>"><?= $row['par_name'] ." -- ".$row['division_name']?></option>
                             <?php endforeach; ?>
                         </select>
                     </div>

@@ -89,9 +89,9 @@ class BudController extends Controller
             {
 
                 $sql = "SELECT division_id, d.division_name, parent_division, p.par_name FROM tb_division d "
-                        . "LEFT JOIN (SELECT division_id as ppar_id, division_name as par_name FROM tb_division) p ON d.parent_division = p.ppar_id";
-                $sqldiv = $sql . " WHERE isposition = 0 AND parent_division = 0";
-                $sqldep = $sql . " WHERE parent_division != 0";
+                        . "LEFT JOIN (SELECT division_id as ppar_id, division_name as par_name FROM tb_division) p ON d.parent_division = p.ppar_id ";
+                $sqldiv = $sql . " WHERE isposition = 0 AND parent_division = 0 ORDER BY d.erp_id ASC ";
+                $sqldep = $sql . " WHERE parent_division != 0 ORDER BY d.erp_id ASC ";
                 $div = Yii::app()->db->createCommand($sqldiv)->queryAll();
                 $dep = Yii::app()->db->createCommand($sqldep)->queryAll();
 
