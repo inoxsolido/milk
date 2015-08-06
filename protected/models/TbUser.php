@@ -63,16 +63,16 @@ class TbUser extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'user_id' => 'User',
+			'user_id' => 'รหัสสมาชิก',
 			'username' => 'Username',
 			'password' => 'Password',
-			'fname' => 'Fname',
-			'lname' => 'Lname',
-			'gender' => 'Gender',
-			'person_id' => 'Person',
-			'division_id' => 'Division',
-			'position_id' => 'Position',
-			'enable' => 'Enable',
+			'fname' => 'ชื่อ',
+			'lname' => 'นามสกุล',
+			'gender' => 'เพศ',
+			'person_id' => 'รหัสประจำตัวประชาชน',
+			'division_id' => 'รหัสฝ่าย',
+			'position_id' => 'รหัสตำแหน่ง',
+			'enable' => 'กำหนดให้ใช้งาน',
 		);
 	}
 

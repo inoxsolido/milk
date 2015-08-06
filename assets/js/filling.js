@@ -78,8 +78,8 @@ $(function () {
             async: false,
             type: 'POST',
             data: {
-                pk1: $("#editown").val(),
-                pk2: $("#edittar").val()
+                pk1: $("#addown").val(),
+                pk2: $("#addtar").val()
             },
             success: function (data, textStatus, jqXHR) {
                 if (data == '1') {

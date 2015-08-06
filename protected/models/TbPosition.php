@@ -50,8 +50,8 @@ class TbPosition extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'position_id' => 'Position',
-			'position_name' => 'Position Name',
+			'position_id' => 'รหัสตำแหน่ง',
+			'position_name' => 'ชื่อตำแหน่ง',
 		);
 	}
 

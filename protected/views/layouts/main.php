@@ -15,20 +15,57 @@
         <link rel="stylesheet" href="<?= Yii::app()->request->baseUrl ?>/assets/css/submenu.css">
         <script src="<?= Yii::app()->request->baseUrl; ?>/assets/js/submenu.js"></script>
         <script type="text/javascript">
-            $(function(){
+            $(function () {
                 $("div.loading").hide();
+                /*var stickyNavTop;
+                 if($('.navbar').length)
+                 stickyNavTop = $('.navbar').offset().top;
+                 
+                 
+                 var stickyMenuTop;
+                 if($('.menu').length)
+                 stickyMenuTop = $('.menu').offset().top;
+                 
+                 var stickyNav = function () {
+                 if(!$('.navbar').length)return;
+                 var scrollTop = $(window).scrollTop();
+                 if (scrollTop > stickyNavTop) {
+                 $('.navbar').addClass('sticky');
+                 } else {
+                 $('.navbar').removeClass('sticky');
+                 }
+                 };
+                 var stickyMenu = function () {
+                 if(!$('.menu').length)return;
+                 var scrollTop = $(window).scrollTop();
+                 if (scrollTop > stickyMenuTop-50) {
+                 $('.menu').addClass('stickmenu');
+                 } else {
+                 $('.menu').removeClass('stickmenu');
+                 }
+                 };
+                 stickyNav();
+                 stickyMenu();
+                 
+                 $(window).scroll(function () {
+                 if($('.navbar').length)
+                 stickyNav();
+                 if($('.menu').length)
+                 stickyMenu();
+                 });
+                 */
             });
         </script>
         <style type="text/css">
-            #menu{
-                margin-bottom: -21px;
+            #menu > nav{
+                margin-bottom: 0px;
             }
             div#content{
                 position: relative;
                 min-height: 100%;
                 height: auto !important;
                 height: 100%;
-                margin-bottom: -30px;
+                /*margin-bottom: -40px;*/
             }
             .row{
                 margin-right:0px;
@@ -36,21 +73,40 @@
             div#footer{
                 height:40px;
                 width:100%;
+                bottom: 0px;
 
             }
             div.loading{
-                    width: 150px;
-                    height: 25px;
-                    position: absolute;
-                    left: 50%;
-                    top: 50%; 
-                    margin-left: -75px;
-                    margin-top: -12.5px;
-                    background-color:white;
-                    text-align: center;
-                    border: 2px solid black;
-                    box-shadow: 2px 2px 2px 10px black;
-                    z-index: 5000;
+                position: fixed;    
+                top: 0px;     
+                left: 0px;    
+                background: #ccc;     
+                width: 100%;     
+                height: 100%;     
+                opacity: .75;     
+                filter: alpha(opacity=75);     
+                -moz-opacity: .75;    
+                z-index: 2000;    
+                background: #fff url("<?= Yii::app()->request->baseUrl ?>/images/loading.gif" ) 50% 50% no-repeat;  
+            }
+            .sticky {
+                position: fixed;
+                width: 100%;
+                left: 0;
+                top: 0;
+                z-index: 800;
+                border-top: 0;
+            }
+            .menu, .stickmenu{
+                position: fixed;
+                width: 100%;
+                left: 0;
+                top: 52px;
+                z-index: 790;
+                border-top: 0;
+            }
+            #dummy{
+                height: 83.5px;
             }
         </style>
 
@@ -59,7 +115,8 @@
     </head>
 
     <body>
-        <div id="menu">
+        <div id="dummy"></div>
+        <div id="menu" class="sticky">
             <nav class="navbar navbar-inverse top-navbar" role="navigation">
                 <div class="container-fluid">
                     <!-- Brand and toggle get grouped for better mobile display -->
@@ -76,8 +133,8 @@
                         <?php
                         $this->widget('zii.widgets.CMenu', array(
                             'items' => array(
-                                ['label' => 'กรอกงบประมาณ', 'url' => '#', 'visible' => Yii::app()->user->isDepartment],
-                                ['label' => 'ยืนยันคำขอ', 'url' => '#', 'visible' => Yii::app()->user->isDivision || Yii::app()->user->isAdmin],
+                                ['label' => 'กรอกงบประมาณ', 'url' => 'MonthGoal', 'visible' => (Yii::app()->user->isDepartment || Yii::app()->user->isDivision)],
+                                ['label' => 'ยืนยันคำขอ', 'url' => '#', 'visible' => (Yii::app()->user->isDivision || Yii::app()->user->isAdmin)],
                                 ['label' => 'สรุปผล', 'url' => '#', 'visible' => !Yii::app()->user->isGuest],
                                 ['label' => "จัดการบัญชี <i class='caret'></i>", 'url' => '#', 'visible' => Yii::app()->user->isAdmin,
                                     'linkOptions' => [
@@ -121,7 +178,11 @@
                                         'role' => 'button',
                                     ],
                                     'items' => [
-                                        ['label' => 'แก้ไขข้อมูลส่วนตัว', 'url' => '#', 'class' => 'dropdown-toggle', 'role' => 'menu'],
+                                        ['label' => 'แก้ไขข้อมูลส่วนตัว', 'url' => '#',
+                                            'linkOptions' => [
+                                                'id' => 'chinfo',
+                                            ]
+                                        ],
                                         ['label' => 'ออกจากระบบ', 'url' => 'logout'],
                                     ],
                                     'visible' => !Yii::app()->user->isGuest
@@ -138,16 +199,57 @@
             </nav>
 
         </div><!-- mainmenu -->
-        <?php echo $content; ?>
+        <div id="content" style='/*height:600px !important;*/ overflow:auto;'><?php echo $content; ?></div>
         <div class="clear"></div>
-
-        <div id="footer" style="background-color:#afd9ee; opacity: 50%;clear: both; z-index:-1;" class="col-lg-12">
+        <div id="footer" style="background-color:#afd9ee; opacity: 50%;">
             <div   style="text-align: center;">
                 Copyright &copy; Mr.Ritthichai Skulthong and Mr.Thanakhan Pariput 
                 <br>All Rights Reserved.<br/>
 
             </div><!-- footer -->
         </div>
-        <div class="loading">loading ...</div>
+        <div class="loading"></div>
+        <div id='mchinfo' class="modal fade" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">เปลี่ยนแปลงข้อมูลส่วนตัว</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form id='chinfo' class='form-horizontal'>
+                            <div class='form-group-sm'>
+                                <label for='chname' class="control-label">ชื่อจริง</label>
+                                <input type='text' class='form-control' id='chname' name='chname'/>
+                                <span style='color: red;font-weight: bold' class='err'></span>
+                            </div>
+                            <div class='form-group-sm'>
+                                <label for='chlname' class="control-label">นามสกุล</label>
+                                <input type='text' class='form-control' id='chlname' name='chlname'/>
+                                <span style='color: red;font-weight: bold' class='err'></span>
+                            </div>
+                            <div class='form-group-sm'>
+                                <label for='chpwd1' class="control-label">รหัสผ่านใหม่</label>
+                                <input type='password' class='form-control' id='chpwd1' name='chpwd1'/>
+                                <span style='color: red;font-weight: bold' class='err'></span>
+                            </div>
+                            <div class='form-group-sm'>
+                                <label for='chpwd2' class="control-label">รหัสผ่านอีกครั้ง</label>
+                                <input type='password' class='form-control' id='chpwd2' name='chpwd2'/>
+                                <span style='color: red;font-weight: bold' class='err'></span>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" id='chinfosubmit' uid="<?= Yii::app()->user->getId(); ?>">บันทึกการเปลี่ยนแปลง</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <script></script>
+        <script src="<?= Yii::app()->request->baseUrl ?>/assets/js/chinfo.js"></script>
     </body>
 </html>

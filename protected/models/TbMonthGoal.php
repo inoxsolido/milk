@@ -9,10 +9,11 @@
  * @property string $value
  * @property integer $month_id
  * @property string $year
- * @property integer $version
  * @property integer $user_id
  * @property integer $division_id
- * @property string $approve_lv
+ * @property integer $version
+ * @property integer $approve1_lv
+ * @property integer $approve2_lv
  */
 class TbMonthGoal extends CActiveRecord
 {
@@ -32,13 +33,13 @@ class TbMonthGoal extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('acc_id, value, month_id, year, user_id, division_id, approve_lv', 'required'),
-			array('acc_id, month_id, version, user_id, division_id', 'numerical', 'integerOnly'=>true),
+			array('acc_id, value, month_id, year, user_id, division_id', 'required'),
+			array('acc_id, month_id, user_id, division_id, version, approve1_lv, approve2_lv', 'numerical', 'integerOnly'=>true),
 			array('value', 'length', 'max'=>10),
-			array('approve_lv', 'length', 'max'=>1),
+			array('year', 'length', 'max'=>4),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('month_goal_id, acc_id, value, month_id, year, version, user_id, division_id, approve_lv', 'safe', 'on'=>'search'),
+			array('month_goal_id, acc_id, value, month_id, year, user_id, division_id, version, approve1_lv, approve2_lv', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -59,15 +60,16 @@ class TbMonthGoal extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'month_goal_id' => 'Month Goal',
-			'acc_id' => 'Acc',
-			'value' => 'Value',
-			'month_id' => 'Month',
-			'year' => 'Year',
-			'version' => 'Version',
-			'user_id' => 'User',
+			'month_goal_id' => 'รหัสเป้าหมายรายเดือน',
+			'acc_id' => 'รหัสบัญชี',
+			'value' => 'ยอด',
+			'month_id' => 'ลำดับเดือน',
+			'year' => 'ปี',
+			'user_id' => 'หมายเลขผู้ใช้งาน',
 			'division_id' => 'Division',
-			'approve_lv' => 'Approve Lv',
+			'version' => 'เวอร์ชั่นไฟล์',
+			'approve1_lv' => 'ระดับยืนยันข้อมูลรอบแรก [0-3]',
+			'approve2_lv' => 'Approve2 Lv',
 		);
 	}
 
@@ -94,10 +96,11 @@ class TbMonthGoal extends CActiveRecord
 		$criteria->compare('value',$this->value,true);
 		$criteria->compare('month_id',$this->month_id);
 		$criteria->compare('year',$this->year,true);
-		$criteria->compare('version',$this->version);
 		$criteria->compare('user_id',$this->user_id);
 		$criteria->compare('division_id',$this->division_id);
-		$criteria->compare('approve_lv',$this->approve_lv,true);
+		$criteria->compare('version',$this->version);
+		$criteria->compare('approve1_lv',$this->approve1_lv);
+		$criteria->compare('approve2_lv',$this->approve2_lv);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

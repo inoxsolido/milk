@@ -26,6 +26,12 @@ class WebUser extends CWebUser {
     public function getIsDepartment(){
         return $this->getState("isDep")==1;
     }
+    public function getUserId(){
+        return $this->getState("user_id");
+    }
+    public function getUserDiv(){
+        return $this->getState("user_division");
+    }
     
 
 }
