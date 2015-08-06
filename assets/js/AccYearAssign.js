@@ -45,10 +45,11 @@ $(function () {
                     if (typeof (data) == 'object') {
                         var temp = [];
                         temp = data;
-                        temp.forEach(function (entry) {
+                        for (entry in temp)
+                        {
                             var chk = $("input[name='" + entry.acc_id + "']");
                             chk.prop("checked", true);
-                        });
+                        }
                     }
                     else
                         alert(data);

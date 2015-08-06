@@ -1169,7 +1169,7 @@ class DataController extends Controller
                             foreach ($resultlv1 as $lv1)//level 1
                             {
                                 ?><li><?php
-                                ?><label><?= $lv1->acc_name ?> </label><?php if (!$this->hasChild($lv1->acc_id)): ?>:&nbsp;<input type="text" name="acc-<?= $lv1->acc_id ?>" month="<?= $m->month_id ?>" /><span class="text-danger err"></span><?php else: ?>&nbsp;<a href="#" class="sh"><i class="glyphicon glyphicon-minus"></i></a><?php
+                                ?><label><?= $lv1->acc_name ?> </label><?php if (!$this->hasChild($lv1->acc_id)): ?>:&nbsp;<input type="text" name="acc-<?= $lv1->acc_id ?>" month="<?= $m->month_id ?>" /><span class="text-danger err"></span><?php else: ?>&nbsp;<a href="#" class="sh" tabindex="-1"><i class="glyphicon glyphicon-minus"></i></a><?php
                                     endif;
                                     $resultlv2 = TbAccount::model()->findAll(array('condition' => "parent_acc_id = $lv1->acc_id AND $in", 'order' => "`acc_number1` ASC,`acc_number2` ASC,`acc_number3` ASC,`acc_number4` ASC "));
                                     if (count($resultlv2))
@@ -1178,7 +1178,7 @@ class DataController extends Controller
                                                 foreach ($resultlv2 as $lv2)//level 2
                                                 {
                                                     ?><li><?php
-                                                    ?><label><?= $lv2->acc_name ?> </label><?php if (!$this->hasChild($lv2->acc_id)): ?>:&nbsp;<input type="text" name="acc-<?= $lv2->acc_id ?>" month="<?= $m->month_id ?>" /><span class="text-danger err"></span><?php else: ?>&nbsp;<a href="#" class="sh"><i class="glyphicon glyphicon-minus"></i></a><?php
+                                                    ?><label><?= $lv2->acc_name ?> </label><?php if (!$this->hasChild($lv2->acc_id)): ?>:&nbsp;<input type="text" name="acc-<?= $lv2->acc_id ?>" month="<?= $m->month_id ?>" /><span class="text-danger err"></span><?php else: ?>&nbsp;<a href="#" class="sh" tabindex="-1"><i class="glyphicon glyphicon-minus"></i></a><?php
                                                     endif;
                                                     $resultlv3 = TbAccount::model()->findAll(array('condition' => "parent_acc_id = $lv2->acc_id AND $in", 'order' => "`acc_number1` ASC,`acc_number2` ASC,`acc_number3` ASC,`acc_number4` ASC "));
                                                     if (count($resultlv3))
@@ -1187,7 +1187,7 @@ class DataController extends Controller
                                                                 foreach ($resultlv3 as $lv3)//level 3
                                                                 {
                                                                     ?><li><?php
-                                                                    ?><label><?= $lv3->acc_name ?> </label><?php if (!$this->hasChild($lv3->acc_id)): ?>:&nbsp;<input type="text" name="acc-<?= $lv3->acc_id ?>" month="<?= $m->month_id ?>" /><span class="text-danger err"></span><?php else: ?>&nbsp;<a class="sh"><a href="#" class="sh"><i class="glyphicon glyphicon-minus"></i></a><?php
+                                                                    ?><label><?= $lv3->acc_name ?> </label><?php if (!$this->hasChild($lv3->acc_id)): ?>:&nbsp;<input type="text" name="acc-<?= $lv3->acc_id ?>" month="<?= $m->month_id ?>" /><span class="text-danger err"></span><?php else: ?>&nbsp;<a class="sh"><a href="#" class="sh" tabindex="-1"><i class="glyphicon glyphicon-minus"></i></a><?php
                                                                     endif;
                                                                     $resultlv4 = TbAccount::model()->findAll(array('condition' => "parent_acc_id = $lv3->acc_id AND $in", 'order' => "`acc_number1` ASC,`acc_number2` ASC,`acc_number3` ASC,`acc_number4` ASC "));
                                                                     if (count($resultlv4))
@@ -1196,7 +1196,7 @@ class DataController extends Controller
                                                                                     foreach ($resultlv4 as $lv4)
                                                                                     {
                                                                                         ?><li><?php
-                                                                                        ?><label><?= $lv4->acc_name ?> </label><?php if (!$this->hasChild($lv4->acc_id)): ?>:&nbsp;<input type="text" name="acc-<?= $lv4->acc_id ?>" month="<?= $m->month_id ?>" /><span class="text-danger err"></span><?php else: ?>&nbsp;<a href="#" class="sh"><i class="glyphicon glyphicon-minus"></i></a><?php endif;
+                                                                                        ?><label><?= $lv4->acc_name ?> </label><?php if (!$this->hasChild($lv4->acc_id)): ?>:&nbsp;<input type="text" name="acc-<?= $lv4->acc_id ?>" month="<?= $m->month_id ?>" /><span class="text-danger err"></span><?php else: ?>&nbsp;<a href="#" class="sh" tabindex="-1"><i class="glyphicon glyphicon-minus"></i></a><?php endif;
                                                                                         ?></li><?php
                                                                                     }
                                                                                     ?></ul><?php

@@ -98,7 +98,8 @@ $(function () {
         $("input[name^='acc-'][month]").each(function () {
             if (!chkinputasdecimal($(this))) {
                 alert("กรุณากรอกค่าในช่องว่างให้ครบ");
-                $(this).focus();
+                //$(this).focus();
+                gototab($(this));
                 e = false;
                 return false;
             }
@@ -165,8 +166,8 @@ $(function () {
             current: "current step:",
             pagination: "Pagination",
             finish: "บันทึก",
-            next: "ถัดไป",
-            previous: "ย้อนกลับ",
+            next: "เริ่มกรอกงบประมาณ",
+            previous: "เลือกบัญชีงบประมาณ",
             loading: "Loading ..."
         },
         onStepChanging: OnStepChangingCallback,
@@ -205,27 +206,28 @@ $(function () {
                         $("#fstep").steps("previous");
                         //checkbox
                         var temp = data;
-                        temp.forEach(function (entry) {
+                        for (entry in temp) {
                             var chk = $("input[name='" + entry.acc_id + "']");
-                            if (chk != null){
+                            if (chk != null) {
                                 chk.prop("checked", true).change();
                                 console.log("chk");
                             }
-                        });
+                        }
                         //next to input
                         //$("[href=#next]").click();
                         $("#fstep").steps("next");
                         function filltxtbox(temp)
                         {
-                            temp.forEach(function (entry) {
+                            for (entry in temp)
+                            {
                                 var txtbox = $("input[name='acc-" + entry.acc_id + "']");
-                                if (txtbox != null){
+                                if (txtbox != null) {
                                     txtbox.val(entry.value);
-                                    console.log("txtbox");
+                                    //console.log("txtbox");
                                 }
-                            });
+                            }
                         }
-                        
+
                         setTimeout(filltxtbox(temp), 1000);
                     } else {
                         alert("เกิดข้อผิดพลาดระหว่างการเรียกเวอร์ชั่นก่อนหน้า");
@@ -289,6 +291,18 @@ function OnStepChangingCallback(event, currentIndex, newIndex)
                 }
             }
         });
+        $("#mver").hide();
+        $(".menu").hide();
+        $(".loading").hide();
+    }
+    else if(newIndex == 0)//back
+    {
+        var want = confirm("ข้อมูลตัวเลขที่กรอกมาจะสูญหาย หากเลือกบัญชีใหม่\r\nยืนยันที่จะทำ ?");
+        if(!want)
+            return false;
+        
+        $(".loading").show();
+        $(".menu").show();
         $(".loading").hide();
     }
 
@@ -296,6 +310,15 @@ function OnStepChangingCallback(event, currentIndex, newIndex)
 }
 function OnInputShowCallback() {
     var current = $(".swMain").smartWizard("currentStep");
+    //focus first element in tab
+    //get month of tab
+    var month = current + 9;
+    if (month > 12)
+        month = current - 3;
+    var input = $("input[month="+month+"]")[0];
+    if($("input[month="+month+"]:focus").length == 0)
+        input.focus();
+    
     if (current == 12)
         $(".swMain").smartWizard("enableFinish", true);
     else
@@ -303,4 +326,17 @@ function OnInputShowCallback() {
 }
 function OnInputFinish() {
     $("[href=#finish]").click();
+}
+
+function gototab(txtbox) {
+    //get month
+    var month = txtbox.attr("month");
+    var tab = month - 9;
+    if (tab < 1)
+        tab = month + 3;
+    var currenttab = $(".swMain").smartWizard("currentStep");
+    if (tab != currenttab)
+        $(".swMain").smartWizard("goToStep", tab);
+    //console.log(tab);
+    txtbox.focus();
 }

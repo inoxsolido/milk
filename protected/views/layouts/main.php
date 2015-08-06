@@ -65,7 +65,7 @@
                 min-height: 100%;
                 height: auto !important;
                 height: 100%;
-                margin-bottom: -30px;
+                /*margin-bottom: -40px;*/
             }
             .row{
                 margin-right:0px;
@@ -73,6 +73,7 @@
             div#footer{
                 height:40px;
                 width:100%;
+                bottom: 0px;
 
             }
             div.loading{
@@ -198,10 +199,9 @@
             </nav>
 
         </div><!-- mainmenu -->
-        <?php echo $content; ?>
+        <div id="content" style='/*height:600px !important;*/ overflow:auto;'><?php echo $content; ?></div>
         <div class="clear"></div>
-
-        <div id="footer" style="background-color:#afd9ee; opacity: 50%;clear: both; z-index:-1;" class="col-lg-12">
+        <div id="footer" style="background-color:#afd9ee; opacity: 50%;">
             <div   style="text-align: center;">
                 Copyright &copy; Mr.Ritthichai Skulthong and Mr.Thanakhan Pariput 
                 <br>All Rights Reserved.<br/>

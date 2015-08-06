@@ -11080,3 +11080,12 @@ Stack trace:
 REQUEST_URI=/milk/data/FillingAdd
 HTTP_REFERER=http://localhost/milk/Bud/fillingManager
 ---
+2015/08/03 11:58:28 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/images/loader.gif".' in D:\xampp\htdocs\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/images/l...')
+#1 D:\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\milk\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/milk/assets/images/loader.gif
+HTTP_REFERER=http://localhost/milk/Bud/MonthGoal
+---
