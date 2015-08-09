@@ -1324,5 +1324,12 @@ class DataController extends Controller
                 ->queryAll();
         echo json_encode($result);
     }
+    
+    //approve
+    public function actionFillApprove(){
+        $user = Yii::app()->user->UserId;
+        $userdiv = Yii::app()->user->UserDiv;
+        
+    }
 
 }

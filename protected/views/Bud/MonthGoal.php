@@ -9,7 +9,7 @@
     .center{
         margin: auto 5px 0px auto;
 
-        hieght: 100%;
+        height: 100%;
         padding: 10px;
         text-align: center;
     }

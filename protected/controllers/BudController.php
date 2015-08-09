@@ -256,5 +256,11 @@ class BudController extends Controller
         $userlv = Yii::app()->user->isAdmin ? 3 : Yii::app()->user->isDivision ? 2 : Yii::app()->user->isDepartment ? 1 : 0;
         echo $userlv;
     }
+    
+    //approve
+    public function actionApprove()
+    {
+        $this->render("approve");
+    }
 
 }
