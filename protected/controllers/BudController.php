@@ -198,13 +198,12 @@ class BudController extends Controller
         {
             foreach ($resource as $row)
             {
-                if ($row['approve1'] < 3 || $row['approve2'] < 3)
-                    if ($row['approve1'] < $userlv || $row['approve2'] < $userlv)//เช็คสิทธิ์ในการแก้ไข
-                       // if ($row['number'] > 0)
-                        {
-                            $year = $row['year'];
-                            break;
-                        }
+                $approve1_lv = $row['approve1'];
+                $approve2_lv = $row['approve2'];
+                if($approve1_lv == 0 || ($approve2_lv == 0 && $approve1_lv == 3)){
+                    $year = $row['year'];
+                    break;
+                }
             }
         }
         if ($year != 0)
