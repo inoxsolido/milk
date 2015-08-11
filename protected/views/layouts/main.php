@@ -17,43 +17,6 @@
         <script type="text/javascript">
             $(function () {
                 $("div.loading").hide();
-                /*var stickyNavTop;
-                 if($('.navbar').length)
-                 stickyNavTop = $('.navbar').offset().top;
-                 
-                 
-                 var stickyMenuTop;
-                 if($('.menu').length)
-                 stickyMenuTop = $('.menu').offset().top;
-                 
-                 var stickyNav = function () {
-                 if(!$('.navbar').length)return;
-                 var scrollTop = $(window).scrollTop();
-                 if (scrollTop > stickyNavTop) {
-                 $('.navbar').addClass('sticky');
-                 } else {
-                 $('.navbar').removeClass('sticky');
-                 }
-                 };
-                 var stickyMenu = function () {
-                 if(!$('.menu').length)return;
-                 var scrollTop = $(window).scrollTop();
-                 if (scrollTop > stickyMenuTop-50) {
-                 $('.menu').addClass('stickmenu');
-                 } else {
-                 $('.menu').removeClass('stickmenu');
-                 }
-                 };
-                 stickyNav();
-                 stickyMenu();
-                 
-                 $(window).scroll(function () {
-                 if($('.navbar').length)
-                 stickyNav();
-                 if($('.menu').length)
-                 stickyMenu();
-                 });
-                 */
             });
         </script>
         <style type="text/css">
@@ -134,7 +97,7 @@
                         $this->widget('zii.widgets.CMenu', array(
                             'items' => array(
                                 ['label' => 'กรอกงบประมาณ', 'url' => 'MonthGoal', 'visible' => (Yii::app()->user->isDepartment || Yii::app()->user->isDivision)],
-                                ['label' => 'ยืนยันคำขอ', 'url' => '#', 'visible' => (Yii::app()->user->isDivision || Yii::app()->user->isAdmin)],
+                                ['label' => 'ยืนยันคำขอ', 'url' => 'Approve', 'visible' => (Yii::app()->user->isDivision || Yii::app()->user->isAdmin)],
                                 ['label' => 'สรุปผล', 'url' => '#', 'visible' => !Yii::app()->user->isGuest],
                                 ['label' => "จัดการบัญชี <i class='caret'></i>", 'url' => '#', 'visible' => Yii::app()->user->isAdmin,
                                     'linkOptions' => [
