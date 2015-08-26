@@ -32,6 +32,9 @@ class WebUser extends CWebUser {
     public function getUserDiv(){
         return $this->getState("user_division");
     }
+    public function getUserPosition(){
+        return $this->getState("user_position");
+    }
     
 
 }
