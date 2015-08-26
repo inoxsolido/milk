@@ -71,6 +71,10 @@
             #dummy{
                 height: 83.5px;
             }
+            .text-danger{
+                color: #a80026 !important;
+                display: inline !important;
+            }
         </style>
 
 
