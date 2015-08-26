@@ -17,10 +17,6 @@
         border:2px solid #FF6600;
         border-bottom-width: 3px;
     }
-    .text-danger{
-        color: #a80026 !important;
-        display: inline !important;
-    }
     .page-warp{
         position: fixed;    
         top: 0px;     
@@ -35,6 +31,7 @@
     }
     .in-page-warp{
         width: 50%;
+        height: auto;
         margin: 10% auto;
         background-color: white;
         opacity: 1;     
