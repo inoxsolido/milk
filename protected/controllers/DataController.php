@@ -1329,7 +1329,25 @@ class DataController extends Controller
     public function actionFillApprove(){
         $user = Yii::app()->user->UserId;
         $userdiv = Yii::app()->user->UserDiv;
-        
+        $sql = "SELECT * FROM tb_division d INNER JOIN (SELECT division_id as par_id, division_name as par_name FROM tb_division) dd "
+                    . "ON d.parent_division = dd.division_id "
+                    . "WHERE par_id = $userdiv";
+        $result2 = Yii::app()->db->createCommand()
+                ->select("*")->from("tb_division")
+                ->where("parent_division = $userdiv")
+                ->queryAll();
+        $result = Yii::app()->db->createCommand()
+                ->selectDistinct("mg.division_id, d.division_name, par.division_id AS parid, par.division_name AS parname")
+                ->from("tb_division d")
+                ->join("tb_month_goal mg", "d.division_id = mg.division_id")
+                ->join("tb_division AS par", "d.parent_division = par.division_id")
+                ->where("d.parent_division = $userdiv ")
+                ->queryAll();
+                //->queryAll();
+        //$result = Yii::app()->db->createCommand($sql)->queryAll();
+        //echo $sql.'<br/>';
+        print_r($result);
+        echo !empty($result)?"NOT EMPTY":"EMPTY";
     }
 
 }
