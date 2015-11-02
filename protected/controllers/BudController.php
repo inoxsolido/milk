@@ -90,8 +90,8 @@ class BudController extends Controller
 
                 $sql = "SELECT division_id, d.division_name, parent_division, p.par_name FROM tb_division d "
                         . "LEFT JOIN (SELECT division_id as ppar_id, division_name as par_name FROM tb_division) p ON d.parent_division = p.ppar_id ";
-                $sqldiv = $sql . " WHERE isposition = 0 AND parent_division = 0 ORDER BY d.erp_id ASC ";
-                $sqldep = $sql . " WHERE parent_division != 0 ORDER BY d.erp_id ASC ";
+                $sqldiv = $sql . " WHERE division_level = 3 ORDER BY d.erp_id ASC ";
+                $sqldep = $sql . " WHERE division_level < 3 ORDER BY d.erp_id ASC ";
                 $div = Yii::app()->db->createCommand($sqldiv)->queryAll();
                 $dep = Yii::app()->db->createCommand($sqldep)->queryAll();
 
@@ -180,16 +180,42 @@ class BudController extends Controller
 
     public function actionMonthGoal()
     {
+        $userid = Yii::app()->user->UserId;
+        $userdiv = Yii::app()->user->UserDiv;
+        $resource = TbApprove::model()->findAll("division_id = $userdiv");
+        
+        $yearresource = Yii::app()->Resource->YearResource;
+        if(empty($yearresource)){
+            echo 'ขณะนี้ระบบยังไม่เปิดให้กรอกข้อมูล <a href="#" onclick="window.history.back();">ย้อนกลับ</a>';
+        }else{
+            $method = Yii::app()->request->getParam("m");
+            $cid = Yii::app()->request->getParam("cid");
+            
+            if(empty($method) || empty($cid)){
+                //normal request
+                $this->render("MonthGoalSel", array("round" => $yearresource['round'], "year" => $yearresource['year']));
+            }else{
+                //assign/edit request
+                $cname = TbDivision::model()->findByPk($cid)->division_name;
+                $this->render("MonthGoalInput", array("round" => $yearresource['round'], "year" => $yearresource['year'], 
+                    "method"=>$method, "cid"=>$cid, "cname"=>$cname));
+            }
+        }
+        
+        return;
+        //ของเก่า ที่ยังไม่ใช้ตาราง tb_approve
         $user = Yii::app()->user->UserId;
         $userdiv = Yii::app()->user->UserDiv;
         //find max approve of the year
-        $resource = Yii::app()->db->createCommand()->select("`year`, MAX(approve1_lv) AS approve1, MAX(approve2_lv) AS approve2, COUNT(month_goal_id) AS number")
-                        ->from("tb_acc_year")->naturalLeftJoin("tb_month_goal")
-                        ->group("tb_acc_year.year")->order("year ASC")->queryAll();
+        $resource = Yii::app()->db->createCommand()->select("ay.`year`, AVG(IFNULL(approve1_lv, 0)) AS approve1, AVG(IFNULL(approve2_lv, 0)) AS approve2")
+                        ->from("tb_acc_year ay")->leftJoin("tb_month_goal mg", "ay.year = mg.year AND ay.acc_id = mg.acc_id")
+                        ->group("ay.year")->order("year ASC")->queryAll();
+        $txt = Yii::app()->db->createCommand()->select("ay.`year`, AVG(approve1_lv) AS approve1, AVG(approve2_lv) AS approve2")
+                        ->from("tb_acc_year ay")->leftJoin("tb_month_goal mg", "ay.year = mg.year AND ay.acc_id = mg.acc_id")
+                        ->group("ay.year")->order("year ASC")->text;
         $year = intval(0);
         $approve1_lv = intval(0);
         $approve2_lv = intval(0);
-        $userlv = Yii::app()->user->isAdmin ? 3 : Yii::app()->user->isDivision ? 2 : Yii::app()->user->isDepartment ? 1 : 0;
         if (!count($resource))
         {
             echo 'ขณะนี้ระบบยังไม่เปิดให้กรอกข้อมูล <a href="#" onclick="window.history.back();">ย้อนกลับ</a>';
@@ -200,18 +226,30 @@ class BudController extends Controller
             {
                 $approve1_lv = $row['approve1'];
                 $approve2_lv = $row['approve2'];
-                if($approve1_lv == 0 || ($approve2_lv == 0 && $approve1_lv == 3)){
+                if($approve1_lv < 1 || ($approve2_lv < 1 && $approve1_lv == 3)){
                     $year = $row['year'];
                     break;
                 }
             }
         }
+        
         if ($year != 0)
         {
-            $divusertakecare = Yii::app()->db->createCommand()->select("tb_division.division_id, division_name")
+            /*$divusertakecare = Yii::app()->db->createCommand()->select("tb_division.division_id, division_name")
                             ->from("tb_division")->join("tb_profile_fill", "tb_division.division_id = tb_profile_fill.division_id")
-                            ->where("tb_profile_fill.owner_div_id = $userdiv")->queryAll();
-            $this->render("MonthGoal", array("year" => $year + 543, 'targets' => $divusertakecare));
+                            ->where("tb_profile_fill.owner_div_id = $userdiv")->queryAll();*/
+            $depusertakecare = Yii::app()->db->createCommand()->select("d.division_id, division_name,"
+                    . "ay.`year`, MAX(IFNULL(approve1_lv, 0)) AS approve1, MAX(IFNULL(approve2_lv, 0)) AS approve2")
+                        ->from("tb_acc_year ay")
+                        ->leftJoin("tb_month_goal mg", "ay.year = mg.year AND ay.acc_id = mg.acc_id")
+                        ->leftJoin("tb_division d", "mg.division_id = d.division_id")
+                        ->join("tb_profile_fill pf", "d.division_id = pf.division_id")
+                        ->join("tb_mg_limit mgl", "d.division_id = mgl.division")
+                        ->where("pf.owner_div_id = $userdiv AND ay.year = $year")
+                        ->group("ay.year, d.division_id")->order("year ASC")
+                        ->having("approve1 < 1 OR (approve2 < 1 AND approve1 = 3)")
+                        ->queryAll();
+            $this->render("MonthGoal", array("year" => $year + 543, 'targets' => $depusertakecare));
         }
         else
         {
@@ -250,7 +288,7 @@ class BudController extends Controller
         echo 'isDiv:' . Yii::app()->user->isDivision . '<br/>';
         echo 'isDep:' . Yii::app()->user->isDepartment . '<br/>';
         echo 'isAdmin:' . Yii::app()->user->isAdmin . '<br/>';
-        echo 'user_id:' . Yii::app()->user->user_id . '<br/>';
+        echo 'user_id:' . Yii::app()->user->UserId . '<br/>';
         echo '<hr/><hr/>';
         $userlv = Yii::app()->user->isAdmin ? 3 : Yii::app()->user->isDivision ? 2 : Yii::app()->user->isDepartment ? 1 : 0;
         echo $userlv;
@@ -259,7 +297,7 @@ class BudController extends Controller
     }
     
     //approve
-    public function actionApprove()
+    public function actionApproveold()
     {
         $div = Yii::app()->user->UserDiv;
         //$devindiv = Yii::app()->db->createCommand()->select()->from("tb_");
@@ -396,6 +434,216 @@ class BudController extends Controller
         
         
         //$this->render("approve");
+    }
+    public function actionApprove()
+    {
+        $user = Yii::app()->user->UserId;
+        $userdiv = Yii::app()->user->UserDiv;
+        //find max approve of the year
+        $resource = Yii::app()->db->createCommand()->select("tb_acc_year.`year`, MAX(IFNULL(approve1_lv,0)) AS approve1, MAX(IFNULL(approve2_lv,0)) AS approve2, COUNT(month_goal_id) AS number")
+                        ->from("tb_acc_year")->leftjoin("tb_month_goal", "tb_acc_year.year = tb_month_goal.year")
+                        ->group("tb_acc_year.year")->order("year ASC")->queryAll();
+        $year = intval(0);
+        $approve1_lv = intval(0);
+        $approve2_lv = intval(0);
+        
+        if (!count($resource))
+        {
+            echo 'ขณะนี้ระบบยังไม่เปิดให้กรอกข้อมูล <a href="#" onclick="window.history.back();">ย้อนกลับ</a>';
+        }
+        else
+        {
+            foreach ($resource as $row)
+            {
+                $approve1_lv = $row['approve1'];
+                $approve2_lv = $row['approve2'];
+                if($approve1_lv != 3 || $approve2_lv != 2){
+                    $year = $row['year'];
+                    break;
+                }
+            }
+        }
+        
+        if ($year != 0)
+        {//ในปีนี้มีการกรอกข้อมูลมาแล้ว
+            //เป็นการยืนยันข้อมูลรอบที่
+            $round = intval(1);
+            if($approve1_lv == 2)
+            {
+                //เช็คว่าทุกแผนกเป็น 2 มั้ย โดยการเทียบจำนวนแผนกทีได้รับการกรอก กับ จำนวนแผนกที่ได้รับการยืนยัน
+                $countdep = Yii::app()->db->createCommand()->select("COUNT(*)")
+                        ->from("tb_division d")->where("d.enable = 1 and d.division_level < 3")->queryScalar();
+                $countapprove2 = Yii::app()->db->createCommand()->select("COUNT(DISTINCT d.division_id)")
+                        ->from("tb_division d")->join("tb_profile_fill pf", "d.division_id = pf.division_id")
+                        ->join("tb_month_goal mg", "d.division_id = mg.division_id")
+                        ->where("mg.approve1_lv = 2")
+                        ->group("d.division_id")
+                        ->queryScalar();
+                $countapprove3 = Yii::app()->db->createCommand()->select("COUNT(DISTINCT d.division_id)")
+                        ->from("tb_division d")->join("tb_profile_fill pf", "d.division_id = pf.division_id")
+                        ->join("tb_month_goal mg", "d.division_id = mg.division_id")
+                        ->where("mg.approve1_lv = 3")
+                        ->group("d.division_id")
+                        ->queryScalar();
+                if($countdep == $countapprove2)
+                    $round = 2;
+                else if($countdep == $countapprove3)
+                    $round = 3;
+            }
+            //ส่วนนี้สามารถเพิ่มการ redirect ไปยัง YearGoal ได้
+            $userlv = Yii::app()->user->UserPosition;
+            //bypass
+            if($userlv == 3){
+                $this->render("approve_admin", array("round"=>$round, 'year'=>$year));
+            }else if($userlv == 2){
+                if($round == 3)
+                    echo 'ขณะนี้ไม่สามารถยกเลิกหรือยืนยันข้อมูลได้เนื่องจาก Admin ได้ยืนยันข้อมูลแล้ว <a href="#" onclick="window.history.back();">ย้อนกลับ</a>';
+                else
+                    $this->render("approve_div", array("round"=>$round, 'year'=>$year));
+            }
+            
+            return;
+            
+            if($userlv == 2){
+                if($round == 2)
+                    echo 'ขณะนี้ไม่สามารถยกเลิกหรือยืนยันข้อมูลได้เนื่องจาก Admin ได้ยืนยันข้อมูลแล้ว <a href="#" onclick="window.history.back();">ย้อนกลับ</a>';
+                else
+                    $this->render("approve_div", array("round"=>$round, 'year'=>$year));
+            }else if($userlv == 3){
+                if($round == 2)
+                    $this->render("approve2");
+                $this->render("approve_admin", array("round"=>$round, 'year'=>$year));
+            }
+        }else
+        {
+            echo 'ขณะนี้ระบบยังไม่เปิดให้กรอกหรือแก้ไขข้อมูล <a href="#" onclick="window.history.back();">ย้อนกลับ</a>';
+        }
+    }
+    public function actionYearGoal(){
+        $resource = Yii::app()->Resource->YearResource;
+        $year = intval(0);
+        $approve = intval(0);
+        $round = intval(0);
+        
+        if (empty($resource))
+        {
+            echo 'ขณะนี้ระบบยังไม่เปิดให้กรอกข้อมูล <a href="#" onclick="window.history.back();">ย้อนกลับ</a>';
+        }
+        else
+        {
+            $year = $resource['year'];
+            $approve = $resource['approve'];
+            $round = $resource['round'];
+            unset($resource);
+        }
+        
+        if ($year != 0)
+        {
+            //bypass
+                //$round = 2;
+            //endbypass
+            $yearw = $year + 543;
+            $userlv = Yii::app()->user->UserPosition;
+           
+            if($userlv == 3){
+                if($round == 1 && $approve < 3){
+                    $url = Yii::app()->createAbsoluteUrl("Bud/Approve");
+                    echo 'กรอบงบประมาณสามารถกำหนดได้หลังจากการ <a href="'.$url.'">ยืนยัน</a>ฝ่ายทุกฝ่าย แล้ว';
+                }else if($round == 3){
+                    echo "ไม่สามารถกำหนดกรอบงบประมาณสำหรับปี $yearw ได้ เนื่องจากปี $yearw ได้ทำการยืนยันข้อมูลแล้ว แต่ยังไม่ได้ยืนยันการสิ้นสุดการแก้ไข  "
+                            . "<br/><a href='#' onclick='window.history.back();'>ย้อนกลับ</a>";
+                }else if($round == 4){
+                    echo "ไม่สามารถกำหนดกรอบงบประมาณสำหรับปี $yearw ได้อีก เนื่องจากปี $yearw ได้ทำการยืนยันข้อมูลแล้วสำเร็จเสร็จสิ้นแล้ว "
+                            . "<br/><a href='#' onclick='window.history.back();'>ย้อนกลับ</a>";
+                }else{
+                    $this->render("yearGoalAdmin", array("round"=>$round, 'year'=>$year));
+                }
+            }else if($userlv == 2){
+                if($round >= 3){
+                    echo "สำหรับปี $yearw ได้ทำการยืนยันข้อมูลเสร็จสิ้นแล้ว ไม่สามารถกำหนดกรอบงบประมาณสำหรับปี $yearw ได้อีก "
+                            . "<br/><a href='#' onclick='window.history.back();'>ย้อนกลับ</a>";
+                }else if(!($approve <= 1 || ($approve >=4 && $approve <=6))){
+                    echo "ไม่สามารถกำหนดกรอบงบประมาณสำหรับปี $yearw ได้เนื่องจาก Admin ได้ทำการยืนยันข้อมูลแล้ว "
+                            . "<br/><a href='#' onclick='window.history.back();'>ย้อนกลับ</a>";
+                }else{
+                    $method = Yii::app()->request->getParam("m",NULL);
+                    $cid = Yii::app()->request->getParam("cid",NULL);
+                    
+
+                    if(($method == "assign" || $method == "edit")&&$cid != NULL){
+                        $cname = TbDivision::model()->findByPk(intval($cid))->division_name;
+                        $this->render("YearGoalDivInput", array("round"=>$round, "year"=>$year, "method"=>$method, "cid"=>$cid, "cname"=>$cname));
+                    }else{
+                        $this->render("YearGoalDiv", array("round"=>$round, 'year'=>$year));
+                    }
+                }
+            }else{
+            }
+        }else
+        {
+            echo 'ขณะนี้ระบบยังไม่เปิดให้กรอกหรือแก้ไขข้อมูล <a href="#" onclick="window.history.back();">ย้อนกลับ</a>';
+        }
+        
+        
+    }
+    public function actionSummary(){
+        echo 'สรุปผล';
+    }
+    public function actionTestSql(){
+        echo '<pre>'."SELECT ay.`year`, IFNULL(approve_lv,0) as approve "
+                . "FROM tb_acc_year ay "
+                . "JOIN tb_approve ap ON ay.`year` = ap.`year` "
+                . "JOIN tb_division dp ON ap.division_id = dp.division_id AND dp.division_level < 3 dp.division_id = 71 "
+                . "WHERE ay.`year` = 2015 AND approve != 9 "
+                . "ORDER BY ay.`year` ASC".'</pre>';
+    }
+    public function actionTestGet(){
+        print_r(Yii::app()->request->getParam("m",NULL));
+        print_r(Yii::app()->request->getParam("cid",NULL));
+        
+    }
+    public function actionTestPK(){
+        $year = 1;
+        $div = 2;
+        $resource = TbYgLimit::model()->findByPk(['year'=>$year, 'division'=>$div]);
+        if(empty($resource))echo 'empty';
+        else echo 'not empty';
+    }
+    public function actionTestAutoArr(){
+        $word = "1234567";
+        echo $word.'<br/>';
+        echo "len: ".strlen($word).'<br/>';
+        echo '$word[2]: '.$word[2].'<hr/>';
+        echo Yii::app()->Format->NumToDec("12,3,4,5,67,8,9,0.05");
+        echo '<br/>';
+        echo Yii::app()->Format->NumToDec("123.456");
+        echo '<br/>';
+        echo Yii::app()->Format->NumToDec("123456");
+        echo '<br/>';
+        echo "1,234,567,890.05";
+        
+    }
+    public function actionTransferParentToSub(){
+        $divlv2 = TbDivision::model()->findAll("division_level = 2");
+        $transaction = Yii::app()->db->beginTransaction();
+        try{
+            foreach($divlv2 as $d2){
+                $div1 = TbDivision::model()->findAll("parent_division = $d2->division_id");
+                foreach($div1 as $d1){
+                    $sql = "UPDATE tb_division SET sub_parent = $d2->division_id, parent_division = $d2->parent_division WHERE division_id = $d1->division_id";
+                    /*
+                    $d1->sub_parent = $d2->division_id;
+                    $d1->parent_division = $d2->parent_division;
+                    $d1->save();*/
+                    Yii::app()->db->createCommand($sql)->execute();
+                }
+            }
+            $transaction->commit();
+            echo 'work';
+        } catch (Exception $ex) {
+            $transaction->rollback();
+            echo 'bad';
+        }
     }
 
 }

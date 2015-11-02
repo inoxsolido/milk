@@ -6,8 +6,8 @@ $(function () {
             erp: $("#fderp").val(),
             par: $("#fdpar").val(),
             office: $("#fdof").val(),
-            ispos: $("#fdispos").val()
-        }
+            status: $("#fdstatus").val()
+        };
         $.post('./../data/FillDiv',
                 {
                     ajax: 0,
@@ -157,25 +157,23 @@ $(function () {
             $("#modaladd").find(".option").hide();
         }
     });
-    $("#addisdiv").change(function () {
-        if (getCheckbox($(this)) == true) {
+    $("input[name=addstatus]").change(function(){
+        var val = $(this).val();
+        if(val == 3){
             $("#modaladd").find(".subo").hide();
+            $("#modaladd").find(".section").show();
             $("#addhaserp").prop("checked", true).change();
             $("#addhaserp").prop("disabled", true).change();
-        }
-        else {
+        }else if(val == 4){
             $("#modaladd").find(".subo").show();
+            $("#modaladd").find(".section").hide();
+            $("#addhaserp").prop("checked", true).change();
+            $("#addhaserp").prop("disabled", true).change();
+        }else{
+            $("#modaladd").find(".subo").show();
+            $("#modaladd").find(".section").hide();
             $("#addhaserp").prop("checked", false).change();
             $("#addhaserp").prop("disabled", false).change();
-        }
-    });
-    $("#addispos").change(function () {
-        if (getCheckbox($(this)) == true)
-        {
-            $("#addisdiv").prop("checked", false).change();
-            $("#addisdiv").prop("disabled", true).change();
-        } else {
-            $("#addisdiv").prop("disabled", false).change();
         }
     });
     $("#adderp").keyup(function (event) {
@@ -210,8 +208,8 @@ $(function () {
                     erpoffice: divoffice.val(),
                     par: divpar.val(),
                     haserp: getCheckbox($("#addhaserp")),
-                    isdiv: getCheckbox($("#addisdiv")),
-                    ispos: getCheckbox($("#editispos"))
+                    dlevel: $("input[name=addstatus]:checked").val(),
+                    section: $("#addsection").val()
                 },
                 success: function (data) {
                     if (data == 'ok') {
@@ -254,12 +252,7 @@ $(function () {
                 ediverp = d.erp_id;
                 edivname = d.divname;
                 $("#editname").val(d.divname).change();
-                if (d.par_id == 0)
-                {
-                    $("#editisdiv").prop("checked", true).change();
-                } else {
-                    $("#editisdiv").prop("checked", false).change();
-                }
+                $("input[name=editstatus][value="+d.dlevel+"]").prop("checked","checked").change();
                 
                 $("#edithaserp").prop("checked", d.erp_id != '');
                 $("#editerp").val(d.erp_id).change();
@@ -267,6 +260,7 @@ $(function () {
                 $("#editoffice").val(d.office_id).change();
                 //$("#editpar").children('option[value^="' + d.divid + '"]').attr("disabled", true);
                 $("#editpar").val(d.par_id);
+                $("#editsection").val(d.section);
             },
             dataType: 'json'
         });
@@ -329,15 +323,22 @@ $(function () {
             return true;
         }
     }
-    $("#editisdiv").change(function () {
-        if (getCheckbox($(this)) == true) {
+    $("input[name=editstatus]").change(function(){
+        var val = $(this).val();
+        if(val == 3){
             $("#modaledit").find(".subo").hide();
+            $("#modaledit").find(".section").show();
             $("#edithaserp").prop("checked", true).change();
             $("#edithaserp").prop("disabled", true).change();
-        }
-        else {
+        }else if(val == 4){
             $("#modaledit").find(".subo").show();
-            //$("#edithaserp").prop("checked", false).change();
+            $("#modaledit").find(".section").hide();
+            $("#edithaserp").prop("checked", true).change();
+            $("#edithaserp").prop("disabled", true).change();
+        }else{
+            $("#modaledit").find(".subo").show();
+            $("#modaledit").find(".section").hide();
+            $("#edithaserp").prop("checked", false).change();
             $("#edithaserp").prop("disabled", false).change();
         }
     });
@@ -348,15 +349,6 @@ $(function () {
             $("#modaledit").find(".option").show();
         } else {
             $("#modaledit").find(".option").hide();
-        }
-    });
-    $("#editispos").change(function () {
-        if (getCheckbox($(this)) == true)
-        {
-            $("#editisdiv").prop("checked", false).change();
-            $("#editisdiv").prop("disabled", true).change();
-        } else {
-            $("#editisdiv").prop("disabled", false).change();
         }
     });
     $("#editerp").focusout(function () {
@@ -403,8 +395,8 @@ $(function () {
                     erpoffice: divoffice.val(),
                     par: divpar.val(),
                     haserp: getCheckbox($("#edithaserp")),
-                    isdiv: getCheckbox($("#editisdiv")),
-                    ispos: getCheckbox($("#editispos"))
+                    dlevel: $("input[name=editstatus]:checked").val(),
+                    section: $("#editsection").val()
                 },
                 success: function (data) {
                     if (data == '1') {

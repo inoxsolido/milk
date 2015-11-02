@@ -300,11 +300,13 @@ function SmartWizard(target, options) {
                 $($this.buttons.next).addClass("buttonDisabled");
                 if ($this.options.hideButtonsOnDisabled) {
                     $($this.buttons.next).hide();
+                    $this.enableFinish(true);
                 }
             }else{
                 $($this.buttons.next).removeClass("buttonDisabled");
                 if ($this.options.hideButtonsOnDisabled) {
                     $($this.buttons.next).show();
+                    $this.enableFinish(false);
                 }
             }
         }

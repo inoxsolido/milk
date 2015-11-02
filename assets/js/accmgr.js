@@ -294,6 +294,7 @@ $(function () {
         var group = $("#addgroup").val();
         var haserp = getCheckbox($("#addhaserp"));
         var haspar = getCheckbox($("#addhaspar"));
+        var hassum = getCheckbox($("#addhassum"));
         var namestate = checkname($("#addname"), false);
         var erpstate = checkerp($("#adderp"), haserp, false);
         if (!haspar && group < 1){
@@ -307,7 +308,8 @@ $(function () {
                 par: par,
                 group: group,
                 haserp: haserp,
-                haspar: haspar
+                haspar: haspar,
+                hassum: hassum
             };
             $.ajax({
                 url: "../Data/AccountAdd",
@@ -398,6 +400,7 @@ $(function () {
                     $("#edithaspar").prop("checked", false).change();
                 
                 $("#editgroup").val(data.group);
+                $("#edithassum").prop("checked", data.hassum);
 
             },
             dataType: 'json'
@@ -412,6 +415,7 @@ $(function () {
         var group = $("#editgroup").val();
         var haserp = getCheckbox($("#edithaserp"));
         var haspar = getCheckbox($("#edithaspar"));
+        var hassum = getCheckbox($("#edithassum"));
         if (!haspar && group < 1) {
             alert('กรุณาเลือกหมวด');
             return;
@@ -429,20 +433,23 @@ $(function () {
                         par: par,
                         group: group,
                         haserp: haserp,
-                        haspar: haspar
+                        haspar: haspar,
+                        hassum: hassum
                     }
                 },
                 success: function (data, textStatus, jqXHR) {
                     if (data == 'ok') {
+                        alert("การแก้ไขข้อมูลสำเร็จ");
+                        $("#modaledit").modal('hide');
                         $("#editname").val("");
                         $("#editerp").val("");
                         $("#editpar").val("");
                         $("#editgroup").val("");
                         $("#edithaserp").prop("checked", true).change();
                         $("#edithaspar").prop("checked", true).change();
+                        
                         ReqData();
-                        alert("การแก้ไขข้อมูลสำเร็จ");
-                        $("#modaledit").modal('hide');
+                        
                         $("#modaledit").find("div.form-group-sm").find(".feedback").text("");
                         $("#modaledit").find("div.form-group-sm").removeClass("has-error");
                         $("#modaledit").find("div.form-group-sm").removeClass("has-success");
