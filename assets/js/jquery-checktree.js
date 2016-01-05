@@ -77,13 +77,16 @@
                             div.removeClass("txtshow");
                         }
                     });
-                    childLi.parent().next("div").find("input[type=text]")[0].focus();
+                    childLi.parent().next("div").find("input[type=text]")[0];
+                    if(x)x.focus();
+                            
                 }
                 var div = (c).parent().next("div");
                 if ((c).is(":checked")) {
                     div.show();
                     div.addClass("txtshow");
-                    (c).parent().next("div").find("input[type=text]").focus();
+                    var x=(c).parent().next("div").find("input[type=text]").focus();
+                    if(x) $(x).focus();
                 } else {
                     div.hide();
                     div.removeClass("txtshow");
