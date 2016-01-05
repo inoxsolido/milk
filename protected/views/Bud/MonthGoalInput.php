@@ -76,4 +76,5 @@
 </script>
 <script src="<?= Yii::app()->request->baseUrl ?>/assets/js/collapse.js" type="text/javascript"></script>
 <script src="<?= Yii::app()->request->baseUrl ?>/assets/js/jquery.smartWizard.js" type="text/javascript"></script>
+<script src="<?= Yii::app()->request->baseUrl ?>/assets/js/numeral.min.js" type="text/javascript"></script>
 <script src='<?= Yii::app()->request->baseUrl ?>/assets/js/mginput.js' type='text/javascript'></script>
