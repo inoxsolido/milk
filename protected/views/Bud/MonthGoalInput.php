@@ -77,4 +77,6 @@
 <script src="<?= Yii::app()->request->baseUrl ?>/assets/js/collapse.js" type="text/javascript"></script>
 <script src="<?= Yii::app()->request->baseUrl ?>/assets/js/jquery.smartWizard.js" type="text/javascript"></script>
 <script src="<?= Yii::app()->request->baseUrl ?>/assets/js/numeral.min.js" type="text/javascript"></script>
+<script src="<?= Yii::app()->request->baseUrl ?>/assets/js/decimalFixdown.js" type="text/javascript"></script>
+<script type="text/javascript">numeral.defaultFormat('0,0.00');</script>
 <script src='<?= Yii::app()->request->baseUrl ?>/assets/js/mginput.js' type='text/javascript'></script>
