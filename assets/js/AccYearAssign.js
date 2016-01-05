@@ -47,7 +47,7 @@ $(function () {
                         temp = data;
                         for (entry in temp)
                         {
-                            var chk = $("input[name='" + entry.acc_id + "']");
+                            var chk = $("input[name='" + temp[entry].acc_id + "']");
                             chk.prop("checked", true);
                         }
                     }
@@ -70,13 +70,18 @@ $(function () {
     }
     function OnFinnishCallback()//add
     {
+        var result = "";
         if ($("#accyear").find("input[type=checkbox][name!='selall']:checked").length == 0) {
             if (who == "add") {
                 alert("กรุณาเลือกบัญชีอย่างน้อย 1 บัญชีก่อนบันทึก");
                 return false;
+            }else{
+                result = confirm("ยืนยันการลบ !?");
+                who = "delete";
             }
         }
-        var result = confirm(who == "add" ? "ยืนยันการบันทึก ?" : "ยืนยันการลบ !?");
+        if(!result)
+            result = confirm(who == "add" ? "ยืนยันการบันทึก ?" : "ยืนยันการแก้ไข !?");
         //prepare data
         var fdata = [];
         $("#accyear").find("input[type=checkbox][name!='selall']").each(function () {
@@ -101,7 +106,7 @@ $(function () {
                         else
                             $("#editm").click();
                         
-                        alert(who == "add" ? "บันทึกสำเร็จ" : "ลบข้อมูลสำเร็จ");
+                        alert(who == "add" ? "บันทึกข้อมูลสำเร็จ" : who == "delete" ? "ลบข้อมูลสำเร็จ" : "แก้ไขข้อมูลสำเร็จ");
                         $("#accyear").html("");
                         FillEdit();
                     } else
