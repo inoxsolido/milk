@@ -938,57 +938,86 @@ class DataController extends Controller
         {
             $year = $_POST['year'] - 543;
             $form = $_POST['fdata'];
-            foreach ($form as $row)
+            $transaction = Yii::app()->db->beginTransaction();
+            try
             {
-                $model = new TbAccYear;
-                if (!$model->isNewRecord)
+                //write acc_year
+                foreach ($form as $row)
                 {
-                    echo 'การบันทึกล้มเหลว';
-                }
-                else
-                {
-                    $model->year = $year;
-                    $model->acc_id = intval($row);
-                    if (!$model->save(true))
+                    $model = new TbAccYear;
+                    if ($model->isNewRecord)
                     {
-                        echo 'การบันทึกล้มเหลว';
-                        return false;
+                        $model->year = $year;
+                        $model->acc_id = intval($row);
+                        $model->save(true);
+                    }else{
+                        throw new Exception("Error while save acc_year");
                     }
                 }
+                //write approve
+                //กำหนดapproveให้ทุกdivisionที่เปิดใช้งาน
+                $divs = TbDivision::model()->findAll("division_level < 3");
+                foreach($divs as $div){
+                    $amodel = new TbApprove;
+                    if($amodel->isNewRecord){
+                        /* @var $div TbDivision */
+                        $amodel->division_id = $div->division_id;
+                        $amodel->year = $year;
+                        $amodel->approve_lv = intval(0);
+                        $amodel->save(true);
+                    }else{
+                        throw new Exception("Error while set approve");
+                    }
+                }
+                $transaction->commit();
+                echo 'ok';
+            } catch (Exception $ex)
+            {
+                $transaction->rollback();
+                echo 'การบันทึกล้มเหลว';
+                //print_r($ex->getTraceAsString());
             }
-
-            echo 'ok';
         }
         else
             echo 'year or fdata is not available';
     }
 
-    public function actionEditAccYear()
-    {
-        if (isset($_POST['year']))
-        {
+    public function actionEditAccYear() {
+        if (isset($_POST['year'])) {
             $year = $_POST['year'] - 543;
-            if (isset($_POST['fdata']))
-            {
-                $form = $_POST['fdata'];
-                $sql = "DELETE FROM `tb_acc_year` WHERE `year` = $year; INSERT INTO `tb_acc_year` VALUES";
-                foreach ($form as $row)
-                {
-                    $sql .= "($year,$row),";
+            $transaction = Yii::app()->db->beginTransaction();
+            try {
+                //about acc_year
+                //delete old data from acc_year at year
+                TbAccYear::model()->deleteAll("year = $year");
+                //insert new data if acc_id was sent; mean method is edit
+                if (isset($_POST['fdata'])) {
+
+                    //insert new data to acc_year
+                    $accs = $_POST['fdata'];
+                    foreach ($accs as $acc) {
+                        $model = new TbAccYear;
+                        $model->year = $year;
+                        $model->acc_id = $acc;
+                        $model->save(true);
+                    }
+                    //about approve
+                    //update approve to 0
+                    TbApprove::model()->updateAll(array("approve_lv" => intval(0)), "year = $year");
+                } else {// mean method is delete
+                    //delete approve from year
+                    TbApprove::model()->deleteAll("year = $year");
                 }
-                $sql = substr($sql, 0, -1);
-                $sql .= ';';
-            }
-            else
-                $sql = "DELETE FROM `tb_acc_year` WHERE `year` = $year;";
-            $result = Yii::app()->db->createCommand($sql)->execute();
-            if ($result)
+                
+                $transaction->commit();
                 echo 'ok';
-            else
+            } catch (Exception $ex) {
+                $transaction->rollback();
                 echo isset($_POST['fdata']) ? 'การบันทึกข้อมูลล้มเหลว' : 'การลบข้อมูลล้มเหลว';
-        }
-        else
-            echo 'year  is not available';
+                print_r($ex);
+            }
+        } else
+            echo 'year was not found';
     }
 
     //chinfo
@@ -1447,17 +1476,17 @@ class DataController extends Controller
             $divtar = $_POST['divid'];
             $round = $_POST['round'];
             $year = $_POST['year'];
-            $column = "approve1_lv";
+            //$column = "approve1_lv";
             $value = 2;
             if($round == 2){
                 $value = 7;
             }
-            if($round == 3){
+            /*if($round == 3){
                 $column = "approve2_lv";
-            }
+            }*/
             
-            $sqlupdate = "UPDATE tb_month_goal SET $column = 1 WHERE division_id = $divtar AND `year` = $year";
-            $sqlupdate2 = "UPDATE tb_approve ap INNSER JOIN tb_division d ON ap.division_id = d.divsion-id SET approve - $value WHERE d.division_id = $divtar AND `year` = $year";
+            //$sqlupdate = "UPDATE tb_month_goal SET $column = 1 WHERE division_id = $divtar AND `year` = $year";
+            $sqlupdate2 = "UPDATE tb_approve ap INNER JOIN tb_division d ON ap.division_id = d.division_id SET approve_lv = $value WHERE d.division_id = $divtar AND `year` = $year";
             $result = Yii::app()->db->createCommand($sqlupdate2)->execute();
             if(count($result)>0)
                 echo 'ok';
@@ -2289,7 +2318,27 @@ class DataController extends Controller
             foreach ($month as $m)//group
             {
                 ?><div id="step-<?= $i++ ?>">
-                    <h3 class="StepTitle">กรอกงบประมาณสำหรับเดือน<?= $m->month_name ?></h3>
+                    <div class="StepTitle">
+                        <div style="float:left">กรอกงบประมาณสำหรับเดือน<?= $m->month_name ?></div>
+                        <div style="text-align: right">
+                            <label><input type="checkbox" class="chkother" m="<?=$m->month_id?>"/> นำข้อมูลมาจากเดือนอื่น </label>
+                            <select class="fmonth" style="display:none">
+                                <option selected value="0">เลือกเดือน</option>
+                                <option value="10">ตุลาคม</option>
+                                <option value="11">พฤศจิกายน</option>
+                                <option value="12">ธันวาคม</option>
+                                <option value="1">มกราคม</option>
+                                <option value="2">กุมภาพันธ์</option>
+                                <option value="3">มีนาคม</option>
+                                <option value="4">เมษายน</option>
+                                <option value="5">พฤษภาคม</option>
+                                <option value="6">มิถุนายน</option>
+                                <option value="7">กรกฎาคม</option>
+                                <option value="8">สิงหาคม</option>
+                                <option value="9">กันยายน</option>
+                            </select>
+                        </div>
+                    </div>
                     <?php
                     $resultlv1 = TbAccount::model()->findAll("parent_acc_id IS NULL AND $in ORDER BY `acc_number1` ASC,`acc_number2` ASC,`acc_number3` ASC,`acc_number4` ASC ");
                     if (count($resultlv1))
@@ -2387,16 +2436,18 @@ class DataController extends Controller
         $data = $_POST['detail'];
         $method = $_POST['method'];
         $userdiv = Yii::app()->user->UserDiv;
-        $version = 1;
-        $approve = (Yii::app()->Resource->getApproveOfDep($cid, $year));
+        $version = Yii::app()->Resource->getVersionOfDep($cid, $year);
+        $approve = Yii::app()->Resource->getApproveOfDep($cid, $year);
         if($approve == NULL){
             echo 'Error: Parameter fault';
             return FALSE;
-        }else{
+        }/*else{
             if(intval($approve) != intval(0)){
                 $version = "version + 1";
             }
-        }
+        }*/
+        if($version == NULL) $version = 1;
+        else $version += 1;
         if($round == 1)
             $approve = 1;
         else if($round == 2)
@@ -2404,7 +2455,7 @@ class DataController extends Controller
         
         $transaction = Yii::app()->db->beginTransaction();
         try{
-            $result = false;
+            //$result = false;
             foreach($data as $row){
                 $mid = $row['month'];
                 $val = $row['value'];
@@ -2412,7 +2463,7 @@ class DataController extends Controller
                 $sql = "INSERT INTO tb_month_goal (`year`, month_id, division_id, acc_id, user_id, `value`) "
                         . "VALUES($year, $mid, $cid, $acc, $userdiv, $val) "
                         . "ON DUPLICATE KEY UPDATE `value` = $val ";
-                $result = $result || Yii::app()->db->createCommand($sql)->execute();
+                $result = Yii::app()->db->createCommand($sql)->execute();
             }
             $sqlupdate = "UPDATE tb_month_goal SET version = $version WHERE `year` = $year AND division_id = $cid ";
             $sqlversion = "INSERT INTO tb_version (month_goal_id, `value`, version) "
@@ -2422,10 +2473,11 @@ class DataController extends Controller
             Yii::app()->db->createCommand($sqlupdate)->execute();
             Yii::app()->db->createCommand($sqlversion)->execute();
             Yii::app()->db->createCommand($sqlapprove)->execute();
-            if($result)
+            /*if($result)
                 $transaction->commit();
             else
-                $transaction->rollback();
+                $transaction->rollback();*/
+            $transaction->commit();
             echo 1;
         } catch (Exception $ex) {
             $transaction->rollback();
@@ -2455,4 +2507,51 @@ class DataController extends Controller
             echo 'error';
         }
     }
+    public function actionMgFillVersionSelector(){
+        @$cid = $_POST['div'];
+        @$year = $_POST['year'];
+        $versions = Yii::app()->Resource->getAllVersionOfDep($cid, $year);
+        if (count($versions))
+        {
+            ?><option value="0">เลือกเวอร์ชั่น</option><?php
+            foreach ($versions as $ver)
+            {
+                ?><option value="<?= $ver['version'] ?>"><?= $ver['version'] ?></option><?php
+            }
+        }
+        else
+        {
+            ?><option value="0">--ไม่มีเวอร์ชั่นสำหรับปีนี้--</option><?php
+        }
+    }
+    
+    public function actionMgFillValueFromVersion(){
+        if(!(isset($_POST['year'])&&isset($_POST['cid'])&&isset($_POST['ver']))){
+            echo 'Error: Missing parameter';
+            return false;
+        }
+        //var dump
+        $year = $_POST['year'];
+        $cid = $_POST['cid'];
+        $ver = $_POST['ver'];
+        $predata = array();
+        //$result = TbMonthGoal::model()->findAll("year = $year AND division_id = $cid");
+        $sql = "SELECT acc_id, month_id, v.`value` \n
+                FROM tb_month_goal mg \n
+                INNER JOIN tb_version v ON mg.month_goal_id = v.month_goal_id \n
+                WHERE division_id = $cid AND `year` = $year AND v.version = $ver ";
+        $result = Yii::app()->db->createCommand($sql)->queryAll();
+        if(!empty($result)){
+            $i = intval(0);
+            foreach($result as $row){
+                $predata[$i]['accid'] = $row['acc_id'];
+                $predata[$i]['month'] = $row["month_id"];
+                $predata[$i++]['value'] = $row['value']; 
+            }
+            echo json_encode($predata);
+        }else{
+            echo 'error';
+        }
+    }
+
 }
