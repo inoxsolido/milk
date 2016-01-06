@@ -29,6 +29,7 @@ class TbApprove extends CActiveRecord
 			array('year, division_id', 'required'),
 			array('division_id, approve_lv', 'numerical', 'integerOnly'=>true),
 			array('year', 'length', 'max'=>4),
+                        array('approve_lv', 'numerical', 'integerOnly'=>true),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('year, division_id, approve_lv', 'safe', 'on'=>'search'),
