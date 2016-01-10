@@ -1426,16 +1426,31 @@ class DataController extends Controller
     
     public function actionFillApproveDiv(){
         $userdiv = Yii::app()->user->UserDiv;
-        $dep = Yii::app()->db->createCommand()
+        /*$dep = Yii::app()->db->createCommand()
                                 ->select("dc.division_id as cid, dc.division_name as cname, dp.division_id as pid, dp.division_name as pname, "
                                         . "mg.approve1_lv as state1, mg.approve2_lv as state2")
                                 ->from("tb_division dc")
                                 ->join("tb_division dp", "dc.parent_division = dp.division_id")//for parent
                                 ->leftJoin("tb_month_goal mg", "mg.division_id = dc.division_id")//ใช้สำหรับ ดูว่ามีการกรอกข้อมูลหรือยัง
                                 ->where("dp.division_id = $userdiv AND dc.enable = 1 AND dc.division_level < 3")
-                                ->group("dc.division_id")->order("dc.erp_id ASC")->queryAll();
-        if(empty($dep)){
-            echo 'ฝ่ายนี้ยังไม่ได้มีการกำหนดข้อมูลสำหรับการกรอกข้อมูล กรุณาติดต่อ Admin <a href="#" onclick="window.history.back();">ย้อนกลับ</a>';
+                                ->group("dc.division_id")->order("dc.erp_id ASC")->queryAll();*/
+        $resource = Yii::app()->Resource->getYearResource();
+        if(empty($resource)){
+            $this->renderPartial("Bud/error",array('error'=>'ขณะนี้ยังไม่เปิดให้กรอกข้อมูล <a href="#" onclick="window.history.back();">ย้อนกลับ</a>'));
+            return false;
+        }
+        $year = $resource['year'];unset($resource);
+        $sql = "SELECT ay.`year`, dc.division_id as cid, dc.division_name as cname, approve_lv as approve, MAX(month_goal_id) as monthgoal, erp_id 
+FROM tb_division dc  
+JOIN tb_approve ap ON ap.division_id = dc.division_id 
+JOIN tb_acc_year ay ON ay.`year` = ap.`year` 
+LEFT JOIN tb_month_goal mg ON mg.division_id = dc.division_id AND mg.acc_id = ay.acc_id 
+WHERE ay.`year` = $year AND dc.parent_division = $userdiv AND dc.enable = 1 
+GROUP BY dc.division_id 
+ORDER BY erp_id ASC;";
+        $result = Yii::app()->db->createCommand($sql)->queryAll();
+        if(empty($result)){
+            $this->renderPartial("Bud/error",array('error'=>'ฝ่ายนี้ยังไม่ได้มีการกำหนดข้อมูลสำหรับการกรอกข้อมูล กรุณาติดต่อ Admin <a href="#" onclick="window.history.back();">ย้อนกลับ</a>'));
             return;
         }else{
             ?>
@@ -1447,20 +1462,29 @@ class DataController extends Controller
                         </tr>
                     </thead>
                     <tbody>
-                        <?php foreach ($dep as $rowdep) {
-                            $check = $rowdep['state1']==0||($rowdep['state1']==3&&$rowdep['state2']==0)?intval(0):intval(1);
+                        <?php foreach ($result as $rowdep) {
+                            //approve ได้ก็ต่อเมื่อ
+                            $approve = $rowdep['approve'];
+                            $mg = $rowdep['monthgoal'];
+                            $w_error = $mg==NULL?"ยังไม่มีการกรอกข้อมูล":($approve==5?"ยังไม่มีการแก้ไขข้อมูลจากรอบก่อนการประชุม":"");
+                            
+                            /*$check = $rowdep['state1']==0||($rowdep['state1']==3&&$rowdep['state2']==0)?intval(0):intval(1);
                             $isnull = $rowdep['state1']==NULL?"disabled":"";
-                            $disable = $rowdep['state1']>1||($rowdep['state1']==3&&$rowdep['state2']>1)||$rowdep['state1']==NULL?'disabled':'';
+                            $disable = $rowdep['state1']>1||($rowdep['state1']==3&&$rowdep['state2']>1)||$rowdep['state1']==NULL?'disabled':'';*/
                             ?>
                         <tr>
-                            <td style='width:75%; vertical-align: middle'><?=$rowdep['cname']?>&nbsp;&nbsp;&nbsp;<span class="text-danger"><?=$isnull?'ยังไม่มีการกรอกข้อมูล':''?></span></td>
+                            <td style='width:75%; vertical-align: middle'><?=$rowdep['cname']?>&nbsp;&nbsp;&nbsp;<span class="text-danger"><?=$w_error?></span></td>
                             <td style='width:25%;'>
-                                <div class='btn-group btn-group' style='display:inline;'>
-                                <input <?=$isnull?> type='button' class='btn btn-warning view' value='เรียกดู' cid='<?=$rowdep['cid']?>'/>
-                                <?php if($check == 0) {?>    
-                                <input <?=$disable?> type='button' class='btn btn-primary confirm' value='ยืนยัน' cid='<?=$rowdep['cid']?>'/>
-                                <?php } else {?>
-                                <input <?=$disable?> type='button' class='btn btn-danger unconfirm' value='ยกเลิกการยืนยัน' cid='<?=$rowdep['cid']?>'/>
+                                <div class='btn-group btn-group-sm' style='width:100%'>
+                                <?php if($mg!=NULL): ?>
+                                <input type='button' class='btn btn-warning view' value='เรียกดู' cid='<?=$rowdep['cid']?>' style="width:50%"/>
+                                <?php else:?>
+                                <span class="text-danger">ยังไม่มีการกรอกข้อมูล</span>
+                                <?php endif;?>
+                                <?php if(($approve == 1 && $mg != NULL) || ($approve == 5) ) {?>    
+                                <input type='button' class='btn btn-primary confirm' value='ยืนยัน' cid='<?=$rowdep['cid']?>' style="width:50%"/>
+                                <?php } else if((($approve == 2) || ($approve == 6))){?>
+                                <input type='button' class='btn btn-danger unconfirm' value='ยกเลิกการยืนยัน' cid='<?=$rowdep['cid']?>' style="width:50%"/>
                                 <?php }?>
                                 </div>
                             </td>
@@ -1501,17 +1525,17 @@ class DataController extends Controller
             $divtar = $_POST['divid'];
             $round = $_POST['round'];
             $year = $_POST['year'];
-            $column = "approve1_lv";
-            $value = 2;
+            //$column = "approve1_lv";
+            $value = 1;
             if($round == 2){
                 $value = 7;
             }
-            if($round == 3){
+            /*if($round == 3){
                 $column = "approve2_lv";
-            }
+            }*/
             
-            $sqlupdate = "UPDATE tb_month_goal SET $column = 0 WHERE division_id = $divtar AND `year` = $year";
-            $sqlupdate2 = "UPDATE tb_approve ap INNSER JOIN tb_division d ON ap.division_id = d.divsion-id SET approve - $value WHERE d.division_id = $divtar AND `year` = $year";
+            //$sqlupdate = "UPDATE tb_month_goal SET $column = 0 WHERE division_id = $divtar AND `year` = $year";
+            $sqlupdate2 = "UPDATE tb_approve ap INNER JOIN tb_division d ON ap.division_id = d.division_id SET approve_lv = $value WHERE d.division_id = $divtar AND `year` = $year";
             $result = Yii::app()->db->createCommand($sqlupdate2)->execute();
             if(count($result)>0)
                 echo 'ok';
@@ -2069,7 +2093,7 @@ class DataController extends Controller
         $cid = $_POST['cid'];
         $data = $_POST['detail'];
         $method = $_POST['method'];
-        $newapprove = $round == 1?intval(0):intval(5);
+        $newapprove = $round == 1?intval(1):intval(5);
         
         if($method == "assign"){
             $resultcheck = TbMgLimit::model()->findAll("year = $year AND division = $cid AND round = $round");
@@ -2089,12 +2113,14 @@ class DataController extends Controller
                             $modelLimit->save();
                         }
                     }
-                    $modelApprove = new TbApprove();
-                        if($modelApprove->isNewRecord){
+                    $modelApprove = TbApprove::model()->find("year = $year AND division_id = $cid");
+                        if(!$modelApprove->isNewRecord){
                             $modelApprove->year = $year;
                             $modelApprove->division_id = intval($cid);
                             $modelApprove->approve_lv = $newapprove;
                             $modelApprove->save();
+                        }else{
+                            throw new Exception("cannot find approve");
                         }
                     $transaction->commit();
                     echo '1';
@@ -2199,14 +2225,23 @@ class DataController extends Controller
         $userdiv = Yii::app()->user->UserDiv;
 
         //หาว่าผู้ใช้คนนี้ดูแลแผนก/กองไหนบ้าง
-        $sql = "SELECT ay.`year`, dc.division_id as cid, dc.division_name as cname, approve_lv as approve \n"
+        /*$sql = "SELECT ay.`year`, dc.division_id as cid, dc.division_name as cname, approve_lv as approve \n"
                 . "FROM tb_division dc \n"
                 . "JOIN tb_profile_fill pf ON pf.division_id = dc.division_id AND pf.owner_div_id = 69 \n"
                 . "LEFT JOIN tb_approve ap ON ap.division_id = dc.division_id \n"
                 . "JOIN tb_acc_year ay ON ay.`year` = IFNULL(ap.`year`, 2015) \n"
                 . "WHERE ay.`year` = 2015 \n"
                 . "GROUP BY pf.division_id \n"
-                . "ORDER BY cname ASC";
+                . "ORDER BY cname ASC";*/
+        $sql = "SELECT ay.`year`, dc.division_id as cid, dc.division_name as cname, approve_lv as approve, MAX(month_goal_id) as monthgoal, erp_id
+FROM tb_division dc  
+JOIN tb_profile_fill pf ON pf.division_id = dc.division_id AND pf.owner_div_id = $userdiv 
+JOIN tb_approve ap ON ap.division_id = dc.division_id 
+JOIN tb_acc_year ay ON ay.`year` = ap.`year` 
+LEFT JOIN tb_month_goal mg ON mg.division_id = dc.division_id AND mg.acc_id = ay.acc_id 
+WHERE ay.`year` = $year AND dc.enable = 1 
+GROUP BY pf.division_id 
+ORDER BY erp_id ASC;";
         //echo '<pre>'.$sql.'</pre>';
         $resource = Yii::app()->db->createCommand($sql)->queryAll();
         if(!empty($resource)){
@@ -2223,21 +2258,22 @@ class DataController extends Controller
                     $cid = $row['cid'];
                     $cname = $row['cname'];
                     $approve = $row['approve'];
+                    $mg = $row['monthgoal'];
                     ?>
                 <tr>
                     <td class="tdcenter"><?php 
                     echo $cname;
-                        if(($round == 1 && $approve == NULL)||($round == 2 && $approve == 4)):?>
+                        if(($round == 1 && $approve == 0)||($round == 2 && $approve == 4)):?>
                         <span class="text-danger">ฝ่ายยังไม่ได้กำหนดเป้าหมายรายปี</span>
                         <?php endif; ?>
                     </td>
                     <td class="tdcenter" style="max-width: 200px;width: 25%">
                         <div class="btn-group" cid="<?=$cid?>" style="width: 100%">
-                            <?php if(($round == 1 && $approve == NULL)||($round == 2 && $approve == 4)): ?>
+                            <?php if(($round == 1 && $approve == 0)||($round == 2 && $approve == 4)): ?>
                             <span class="text-danger">ไม่มีเป้าหมายรายปี</span>
-                            <?php elseif(($round == 1 && $approve == 0)||($round == 2 && $approve == 5)):?>
+                            <?php elseif(($round == 1 && $approve == 1 && $mg == NULL)||($round == 2 && $approve == 5)):?>
                             <a class="btn btn-primary assign" href="<?=Yii::app()->createAbsoluteUrl("Bud/MonthGoal/assign/$cid")?>" style="width:100%">กำหนด</a>
-                            <?php elseif(($round == 1 && $approve < 2)||($round == 2 && $approve < 7)):?>
+                            <?php elseif(($round == 1 && $approve == 1 && $mg != NULL) || ($round == 2 && $approve == 6)):?>
                             <a class="btn btn-info view" style="width:50%">เรียกดู</a>
                             <a class="btn btn-warning assign" href="<?=Yii::app()->createAbsoluteUrl("Bud/MonthGoal/edit/$cid")?>" style="width:50%">แก้ไข</a>
                             <?php else: ?>
