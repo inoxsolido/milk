@@ -956,7 +956,7 @@ class DataController extends Controller
                 }
                 //write approve
                 //กำหนดapproveให้ทุกdivisionที่เปิดใช้งาน
-                $divs = TbDivision::model()->findAll("division_level < 3");
+                $divs = TbDivision::model()->findAll("division_level < 3 AND enable = 1");
                 foreach($divs as $div){
                     $amodel = new TbApprove;
                     if($amodel->isNewRecord){
@@ -1445,7 +1445,7 @@ FROM tb_division dc
 JOIN tb_approve ap ON ap.division_id = dc.division_id 
 JOIN tb_acc_year ay ON ay.`year` = ap.`year` 
 LEFT JOIN tb_month_goal mg ON mg.division_id = dc.division_id AND mg.acc_id = ay.acc_id 
-WHERE ay.`year` = $year AND dc.parent_division = $userdiv AND dc.enable = 1 
+WHERE ay.`year` = $year AND dc.parent_division = $userdiv 
 GROUP BY dc.division_id 
 ORDER BY erp_id ASC;";
         $result = Yii::app()->db->createCommand($sql)->queryAll();
@@ -1500,16 +1500,11 @@ ORDER BY erp_id ASC;";
             $divtar = $_POST['divid'];
             $round = $_POST['round'];
             $year = $_POST['year'];
-            //$column = "approve1_lv";
             $value = 2;
             if($round == 2){
                 $value = 7;
             }
-            /*if($round == 3){
-                $column = "approve2_lv";
-            }*/
             
-            //$sqlupdate = "UPDATE tb_month_goal SET $column = 1 WHERE division_id = $divtar AND `year` = $year";
             $sqlupdate2 = "UPDATE tb_approve ap INNER JOIN tb_division d ON ap.division_id = d.division_id SET approve_lv = $value WHERE d.division_id = $divtar AND `year` = $year";
             $result = Yii::app()->db->createCommand($sqlupdate2)->execute();
             if(count($result)>0)
@@ -1525,16 +1520,11 @@ ORDER BY erp_id ASC;";
             $divtar = $_POST['divid'];
             $round = $_POST['round'];
             $year = $_POST['year'];
-            //$column = "approve1_lv";
             $value = 1;
             if($round == 2){
                 $value = 7;
             }
-            /*if($round == 3){
-                $column = "approve2_lv";
-            }*/
-            
-            //$sqlupdate = "UPDATE tb_month_goal SET $column = 0 WHERE division_id = $divtar AND `year` = $year";
+
             $sqlupdate2 = "UPDATE tb_approve ap INNER JOIN tb_division d ON ap.division_id = d.division_id SET approve_lv = $value WHERE d.division_id = $divtar AND `year` = $year";
             $result = Yii::app()->db->createCommand($sqlupdate2)->execute();
             if(count($result)>0)
@@ -1558,30 +1548,14 @@ ORDER BY erp_id ASC;";
             return;
         }
         
-        $divsql = "SELECT dp.division_id as pid, dp.division_name as pname, dc.cid as cid, dc.cname as cname, min(state1) as state1, min(state2) as state2 "
-                . "FROM tb_division dp "
-                . "LEFT JOIN ( "
-                    . "SELECT dc.division_id as cid, dc.division_name as cname,"
-                    . " dc.parent_division as cpid, "
-                    . "MAX(IFNULL(mg.approve1_lv,0)) as state1, MAX(IFNULL(mg.approve2_lv,0)) as state2 "
-                    . "FROM `tb_division` `dc` LEFT JOIN `tb_month_goal` `mg` ON mg.division_id = dc.division_id "
-                    . "WHERE dc.enable = 1 and dc.division_level < 3 "
-                    . "GROUP BY `dc`.`division_id`"
-                    . " ) dc ON dp.division_id = dc.cpid "
-                . "WHERE dp.division_level = 3 "
-                . "GROUP BY dp.division_id "
-                . "ORDER BY dp.erp_id ASC";
-        $divsqlnew = "SELECT dp.division_id as pid, dp.division_name as pname, approve, `year`
-                    FROM tb_division dp
-                    LEFT JOIN(
-                            SELECT dp.division_id as pid, dp.division_name as pname, dc.division_id as cid, dc.division_name as cname, AVG(IFNULL(approve_lv,0))as approve, `year`
-                            FROM tb_division dp
-                            JOIN tb_division dc ON dp.division_id = dc.parent_division AND dc.division_level < 3 AND dc.`enable` = 1
-                            LEFT JOIN tb_approve ap ON dc.division_id = ap.division_id AND ap.`year` = $year AND approve_lv != 9
-                            GROUP BY dp.division_id
-                    ) dt ON dp.division_id = dt.pid
-                    WHERE dp.division_level = 3 AND `enable` = 1";
-        $div = Yii::app()->db->createCommand($divsqlnew)->queryAll();
+        $divsql = "SELECT  `year`, dp.division_id as pid, dp.division_name as pname, AVG(IFNULL(approve_lv,0)) as approve, dp.erp_id
+	FROM tb_division dp  
+	INNER JOIN tb_division dc ON dp.division_id = dc.parent_division AND dc.division_level < 3 
+	INNER JOIN tb_approve ap ON dc.division_id = ap.division_id
+	WHERE `year` = $year  
+	GROUP BY dp.division_id 
+        ORDER BY erp_id ";
+        $div = Yii::app()->db->createCommand($divsql)->queryAll();
         if(empty($div)){
             echo 'ยังไม่ได้กำหนดข้อมูล รายละเอียดสังกัด <a href="#" onclick="window.history.back();">ย้อนกลับ</a>';
             return;
@@ -1630,10 +1604,10 @@ ORDER BY erp_id ASC;";
                     <div class="modal-body" >
                         <form id='finalapprove' class='form-horizontal'>
                             <div class='form-group' style="text-align: center">
-                                <label><input type="checkbox" id="chkfinal"/> ยืนยันการสิ้นสุดการแก้ไขงบประมาณ</label>
+                                <label><input type="checkbox" id="chkfinal" /> ยืนยันการสิ้นสุดการแก้ไขงบประมาณ</label>
                             </div>
                             <div class="form-group">
-                                <a class="btn btn-primary btn-block" id="btnfinal">ยืนยัน</a>
+                                <a class="btn btn-primary btn-block" id="btnfinal" disabled>ยืนยัน</a>
                             </div>
                             <div class="form-group">
                                 <span class="text-danger">การยืนยันครั้งนี้หากยืนยันไปแล้ว จะไม่สามารถยกเลิกหรือเปลี่ยนแปลงได้อีกในภายหลัง</span>
@@ -1648,54 +1622,63 @@ ORDER BY erp_id ASC;";
             <?php endif; 
         }
     }
-    public function actionFillApproveAdminConfirm(){
+    public function actionApproveAdminFinal(){
+        if(isset($_POST['year'])){
+            $year = $_POST['year'];
+            $resource = Yii::app()->Resource->getYearResource();
+            if($resource){
+                if($year == $resource['year']){
+                    //ok
+                    $value = 9;
+                    $transaction = Yii::app()->db->beginTransaction();
+                    try{
+                        $result = TbApprove::model()->updateAll(array('approve_lv'=>$value), "year = $year");
+                        $transaction->commit();
+                        echo 'ok';
+                    }catch(Exception $ex){
+                        $transaction->rollback();
+                        echo 'fail';
+                        echo $ex->getCode();
+                    }
+                }else{
+                    echo 'parameter fault';
+                }
+            }
+        }else{
+            echo 'parameter error';
+        }
+    }
+    public function actionApproveAdminConfirm(){
         if(isset($_POST['divid'])&&isset($_POST['round'])&&isset($_POST['year'])){
             $divtar = $_POST['divid'];
             $round = $_POST['round'];
             $year = $_POST['year'];
-            $column = "approve1_lv";
             $value = 3;
             if($round == 2){
                 $value = 8;
-            }else if($round == 3){
-                $value = 9;
-            }
-            if($round == 3){
-                $column = "approve2_lv";
             }
             
-            $sqlupdate = "UPDATE tb_month_goal mg INNER JOIN tb_division d ON mg.division_id = d.division_id SET $column = 2 WHERE d.parent_division = $divtar AND `year` = $year";
-            $sqlupdate2 = "UPDATE tb_approve ap INNER JOIN tb_division d ON ap.division_id = d.divsion-id SET approve - $value WHERE d.parent_division = $divtar AND `year` = $year";
-            if($round != 3){
-                $result = Yii::app()->db->createCommand($sqlupdate2)->execute();
-                if(count($result)>0)
-                    echo 'ok';
-                else echo ($result);
-            }else{
-                $sqlupdate3 = "UPDATE tb_approve ap SET approve = 9 WHERE `year` = $year";
-                echo Yii::app()->db->createCommand($sqlupdate3)->execute()?'ok':0;
-            }
+            $sqlupdate2 = "UPDATE tb_approve ap INNER JOIN tb_division d ON ap.division_id = d.division_id SET approve_lv = $value WHERE d.parent_division = $divtar AND `year` = $year";
+            $result = Yii::app()->db->createCommand($sqlupdate2)->execute();
+            if(count($result)>0)
+                echo 'ok';
+            else echo ($result);
         }else{
             echo 'parameter error';
             print_r($_POST);
         }
     }
-    public function actionFillApproveAdminUnconfirm(){
+    public function actionApproveAdminUnconfirm(){
         if(isset($_POST['divid'])&&isset($_POST['round'])&&isset($_POST['year'])){
             $divtar = $_POST['divid'];
             $round = $_POST['round'];
             $year = $_POST['year'];
-            $column = "approve1_lv";
             $value = 2;
-            if($round == 2){
+            if($round == 2 || $round == 3){
                 $value = 7;
             }
-            if($round == 3){
-                $column = "approve2_lv";
-            }
             
-            $sqlupdate = "UPDATE tb_month_goal mg INNER JOIN tb_division d ON mg.division_id = d.division_id SET $column = 1 WHERE d.parent_division = $divtar AND `year` = $year";
-            $sqlupdate2 = "UPDATE tb_approve ap INNSER JOIN tb_division d ON ap.division_id = d.divsion-id SET approve - $value WHERE d.parent_division = $divtar AND `year` = $year";
+            $sqlupdate2 = "UPDATE tb_approve ap INNER JOIN tb_division d ON ap.division_id = d.division_id SET approve_lv = $value WHERE d.parent_division = $divtar AND `year` = $year";
             $result = Yii::app()->db->createCommand($sqlupdate2)->execute();
             if(count($result)>0)
                 echo 'ok';
@@ -2239,7 +2222,7 @@ JOIN tb_profile_fill pf ON pf.division_id = dc.division_id AND pf.owner_div_id =
 JOIN tb_approve ap ON ap.division_id = dc.division_id 
 JOIN tb_acc_year ay ON ay.`year` = ap.`year` 
 LEFT JOIN tb_month_goal mg ON mg.division_id = dc.division_id AND mg.acc_id = ay.acc_id 
-WHERE ay.`year` = $year AND dc.enable = 1 
+WHERE ay.`year` = $year  
 GROUP BY pf.division_id 
 ORDER BY erp_id ASC;";
         //echo '<pre>'.$sql.'</pre>';

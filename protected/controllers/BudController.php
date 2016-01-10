@@ -297,7 +297,7 @@ class BudController extends Controller
     }
     
     //approve
-    public function actionApproveold()
+    public function actionApproveoldold()
     {
         $div = Yii::app()->user->UserDiv;
         //$devindiv = Yii::app()->db->createCommand()->select()->from("tb_");
@@ -435,12 +435,13 @@ class BudController extends Controller
         
         //$this->render("approve");
     }
-    public function actionApprove()
+    public function actionApproveold()
     {
         $user = Yii::app()->user->UserId;
         $userdiv = Yii::app()->user->UserDiv;
         //find max approve of the year
-        $resource = Yii::app()->db->createCommand()->select("tb_acc_year.`year`, MAX(IFNULL(approve1_lv,0)) AS approve1, MAX(IFNULL(approve2_lv,0)) AS approve2, COUNT(month_goal_id) AS number")
+        $resource = Yii::app()->db->createCommand()
+                ->select("tb_acc_year.`year`, MAX(IFNULL(approve1_lv,0)) AS approve1, MAX(IFNULL(approve2_lv,0)) AS approve2, COUNT(month_goal_id) AS number")
                         ->from("tb_acc_year")->leftjoin("tb_month_goal", "tb_acc_year.year = tb_month_goal.year")
                         ->group("tb_acc_year.year")->order("year ASC")->queryAll();
         $year = intval(0);
@@ -519,17 +520,42 @@ class BudController extends Controller
             echo 'ขณะนี้ระบบยังไม่เปิดให้กรอกหรือแก้ไขข้อมูล <a href="#" onclick="window.history.back();">ย้อนกลับ</a>';
         }
     }
+    public function actionApprove()
+    {
+        $user = Yii::app()->user->UserId;
+        $userdiv = Yii::app()->user->UserDiv;
+
+        //find year to use to approve
+        $resource = Yii::app()->Resource->getYearResource();
+        if(empty($resource)){
+            $this->render("error",array('error'=>'ขณะนี้ระบบยังไม่เปิดให้กรอกข้อมูล <a href="#" onclick="window.history.back();">ย้อนกลับ</a>'));
+            return false;
+        }
+        $year = $resource['year'];
+        $approve_lv = intval($resource['approve']);
+        $round = intval($resource['round']);
+        
+        //ส่วนนี้สามารถเพิ่มการ redirect ไปยัง YearGoal ได้
+        $userlv = Yii::app()->user->UserPosition;
+        //bypass
+        if($userlv == 3){
+            if($round == 3) $round -= 1;
+            $this->render("approve_admin", array("round"=>$round, 'year'=>$year));
+        }else if($userlv == 2){
+            if($round == 3 || $approve_lv == 3 || $approve_lv >= 8 || $round == 4)
+                echo 'ขณะนี้ไม่สามารถยกเลิกหรือยืนยันข้อมูลได้เนื่องจาก Admin ได้ยืนยันข้อมูลแล้ว <a href="#" onclick="window.history.back();">ย้อนกลับ</a>';
+            else
+                $this->render("approve_div", array("round"=>$round, 'year'=>$year));
+        }
+    }
+    
     public function actionYearGoal(){
         $resource = Yii::app()->Resource->YearResource;
         $year = intval(0);
         $approve = intval(0);
         $round = intval(0);
         
-        if (empty($resource))
-        {
-            echo 'ขณะนี้ระบบยังไม่เปิดให้กรอกข้อมูล <a href="#" onclick="window.history.back();">ย้อนกลับ</a>';
-        }
-        else
+        if (!empty($resource))
         {
             $year = $resource['year'];
             $approve = $resource['approve'];
@@ -645,5 +671,54 @@ class BudController extends Controller
             echo 'bad';
         }
     }
+    
+    public function actionTestPhpExcel(){
+        Yii::import('application.extensions.PHPExcel');
+        
+        $objPHPExcel = new PHPExcel();
+        $objPHPExcel->removeSheetByIndex(0);
+        $worksheet1 = $objPHPExcel->createSheet();
+        $worksheet2 = $objPHPExcel->createSheet();
+        $worksheet1->setTitle("Sheet1 hola");
+        $worksheet2->setTitle("Sheet2 holahola");
+        /* @var $worksheet2 PHPExcel_Worksheet */
+        
+        
+        ob_end_clean();
+        ob_start();
+        header('Content-Type: application/vnd.ms-excel');
+        header('Content-Disposition: attachment;filename="test.xls"');
+        header('Cache-Control: max-age=0');
+        $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
+        $objWriter->save('php://output');
+        
+        return FALSE;
+        
+        $objPHPExcel->setActiveSheetIndex(0)->getColumnDimension('A')->setWidth(43.25);
+        
+        $objPHPExcel->setActiveSheetIndex(0)
+        ->setCellValue('A1', 'Hello')
+        ->setCellValue('B2', 'world!')
+        ->setCellValue('C1', 'Hello')
+        ->setCellValue('D2', 'world!');
 
+        $objPHPExcel->setActiveSheetIndex(0)
+        ->setCellValue('A4', 'Miscellaneous glyphs')
+        ->setCellValue('A5', 'eaeuaeioueiuyaouc');
+
+        $objPHPExcel->getActiveSheet()->setTitle('Simple');
+
+        $objPHPExcel->setActiveSheetIndex(0);
+
+        ob_end_clean();
+        ob_start();
+
+        header('Content-Type: application/vnd.ms-excel');
+        header('Content-Disposition: attachment;filename="test.xls"');
+        header('Cache-Control: max-age=0');
+        $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
+        $objWriter->save('php://output');
+
+        return FALSE;
+    }
 }
