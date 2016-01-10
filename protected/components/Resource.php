@@ -82,5 +82,29 @@ class Resource extends CApplicationComponent
                 . "WHERE division_id = $depid AND mg.`year` = $year";
         return Yii::app()->db->createCommand($sql)->queryAll();
     }
+    public function getYearApproveAndRound($year){
+        $sql = "SELECT  `year`,AVG(IFNULL(approve_lv,0)) as approve_lv \n
+	FROM tb_division dp \n
+	INNER JOIN tb_division dc ON dp.division_id = dc.parent_division AND dc.division_level < 3 \n
+	INNER JOIN tb_approve ap ON dc.division_id = ap.division_id \n
+	WHERE `year` = $year";
+        $result = Yii::app()->db->createCommand($sql)->queryRow();
+        if (!empty($result))
+        {
+            //calc Round
+            $approve = $result['approve'];
+            $round = 1;
+            if ($approve < 4)
+                $round = 1;//ก่อนการประชุม
+            else if ($approve < 8)
+                $round = 2;//หลังการประชุม
+            else if ($approve == 8)
+                $round = 3;//แอดมินยืนยันหลังการประชุม
+            else
+                $round = 4;//แอดมินยืนยันการสิ้นสุดการกรอกงบประมาณในปีนั้น
+            $result['round'] = $round;
+        }
+        return $result;
+    }
 
 }
