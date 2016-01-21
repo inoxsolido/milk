@@ -45,8 +45,8 @@
             <option>year 3</option>
         </select>
         <a class="btn btn-sm btn-success">ตกลง <i class="glyphicon glyphicon-ok"></i></a><br/>
-        <span class="text-warning" style="display: inline!important;">การแก้ไขจะส่งผลกระทบต่อการเรียกดูสรุปผล</span>
-        <span class="text-danger" >*สามารถลบข้อมูลได้โดยการบันทึกค่าว่าง*</span>
+        <span class="text-warning" style="display: inline!important;">การแก้ไขจะส่งผลกระทบต่อการเรียกดูสรุปผล การยืนยันข้อมูล การกำหนดกรอบ และการกำหนดเป้าหมายรายเดือน</span>
+        <span class="text-danger" style="display:block" >*สามารถลบข้อมูลได้โดยการบันทึกค่าว่าง*</span>
     </div>
 </div>
 

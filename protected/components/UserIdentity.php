@@ -36,6 +36,7 @@ class UserIdentity extends CUserIdentity
                 $this->setState('isDep', $pos==1?true:false);
                 $this->setState('user_id', $user->user_id);
                 $this->setState('user_division', $user->division_id);
+                $this->setState('user_position', $user->position_id);
                 
                 //no error
                 $this->errorCode=self::ERROR_NONE;

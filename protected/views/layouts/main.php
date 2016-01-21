@@ -17,43 +17,6 @@
         <script type="text/javascript">
             $(function () {
                 $("div.loading").hide();
-                /*var stickyNavTop;
-                 if($('.navbar').length)
-                 stickyNavTop = $('.navbar').offset().top;
-                 
-                 
-                 var stickyMenuTop;
-                 if($('.menu').length)
-                 stickyMenuTop = $('.menu').offset().top;
-                 
-                 var stickyNav = function () {
-                 if(!$('.navbar').length)return;
-                 var scrollTop = $(window).scrollTop();
-                 if (scrollTop > stickyNavTop) {
-                 $('.navbar').addClass('sticky');
-                 } else {
-                 $('.navbar').removeClass('sticky');
-                 }
-                 };
-                 var stickyMenu = function () {
-                 if(!$('.menu').length)return;
-                 var scrollTop = $(window).scrollTop();
-                 if (scrollTop > stickyMenuTop-50) {
-                 $('.menu').addClass('stickmenu');
-                 } else {
-                 $('.menu').removeClass('stickmenu');
-                 }
-                 };
-                 stickyNav();
-                 stickyMenu();
-                 
-                 $(window).scroll(function () {
-                 if($('.navbar').length)
-                 stickyNav();
-                 if($('.menu').length)
-                 stickyMenu();
-                 });
-                 */
             });
         </script>
         <style type="text/css">
@@ -108,6 +71,14 @@
             #dummy{
                 height: 83.5px;
             }
+            .text-danger{
+                color: #a80026 !important;
+                display: inline;
+            }
+            .text-success{
+                color: #3FB618 !important;
+                display:inline;
+            }
         </style>
 
 
@@ -130,12 +101,13 @@
                         <a class="navbar-brand" href="<?= Yii::app()->createUrl('./') ?>"><?php echo Yii::app()->name ?></a>
                     </div>
                     <div class="collapse navbar-collapse" id="navbar-data-collapse">
-                        <?php
+                        <?php 
                         $this->widget('zii.widgets.CMenu', array(
                             'items' => array(
-                                ['label' => 'กรอกงบประมาณ', 'url' => 'MonthGoal', 'visible' => (Yii::app()->user->isDepartment || Yii::app()->user->isDivision)],
-                                ['label' => 'ยืนยันคำขอ', 'url' => '#', 'visible' => (Yii::app()->user->isDivision || Yii::app()->user->isAdmin)],
-                                ['label' => 'สรุปผล', 'url' => '#', 'visible' => !Yii::app()->user->isGuest],
+                                ['label' => 'กำหนดกรอบ', 'url' => Yii::app()->createAbsoluteUrl("Bud/YearGoal"), 'visible' => (Yii::app()->user->isDivision || Yii::app()->user->isAdmin)],
+                                ['label' => 'กรอกงบประมาณ', 'url' => Yii::app()->createAbsoluteUrl("Bud/MonthGoal"), 'visible' => (Yii::app()->user->isDepartment || Yii::app()->user->isDivision)],
+                                ['label' => 'ยืนยันคำขอ', 'url' => Yii::app()->createAbsoluteUrl("Bud/Approve"), 'visible' => (Yii::app()->user->isDivision || Yii::app()->user->isAdmin)],
+                                ['label' => 'สรุปผล', 'url' => Yii::app()->createAbsoluteUrl("Bud/Summary"), 'visible' => !Yii::app()->user->isGuest],
                                 ['label' => "จัดการบัญชี <i class='caret'></i>", 'url' => '#', 'visible' => Yii::app()->user->isAdmin,
                                     'linkOptions' => [
                                         'class' => 'dropdown-toggle',
@@ -143,8 +115,8 @@
                                         'role' => 'button',
                                     ],
                                     'items' => [
-                                        ['label' => 'จัดการรายละเอียดบัญชี', 'url' => 'AccountManager', 'class' => 'dropdown-toggle', 'role' => 'menu'],
-                                        ['label' => 'กำหนดบัญชีที่ใช้แต่ละปี', 'url' => 'AccountYearAssign'],
+                                        ['label' => 'จัดการรายละเอียดบัญชี', 'url' => Yii::app()->createAbsoluteUrl("Bud/AccountManager"), 'class' => 'dropdown-toggle', 'role' => 'menu'],
+                                        ['label' => 'กำหนดบัญชีที่ใช้แต่ละปี', 'url' => Yii::app()->createAbsoluteUrl("Bud/AccountYearAssign")],
                                     ]
                                 ],
                                 ['label' => "จัดการสังกัด <i class='caret'></i>", 'url' => '#', 'visible' => Yii::app()->user->isAdmin,
@@ -154,11 +126,11 @@
                                         'role' => 'button',
                                     ],
                                     'items' => [
-                                        ['label' => 'จัดการรายละเอียดสังกัด', 'url' => 'divManager', 'class' => 'dropdown-toggle', 'role' => 'menu'],
-                                        ['label' => 'จัดการการกรอกของสังกัด', 'url' => 'fillingManager'],
+                                        ['label' => 'จัดการรายละเอียดสังกัด', 'url' => Yii::app()->createAbsoluteUrl("Bud/divManager"), 'class' => 'dropdown-toggle', 'role' => 'menu'],
+                                        ['label' => 'จัดการการกรอกของสังกัด', 'url' => Yii::app()->createAbsoluteUrl("Bud/fillingManager")],
                                     ]
                                 ],
-                                ['label' => 'จัดการผู้ใช้', 'url' => 'usermanager', 'visible' => Yii::app()->user->isAdmin],
+                                ['label' => 'จัดการผู้ใช้', 'url' => Yii::app()->createAbsoluteUrl("Bud/usermanager"), 'visible' => Yii::app()->user->isAdmin],
                             ),
                             'activeCssClass' => 'active',
                             'htmlOptions' => ['class' => 'nav navbar-nav'],
@@ -169,8 +141,8 @@
                         <?php
                         $this->widget('zii.widgets.Cmenu', array(
                             'items' => array(
-                                ['label' => 'คู่มือ', 'url' => './faq'],
-                                ['label' => 'ลงชื่อเข้าใช้', 'url' => 'login', 'visible' => Yii::app()->user->isGuest],
+                                ['label' => 'คู่มือ', 'url' => Yii::app()->createAbsoluteUrl("Bud/faq")],
+                                ['label' => 'ลงชื่อเข้าใช้', 'url' => Yii::app()->createAbsoluteUrl("Bud/login"), 'visible' => Yii::app()->user->isGuest],
                                 ['label' => Yii::app()->user->name . "<i class='caret'></i>", 'url' => '#',
                                     'linkOptions' => [
                                         'class' => 'dropdown-toggle',
@@ -183,7 +155,7 @@
                                                 'id' => 'chinfo',
                                             ]
                                         ],
-                                        ['label' => 'ออกจากระบบ', 'url' => 'logout'],
+                                        ['label' => 'ออกจากระบบ', 'url' => Yii::app()->createAbsoluteUrl("Bud/logout")],
                                     ],
                                     'visible' => !Yii::app()->user->isGuest
                                 ]

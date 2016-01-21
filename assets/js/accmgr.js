@@ -24,7 +24,7 @@ $(function () {
     {
         return checkbox.is(":checked");
     }
-    function ReqData() {
+    function ReqData(warpto) {
         $("#accbody").html('<image src="./../images/loading.gif" style="width:20%; height:20%">');
         search = {
             erp: $("#fderp").val(),
@@ -48,6 +48,8 @@ $(function () {
             $("#addpar").html(data);
             $("#editpar").html(data);
         });
+        
+        window.location = "#"+warpto;
     }
 
     //findzone
@@ -246,19 +248,37 @@ $(function () {
          }
          */
     }
+    function reqsib(par_id, output_el, aid){
+        
+        $.ajax({
+            url: "../Data/AccSib",
+            async: false,
+            type: 'POST',
+            data:{
+                pid:par_id,
+                aid:aid
+            },success: function (data, textStatus, jqXHR) {
+                $(output_el).html(data);
+            }
+        });
+        
+    }
     //----add
     $("#addm").click(function () {
+        $(".loading").show();
+        reqsib(0, $("#addorder"));
         $("#modaladd").modal('show');
+        $(".loading").hide();
     });
     $("#addhaserp").change(function () {
-        val = getCheckbox($(this));
+        var val = getCheckbox($(this));
         if (val)
             $("#modaladd").find(".erp").show();
         else
             $("#modaladd").find(".erp").hide();
     });
     $("#addhaspar").change(function () {
-        val = getCheckbox($(this));
+        var val = getCheckbox($(this));
         if (val) {
             $("#modaladd").find(".par").show();
             $("#modaladd").find(".group").hide();
@@ -269,6 +289,9 @@ $(function () {
             $("#addpar").val("").focusout();
             $("#addgroup").val("").focusout();
         }
+    });
+    $("#addpar").change(function(){
+        reqsib($(this).val(), $("#addorder"));
     });
     $("#addname").focusout(function () {
         checkname($("#addname"), false);
@@ -294,6 +317,8 @@ $(function () {
         var group = $("#addgroup").val();
         var haserp = getCheckbox($("#addhaserp"));
         var haspar = getCheckbox($("#addhaspar"));
+        var hassum = getCheckbox($("#addhassum"));
+        var order = $("#addorder").val();
         var namestate = checkname($("#addname"), false);
         var erpstate = checkerp($("#adderp"), haserp, false);
         if (!haspar && group < 1){
@@ -307,7 +332,9 @@ $(function () {
                 par: par,
                 group: group,
                 haserp: haserp,
-                haspar: haspar
+                haspar: haspar,
+                hassum: hassum,
+                order: order
             };
             $.ajax({
                 url: "../Data/AccountAdd",
@@ -338,6 +365,9 @@ $(function () {
         }
     });
     //---edit
+    $("#editpar").change(function(){
+        reqsib($(this).val(), $("#editorder"));
+    });
     $("#edithaserp").change(function () {
         val = getCheckbox($(this));
         if (val)
@@ -398,7 +428,10 @@ $(function () {
                     $("#edithaspar").prop("checked", false).change();
                 
                 $("#editgroup").val(data.group);
-
+                $("#edithassum").prop("checked", data.hassum);
+                reqsib(data.par==null?0:data.par, $("#editorder"), accid);
+                $("#editorder").val(data.order);
+                console.log(data);
             },
             dataType: 'json'
         });
@@ -412,6 +445,8 @@ $(function () {
         var group = $("#editgroup").val();
         var haserp = getCheckbox($("#edithaserp"));
         var haspar = getCheckbox($("#edithaspar"));
+        var hassum = getCheckbox($("#edithassum"));
+        var order = $("#editorder").val();
         if (!haspar && group < 1) {
             alert('กรุณาเลือกหมวด');
             return;
@@ -429,20 +464,24 @@ $(function () {
                         par: par,
                         group: group,
                         haserp: haserp,
-                        haspar: haspar
+                        haspar: haspar,
+                        hassum: hassum,
+                        order:order
                     }
                 },
                 success: function (data, textStatus, jqXHR) {
                     if (data == 'ok') {
+                        alert("การแก้ไขข้อมูลสำเร็จ");
+                        $("#modaledit").modal('hide');
                         $("#editname").val("");
                         $("#editerp").val("");
                         $("#editpar").val("");
                         $("#editgroup").val("");
                         $("#edithaserp").prop("checked", true).change();
                         $("#edithaspar").prop("checked", true).change();
-                        ReqData();
-                        alert("การแก้ไขข้อมูลสำเร็จ");
-                        $("#modaledit").modal('hide');
+                        
+                        ReqData(name);
+                        
                         $("#modaledit").find("div.form-group-sm").find(".feedback").text("");
                         $("#modaledit").find("div.form-group-sm").removeClass("has-error");
                         $("#modaledit").find("div.form-group-sm").removeClass("has-success");

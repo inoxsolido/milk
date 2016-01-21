@@ -1,5 +1,5 @@
 <link href="<?= Yii::app()->request->baseUrl ?>/assets/css/datepicker.css" rel="stylesheet" type="text/css"/>
-<link href="<?= Yii::app()->request->baseUrl ?>/assets/css/jquery-checktree.css" ref="stylesheet" type="text/css" />
+<link href="<?= Yii::app()->request->baseUrl ?>/assets/css/jquery-checktree.css" rel="stylesheet" type="text/css" />
 <link href="<?= Yii::app()->request->baseUrl ?>/assets/css/jquery.steps.css" rel="stylesheet" type="text/css"/>
 <link href="<?= Yii::app()->request->baseUrl ?>/assets/css/smart_wizard.css" rel="stylesheet" type="text/css"/>
 <link href="<?= Yii::app()->request->baseUrl ?>/assets/css/multilevelcheckbox.css" rel="stylesheet" type="text/css"/>
@@ -9,17 +9,13 @@
     .center{
         margin: auto 5px 0px auto;
 
-        hieght: 100%;
+        height: 100%;
         padding: 10px;
         text-align: center;
     }
     .menu-edit{
         border:2px solid #FF6600;
         border-bottom-width: 3px;
-    }
-    .text-danger{
-        color: #a80026 !important;
-        display: inline !important;
     }
     .page-warp{
         position: fixed;    
@@ -35,6 +31,7 @@
     }
     .in-page-warp{
         width: 50%;
+        height: auto;
         margin: 10% auto;
         background-color: white;
         opacity: 1;     

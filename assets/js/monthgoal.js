@@ -182,7 +182,8 @@ $(function () {
     });
     $("#btntarget").click(function () {
         target = $("#target").val();
-        $(".page-warp").hide();
+        if(target != 0)
+            $(".page-warp").hide();
     });
     $("#msubmit").click(function () {
         var ver = $("#iver").val();
