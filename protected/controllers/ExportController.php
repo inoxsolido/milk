@@ -409,6 +409,7 @@ class ExportController extends Controller {
         $sheet_temp = clone $sheet1;
         
         $sheet1->setTitle(TbDivision::model()->findByPk($did));
+        
         //setdata
         try {
             $lastrow = 5;
