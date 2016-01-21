@@ -408,6 +408,7 @@ class ExportController extends Controller {
         $sheet1 = $objPHPExcel->getSheet(0);
         $sheet_temp = clone $sheet1;
         
+        $sheet1->setTitle(TbDivision::model()->findByPk($did));
         //setdata
         try {
             $lastrow = 5;
@@ -1205,6 +1206,10 @@ ORDER BY erp_id ASC")->queryAll();
         
         //สร้าง sheet ของแผนกในฝ่าย
         try {
+            
+            //เขียนชื่อ title ของชีต
+            
+            
             $lastrow = 5;
             $sumtype = [];
             $sumgroup = [];

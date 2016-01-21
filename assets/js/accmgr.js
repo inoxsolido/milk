@@ -428,7 +428,7 @@ $(function () {
                     $("#edithaspar").prop("checked", false).change();
                 
                 $("#editgroup").val(data.group);
-                $("#edithassum").prop("checked", data.hassum);
+                $("#edithassum").prop("checked", data.hassum==0?false:true);
                 reqsib(data.par==null?0:data.par, $("#editorder"), accid);
                 $("#editorder").val(data.order);
                 console.log(data);
