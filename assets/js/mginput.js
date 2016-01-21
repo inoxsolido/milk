@@ -87,12 +87,13 @@ $(function () {
             return false;
         for (var i in data) {
             var accid = data[i].accid;
-            var temp = 0;
+            var temp = numeral(0);
             for (var j in data) {
-                if (data[j].accid == accid)
-                    temp += Number(data[j].value);
+                if (data[j].accid == accid){
+                    temp.add(numeral(data[j].value).floor().value());
+                }
             }
-            out.push({accid: accid, value: temp});
+            out.push({accid: accid, value: temp.value()});
         }
         //update
         for (var i in out) {
@@ -104,10 +105,10 @@ $(function () {
     }
     function chkOver(curinput, full, goto, popup) {
         var aid = $(curinput).parent().attr("aid");
-        var limit = $(curinput).parent().siblings("span.limit").children().val().replace(',', '').replace(',', '').replace(',', '');
-        limit = Number(limit);
+        var limit = numeral($(curinput).parent().siblings("span.limit").children().val()).floor().value();
+        
         //var current = $(curinput).val().replace(',', '').replace(',', '').replace(',', '');
-        var current = numeral($(curinput).val()).value();
+        var current = numeral($(curinput).val()).floor().value();
         //current = Number(current);
         if (full) {
             if (current == limit) {
@@ -117,8 +118,9 @@ $(function () {
                     if(popup)
                         alert("ยอดรวมของงบประมาณมีค่ามากกว่าเป้าหมายรายปีที่ได้กำหนดไว้ กรุณากลับไปแก้ไข");
                 } else if (current < limit) {
-                    if(popup)
-                        alert("ยอดรวมของงบประมาณมีค่าน้อยกว่าเป้าหมายรายปีที่ได้กำหนดไว้ กรุณากลับไปแก้ไข");
+                    if(popup){
+                        alert("ยอดรวมของงบประมาณมีค่าน้อยกว่าเป้าหมายรายปีที่ได้กำหนดไว้ กรุณากลับไปแก้ไข" + current + "  " + limit);
+                    }
                 }
                 if (goto == true)
                     gototab($("input[name=acc-" + aid + "][month]")[0]);

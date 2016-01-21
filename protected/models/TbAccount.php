@@ -12,6 +12,7 @@
  * @property string $acc_name
  * @property integer $group_id
  * @property integer $parent_acc_id
+ * @property integer $order
  * @property string $acc_erp
  * @property integer $hasSum
  */
@@ -33,13 +34,13 @@ class TbAccount extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('acc_number1, acc_number2, acc_number3, acc_number4, acc_name, group_id', 'required'),
-			array('acc_number1, acc_number2, acc_number3, acc_number4, group_id, parent_acc_id, hasSum', 'numerical', 'integerOnly'=>true),
+			array('acc_number1, acc_number2, acc_number3, acc_number4, acc_name, group_id, order', 'required'),
+			array('acc_number1, acc_number2, acc_number3, acc_number4, group_id, parent_acc_id, order, hasSum', 'numerical', 'integerOnly'=>true),
 			array('acc_name', 'length', 'max'=>100),
 			array('acc_erp', 'length', 'max'=>8),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('acc_id, acc_number1, acc_number2, acc_number3, acc_number4, acc_name, group_id, parent_acc_id, acc_erp, hasSum', 'safe', 'on'=>'search'),
+			array('acc_id, acc_number1, acc_number2, acc_number3, acc_number4, acc_name, group_id, parent_acc_id, order, acc_erp, hasSum', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -68,6 +69,7 @@ class TbAccount extends CActiveRecord
 			'acc_name' => 'Acc Name',
 			'group_id' => 'Group',
 			'parent_acc_id' => 'Parent Acc',
+			'order' => 'Order',
 			'acc_erp' => 'Acc Erp',
 			'hasSum' => 'Has Sum',
 		);
@@ -99,6 +101,7 @@ class TbAccount extends CActiveRecord
 		$criteria->compare('acc_name',$this->acc_name,true);
 		$criteria->compare('group_id',$this->group_id);
 		$criteria->compare('parent_acc_id',$this->parent_acc_id);
+		$criteria->compare('order',$this->order);
 		$criteria->compare('acc_erp',$this->acc_erp,true);
 		$criteria->compare('hasSum',$this->hasSum);
 

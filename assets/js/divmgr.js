@@ -23,6 +23,13 @@ $(function () {
             $("#addpar").html(data);
             $("#editpar").html(data);
         });
+        $.post('./../Data/FillDivSubParentAdd',
+                {
+                    ajax: 0
+                }, function (data) {
+            $("#addsub").html(data);
+            $("#editsub").html(data);
+        });
     }
     $(".option").hide();
     function getCheckbox(checkbox)
@@ -157,6 +164,16 @@ $(function () {
             $("#modaladd").find(".option").hide();
         }
     });
+    $("#addhassub").change(function (){
+        if (getCheckbox($(this)) == true)
+        {
+            $("#modaladd").find(".subp").show();
+            $("#modaladd").find(".subo").hide();
+        } else {
+            $("#modaladd").find(".subp").hide();
+            $("#modaladd").find(".subo").show();
+        }
+    });
     $("input[name=addstatus]").change(function(){
         var val = $(this).val();
         if(val == 3){
@@ -164,16 +181,29 @@ $(function () {
             $("#modaladd").find(".section").show();
             $("#addhaserp").prop("checked", true).change();
             $("#addhaserp").prop("disabled", true).change();
+            $("#addhassub").prop("checked", false).change();
+            $("#addhassub").prop("disabled", true);
         }else if(val == 4){
             $("#modaladd").find(".subo").show();
             $("#modaladd").find(".section").hide();
             $("#addhaserp").prop("checked", true).change();
             $("#addhaserp").prop("disabled", true).change();
+            $("#addhassub").prop("checked", false).change();
+            $("#addhassub").prop("disabled", true);
+        }else if(val == 1){
+            $("#modaladd").find(".subo").show();
+            $("#modaladd").find(".section").hide();
+            $("#addhaserp").prop("checked", false).change();
+            $("#addhaserp").prop("disabled", false).change();
+            $("#addhassub").prop("checked", true).change();
+            $("#addhassub").prop("disabled", false);
         }else{
             $("#modaladd").find(".subo").show();
             $("#modaladd").find(".section").hide();
             $("#addhaserp").prop("checked", false).change();
             $("#addhaserp").prop("disabled", false).change();
+            $("#addhassub").prop("checked", false).change();
+            $("#addhassub").prop("disabled", true);
         }
     });
     $("#adderp").keyup(function (event) {
@@ -209,7 +239,9 @@ $(function () {
                     par: divpar.val(),
                     haserp: getCheckbox($("#addhaserp")),
                     dlevel: $("input[name=addstatus]:checked").val(),
-                    section: $("#addsection").val()
+                    section: $("#addsection").val(),
+                    hassub: getCheckbox($("#addhassub")),
+                    subparent: $("#addsub").val()
                 },
                 success: function (data) {
                     if (data == 'ok') {
@@ -218,6 +250,7 @@ $(function () {
                         divoffice.val("");
                         divpar.val("");
                         $("#addhaserp").prop("checked", false).change();
+                        $("input[name=addstatus]").val(1).change();
                         ReqData();
                         alert("การเพิ่มข้อมูลสำเร็จ");
                         $("#modaladd").modal('hide');
@@ -252,15 +285,19 @@ $(function () {
                 ediverp = d.erp_id;
                 edivname = d.divname;
                 $("#editname").val(d.divname).change();
-                $("input[name=editstatus][value="+d.dlevel+"]").prop("checked","checked").change();
+                $("input[name=editstatus]").prop("checked", false).change();
+                $("input[name=editstatus][value="+d.dlevel+"]").prop("checked", true).change();
                 
                 $("#edithaserp").prop("checked", d.erp_id != '');
                 $("#editerp").val(d.erp_id).change();
-                $("#editispos").prop("checked", d.ispos == 1 ? true : false).change();
+                //$("#editispos").prop("checked", d.ispos == 1 ? true : false).change();
                 $("#editoffice").val(d.office_id).change();
                 //$("#editpar").children('option[value^="' + d.divid + '"]').attr("disabled", true);
                 $("#editpar").val(d.par_id);
                 $("#editsection").val(d.section);
+                $("#edithassub").prop("checked" , d.sub!=0).change();
+                $("#editsub").val(d.sub);
+                
             },
             dataType: 'json'
         });
@@ -323,6 +360,16 @@ $(function () {
             return true;
         }
     }
+    $("#edithassub").change(function (){
+        if (getCheckbox($(this)) == true)
+        {
+            $("#modaledit").find(".subp").show();
+            $("#modaledit").find(".subo").hide();
+        } else {
+            $("#modaledit").find(".subp").hide();
+            $("#modaledit").find(".subo").show();
+        }
+    });
     $("input[name=editstatus]").change(function(){
         var val = $(this).val();
         if(val == 3){
@@ -330,16 +377,29 @@ $(function () {
             $("#modaledit").find(".section").show();
             $("#edithaserp").prop("checked", true).change();
             $("#edithaserp").prop("disabled", true).change();
+            $("#edithassub").prop("checked", false).change();
+            $("#edithassub").prop("disabled", true);
         }else if(val == 4){
             $("#modaledit").find(".subo").show();
             $("#modaledit").find(".section").hide();
             $("#edithaserp").prop("checked", true).change();
             $("#edithaserp").prop("disabled", true).change();
+            $("#edithassub").prop("checked", false).change();
+            $("#edithassub").prop("disabled", true);
+        }else if(val == 1){
+            $("#modaledit").find(".subo").show();
+            $("#modaledit").find(".section").hide();
+            $("#edithaserp").prop("checked", false).change();
+            $("#edithaserp").prop("disabled", false).change();
+            $("#edithassub").prop("checked", true).change();
+            $("#edithassub").prop("disabled", false);
         }else{
             $("#modaledit").find(".subo").show();
             $("#modaledit").find(".section").hide();
             $("#edithaserp").prop("checked", false).change();
             $("#edithaserp").prop("disabled", false).change();
+            $("#edithassub").prop("checked", false).change();
+            $("#edithassub").prop("disabled", true);
         }
     });
     $("#edithaserp").change(function () {
@@ -396,7 +456,9 @@ $(function () {
                     par: divpar.val(),
                     haserp: getCheckbox($("#edithaserp")),
                     dlevel: $("input[name=editstatus]:checked").val(),
-                    section: $("#editsection").val()
+                    section: $("#editsection").val(),
+                    hassub: getCheckbox($("#edithassub")),
+                    subparent: $("#editsub").val()
                 },
                 success: function (data) {
                     if (data == '1') {
@@ -405,6 +467,8 @@ $(function () {
                         divoffice.val("");
                         divpar.val("");
                         $("#edithaserp").prop("checked", false).change();
+                        $("#edithaserp").prop("checked", false).change();
+                        $("input[name=editstatus]").val(1).change();
                         ReqData();
                         alert("การแก้ไขข้อมูลสำเร็จ");
                         $("#modaledit").modal('hide');

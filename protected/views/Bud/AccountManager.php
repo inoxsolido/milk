@@ -98,6 +98,10 @@
                         <select class="form-control" id="addpar">
                         </select>
                     </div>
+                    <div class="form-group-sm ord">
+                        <label class="control-label">ลำดับต่อจาก</label>
+                        <select class="form-control" id="addorder"></select>
+                    </div>
                     <div class='form-group-sm group'>
                         <label class='control-label'>ชื่อหมวด</label>
                         <select id="addgroup">
@@ -134,7 +138,7 @@
                         <label class="control-label"><input type="checkbox" id="edithaserp"> มีรหัส erp </label>
                     </div>
                     <div class="form-group-sm">
-                        <label class="control-label"><input type="checkbox" id="ำกระhassum"> มีการรวมยอด </label>
+                        <label class="control-label"><input type="checkbox" id="edithassum"> มีการรวมยอด </label>
                     </div>
                     <div class="form-group-sm erp">
                         <label class="control-label">รหัส ERP ของบัญชี</label>
@@ -148,6 +152,10 @@
                         <label class="control-label">ชื่อบัญชีที่สังกัด</label>
                         <select class="form-control" id="editpar">
                         </select>
+                    </div>
+                    <div class="form-group-sm ord">
+                        <label class="control-label">ลำดับต่อจาก</label>
+                        <select class="form-control" id="editorder"></select>
                     </div>
                     <div class='form-group-sm group'>
                         <label class='control-label'>ชื่อหมวด</label>

@@ -81,6 +81,9 @@ return array(
         'Resource'=>array(
             'class'=>'Resource'
         ),
+        'excel'=>array(
+            'class'=>'application.extensions.PHPExcel',
+        ),
     ),
     // application-level parameters that can be accessed
     // using Yii::app()->params['paramName']

@@ -106,5 +106,38 @@ class Resource extends CApplicationComponent
         }
         return $result;
     }
+    public function getApproveOfDiv($div){
+        $yearresource = $this->getYearResource();
+        if(!empty($yearresource)){
+            $year = $yearresource['year'];
+            $sql = "SELECT  `year`, dp.division_id as pid, dp.division_name as pname, AVG(IFNULL(approve_lv,0)) as approve, dp.erp_id
+            FROM tb_division dp  
+            INNER JOIN tb_division dc ON dp.division_id = dc.parent_division AND dc.division_level < 3 
+            INNER JOIN tb_approve ap ON dc.division_id = ap.division_id
+            WHERE `year` = $year  
+            GROUP BY dp.division_id 
+            HAVING pid = $div
+            ORDER BY erp_id ";
+            $result = Yii::app()->db->createCommand($sql)->queryRow();
+            if(!empty($result)){
+                $approve = $result['approve'];
+                $round = 1;
+                if ($approve < 4)
+                    $round = 1;//ก่อนการประชุม
+                else if ($approve < 8)
+                    $round = 2;//หลังการประชุม
+                else if ($approve == 8)
+                    $round = 3;//แอดมินยืนยันหลังการประชุม
+                else
+                    $round = 4;//แอดมินยืนยันการสิ้นสุดการกรอกงบประมาณในปีนั้น
+                $result['round'] = $round;
+                return $result;
+            }else{
+                return NULL;
+            }
+        }else{
+            return NULL;
+        }
+    }
 
 }

@@ -570,7 +570,8 @@ class BudController extends Controller
             //endbypass
             $yearw = $year + 543;
             $userlv = Yii::app()->user->UserPosition;
-           
+            
+            
             if($userlv == 3){
                 if($round == 1 && $approve < 3){
                     $url = Yii::app()->createAbsoluteUrl("Bud/Approve");
@@ -579,17 +580,29 @@ class BudController extends Controller
                     echo "ไม่สามารถกำหนดกรอบงบประมาณสำหรับปี $yearw ได้ เนื่องจากปี $yearw ได้ทำการยืนยันข้อมูลแล้ว แต่ยังไม่ได้ยืนยันการสิ้นสุดการแก้ไข  "
                             . "<br/><a href='#' onclick='window.history.back();'>ย้อนกลับ</a>";
                 }else if($round == 4){
-                    echo "ไม่สามารถกำหนดกรอบงบประมาณสำหรับปี $yearw ได้อีก เนื่องจากปี $yearw ได้ทำการยืนยันข้อมูลแล้วสำเร็จเสร็จสิ้นแล้ว "
+                    echo "ไม่สามารถกำหนดกรอบงบประมาณสำหรับปี $yearw ได้อีก เนื่องจากปี $yearw ได้ทำการยืนยันการสิ้นสุดการแก้ไขข้อมูลแล้ว "
                             . "<br/><a href='#' onclick='window.history.back();'>ย้อนกลับ</a>";
                 }else{
                     $this->render("yearGoalAdmin", array("round"=>$round, 'year'=>$year));
                 }
             }else if($userlv == 2){
-                if($round >= 3){
-                    echo "สำหรับปี $yearw ได้ทำการยืนยันข้อมูลเสร็จสิ้นแล้ว ไม่สามารถกำหนดกรอบงบประมาณสำหรับปี $yearw ได้อีก "
-                            . "<br/><a href='#' onclick='window.history.back();'>ย้อนกลับ</a>";
-                }else if(!($approve <= 1 || ($approve >=4 && $approve <=6))){
-                    echo "ไม่สามารถกำหนดกรอบงบประมาณสำหรับปี $yearw ได้เนื่องจาก Admin ได้ทำการยืนยันข้อมูลแล้ว "
+                $userdiv = Yii::app()->user->UserDiv;
+                $divresource = Yii::app()->Resource->getApproveOfDiv($userdiv);
+                if(empty($divresource)){
+                    echo 'ไม่พบข้อมูลฝ่ายนี้ กรุณาติดต่อ Admin'
+                        . "<br/><a href='#' onclick='window.history.back();'>ย้อนกลับ</a>";
+                    return false;
+                }else{
+                    $approve = $divresource['approve'];
+                }
+                if($approve == 2){
+                    echo 'ท่านได้ยืนยันข้อมูลไปแล้ว หากต้องการแก้ไขกรุณายกเลิกการยืนยัน ' . "<br/><a href='#' onclick='window.history.back();'>ย้อนกลับ</a>";
+                }
+                elseif($approve == 3){
+                    echo "ปี $yearw ได้ทำการยืนยันข้อมูลแล้ว หรือ admin ยังไม่ได้กำหนดกรอบรายได้-ร่ายจ่ายรวม "
+                            . "<a href='#' onclick='window.history.back();'>ย้อนกลับ</a>";
+                }else if(($approve > 6)){
+                    echo "ปี $yearw ได้ทำการยืนยันข้อมูลแล้ว "
                             . "<br/><a href='#' onclick='window.history.back();'>ย้อนกลับ</a>";
                 }else{
                     $method = Yii::app()->request->getParam("m",NULL);

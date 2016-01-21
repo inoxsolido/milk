@@ -77,5 +77,13 @@ class Format extends CApplicationComponent
         else
             return false;
     }
+    /*
+     * 
+     * return String IF success
+     */
+    public function FixNumDown($number){
+        $number = floor(($number*100))/100;
+        return number_format($number,2);
+    }
 
 }

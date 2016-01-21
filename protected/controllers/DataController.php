@@ -194,7 +194,7 @@ class DataController extends Controller
             if (isset($_POST['searchtxt']))
                 $stxt = ($_POST['searchtxt']);
             $sql = "SELECT d.*, dl.description as dldes,sct.section_name as sectname,par_name FROM tb_division d "
-                    . "INNER JOIN tb_division_level dl ON d.division_level = dl.ID AND dl.ID <= 3 "
+                    . "INNER JOIN tb_division_level dl ON d.division_level = dl.ID  "//AND dl.ID <= 3
                     . "LEFT JOIN (SELECT division_id as par_id, division_name as par_name FROM tb_division) dd "
                     . "ON d.parent_division = dd.par_id "
                     . "LEFT JOIN tb_section sct ON sct.section_id = d.section ";
@@ -258,8 +258,18 @@ class DataController extends Controller
     {
         if (isset($_POST['ajax']))
         {
-            $model = TbDivision::model()->findAll("enable=1 AND erp_id != '' AND (division_level = 2 OR division_level = 3)  ORDER BY erp_id ASC, division_name ASC");
+            $model = TbDivision::model()->findAll("enable=1 AND division_level = 3  ORDER BY erp_id ASC, division_name ASC");
             //echo "<option value='0'>ไม่มีสังกัด</option>";
+            foreach ($model as $row)
+            {
+                ?><option value="<?= $row->division_id ?>"><?= $row->erp_id ?> -- <?= $row->division_name ?></option><?php
+            }
+        }
+    }
+    public function actionFillDivSubParentAdd(){
+        if(isset($_POST['ajax'])){
+            $model = TbDivision::model()->findAll("enable = 1 AND division_level = 2 ORDER BY erp_id");
+            
             foreach ($model as $row)
             {
                 ?><option value="<?= $row->division_id ?>"><?= $row->erp_id ?> -- <?= $row->division_name ?></option><?php
@@ -278,7 +288,10 @@ class DataController extends Controller
             $haserp = $_POST['haserp'] == 'true' ? true : false;
             $dlevel = $_POST['dlevel'];
             $section = $_POST['section'];
-            $subparent = intval(0);
+            $hassub = $_POST['hassub'] == 'true'? true: false;
+            $subparent = $_POST['subparent'];
+            $parent = $dlevel == 3 ? intval(0) : intval($parent);
+            $subparent = $hassub? intval($subparent) : intval(0);
             if ($dlevel != 3)
             {
                 $result = TbDivision::model()->find("division_name = '$name' AND parent_division = $parent");
@@ -287,12 +300,12 @@ class DataController extends Controller
                     echo 'dup';
                     return;
                 }
-                $result = TbDivision::model()->find("division_id = $parent");
-                $section = $result->section;
-                if($result->division_level == 2){
-                    $subparent = $parent;
+                if($subparent != 0){
+                    $result = TbDivision::model()->find("division_id = $subparent");
                     $parent = $result->parent_division;
                 }
+                $result = TbDivision::model()->find("division_id = $parent");
+                $section = $result->section;
             }
 
             //sql making
@@ -330,9 +343,12 @@ class DataController extends Controller
             $haserp = $_POST['haserp'] == 'true' ? true : false;
             $section = $_POST['section'];
             $dlevel = $_POST['dlevel'];
-            $subparent = intval(0);
+            $subparent = $_POST['subparent'];
+            $hassub = $_POST['hassub'] == 'true'? true: false;
+            
             $parent = $dlevel == 3 ? intval(0) : intval($parent);
-
+            $subparent = $hassub? intval($subparent) : intval(0);
+            
             $model = TbDivision::model()->findByPk(intval($id));
             if (count($model))
             {
@@ -342,13 +358,23 @@ class DataController extends Controller
                 $doldlevel = $model->division_level;
                 if (($oldname != $name || $parent != $oldpar))
                 {
-                    $result = TbDivision::model()->find("division_name = '$name' AND parent_division = $parent");
+                    $result = TbDivision::model()->find("division_name = '$name' AND sub_parent=$subparent AND parent_division = $parent");
                     if (count($result))
                     {
                         echo 'dup';
                         return;
                     }
                 }
+                
+                if($dlevel < $doldlevel){//เลื่อนระดับลง
+                    //เช็คว่ามีลูกมั้ย
+                    //ถ้ามีลูก ไม่อนุญาต
+                    if(TbDivision::model()->find("parent_division = $id or sub_parent = $id")){
+                        echo 'child';
+                        return;
+                    }
+                }
+                
                 if($parent != 0){
                     $result = TbDivision::model()->find("division_id = $parent");
                     $section = $result->section;
@@ -371,10 +397,12 @@ class DataController extends Controller
                     
                     $transaction = Yii::app()->db->beginTransaction();
                     try{
-                        if($dlevel == 3){
-                            $sql = "UPDATE tb_division SET section = $section WHERE parent_division = $id";
-                        }else if($dlevel == 3 && $doldlevel == 2){
+                        if($dlevel == 3 && $doldlevel == 2){ //เพิ่มระดับ จาก 2 ไป 3
                             $sql = "UPDATE tb_division SET section = $section, sub_parent = 0, parent_division = $id WHERE sub_parent = $id";
+                        }else if($dlevel == 3){//กรณีของฝ่ายเปลี่ยนข้อมูล section อาจเปลี่ยนแปลงได้
+                            $sql = "UPDATE tb_division SET section = $section WHERE parent_division = $id";
+                        }else if($dlevel == 2){
+                            $sql = "UPDATE tb_division SET section = $section AND parent_division = $parent WHERE sub_parent = $id";
                         }else{
                             $sql = "UPDATE tb_division SET section = $section, parent_division = $parent WHERE parent_division = $id";
                         }
@@ -413,7 +441,8 @@ class DataController extends Controller
                     'office_id' => $result[0]['office_id'],
                     'par_id' => $result[0]['parent_division'],
                     'dlevel' => $result[0]['division_level'],
-                    'section' => $result[0]['section']
+                    'section' => $result[0]['section'],
+                    'sub'=>$result[0]['sub_parent']
                 );
                 echo json_encode($x);
             }
@@ -624,13 +653,40 @@ class DataController extends Controller
             }
         }
     }
-
+    public function actionAccSib(){
+        if(isset($_POST['pid'])){
+            $pid = $_POST['pid'];
+            $aid = intval(0);
+            if(isset($_POST['aid']))$aid = $_POST['aid'];
+            $where = "= $pid";
+            if($pid == intval(0)){
+                $where = "IS NULL";
+            }
+            $model = TbAccount::model()->findAll("parent_acc_id $where AND acc_id != $aid ORDER BY `order`, acc_name");
+            ?><option value="0">อยู่บนสุด</option><?php
+            foreach ($model as $row){
+                ?><option value="<?= $row['acc_id'] ?>"><?= $row['acc_name'] ?></option><?php
+            }
+        }
+    }
     //delete
     public function actionAccountDel()
     {
         if (isset($_POST['ajax']) && isset($_POST['id']))
         {
-            echo TbAccount::model()->deleteByPk(intval($_POST['id'])) ? 1 : 0;
+            $am = TbAccount::model()->findByPk(intval($_POST['id']));
+            if(!$am){echo 0; return; }
+            $par = $am->parent_acc_id;
+            $transaction = Yii::app()->db->beginTransaction();
+            try{
+                Yii::app()->db->createCommand("UPDATE tb_account SET `order` = `order` - 1 WHERE `order` > $am->order")->execute();
+                TbAccount::model()->deleteByPk(intval($_POST['id']));
+                $transaction->commit();
+            echo '1';
+            }catch(Exception $ex){
+                $transaction->rollback();
+                echo '2';
+            }
         }
     }
 
@@ -645,18 +701,20 @@ class DataController extends Controller
             $par = $d['par'];
             $group = $d['group'];
             $haserp = $d['haserp'];
-            $haspar = $d['haspar'];
-            $hassum = $d['hassum'];
+            $haspar = $d['haspar']=='true'?TRUE:FALSE;
+            $hassum = $d['hassum']=='true'?TRUE:FALSE;
+            $order = intval($d['order']);
 
             $parent = TbAccount::model()->findByPk(intval($par));
 
-            if (!count($parent) && $haspar == "true")
+            if (!count($parent) && $haspar)
             {
                 echo 'invalid parent id';
                 return;
             }
 
-
+            $transaction = Yii::app()->db->beginTransaction();
+            try{
             $model = new TbAccount();
 
             if ($model->isNewRecord)
@@ -690,7 +748,39 @@ class DataController extends Controller
                 $model->acc_erp = $haserp == "true" ? $erp : NULL;
                 $model->parent_acc_id = $parent ? $par : NULL;
                 $model->hasSum = intval($hassum);
-                echo $model->save(false) ? "ok" : "not";
+                //จัดลำดับ 
+                //ตรวจสอบพี่น้อง
+                
+                $pid = $par;
+                $where = '='.$pid;
+                if (!$haspar) {
+                    $where = "IS NULL";
+                }
+                $sib = TbAccount::model()->findAll("parent_acc_id $where ORDER BY `order`, acc_name");
+                if(!count($sib)){//ไม่มีพี่น้อง
+                    $model->order = intval(0);
+                }else{//มีพี่น้อง
+                    if($order == 0){
+                        $sql="UPDATE tb_account SET `order` = `order`+1 WHERE `order` > $order; ";
+                        Yii::app()->db->createCommand($sql)->execute();
+                        $model->order = 1;
+                    }else{
+                    //หาลำดับ
+                        $order = TbAccount::model()->findByPk($order)->order;
+                        $sql="UPDATE tb_account SET `order` = `order`+1 WHERE `order` > $order; ";
+                        Yii::app()->db->createCommand($sql)->execute();
+                        $model->order =$order + 1;
+                        
+                    }
+                    
+                }
+                $model->save();
+                $transaction->commit();
+                echo 'ok';
+            }
+            }catch(Exception $ex){
+                $transaction->rollback();
+                echo 'not';
             }
         }
     }
@@ -701,14 +791,22 @@ class DataController extends Controller
         {
             $id = $_POST['id'];
             $model = TbAccount::model()->findByPk(intval($id));
+            $orderid = intval(0);
+            
             if (count($model))
             {
+                $x = $model->order;
+                $where = $model->parent_acc_id == NULL?"IS NULL":'='.$model->parent_acc_id;
+                $ooo = Yii::app()->db->createCommand("SELECT * FROM tb_account WHERE parent_acc_id $where  AND `order` < $x ORDER BY `order` DESC")->queryRow();
+                if(($ooo)) $orderid = $ooo['acc_id'];
                 $result = array(
                     "name" => $model->acc_name,
                     "erp" => $model->acc_erp,
                     "par" => $model->parent_acc_id,
                     "group" => $model->group_id,
-                    "hassum" => $model->hasSum
+                    "hassum" => $model->hasSum,
+                    "order" =>$orderid,
+                    //'sql'=>"SELECT * FROM tb_account WHERE parent_acc_id $where  AND `order` < $x ORDER BY `order`",
                 );
                 echo json_encode($result);
             }
@@ -725,10 +823,10 @@ class DataController extends Controller
             $erp = $d['erp'];
             $par = $d['par'];
             $group = $d['group'];
-            $haserp = $d['haserp'];
-            $haspar = $d['haspar'];
-            $hassum = $d['hassum'];
-            
+            $haserp = $d['haserp']=='true'?TRUE:FALSE;
+            $haspar = $d['haspar']=='true'?TRUE:FALSE;
+            $hassum = $d['hassum']=='true'?TRUE:FALSE;
+            $order = intval($d['order']);
             $number = preg_replace("/[ก-์\s].{0,}|[a-zA-Z\s].{0,}/", "", $name);
 
             //echo empty($number)?99:$number;
@@ -775,8 +873,32 @@ class DataController extends Controller
                 $model->acc_erp = $haserp == "true" ? $erp : NULL;
                 $model->parent_acc_id = $haspar == "true" ? $par : NULL;
                 $model->hasSum = intval($hassum);
+                
+                $pid = $par;
+                $where = '='.$pid;
+                if (!$haspar) {
+                    $where = "IS NULL";
+                }
+                $sib = TbAccount::model()->findAll("parent_acc_id $where ORDER BY `order`, acc_name");
+                if(!count($sib)){//ไม่มีพี่น้อง
+                    $model->order = intval(0);
+                }else{//มีพี่น้อง
+                    if($order == 0){
+                        $sql="UPDATE tb_account SET `order` = `order`+1 WHERE `order` > $order; ";
+                        Yii::app()->db->createCommand($sql)->execute();
+                        $model->order = 1;
+                    }else{
+                    //หาลำดับ
+                        $order = TbAccount::model()->findByPk($order)->order;
+                        $sql="UPDATE tb_account SET `order` = `order`+1 WHERE `order` > $order; ";
+                        Yii::app()->db->createCommand($sql)->execute();
+                        $model->order =$order + 1;
+                        
+                    }
+                    
+                }
                 $result = $model->save(false) ? "ok" : "not";
-                echo $result;
+                //echo $result;
                 //group recursive
                 if ($result == "ok")
                 {
@@ -812,6 +934,7 @@ class DataController extends Controller
                         }
                     }
                 }
+                echo $result;
             }
             else
                 echo 'invalid id';
@@ -1695,7 +1818,7 @@ ORDER BY erp_id ASC;";
             echo 'parametet fault';
             return;
         }
-        
+        $f = Yii::app()->Format;
         $year = $_POST['year'];
         $div = Yii::app()->db->createCommand()
                 ->select("dp.division_id as pid, dp.division_name as pname, ygl.income, ygl.expend")
@@ -1726,7 +1849,7 @@ ORDER BY erp_id ASC;";
                                 }
                                 ?>
                                     <div class="tassign" style="display:none;">
-                                        <input value="<?=$rd['income']?>" type="text" class="incomet" old="<?=$rd['income']?>" style="text-align: right;"/>
+                                        <input value="<?=  $f->FixNumDown($rd['income'])?>" type="text" class="incomet" old="<?=$rd['income']?>" style="text-align: right;"/>
                                         <br/><span class="text-danger"></span>
                                     </div>
                             </td>
@@ -1734,7 +1857,7 @@ ORDER BY erp_id ASC;";
                                 <?php if($rd['expend']==NULL){
                                     ?><div class='text-danger sum'>ยังไม่ได้กำหนด</div><?php
                                 }else{
-                                    ?><div class="sum" ><?=$rd['expend']?></div><?php
+                                    ?><div class="sum" ><?=$f->FixNumDown($rd['expend'])?></div><?php
                                 }
                                 ?>
                                     <div class="tassign" style="display:none;">
@@ -1750,7 +1873,7 @@ ORDER BY erp_id ASC;";
                                     <input type="button" class="btn btn-warning assign" style="width:100%" value="แก้ไข"/>
                                     <?php } ?>
                                     <input type="button" class="btn btn-success save" style="width:50%; display:none" value="บันทึก"/>
-                                    <input type="button" class="btn btn-default cancel" style="width:50%; display:none" value="ยกเลิก"/>
+                                    <input type="button" class="btn btn-default cancel" style="width:50%; display:none" value="กลับ"/>
                                 </div>
                             </td>
                         </tr>
@@ -1760,52 +1883,43 @@ ORDER BY erp_id ASC;";
              </table>
         <?php
     }
-    public function actionYearGoalSave(){
-        if(!(isset($_POST['year'])&&isset($_POST['did'])&&isset($_POST['income'])&&isset($_POST['expend']))){
+
+    public function actionYearGoalSave() {
+        if (!(isset($_POST['year']) && isset($_POST['did']) && isset($_POST['income']) && isset($_POST['expend']))) {
             echo 'missing parameter';
             return;
         }
-        
+
         $year = $_POST['year'];
         $divid = $_POST['did'];
         $income = $_POST['income'];
         $expend = $_POST['expend'];
         $isdelete = FALSE;
-        
-        $sql = "INSERT INTO tb_yg_limit (`year`, division, income, expend) "
-                . "VALUES ($year, $divid, $income, $expend) "
-                . "ON DUPLICATE KEY UPDATE income = $income, expend = $expend";
-        
-        if(intval($income)==0 && intval($expend)==0){
-            $sql = "DELETE FROM tb_yg_limit WHERE `year` = $year AND division = $divid";
-            $isdelete = TRUE;
-        }
-        $result = Yii::app()->db->createCommand($sql)->execute();
-        if($result){
-            $value = 4;
-            if($isdelete) $value = 3;
-            $alldiv = TbDivision::model()->findAll("division_level = 3");
-            $transaction = Yii::app()->db->beginTransaction();
-            try{
-                foreach($alldiv as $div){
-                    $sqlupdate = "UPDATE tb_month_goal mg INNER JOIN tb_division d ON mg.division_id = d.division_id SET approve1_lv = $value WHERE d.parent_division = $div->division_id AND `year` = $year";
-                    $sqlupdate2 = "UPDATE tb_approve ap INNER JOIN tb_division d ON ap.division_id = d.division_id "
-                            . "SET approve = $value WHERE ap.`year` = $year AND d.parent_division = $div->division_id AND d.division_lv < 3";
-                    Yii::app()->db->createCommand($sqlupdate2)->execute();
-                }
-                $transaction->commit();
-                echo 1;
-            } catch (Exception $ex) {
-                $transaction->rollback();
-                echo "ผิดพลาดขณะอัพเดตข้อมูล";
-                print_r($ex);
+        $transaction = Yii::app()->db->beginTransaction();
+        try {
+            $sql = "INSERT INTO tb_yg_limit (`year`, division, income, expend) "
+                    . "VALUES ($year, $divid, $income, $expend) "
+                    . "ON DUPLICATE KEY UPDATE income = $income, expend = $expend";
+
+            if (intval($income) == 0 && intval($expend) == 0) {
+                $sql = "DELETE FROM tb_yg_limit WHERE `year` = $year AND division = $divid";
+                $isdelete = TRUE;
             }
-            
+            $result = Yii::app()->db->createCommand($sql)->execute();
+            $value = 4;
+            if ($isdelete) $value = 3;
+            //update approve
+            $sqlupdate2 = "UPDATE tb_approve ap INNER JOIN tb_division d ON ap.division_id = d.division_id SET approve_lv = $value WHERE d.parent_division = $divid AND `year` = $year";
+            $result_approve = Yii::app()->db->createCommand($sqlupdate2)->execute();
+            $transaction->commit();
+            echo 1;
+        } catch (Exception $ex) {
+            $transaction->rollback();
+            echo "ผิดพลาดขณะอัพเดตข้อมูล";
+            print_r($ex);
         }
-        else
-            echo 0;
-        
     }
+
     public function actionFillYearGoalDiv(){
         if(!(isset($_POST['year'])&&isset($_POST['round']))){
             echo 'parametet fault';
@@ -1830,9 +1944,10 @@ ORDER BY erp_id ASC;";
                         JOIN `tb_acc_year` `ay` ON mgl.acc_id = ay.acc_id AND ay.`year` = $year 
                         WHERE dc.division_level < 3 AND dc.parent_division = $userdiv 
                         GROUP BY dc.division_id) tbe ON tbe.cid = dc.division_id
-                    WHERE dc.division_level < 3 and dc.enable = 1 and dc.parent_division = $userdiv";
+                    WHERE dc.division_level < 3 and dc.enable = 1 and dc.parent_division = $userdiv";//กำหนดไปแล้ว
+        //echo $depsql.'<br/>';
         $dep = Yii::app()->db->createCommand($depsql)->queryAll();
-        $divlimit = Yii::app()->db->createCommand()->select("division, IFNULL(income,0.00), IFNULL(expend,0.00)")->from("tb_yg_limit yg")
+        $divlimit = Yii::app()->db->createCommand()->select("division, IFNULL(income,0.00) as income, IFNULL(expend,0.00) as expend")->from("tb_yg_limit")
                 ->where("division = $userdiv AND `year` = $year")->queryRow();
         $deplimitsql = "SELECT SUM(income) as income, SUM(expend) as expend
                     FROM tb_division dc
@@ -1851,7 +1966,15 @@ ORDER BY erp_id ASC;";
                         WHERE dc.division_level < 3 AND dc.parent_division = $userdiv 
                         GROUP BY dc.division_id) tbe ON tbe.cid = dc.division_id
                     WHERE dc.division_level < 3 and dc.enable = 1 and dc.parent_division = $userdiv";
+        //echo $deplimitsql;return;
         $deplimit = Yii::app()->db->createCommand($deplimitsql)->queryRow();
+//        print_r($dep);
+//        echo '<hr/>';
+//        print_r($divlimit);
+//        echo '<hr/>';
+//        print_r($deplimit);
+//        echo '<hr/>';
+//        return;
         ?>
                 <table class="table table-bordered">
                     <thead>
@@ -1860,8 +1983,8 @@ ORDER BY erp_id ASC;";
                             <th style="text-align: center" colspan="2">กรอบงบประมาณรายได้ - รายจ่ายรวม</th>
                             <th style="vertical-align:middle;text-align: center" rowspan="3">จัดการ</th>
                         </tr>
-                        <tr><th style="text-align: left">รายได้รวม <?=Yii::app()->Format->NumToDec($divlimit['income'])?> บาท</th><th style="text-align: left">รายจ่ายรวม <?=Yii::app()->Format->NumToDec($divlimit['expend'])?> บาท</th></tr>
-                        <tr><th style="text-align: left">กำหนดแล้ว <?=Yii::app()->Format->NumToDec($deplimit['income'])?> บาท</th><th style="text-align: left">กำหนดแล้ว <?=Yii::app()->Format->NumToDec($deplimit['expend'])?> บาท</th></tr>
+                        <tr><th style="text-align: left">รายได้รวม <?=Yii::app()->Format->FixNumDown($divlimit['income'])?> บาท</th><th style="text-align: left">รายจ่ายรวม <?=Yii::app()->Format->FixNumDown($divlimit['expend'])?> บาท</th></tr>
+                        <tr><th style="text-align: left">กำหนดแล้ว <?=Yii::app()->Format->FixNumDown($deplimit['income'])?> บาท</th><th style="text-align: left">กำหนดแล้ว <?=Yii::app()->Format->FixNumDown($deplimit['expend'])?> บาท</th></tr>
                     </thead>
                     <tbody>
                         <?php foreach($dep as $rd){?>
@@ -1871,7 +1994,7 @@ ORDER BY erp_id ASC;";
                                 <?php if($rd['income']==NULL){
                                     ?><div class='text-danger sum'>ยังไม่ได้กำหนดรายรหัส</div><?php
                                 }else{
-                                    ?><div class="sum" ><?=Yii::app()->Format->NumToDec($rd['income'])?></div><?php
+                                    ?><div class="sum" ><?=Yii::app()->Format->FixNumDown($rd['income'])?></div><?php
                                 }
                                 ?>
                             </td>
@@ -1879,7 +2002,7 @@ ORDER BY erp_id ASC;";
                                 <?php if($rd['expend']==NULL){
                                     ?><div class='text-danger sum'>ยังไม่ได้กำหนดรายรหัส</div><?php
                                 }else{
-                                    ?><div class="sum" ><?=Yii::app()->Format->NumToDec($rd['expend'])?></div><?php
+                                    ?><div class="sum" ><?=Yii::app()->Format->FixNumDown($rd['expend'])?></div><?php
                                 }
                                 ?>
                             </td>
@@ -2398,7 +2521,7 @@ ORDER BY erp_id ASC;";
                                                                             if($this->caninput($year, $round, $cid, $lv4->acc_id)){
                                                                             $limit = TbMgLimit::model()->findByPk(array("year"=>$year, "round"=>$round, "division"=>$cid, "acc_id"=>$lv4->acc_id))->year_target; ?>
                                                                             <li>
-                                                                                <label><?= $lv4->acc_name ?> </label><br/><span class="limit" aid="<?=$lv4->acc_id?>"><เป้ารายปีที่กำหนดไว้>: <input type="text" readonly="readonly" tabindex="-1" value="<?=Yii::app()->Format->NumToDec($limit)?>"></span></span>:&nbsp<span class="current" month="<?= $m->month_id ?>" aid="<?=$lv4->acc_id?>"><เป้ารายปีปัจจุบัน>: <input type="text" readonly="readonly" tabindex="-1" value="0"></span>
+                                                                                <label><?= $lv4->acc_name ?> </label><br/><span class="limit" aid="<?=$lv4->acc_id?>"><เป้ารายปีที่กำหนดไว้>: <input type="text" readonly="readonly" tabindex="-1" value="<?=Yii::app()->Format->FixNumDown($limit)?>"></span></span>:&nbsp<span class="current" month="<?= $m->month_id ?>" aid="<?=$lv4->acc_id?>"><เป้ารายปีปัจจุบัน>: <input type="text" readonly="readonly" tabindex="-1" value="0"></span>
                                                                                 <input type="text" name="acc-<?= $lv4->acc_id ?>" month="<?= $m->month_id ?>" /><span class="text-danger err"></span>
                                                                             </li>
                                                                             <?php }
@@ -2408,7 +2531,7 @@ ORDER BY erp_id ASC;";
                                                                     ?></li><?php
                                                                     }else if(!$this->hasChild($lv3->acc_id) && $this->caninput($year, $round, $cid, $lv3->acc_id)){?>
                                                                     <?php $limit = TbMgLimit::model()->findByPk(array("year"=>$year, "round"=>$round, "division"=>$cid, "acc_id"=>$lv3->acc_id))->year_target; ?>
-                                                                    <li><label><?= $lv3->acc_name ?> </label><br/><span class="limit" aid="<?=$lv3->acc_id?>"><เป้ารายปีที่กำหนดไว้>: <input type="text" readonly="readonly" tabindex="-1" value="<?=Yii::app()->Format->NumToDec($limit)?>"></span></span>:&nbsp<span class="current" month="<?= $m->month_id ?>" aid="<?=$lv3->acc_id?>"><เป้ารายปีปัจจุบัน>: <input type="text" readonly="readonly" value="0"></span>
+                                                                    <li><label><?= $lv3->acc_name ?> </label><br/><span class="limit" aid="<?=$lv3->acc_id?>"><เป้ารายปีที่กำหนดไว้>: <input type="text" readonly="readonly" tabindex="-1" value="<?=Yii::app()->Format->FixNumDown($limit)?>"></span></span>:&nbsp<span class="current" month="<?= $m->month_id ?>" aid="<?=$lv3->acc_id?>"><เป้ารายปีปัจจุบัน>: <input type="text" readonly="readonly" value="0"></span>
                                                                         <input type="text" name="acc-<?= $lv3->acc_id ?>" month="<?= $m->month_id ?>" /><span class="text-danger err"></span></li>
                                                                     <?php }//endif;
                                                                 }
@@ -2417,7 +2540,7 @@ ORDER BY erp_id ASC;";
                                                     ?></li><?php
                                                     }else if(!$this->hasChild($lv2->acc_id) && $this->caninput($year, $round, $cid, $lv2->acc_id)){?>
                                                     <?php $limit = TbMgLimit::model()->findByPk(array("year"=>$year, "round"=>$round, "division"=>$cid, "acc_id"=>$lv2->acc_id))->year_target; ?>
-                                                    <li><label><?= $lv2->acc_name ?> </label><br/><span class="limit" aid="<?=$lv2->acc_id?>"><เป้ารายปีที่กำหนดไว้>: <input type="text" readonly="readonly" tabindex="-1" value="<?=Yii::app()->Format->NumToDec($limit)?>"></span></span>:&nbsp<span class="current" month="<?= $m->month_id ?>" aid="<?=$lv2->acc_id?>"><เป้ารายปีปัจจุบัน>: <input type="text" readonly="readonly" tabindex="-1" value="0"></span>
+                                                    <li><label><?= $lv2->acc_name ?> </label><br/><span class="limit" aid="<?=$lv2->acc_id?>"><เป้ารายปีที่กำหนดไว้>: <input type="text" readonly="readonly" tabindex="-1" value="<?=Yii::app()->Format->FixNumDown($limit)?>"></span></span>:&nbsp<span class="current" month="<?= $m->month_id ?>" aid="<?=$lv2->acc_id?>"><เป้ารายปีปัจจุบัน>: <input type="text" readonly="readonly" tabindex="-1" value="0"></span>
                                                         <input type="text" name="acc-<?= $lv2->acc_id ?>" month="<?= $m->month_id ?>" /><span class="text-danger err"></span></li>
                                                     <?php }//endif;
                                                 }

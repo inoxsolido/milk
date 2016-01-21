@@ -75,6 +75,10 @@
                 color: #a80026 !important;
                 display: inline;
             }
+            .text-success{
+                color: #3FB618 !important;
+                display:inline;
+            }
         </style>
 
 
@@ -137,7 +141,7 @@
                         <?php
                         $this->widget('zii.widgets.Cmenu', array(
                             'items' => array(
-                                ['label' => 'คู่มือ', 'url' => Yii::app()->createAbsoluteUrl("Bud/fag")],
+                                ['label' => 'คู่มือ', 'url' => Yii::app()->createAbsoluteUrl("Bud/faq")],
                                 ['label' => 'ลงชื่อเข้าใช้', 'url' => Yii::app()->createAbsoluteUrl("Bud/login"), 'visible' => Yii::app()->user->isGuest],
                                 ['label' => Yii::app()->user->name . "<i class='caret'></i>", 'url' => '#',
                                     'linkOptions' => [

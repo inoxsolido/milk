@@ -18,12 +18,12 @@ $(function(){
    function chkinputasdecimal(input) {
         var val = input.val();
         var sib = input.siblings('span');
-        var letter = /^\d+\.?\d{0,2}$/;
+        var letter = /^\d+\.?\d{0,}$/;
         if (val == "") {
             sib.text("  กรุณากรอกค่า");
             return false;
         }
-        if (!letter.test(val)) {
+        if (!letter.test(val) && (numeral(val).value() == 0 && val != 0)) {
             sib.text("  กรุณากรอกค่าเป็นจำนวนเต็มหรือทศนิยม");
             return false;
         }
@@ -42,11 +42,16 @@ $(function(){
        
        tr.find(".incomet").focus();
    });
+   $("#yearadmin").on("change", ".incomet, .expendt", function(){
+       if(chkinputasdecimal($(this))){
+           $(this).val(numeral($(this).val()).floor().format("0,0.00"));
+       }
+   });
    $("#yearadmin").on("click", ".save", function(){
        var tr = $(this).parent().parent().parent();
        var did = $(this).parent().attr("did");
-       var incomeval = tr.find(".incomet").val();
-       var expendval = tr.find(".expendt").val();
+       var incomeval = numeral(tr.find(".incomet").val()).value();
+       var expendval = numeral(tr.find(".expendt").val()).value();
        
        var chkincome = chkinputasdecimal(tr.find(".incomet"));
        var chkexpend = chkinputasdecimal(tr.find(".expendt"));
@@ -54,8 +59,8 @@ $(function(){
            return false;
        }
        
-       if(Number(incomeval) == 0 && Number(expendval) == 0){
-           if(!confirm("ต้องการยกเลิกกรอบงบประมาณเดิม ใช่หรือไม่")){
+       if(incomeval == 0 && expendval == 0){
+           if(!confirm("ต้องการยกเลิกกรอบงบประมาณเดิม ใช่หรือไม่ \n**การกระทำนี้จะยกเลิกการยืนยันฝ่ายหลังจากการประชุมทุกฝ่าย")){
                return false;
            }
        }
@@ -100,9 +105,6 @@ $(function(){
        income.siblings("span").text("");
        expend.siblings("span").text("");
        
-   });
-   $(".decimal").change(function(){
-        chkinputasdecimal($(this));
    });
    //main
    ReqData();

@@ -87,8 +87,15 @@
                         <label class="control-label"><input type="radio" name="addstatus" value="3"/>ฝ่าย</label>
                         <label class="control-label"><input type="radio" name="addstatus" value="4"/>แผนก/กอง/ฝ่าย - รวม</label>
                     </div>
-                    <div class="form-group-sm subo">
-                        <label class="control-label">ชื่อกอง/ฝ่ายที่สังกัด</label>
+                    <div class='form-group-sm hsub'>
+                        <label class='control-label'><input type='checkbox' id='addhassub'> มีกองที่สังกัด </label>
+                    </div>
+                    <div class="form-group-sm subp" style="display:none">
+                        <label class="control-label">ชื่อกองที่สังกัด</label>
+                        <select class="form-control" id="addsub"></select>
+                    </div>
+                    <div class="form-group-sm subo" >
+                        <label class="control-label">ชื่อฝ่ายที่สังกัด</label>
                         <select class="form-control" id="addpar">                            
                         </select>
                     </div>
@@ -146,6 +153,13 @@
                         <label class="control-label"><input type="radio" name="editstatus" value="2"/>กอง</label>
                         <label class="control-label"><input type="radio" name="editstatus" value="3"/>ฝ่าย</label>
                         <label class="control-label"><input type="radio" name="editstatus" value="4"/>แผนก/กอง/ฝ่าย - รวม</label>
+                    </div>
+                    <div class='form-group-sm hsub'>
+                        <label class='control-label'><input type='checkbox' id='edithassub'> มีกองที่สังกัด </label>
+                    </div>
+                    <div class="form-group-sm subp" style="display:none">
+                        <label class="control-label">ชื่อกองที่สังกัด</label>
+                        <select class="form-control" id="editsub"></select>
                     </div>
                     <div class="form-group-sm subo">
                         <label class="control-label">ชื่อกอง/ฝ่ายที่สังกัด</label>
