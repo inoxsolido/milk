@@ -1203,10 +1203,15 @@ ORDER BY erp_id ASC")->queryAll();
 
         //สร้าง sheet ของแผนกในฝ่าย
         try {
-            Yii::app()->db->createCommand("SELECT * FROM tb_division d JOIN tb_approve ap ON d.division_id = ap.divition_id WHERE d.parent_division = $did AND `year` = $year ");
-            foreach () {
+            $deps = Yii::app()->db->createCommand("SELECT * FROM tb_division d JOIN tb_approve ap ON d.division_id = ap.divition_id WHERE d.parent_division = $did AND `year` = $year ORDER BY erp_id")->queryAll();
+            foreach ($deps as $dep) {
+                //clone sheet from template
+                $sheet1 = clone $sheet_temp;
+                //add sheet to file
+                
                 //เขียนชื่อ title ของชีต
-
+                $sheet1->setTitle($dep['division_name']);
+                
                 $lastrow = 5;
                 $sumtype = [];
                 $sumgroup = [];
