@@ -17718,3 +17718,11 @@ Stack trace:
 #10 {main}
 REQUEST_URI=/milk/export/div?y=2015&ro=1&id=75
 ---
+2016/01/22 03:17:49 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "login".' in G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('login')
+#1 G:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#2 G:\DPO\xampp\htdocs\milk\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/milk/login
+---

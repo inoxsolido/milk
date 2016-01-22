@@ -1207,10 +1207,11 @@ ORDER BY erp_id ASC")->queryAll();
             foreach ($deps as $dep) {
                 //clone sheet from template
                 $sheet1 = clone $sheet_temp;
-                //add sheet to file
-                
                 //เขียนชื่อ title ของชีต
                 $sheet1->setTitle($dep['division_name']);
+                //add sheet to file
+                $objPHPExcel->addSheet($sheet1);
+                
                 
                 $lastrow = 5;
                 $sumtype = [];
