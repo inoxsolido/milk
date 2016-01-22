@@ -719,7 +719,7 @@ class DataController extends Controller
 
             if ($model->isNewRecord)
             {
-                $arr;
+                /*$arr;
                 $number = preg_replace("/[ก-์\s].{0,}|[a-zA-Z\s].{0,}/", "", $name);
                 $count = preg_match_all("/[0-9]{1,2}\.|[0-9]{1,2}/", $number, $arr);
                 if ($count == 0)
@@ -741,8 +741,8 @@ class DataController extends Controller
                 if ($count > 2)
                     $model->acc_number3 = $arr[0][2];
                 if ($count > 3)
-                    $model->acc_number4 = $arr[0][3];
-
+                    $model->acc_number4 = $arr[0][3];*/
+                
                 $model->acc_name = $name;
                 $model->group_id = $haspar == "true" ? $parent->group_id : $group;
                 $model->acc_erp = $haserp == "true" ? $erp : NULL;
@@ -774,9 +774,9 @@ class DataController extends Controller
                     }
                     
                 }
-                $model->save();
+                $result =  intval($model->save(TRUE));
                 $transaction->commit();
-                echo 'ok';
+                print_r($model->errors);
             }
             }catch(Exception $ex){
                 $transaction->rollback();
@@ -844,7 +844,7 @@ class DataController extends Controller
             if (!$model->isNewRecord)
             {
                 //acc number
-                $arr;
+                /*$arr;
                 $number = preg_replace("/[ก-์\s].{0,}|[a-zA-Z\s].{0,}/", "", $name);
                 $count = preg_match_all("/[0-9]{1,2}\.|[0-9]{1,2}/", $number, $arr);
                 if ($count == 0)
@@ -866,7 +866,7 @@ class DataController extends Controller
                 if ($count > 2)
                     $model->acc_number3 = $arr[0][2];
                 if ($count > 3)
-                    $model->acc_number4 = $arr[0][3];
+                    $model->acc_number4 = $arr[0][3];*/
 
                 $model->acc_name = $name;
                 $model->group_id = $haspar == "true" ? $parent->group_id : $group;
