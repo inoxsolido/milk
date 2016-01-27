@@ -596,46 +596,87 @@ class DataController extends Controller
                 $par = $_POST['search']['par'];
                 $haspar = $_POST['search']['haspar'];
 
-                $sql = "SELECT a.*, par.par_name,group_name "
-                        . "FROM tb_account a "
-                        . "LEFT JOIN (SELECT acc_id as par_id, acc_name as par_name FROM tb_account) par ON a.parent_acc_id = par.par_id "
-                        . "LEFT JOIN tb_group g ON a.group_id = g.group_id ";
+                $sql = "SELECT a.*, p1.acc_name as par_name, group_name 
+FROM tb_account a 
+LEFT JOIN tb_account p1 ON a.parent_acc_id = p1.acc_id 
+LEFT JOIN tb_account p2 ON p1.parent_acc_id = p2.acc_id 
+LEFT JOIN tb_account p3 ON p2.parent_acc_id = p3.acc_id 
+LEFT JOIN tb_group g ON a.group_id = g.group_id ";
+                $where = "WHERE ";
                 if (!(empty($erp) && empty($name) && empty($group) && empty($par)))
                 {
-                    $sql .= " WHERE ";
                     if (!empty($erp))
-                        $sql .= " acc_erp LIKE '$erp' AND";
+                        $where .= " a.acc_erp LIKE '$erp' AND";
                     if (!empty($name))
-                        $sql .= " account_name LIKE '%$name%' AND";
+                        $where .= " a.acc_name LIKE '%$name%' AND";
                     if (!empty($group))
-                        $sql .= " a.group_id = $group AND";
-                    if ($haspar == "true" && !empty($par))
-                        $sql .= " par_name LIKE '%$par%' AND";
-                    if ($haspar == "false")
-                        $sql .= " parent_acc_id IS NULL AND";
-                    $sql = substr($sql, 0, -3);
+                        $where .= " a.group_id = $group AND";
+//                    if ( !empty($par))
+//                        $where .= " (a.parent_acc_id = $par OR p1.parent_acc_id = $par OR p2.parent_acc_id = $par OR 1) AND";
+                    /*if ($haspar == "false")
+                        $where .= " a.parent_acc_id IS NULL AND";*/
+                    //$where = substr($where, 0, -3);
                 }
-                $sql .= " ORDER BY a.group_id ASC, a.acc_number1 ASC, a.acc_number2 ASC, a.acc_number3 ASC, a.acc_number4 ASC ";
+                $parent = !empty($par)?"AND (a.acc_id = $par OR a.parent_acc_id = $par OR p1.parent_acc_id = $par OR p2.parent_acc_id = $par)":'';
+                $order = " ORDER BY a.group_id ASC, a.`order` ASC ";
                 //echo $sql;
-                $result = Yii::app()->db->createCommand($sql)->queryAll();
-
-                if (count($result))
-                {
-                    foreach ($result as $row)
-                    {
+                //$result = Yii::app()->db->createCommand($sql)->queryAll();
+                //echo $where;return;
+                
+                $lv1 = Yii::app()->db->createCommand("$sql $where  a.parent_acc_id IS NULL $parent $order")->queryAll();
+                if(count($lv1)){ foreach($lv1 as $r1){
                         ?>
-                    <tr>
-                        <td style='width:8%'><?= $row['acc_erp'] ?></td>
-                        <td style='width:32%'><?= $row['acc_name'] ?></td>
-                        <td style='width:15%'><?= $row['group_name'] ?></td>
-                        <td style='width:25%'><?= $row['par_name'] ?></td>
-                        <td style="width:20%"><button class='btn btn-sm btn-warning edit' data-id="<?= $row['acc_id'] ?>">แก้ไข <span class='glyphicon glyphicon-wrench'></span></button>&nbsp;&nbsp;
-                            <button class="btn btn-sm btn-danger delete" data-id ="<?= $row['acc_id'] ?>">ลบ <span class="glyphicon glyphicon-remove"></span></button>
-                        </td>
-                    </tr>
-                    <?php
-                }
-            }
+                        <tr>
+                            <td style='width:8%'><?= $r1['acc_erp'] ?></td>
+                            <td style='width:32%'><?= $r1['acc_name'] ?></td>
+                            <td style='width:15%'><?= $r1['group_name'] ?></td>
+                            <td style='width:25%'><?= $r1['par_name'] ?></td>
+                            <td style="width:20%"><button class='btn btn-sm btn-warning edit' data-id="<?= $r1['acc_id'] ?>">แก้ไข <span class='glyphicon glyphicon-wrench'></span></button>&nbsp;&nbsp;
+                                <button class="btn btn-sm btn-danger delete" data-id ="<?= $r1['acc_id'] ?>">ลบ <span class="glyphicon glyphicon-remove"></span></button>
+                            </td>
+                        </tr>
+                        <?php $lv2 = Yii::app()->db->createCommand("$sql $where  a.parent_acc_id = ".$r1['acc_id']." $parent $order")->queryAll();
+                        if(count($lv2)){ foreach($lv2 as $r2){
+                            ?>
+                            <tr>
+                                <td style='width:8%'><?= $r2['acc_erp'] ?></td>
+                                <td style='width:32%'><?= $r2['acc_name'] ?></td>
+                                <td style='width:15%'><?= $r2['group_name'] ?></td>
+                                <td style='width:25%'><?= $r2['par_name'] ?></td>
+                                <td style="width:20%"><button class='btn btn-sm btn-warning edit' data-id="<?= $r2['acc_id'] ?>">แก้ไข <span class='glyphicon glyphicon-wrench'></span></button>&nbsp;&nbsp;
+                                    <button class="btn btn-sm btn-danger delete" data-id ="<?= $r2['acc_id'] ?>">ลบ <span class="glyphicon glyphicon-remove"></span></button>
+                                </td>
+                            </tr>
+                            <?php $lv3 = Yii::app()->db->createCommand("$sql $where  a.parent_acc_id = ".$r2['acc_id']." $parent $order")->queryAll();
+                            if(count($lv3)){ foreach($lv3 as $r3){
+                                ?>
+                                <tr>
+                                    <td style='width:8%'><?= $r3['acc_erp'] ?></td>
+                                    <td style='width:32%'><?= $r3['acc_name'] ?></td>
+                                    <td style='width:15%'><?= $r3['group_name'] ?></td>
+                                    <td style='width:25%'><?= $r3['par_name'] ?></td>
+                                    <td style="width:20%"><button class='btn btn-sm btn-warning edit' data-id="<?= $r3['acc_id'] ?>">แก้ไข <span class='glyphicon glyphicon-wrench'></span></button>&nbsp;&nbsp;
+                                        <button class="btn btn-sm btn-danger delete" data-id ="<?= $r3['acc_id'] ?>">ลบ <span class="glyphicon glyphicon-remove"></span></button>
+                                    </td>
+                                </tr>
+                                <?php $lv4 = Yii::app()->db->createCommand("$sql $where  a.parent_acc_id = ".$r3['acc_id']." $parent $order")->queryAll();
+                                if(count($lv4)){ foreach($lv4 as $r4){
+                                    ?>
+                                    <tr>
+                                        <td style='width:8%'><?= $r4['acc_erp'] ?></td>
+                                        <td style='width:32%'><?= $r4['acc_name'] ?></td>
+                                        <td style='width:15%'><?= $r4['group_name'] ?></td>
+                                        <td style='width:25%'><?= $r4['par_name'] ?></td>
+                                        <td style="width:20%"><button class='btn btn-sm btn-warning edit' data-id="<?= $r4['acc_id'] ?>">แก้ไข <span class='glyphicon glyphicon-wrench'></span></button>&nbsp;&nbsp;
+                                            <button class="btn btn-sm btn-danger delete" data-id ="<?= $r4['acc_id'] ?>">ลบ <span class="glyphicon glyphicon-remove"></span></button>
+                                        </td>
+                                    </tr>
+                                    <?php
+                                }}
+                            }}
+                        }}
+                        
+            }}
         }
         else
             echo 'invalid request';
@@ -742,6 +783,10 @@ class DataController extends Controller
                     $model->acc_number3 = $arr[0][2];
                 if ($count > 3)
                     $model->acc_number4 = $arr[0][3];*/
+                //เพิ่มกระบวนการหาเลเวล
+                //ถ้า parent == null คือเลเวล 0
+                //ถ้า parent != null เลเวลจะได้จาก level of parent + 1
+                
                 
                 $model->acc_name = $name;
                 $model->group_id = $haspar == "true" ? $parent->group_id : $group;
@@ -776,7 +821,7 @@ class DataController extends Controller
                 }
                 $result =  intval($model->save(TRUE));
                 $transaction->commit();
-                print_r($model->errors);
+                echo 'ok';
             }
             }catch(Exception $ex){
                 $transaction->rollback();

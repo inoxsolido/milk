@@ -45,6 +45,7 @@ $(function () {
                 {
                     ajax: 0
                 }, function (data) {
+            $("#fdpar").html("<option value=''>ไม่ระบุ</option>"+data);
             $("#addpar").html(data);
             $("#editpar").html(data);
         });

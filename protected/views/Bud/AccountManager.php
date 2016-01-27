@@ -2,7 +2,7 @@
     <a class='btn btn-success btn-sm' id='addm'>เพิ่มบัญชีใหม่</a>
     <a class="btn btn-info btn-sm" id='findshow'>ค้นหา</a>
 </div>
-<div class="container" id='find'>
+<div class="container" id='find' style="display:none">
     <br>
     <div class='form-horizontal'>
         <table class='table table-bordered form-group-sm' >
@@ -28,7 +28,7 @@
                         </select>
                     </td>
                     <td style='text-align: center'><input type='checkbox' id='fdhaspar'></td>
-                    <td><input type="text" class="form-control" id="fdpar"></td>
+                    <td><select class="form-control" id="fdpar"></select></td>
                 </tr>
                 <tr>
                     <td colspan="5"><a id='btnfind' class='btn btn-default btn-block btn-sm'>ค้นหา <span class='glyphicon glyphicon-search'></span></a></td>
