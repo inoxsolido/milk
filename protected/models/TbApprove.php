@@ -26,10 +26,9 @@ class TbApprove extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('year, division_id', 'required'),
+			array('year, division_id, approve_lv', 'required'),
 			array('division_id, approve_lv', 'numerical', 'integerOnly'=>true),
 			array('year', 'length', 'max'=>4),
-                        array('approve_lv', 'numerical', 'integerOnly'=>true),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('year, division_id, approve_lv', 'safe', 'on'=>'search'),
@@ -55,7 +54,7 @@ class TbApprove extends CActiveRecord
 		return array(
 			'year' => 'Year',
 			'division_id' => 'Division',
-			'approve_lv' => 'Approve Lv',
+			'approve_lv' => '0 กำหนดปีและบัญชี, 1ฝ่ายกำหนดเป้ารายปี',
 		);
 	}
 

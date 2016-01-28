@@ -34,7 +34,7 @@ class TbAccount extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('acc_number1, acc_number2, acc_number3, acc_number4, acc_name, group_id, order', 'required'),
+			array('acc_name, group_id, order', 'required'),
 			array('acc_number1, acc_number2, acc_number3, acc_number4, group_id, parent_acc_id, order, hasSum', 'numerical', 'integerOnly'=>true),
 			array('acc_name', 'length', 'max'=>100),
 			array('acc_erp', 'length', 'max'=>8),

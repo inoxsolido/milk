@@ -819,9 +819,9 @@ LEFT JOIN tb_group g ON a.group_id = g.group_id ";
                     }
                     
                 }
-                $result =  intval($model->save(TRUE));
+                $result =  intval($model->save(TRUE))?'ok':'fail';
                 $transaction->commit();
-                echo 'ok';
+                echo $result;
             }
             }catch(Exception $ex){
                 $transaction->rollback();
