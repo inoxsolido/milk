@@ -9,8 +9,8 @@
                 </select>
             </div>
             <div class="form-group">
-                <label class="control-label"><input id="extype" name="extype" type="radio" class=""> รายฝ่าย</label>
-                <label class="control-label"><input id="extype" name="extype" type="radio" class=""> รายแผนก/กอง</label>
+                <label class="control-label"><input id="extype" name="extype" type="radio" value="div"> รายฝ่าย</label>
+                <label class="control-label"><input id="extype" name="extype" type="radio" value="dep"> รายแผนก/กอง</label>
             </div>
             <div class="form-group" id="exgyear">
                 <select id="exyear" class="form-control">

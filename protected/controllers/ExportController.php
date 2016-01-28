@@ -466,7 +466,7 @@ class ExportController extends Controller {
         ob_end_clean();
         ob_start();
         header('Content-Type: application/vnd.ms-excel');
-        header('Content-Disposition: attachment;filename="'.$name.'"');
+        header('Content-Disposition: attachment;filename="'.$name.'.xls"');
         header('Cache-Control: max-age=0');
         $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
         $objWriter->save('php://output');

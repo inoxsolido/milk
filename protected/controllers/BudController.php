@@ -626,7 +626,16 @@ class BudController extends Controller
         
     }
     public function actionSummary(){
-        echo 'สรุปผล';
+        
+        $years = Yii::app()->db->createCommand("SELECT ay.`year`, AVG(IFNULL(approve_lv,0)) as approve
+                FROM tb_acc_year ay
+                INNER JOIN tb_approve ap ON ay.`year` = ap.`year`
+                INNER JOIN tb_division dp ON ap.division_id = dp.division_id AND dp.division_level < 3
+                GROUP BY ay.`year`
+                HAVING `year` IS NOT NULL 
+                ORDER BY `year` ASC")->queryAll();
+        
+        $this->render("Summary", array('years' => $years));
     }
     public function actionTestSql(){
         echo '<pre>'."SELECT ay.`year`, IFNULL(approve_lv,0) as approve "

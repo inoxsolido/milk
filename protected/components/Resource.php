@@ -52,6 +52,21 @@ class Resource extends CApplicationComponent
                 . "HAVING `year` = $year "
                 . "ORDER BY `year` ASC";
         $result = Yii::app()->db->createCommand($sql)->queryRow();
+        if (!empty($result))
+        {
+            //calc Round
+            $approve = $result['approve'];
+            $round = 1;
+            if ($approve < 4)
+                $round = 1;
+            else if ($approve < 8)
+                $round = 2;
+            else if ($approve == 8)
+                $round = 3;
+            else
+                $round = 4;
+            $result['round'] = $round;
+        }
         return $result;
     }
 

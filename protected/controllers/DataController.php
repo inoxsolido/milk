@@ -2740,5 +2740,47 @@ ORDER BY erp_id ASC;";
             echo 'error';
         }
     }
+    
+    public function actionFillDivInYear(){
+        if(isset($_POST['year']) && isset($_POST['wh']) && isset($_POST['tartype'])){
+            
+            $year = $_POST['year'];
+            $exportType = $_POST['wh'];
+            $targetType = $_POST['tartype'];
+            //หา approve ของ year ว่า year นั้นมี approve เท่าไหร่ แล้วนำไปหา 
+            $year_resource = Yii::app()->Resource->getResourceOfYear($year);
+            $return['error']="";
+            if(!$year_resource){
+                $return['error']='No data in year"';
+            }else{
+                $sql = "";
+                if($exportType == "month_goal"){
+                    $sql = "SELECT * 
+    FROM tb_approve ap
+    INNER JOIN tb_division d ON ap.division_id = d.division_id 
+    WHERE ap.`year` = $year ";
+                    if($targetType == "div")
+                        $sql = "SELECT  `year`, dp.division_id as pid, dp.division_name as pname, AVG(IFNULL(approve_lv,0)) as approve, dp.erp_id
+	FROM tb_division dp  
+	INNER JOIN tb_division dc ON dp.division_id = dc.parent_division AND dc.division_level < 3 
+	INNER JOIN tb_approve ap ON dc.division_id = ap.division_id
+	WHERE `year` = $year  
+	GROUP BY dp.division_id 
+        ORDER BY erp_id ";
+                    else{
+                        
+                    }
+                }
+                $deps = "SELECT * 
+FROM tb_approve ap
+INNER JOIN tb_division d ON ap.division_id = d.division_id 
+WHERE ap.`year` = $year";
+            }
+            
+            
+        }else{
+            $return['error']="No year or No Type of export";
+        }
+    }
 
 }
