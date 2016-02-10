@@ -17726,3 +17726,1077 @@ Stack trace:
 #3 {main}
 REQUEST_URI=/milk/login
 ---
+2016/01/27 20:13:20 [error] [exception.CException] exception 'CException' with message 'Property "TbAccount.group_name" is not defined.' in G:\DPO\xampp\htdocs\Yii\framework\base\CComponent.php:130
+Stack trace:
+#0 G:\DPO\xampp\htdocs\Yii\framework\db\ar\CActiveRecord.php(145): CComponent->__get('group_name')
+#1 G:\DPO\xampp\htdocs\Yii\framework\base\CModel.php(596): CActiveRecord->__get('group_name')
+#2 G:\DPO\xampp\htdocs\milk\protected\controllers\DataController.php(629): CModel->offsetGet('group_name')
+#3 G:\DPO\xampp\htdocs\Yii\framework\web\actions\CInlineAction.php(49): DataController->actionFillAcc()
+#4 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#5 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#6 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): CController->run('fillacc')
+#8 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('data/FillAcc')
+#9 G:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#10 G:\DPO\xampp\htdocs\milk\index.php(13): CApplication->run()
+#11 {main}
+REQUEST_URI=/milk/data/FillAcc
+HTTP_REFERER=http://localhost/milk/Bud/AccountManager
+---
+2016/01/27 20:13:40 [error] [exception.CException] exception 'CException' with message 'Property "TbAccount.group_name" is not defined.' in G:\DPO\xampp\htdocs\Yii\framework\base\CComponent.php:130
+Stack trace:
+#0 G:\DPO\xampp\htdocs\Yii\framework\db\ar\CActiveRecord.php(145): CComponent->__get('group_name')
+#1 G:\DPO\xampp\htdocs\Yii\framework\base\CModel.php(596): CActiveRecord->__get('group_name')
+#2 G:\DPO\xampp\htdocs\milk\protected\controllers\DataController.php(629): CModel->offsetGet('group_name')
+#3 G:\DPO\xampp\htdocs\Yii\framework\web\actions\CInlineAction.php(49): DataController->actionFillAcc()
+#4 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#5 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#6 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): CController->run('fillacc')
+#8 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('data/FillAcc')
+#9 G:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#10 G:\DPO\xampp\htdocs\milk\index.php(13): CApplication->run()
+#11 {main}
+REQUEST_URI=/milk/data/FillAcc
+HTTP_REFERER=http://localhost/milk/Bud/AccountManager
+---
+2016/01/27 20:18:33 [error] [exception.CException] exception 'CException' with message 'Property "TbAccount.par_name" is not defined.' in G:\DPO\xampp\htdocs\Yii\framework\base\CComponent.php:130
+Stack trace:
+#0 G:\DPO\xampp\htdocs\Yii\framework\db\ar\CActiveRecord.php(145): CComponent->__get('par_name')
+#1 G:\DPO\xampp\htdocs\Yii\framework\base\CModel.php(596): CActiveRecord->__get('par_name')
+#2 G:\DPO\xampp\htdocs\milk\protected\controllers\DataController.php(630): CModel->offsetGet('par_name')
+#3 G:\DPO\xampp\htdocs\Yii\framework\web\actions\CInlineAction.php(49): DataController->actionFillAcc()
+#4 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#5 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#6 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): CController->run('fillacc')
+#8 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('data/FillAcc')
+#9 G:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#10 G:\DPO\xampp\htdocs\milk\index.php(13): CApplication->run()
+#11 {main}
+REQUEST_URI=/milk/data/FillAcc
+HTTP_REFERER=http://localhost/milk/Bud/AccountManager
+---
+2016/01/27 20:35:25 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND parent_acc_id IS NULL  ORDER BY a.group_id ASC, a.`order` ASC' at line 1. The SQL statement executed was: SELECT a.*, par.par_name,group_name FROM tb_account a LEFT JOIN (SELECT acc_id as par_id, acc_name as par_name FROM tb_account) par ON a.parent_acc_id = par.par_id LEFT JOIN tb_group g ON a.group_id = g.group_id  WHERE  AND parent_acc_id IS NULL  ORDER BY a.group_id ASC, a.`order` ASC .
+in G:\DPO\xampp\htdocs\milk\protected\controllers\DataController.php (624)
+in G:\DPO\xampp\htdocs\milk\index.php (13)
+2016/01/27 20:35:25 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND parent_acc_id IS NULL  ORDER BY a.group_id ASC, a.`order` ASC' at line 1. The SQL statement executed was: SELECT a.*, par.par_name,group_name FROM tb_account a LEFT JOIN (SELECT acc_id as par_id, acc_name as par_name FROM tb_account) par ON a.parent_acc_id = par.par_id LEFT JOIN tb_group g ON a.group_id = g.group_id  WHERE  AND parent_acc_id IS NULL  ORDER BY a.group_id ASC, a.`order` ASC ' in G:\DPO\xampp\htdocs\Yii\framework\db\CDbCommand.php:543
+Stack trace:
+#0 G:\DPO\xampp\htdocs\Yii\framework\db\CDbCommand.php(396): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 G:\DPO\xampp\htdocs\milk\protected\controllers\DataController.php(624): CDbCommand->queryAll()
+#2 G:\DPO\xampp\htdocs\Yii\framework\web\actions\CInlineAction.php(49): DataController->actionFillAcc()
+#3 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#5 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): CController->run('fillacc')
+#7 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('data/FillAcc')
+#8 G:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#9 G:\DPO\xampp\htdocs\milk\index.php(13): CApplication->run()
+#10 {main}
+REQUEST_URI=/milk/data/FillAcc
+HTTP_REFERER=http://localhost/milk/Bud/AccountManager
+---
+2016/01/27 20:36:09 [error] [php] Undefined variable: r4 (G:\DPO\xampp\htdocs\milk\protected\controllers\DataController.php:660)
+Stack trace:
+#0 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(286): DataController->runAction()
+#1 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(265): DataController->runActionWithFilters()
+#2 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): DataController->run()
+#3 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 G:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#5 G:\DPO\xampp\htdocs\milk\index.php(13): CWebApplication->run()
+REQUEST_URI=/milk/data/FillAcc
+in G:\DPO\xampp\htdocs\milk\protected\controllers\DataController.php (660)
+in G:\DPO\xampp\htdocs\milk\index.php (13)
+2016/01/27 20:42:06 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[23000]: Integrity constraint violation: 1052 Column 'parent_acc_id' in where clause is ambiguous. The SQL statement executed was: SELECT a.*, p1.acc_name as par_name, group_name 
+FROM tb_account a 
+LEFT JOIN tb_account p1 ON a.parent_acc_id = p1.acc_id 
+LEFT JOIN tb_account p2 ON p1.parent_acc_id = p2.acc_id 
+LEFT JOIN tb_account p3 ON p2.parent_acc_id = p3.acc_id 
+LEFT JOIN tb_group g ON a.group_id = g.group_id  WHERE   parent_acc_id IS NULL  ORDER BY a.group_id ASC, a.`order` ASC .
+in G:\DPO\xampp\htdocs\milk\protected\controllers\DataController.php (626)
+in G:\DPO\xampp\htdocs\milk\index.php (13)
+2016/01/27 20:42:06 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[23000]: Integrity constraint violation: 1052 Column 'parent_acc_id' in where clause is ambiguous. The SQL statement executed was: SELECT a.*, p1.acc_name as par_name, group_name 
+FROM tb_account a 
+LEFT JOIN tb_account p1 ON a.parent_acc_id = p1.acc_id 
+LEFT JOIN tb_account p2 ON p1.parent_acc_id = p2.acc_id 
+LEFT JOIN tb_account p3 ON p2.parent_acc_id = p3.acc_id 
+LEFT JOIN tb_group g ON a.group_id = g.group_id  WHERE   parent_acc_id IS NULL  ORDER BY a.group_id ASC, a.`order` ASC ' in G:\DPO\xampp\htdocs\Yii\framework\db\CDbCommand.php:543
+Stack trace:
+#0 G:\DPO\xampp\htdocs\Yii\framework\db\CDbCommand.php(396): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 G:\DPO\xampp\htdocs\milk\protected\controllers\DataController.php(626): CDbCommand->queryAll()
+#2 G:\DPO\xampp\htdocs\Yii\framework\web\actions\CInlineAction.php(49): DataController->actionFillAcc()
+#3 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#5 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): CController->run('fillacc')
+#7 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('data/FillAcc')
+#8 G:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#9 G:\DPO\xampp\htdocs\milk\index.php(13): CApplication->run()
+#10 {main}
+REQUEST_URI=/milk/data/FillAcc
+HTTP_REFERER=http://localhost/milk/Bud/AccountManager
+---
+2016/01/27 21:06:08 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(a.parent_acc_id = 1 OR p1.parent_acc_id = 1 OR p2.parent_acc_id = 1 OR 1)  ORDE' at line 6. The SQL statement executed was: SELECT a.*, p1.acc_name as par_name, group_name 
+FROM tb_account a 
+LEFT JOIN tb_account p1 ON a.parent_acc_id = p1.acc_id 
+LEFT JOIN tb_account p2 ON p1.parent_acc_id = p2.acc_id 
+LEFT JOIN tb_account p3 ON p2.parent_acc_id = p3.acc_id 
+LEFT JOIN tb_group g ON a.group_id = g.group_id  WHERE  a.parent_acc_id IS NULL AND  a.parent_acc_id = 1 (a.parent_acc_id = 1 OR p1.parent_acc_id = 1 OR p2.parent_acc_id = 1 OR 1)  ORDER BY a.group_id ASC, a.`order` ASC .
+in G:\DPO\xampp\htdocs\milk\protected\controllers\DataController.php (638)
+in G:\DPO\xampp\htdocs\milk\index.php (13)
+2016/01/27 21:06:08 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(a.parent_acc_id = 1 OR p1.parent_acc_id = 1 OR p2.parent_acc_id = 1 OR 1)  ORDE' at line 6. The SQL statement executed was: SELECT a.*, p1.acc_name as par_name, group_name 
+FROM tb_account a 
+LEFT JOIN tb_account p1 ON a.parent_acc_id = p1.acc_id 
+LEFT JOIN tb_account p2 ON p1.parent_acc_id = p2.acc_id 
+LEFT JOIN tb_account p3 ON p2.parent_acc_id = p3.acc_id 
+LEFT JOIN tb_group g ON a.group_id = g.group_id  WHERE  a.parent_acc_id IS NULL AND  a.parent_acc_id = 1 (a.parent_acc_id = 1 OR p1.parent_acc_id = 1 OR p2.parent_acc_id = 1 OR 1)  ORDER BY a.group_id ASC, a.`order` ASC ' in G:\DPO\xampp\htdocs\Yii\framework\db\CDbCommand.php:543
+Stack trace:
+#0 G:\DPO\xampp\htdocs\Yii\framework\db\CDbCommand.php(396): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 G:\DPO\xampp\htdocs\milk\protected\controllers\DataController.php(638): CDbCommand->queryAll()
+#2 G:\DPO\xampp\htdocs\Yii\framework\web\actions\CInlineAction.php(49): DataController->actionFillAcc()
+#3 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#5 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): CController->run('fillacc')
+#7 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('data/FillAcc')
+#8 G:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#9 G:\DPO\xampp\htdocs\milk\index.php(13): CApplication->run()
+#10 {main}
+REQUEST_URI=/milk/data/FillAcc
+HTTP_REFERER=http://localhost/milk/Bud/AccountManager
+---
+2016/01/27 21:10:19 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ORDER BY a.group_id ASC, a.`order` ASC' at line 6. The SQL statement executed was: SELECT a.*, p1.acc_name as par_name, group_name 
+FROM tb_account a 
+LEFT JOIN tb_account p1 ON a.parent_acc_id = p1.acc_id 
+LEFT JOIN tb_account p2 ON p1.parent_acc_id = p2.acc_id 
+LEFT JOIN tb_account p3 ON p2.parent_acc_id = p3.acc_id 
+LEFT JOIN tb_group g ON a.group_id = g.group_id  WHERE   a.parent_acc_id IS NULL AND   ORDER BY a.group_id ASC, a.`order` ASC .
+in G:\DPO\xampp\htdocs\milk\protected\controllers\DataController.php (626)
+in G:\DPO\xampp\htdocs\milk\index.php (13)
+2016/01/27 21:10:19 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ORDER BY a.group_id ASC, a.`order` ASC' at line 6. The SQL statement executed was: SELECT a.*, p1.acc_name as par_name, group_name 
+FROM tb_account a 
+LEFT JOIN tb_account p1 ON a.parent_acc_id = p1.acc_id 
+LEFT JOIN tb_account p2 ON p1.parent_acc_id = p2.acc_id 
+LEFT JOIN tb_account p3 ON p2.parent_acc_id = p3.acc_id 
+LEFT JOIN tb_group g ON a.group_id = g.group_id  WHERE   a.parent_acc_id IS NULL AND   ORDER BY a.group_id ASC, a.`order` ASC ' in G:\DPO\xampp\htdocs\Yii\framework\db\CDbCommand.php:543
+Stack trace:
+#0 G:\DPO\xampp\htdocs\Yii\framework\db\CDbCommand.php(396): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 G:\DPO\xampp\htdocs\milk\protected\controllers\DataController.php(626): CDbCommand->queryAll()
+#2 G:\DPO\xampp\htdocs\Yii\framework\web\actions\CInlineAction.php(49): DataController->actionFillAcc()
+#3 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#5 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): CController->run('fillacc')
+#7 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('data/FillAcc')
+#8 G:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#9 G:\DPO\xampp\htdocs\milk\index.php(13): CApplication->run()
+#10 {main}
+REQUEST_URI=/milk/data/FillAcc
+HTTP_REFERER=http://localhost/milk/Bud/AccountManager
+---
+2016/01/27 21:48:32 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'ap.divition_id' in 'on clause'. The SQL statement executed was: SELECT * FROM tb_division d JOIN tb_approve ap ON d.division_id = ap.divition_id WHERE d.parent_division = 69 AND `year` = 2015 ORDER BY erp_id.
+in G:\DPO\xampp\htdocs\milk\protected\controllers\ExportController.php (1206)
+in G:\DPO\xampp\htdocs\milk\index.php (13)
+2016/01/27 21:50:31 [error] [php] Uninitialized string offset: 26 (G:\DPO\xampp\htdocs\milk\protected\controllers\ExportController.php:1304)
+Stack trace:
+#0 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(286): ExportController->runAction()
+#1 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(265): ExportController->runActionWithFilters()
+#2 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): ExportController->run()
+#3 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 G:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#5 G:\DPO\xampp\htdocs\milk\index.php(13): CWebApplication->run()
+REQUEST_URI=/milk/export/div?y=2015&ro=1&id=69
+in G:\DPO\xampp\htdocs\milk\protected\controllers\ExportController.php (1304)
+in G:\DPO\xampp\htdocs\milk\index.php (13)
+2016/01/27 21:59:30 [error] [php] Uninitialized string offset: 26 (G:\DPO\xampp\htdocs\milk\protected\controllers\ExportController.php:1013)
+Stack trace:
+#0 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(286): ExportController->runAction()
+#1 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(265): ExportController->runActionWithFilters()
+#2 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): ExportController->run()
+#3 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 G:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#5 G:\DPO\xampp\htdocs\milk\index.php(13): CWebApplication->run()
+REQUEST_URI=/milk/export/div?y=2015&ro=1&id=69
+in G:\DPO\xampp\htdocs\milk\protected\controllers\ExportController.php (1013)
+in G:\DPO\xampp\htdocs\milk\index.php (13)
+2016/01/27 21:59:57 [error] [php] Uninitialized string offset: 26 (G:\DPO\xampp\htdocs\milk\protected\controllers\ExportController.php:1013)
+Stack trace:
+#0 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(286): ExportController->runAction()
+#1 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(265): ExportController->runActionWithFilters()
+#2 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): ExportController->run()
+#3 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 G:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#5 G:\DPO\xampp\htdocs\milk\index.php(13): CWebApplication->run()
+REQUEST_URI=/milk/export/div?y=2015&ro=1&id=69
+in G:\DPO\xampp\htdocs\milk\protected\controllers\ExportController.php (1013)
+in G:\DPO\xampp\htdocs\milk\index.php (13)
+2016/01/27 22:00:23 [error] [php] Uninitialized string offset: 26 (G:\DPO\xampp\htdocs\milk\protected\controllers\ExportController.php:1013)
+Stack trace:
+#0 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(286): ExportController->runAction()
+#1 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(265): ExportController->runActionWithFilters()
+#2 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): ExportController->run()
+#3 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 G:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#5 G:\DPO\xampp\htdocs\milk\index.php(13): CWebApplication->run()
+REQUEST_URI=/milk/export/div?y=2015&ro=1&id=69
+in G:\DPO\xampp\htdocs\milk\protected\controllers\ExportController.php (1013)
+in G:\DPO\xampp\htdocs\milk\index.php (13)
+2016/01/27 22:00:54 [error] [php] Uninitialized string offset: 26 (G:\DPO\xampp\htdocs\milk\protected\controllers\ExportController.php:1013)
+Stack trace:
+#0 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(286): ExportController->runAction()
+#1 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(265): ExportController->runActionWithFilters()
+#2 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): ExportController->run()
+#3 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 G:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#5 G:\DPO\xampp\htdocs\milk\index.php(13): CWebApplication->run()
+REQUEST_URI=/milk/export/div?y=2015&ro=1&id=69
+in G:\DPO\xampp\htdocs\milk\protected\controllers\ExportController.php (1013)
+in G:\DPO\xampp\htdocs\milk\index.php (13)
+2016/01/27 22:04:05 [error] [php] Uninitialized string offset: 26 (G:\DPO\xampp\htdocs\milk\protected\controllers\ExportController.php:1013)
+Stack trace:
+#0 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(286): ExportController->runAction()
+#1 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(265): ExportController->runActionWithFilters()
+#2 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): ExportController->run()
+#3 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 G:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#5 G:\DPO\xampp\htdocs\milk\index.php(13): CWebApplication->run()
+REQUEST_URI=/milk/export/div?y=2015&ro=1&id=69
+in G:\DPO\xampp\htdocs\milk\protected\controllers\ExportController.php (1013)
+in G:\DPO\xampp\htdocs\milk\index.php (13)
+2016/01/27 22:04:47 [error] [php] Uninitialized string offset: 26 (G:\DPO\xampp\htdocs\milk\protected\controllers\ExportController.php:1013)
+Stack trace:
+#0 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(286): ExportController->runAction()
+#1 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(265): ExportController->runActionWithFilters()
+#2 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): ExportController->run()
+#3 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 G:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#5 G:\DPO\xampp\htdocs\milk\index.php(13): CWebApplication->run()
+REQUEST_URI=/milk/export/div?y=2015&ro=1&id=69
+in G:\DPO\xampp\htdocs\milk\protected\controllers\ExportController.php (1013)
+in G:\DPO\xampp\htdocs\milk\index.php (13)
+2016/01/27 22:05:50 [error] [php] Uninitialized string offset: 26 (G:\DPO\xampp\htdocs\milk\protected\controllers\ExportController.php:1013)
+Stack trace:
+#0 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(286): ExportController->runAction()
+#1 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(265): ExportController->runActionWithFilters()
+#2 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): ExportController->run()
+#3 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 G:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#5 G:\DPO\xampp\htdocs\milk\index.php(13): CWebApplication->run()
+REQUEST_URI=/milk/export/div?y=2015&ro=1&id=69
+in G:\DPO\xampp\htdocs\milk\protected\controllers\ExportController.php (1013)
+in G:\DPO\xampp\htdocs\milk\index.php (13)
+2016/01/27 22:06:01 [error] [php] Uninitialized string offset: 26 (G:\DPO\xampp\htdocs\milk\protected\controllers\ExportController.php:1013)
+Stack trace:
+#0 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(286): ExportController->runAction()
+#1 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(265): ExportController->runActionWithFilters()
+#2 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): ExportController->run()
+#3 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 G:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#5 G:\DPO\xampp\htdocs\milk\index.php(13): CWebApplication->run()
+REQUEST_URI=/milk/export/div?y=2015&ro=1&id=69
+in G:\DPO\xampp\htdocs\milk\protected\controllers\ExportController.php (1013)
+in G:\DPO\xampp\htdocs\milk\index.php (13)
+2016/01/27 22:06:44 [error] [php] Uninitialized string offset: 26 (G:\DPO\xampp\htdocs\milk\protected\controllers\ExportController.php:212)
+Stack trace:
+#0 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(286): ExportController->runAction()
+#1 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(265): ExportController->runActionWithFilters()
+#2 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): ExportController->run()
+#3 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 G:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#5 G:\DPO\xampp\htdocs\milk\index.php(13): CWebApplication->run()
+REQUEST_URI=/milk/export/mg?y=2015&ro=1&id=75
+in G:\DPO\xampp\htdocs\milk\protected\controllers\ExportController.php (212)
+in G:\DPO\xampp\htdocs\milk\index.php (13)
+2016/01/27 22:07:47 [error] [php] Uninitialized string offset: 26 (G:\DPO\xampp\htdocs\milk\protected\controllers\ExportController.php:212)
+Stack trace:
+#0 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(286): ExportController->runAction()
+#1 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(265): ExportController->runActionWithFilters()
+#2 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): ExportController->run()
+#3 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 G:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#5 G:\DPO\xampp\htdocs\milk\index.php(13): CWebApplication->run()
+REQUEST_URI=/milk/export/mg?y=2015&ro=1&id=75
+in G:\DPO\xampp\htdocs\milk\protected\controllers\ExportController.php (212)
+in G:\DPO\xampp\htdocs\milk\index.php (13)
+2016/01/27 22:07:52 [error] [php] Uninitialized string offset: 26 (G:\DPO\xampp\htdocs\milk\protected\controllers\ExportController.php:212)
+Stack trace:
+#0 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(286): ExportController->runAction()
+#1 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(265): ExportController->runActionWithFilters()
+#2 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): ExportController->run()
+#3 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 G:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#5 G:\DPO\xampp\htdocs\milk\index.php(13): CWebApplication->run()
+REQUEST_URI=/milk/export/mg?y=2015&ro=1&id=75
+in G:\DPO\xampp\htdocs\milk\protected\controllers\ExportController.php (212)
+in G:\DPO\xampp\htdocs\milk\index.php (13)
+2016/01/27 22:15:27 [error] [php] Uninitialized string offset: 26 (G:\DPO\xampp\htdocs\milk\protected\controllers\ExportController.php:212)
+Stack trace:
+#0 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(286): ExportController->runAction()
+#1 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(265): ExportController->runActionWithFilters()
+#2 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): ExportController->run()
+#3 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 G:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#5 G:\DPO\xampp\htdocs\milk\index.php(13): CWebApplication->run()
+REQUEST_URI=/milk/export/mg?y=2015&ro=1&id=75
+in G:\DPO\xampp\htdocs\milk\protected\controllers\ExportController.php (212)
+in G:\DPO\xampp\htdocs\milk\index.php (13)
+2016/01/27 22:18:38 [error] [php] Uninitialized string offset: 26 (G:\DPO\xampp\htdocs\milk\protected\controllers\ExportController.php:213)
+Stack trace:
+#0 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(286): ExportController->runAction()
+#1 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(265): ExportController->runActionWithFilters()
+#2 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): ExportController->run()
+#3 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 G:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#5 G:\DPO\xampp\htdocs\milk\index.php(13): CWebApplication->run()
+REQUEST_URI=/milk/export/mg?y=2015&ro=1&id=75
+in G:\DPO\xampp\htdocs\milk\protected\controllers\ExportController.php (213)
+in G:\DPO\xampp\htdocs\milk\index.php (13)
+2016/01/27 22:18:56 [error] [php] Uninitialized string offset: 26 (G:\DPO\xampp\htdocs\milk\protected\controllers\ExportController.php:214)
+Stack trace:
+#0 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(286): ExportController->runAction()
+#1 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(265): ExportController->runActionWithFilters()
+#2 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): ExportController->run()
+#3 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 G:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#5 G:\DPO\xampp\htdocs\milk\index.php(13): CWebApplication->run()
+REQUEST_URI=/milk/export/mg?y=2015&ro=1&id=75
+in G:\DPO\xampp\htdocs\milk\protected\controllers\ExportController.php (214)
+in G:\DPO\xampp\htdocs\milk\index.php (13)
+2016/01/27 22:19:11 [error] [php] Uninitialized string offset: 26 (G:\DPO\xampp\htdocs\milk\protected\controllers\ExportController.php:214)
+Stack trace:
+#0 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(286): ExportController->runAction()
+#1 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(265): ExportController->runActionWithFilters()
+#2 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): ExportController->run()
+#3 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 G:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#5 G:\DPO\xampp\htdocs\milk\index.php(13): CWebApplication->run()
+REQUEST_URI=/milk/export/mg?y=2015&ro=1&id=75
+in G:\DPO\xampp\htdocs\milk\protected\controllers\ExportController.php (214)
+in G:\DPO\xampp\htdocs\milk\index.php (13)
+2016/01/27 22:19:37 [error] [php] Uninitialized string offset: 26 (G:\DPO\xampp\htdocs\milk\protected\controllers\ExportController.php:214)
+Stack trace:
+#0 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(286): ExportController->runAction()
+#1 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(265): ExportController->runActionWithFilters()
+#2 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): ExportController->run()
+#3 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 G:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#5 G:\DPO\xampp\htdocs\milk\index.php(13): CWebApplication->run()
+REQUEST_URI=/milk/export/mg?y=2015&ro=1&id=75
+in G:\DPO\xampp\htdocs\milk\protected\controllers\ExportController.php (214)
+in G:\DPO\xampp\htdocs\milk\index.php (13)
+2016/01/27 22:20:08 [error] [php] Uninitialized string offset: 26 (G:\DPO\xampp\htdocs\milk\protected\controllers\ExportController.php:214)
+Stack trace:
+#0 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(286): ExportController->runAction()
+#1 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(265): ExportController->runActionWithFilters()
+#2 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): ExportController->run()
+#3 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 G:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#5 G:\DPO\xampp\htdocs\milk\index.php(13): CWebApplication->run()
+REQUEST_URI=/milk/export/mg?y=2015&ro=1&id=75
+in G:\DPO\xampp\htdocs\milk\protected\controllers\ExportController.php (214)
+in G:\DPO\xampp\htdocs\milk\index.php (13)
+2016/01/27 22:23:14 [error] [php] Uninitialized string offset: 26 (G:\DPO\xampp\htdocs\milk\protected\controllers\ExportController.php:214)
+Stack trace:
+#0 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(286): ExportController->runAction()
+#1 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(265): ExportController->runActionWithFilters()
+#2 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): ExportController->run()
+#3 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 G:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#5 G:\DPO\xampp\htdocs\milk\index.php(13): CWebApplication->run()
+REQUEST_URI=/milk/export/mg?y=2015&ro=1&id=75
+in G:\DPO\xampp\htdocs\milk\protected\controllers\ExportController.php (214)
+in G:\DPO\xampp\htdocs\milk\index.php (13)
+2016/01/27 22:25:00 [error] [php] Uninitialized string offset: 26 (G:\DPO\xampp\htdocs\milk\protected\controllers\ExportController.php:214)
+Stack trace:
+#0 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(286): ExportController->runAction()
+#1 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(265): ExportController->runActionWithFilters()
+#2 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): ExportController->run()
+#3 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 G:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#5 G:\DPO\xampp\htdocs\milk\index.php(13): CWebApplication->run()
+REQUEST_URI=/milk/export/mg?y=2015&ro=1&id=75
+in G:\DPO\xampp\htdocs\milk\protected\controllers\ExportController.php (214)
+in G:\DPO\xampp\htdocs\milk\index.php (13)
+2016/01/27 22:25:19 [error] [php] Uninitialized string offset: 26 (G:\DPO\xampp\htdocs\milk\protected\controllers\ExportController.php:214)
+Stack trace:
+#0 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(286): ExportController->runAction()
+#1 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(265): ExportController->runActionWithFilters()
+#2 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): ExportController->run()
+#3 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 G:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#5 G:\DPO\xampp\htdocs\milk\index.php(13): CWebApplication->run()
+REQUEST_URI=/milk/export/mg?y=2015&ro=1&id=75
+in G:\DPO\xampp\htdocs\milk\protected\controllers\ExportController.php (214)
+in G:\DPO\xampp\htdocs\milk\index.php (13)
+2016/01/27 22:25:46 [error] [php] Uninitialized string offset: 26 (G:\DPO\xampp\htdocs\milk\protected\controllers\ExportController.php:214)
+Stack trace:
+#0 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(286): ExportController->runAction()
+#1 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(265): ExportController->runActionWithFilters()
+#2 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): ExportController->run()
+#3 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 G:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#5 G:\DPO\xampp\htdocs\milk\index.php(13): CWebApplication->run()
+REQUEST_URI=/milk/export/mg?y=2015&ro=1&id=75
+in G:\DPO\xampp\htdocs\milk\protected\controllers\ExportController.php (214)
+in G:\DPO\xampp\htdocs\milk\index.php (13)
+2016/01/27 22:25:55 [error] [php] Uninitialized string offset: 26 (G:\DPO\xampp\htdocs\milk\protected\controllers\ExportController.php:214)
+Stack trace:
+#0 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(286): ExportController->runAction()
+#1 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(265): ExportController->runActionWithFilters()
+#2 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): ExportController->run()
+#3 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 G:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#5 G:\DPO\xampp\htdocs\milk\index.php(13): CWebApplication->run()
+REQUEST_URI=/milk/export/mg?y=2015&ro=1&id=75
+in G:\DPO\xampp\htdocs\milk\protected\controllers\ExportController.php (214)
+in G:\DPO\xampp\htdocs\milk\index.php (13)
+2016/01/27 22:26:04 [error] [php] Uninitialized string offset: 26 (G:\DPO\xampp\htdocs\milk\protected\controllers\ExportController.php:214)
+Stack trace:
+#0 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(286): ExportController->runAction()
+#1 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(265): ExportController->runActionWithFilters()
+#2 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): ExportController->run()
+#3 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 G:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#5 G:\DPO\xampp\htdocs\milk\index.php(13): CWebApplication->run()
+REQUEST_URI=/milk/export/mg?y=2015&ro=1&id=75
+in G:\DPO\xampp\htdocs\milk\protected\controllers\ExportController.php (214)
+in G:\DPO\xampp\htdocs\milk\index.php (13)
+2016/01/27 22:26:12 [error] [php] Uninitialized string offset: 26 (G:\DPO\xampp\htdocs\milk\protected\controllers\ExportController.php:214)
+Stack trace:
+#0 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(286): ExportController->runAction()
+#1 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(265): ExportController->runActionWithFilters()
+#2 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): ExportController->run()
+#3 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 G:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#5 G:\DPO\xampp\htdocs\milk\index.php(13): CWebApplication->run()
+REQUEST_URI=/milk/export/mg?y=2015&ro=1&id=75
+in G:\DPO\xampp\htdocs\milk\protected\controllers\ExportController.php (214)
+in G:\DPO\xampp\htdocs\milk\index.php (13)
+2016/01/27 22:26:19 [error] [php] Uninitialized string offset: 26 (G:\DPO\xampp\htdocs\milk\protected\controllers\ExportController.php:214)
+Stack trace:
+#0 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(286): ExportController->runAction()
+#1 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(265): ExportController->runActionWithFilters()
+#2 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): ExportController->run()
+#3 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 G:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#5 G:\DPO\xampp\htdocs\milk\index.php(13): CWebApplication->run()
+REQUEST_URI=/milk/export/mg?y=2015&ro=1&id=75
+in G:\DPO\xampp\htdocs\milk\protected\controllers\ExportController.php (214)
+in G:\DPO\xampp\htdocs\milk\index.php (13)
+2016/01/27 22:26:39 [error] [php] Uninitialized string offset: 26 (G:\DPO\xampp\htdocs\milk\protected\controllers\ExportController.php:214)
+Stack trace:
+#0 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(286): ExportController->runAction()
+#1 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(265): ExportController->runActionWithFilters()
+#2 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): ExportController->run()
+#3 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 G:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#5 G:\DPO\xampp\htdocs\milk\index.php(13): CWebApplication->run()
+REQUEST_URI=/milk/export/mg?y=2015&ro=1&id=75
+in G:\DPO\xampp\htdocs\milk\protected\controllers\ExportController.php (214)
+in G:\DPO\xampp\htdocs\milk\index.php (13)
+2016/01/27 22:27:29 [error] [php] Uninitialized string offset: 26 (G:\DPO\xampp\htdocs\milk\protected\controllers\ExportController.php:214)
+Stack trace:
+#0 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(286): ExportController->runAction()
+#1 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(265): ExportController->runActionWithFilters()
+#2 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): ExportController->run()
+#3 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 G:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#5 G:\DPO\xampp\htdocs\milk\index.php(13): CWebApplication->run()
+REQUEST_URI=/milk/export/mg?y=2015&ro=1&id=75
+in G:\DPO\xampp\htdocs\milk\protected\controllers\ExportController.php (214)
+in G:\DPO\xampp\htdocs\milk\index.php (13)
+2016/01/27 22:28:12 [error] [php] Uninitialized string offset: 26 (G:\DPO\xampp\htdocs\milk\protected\controllers\ExportController.php:214)
+Stack trace:
+#0 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(286): ExportController->runAction()
+#1 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(265): ExportController->runActionWithFilters()
+#2 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): ExportController->run()
+#3 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 G:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#5 G:\DPO\xampp\htdocs\milk\index.php(13): CWebApplication->run()
+REQUEST_URI=/milk/export/mg?y=2015&ro=1&id=75
+in G:\DPO\xampp\htdocs\milk\protected\controllers\ExportController.php (214)
+in G:\DPO\xampp\htdocs\milk\index.php (13)
+2016/01/27 22:28:48 [error] [php] Uninitialized string offset: 26 (G:\DPO\xampp\htdocs\milk\protected\controllers\ExportController.php:214)
+Stack trace:
+#0 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(286): ExportController->runAction()
+#1 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(265): ExportController->runActionWithFilters()
+#2 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): ExportController->run()
+#3 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 G:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#5 G:\DPO\xampp\htdocs\milk\index.php(13): CWebApplication->run()
+REQUEST_URI=/milk/export/mg?y=2015&ro=1&id=75
+in G:\DPO\xampp\htdocs\milk\protected\controllers\ExportController.php (214)
+in G:\DPO\xampp\htdocs\milk\index.php (13)
+2016/01/27 22:29:19 [error] [php] Uninitialized string offset: 26 (G:\DPO\xampp\htdocs\milk\protected\controllers\ExportController.php:214)
+Stack trace:
+#0 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(286): ExportController->runAction()
+#1 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(265): ExportController->runActionWithFilters()
+#2 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): ExportController->run()
+#3 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 G:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#5 G:\DPO\xampp\htdocs\milk\index.php(13): CWebApplication->run()
+REQUEST_URI=/milk/export/mg?y=2015&ro=1&id=75
+in G:\DPO\xampp\htdocs\milk\protected\controllers\ExportController.php (214)
+in G:\DPO\xampp\htdocs\milk\index.php (13)
+2016/01/27 22:30:22 [error] [php] Uninitialized string offset: 26 (G:\DPO\xampp\htdocs\milk\protected\controllers\ExportController.php:215)
+Stack trace:
+#0 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(286): ExportController->runAction()
+#1 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(265): ExportController->runActionWithFilters()
+#2 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): ExportController->run()
+#3 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 G:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#5 G:\DPO\xampp\htdocs\milk\index.php(13): CWebApplication->run()
+REQUEST_URI=/milk/export/mg?y=2015&ro=1&id=75
+in G:\DPO\xampp\htdocs\milk\protected\controllers\ExportController.php (215)
+in G:\DPO\xampp\htdocs\milk\index.php (13)
+2016/01/27 22:39:54 [error] [php] Uninitialized string offset: 26 (G:\DPO\xampp\htdocs\milk\protected\controllers\ExportController.php:1013)
+Stack trace:
+#0 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(286): ExportController->runAction()
+#1 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(265): ExportController->runActionWithFilters()
+#2 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): ExportController->run()
+#3 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 G:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#5 G:\DPO\xampp\htdocs\milk\index.php(13): CWebApplication->run()
+REQUEST_URI=/milk/export/div?y=2015&ro=1&id=69
+in G:\DPO\xampp\htdocs\milk\protected\controllers\ExportController.php (1013)
+in G:\DPO\xampp\htdocs\milk\index.php (13)
+2016/01/27 22:41:53 [error] [php] Uninitialized string offset: 26 (G:\DPO\xampp\htdocs\milk\protected\controllers\ExportController.php:1013)
+Stack trace:
+#0 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(286): ExportController->runAction()
+#1 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(265): ExportController->runActionWithFilters()
+#2 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): ExportController->run()
+#3 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 G:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#5 G:\DPO\xampp\htdocs\milk\index.php(13): CWebApplication->run()
+REQUEST_URI=/milk/export/div?y=2015&ro=1&id=69
+in G:\DPO\xampp\htdocs\milk\protected\controllers\ExportController.php (1013)
+in G:\DPO\xampp\htdocs\milk\index.php (13)
+2016/01/27 22:42:44 [error] [php] Uninitialized string offset: 26 (G:\DPO\xampp\htdocs\milk\protected\controllers\ExportController.php:1013)
+Stack trace:
+#0 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(286): ExportController->runAction()
+#1 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(265): ExportController->runActionWithFilters()
+#2 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): ExportController->run()
+#3 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 G:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#5 G:\DPO\xampp\htdocs\milk\index.php(13): CWebApplication->run()
+REQUEST_URI=/milk/export/div?y=2015&ro=1&id=69
+in G:\DPO\xampp\htdocs\milk\protected\controllers\ExportController.php (1013)
+in G:\DPO\xampp\htdocs\milk\index.php (13)
+2016/01/27 22:43:00 [error] [php] Uninitialized string offset: 26 (G:\DPO\xampp\htdocs\milk\protected\controllers\ExportController.php:212)
+Stack trace:
+#0 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(286): ExportController->runAction()
+#1 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(265): ExportController->runActionWithFilters()
+#2 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): ExportController->run()
+#3 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 G:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#5 G:\DPO\xampp\htdocs\milk\index.php(13): CWebApplication->run()
+REQUEST_URI=/milk/export/mg?y=2015&ro=1&id=75
+in G:\DPO\xampp\htdocs\milk\protected\controllers\ExportController.php (212)
+in G:\DPO\xampp\htdocs\milk\index.php (13)
+2016/01/27 22:43:43 [error] [php] Uninitialized string offset: 26 (G:\DPO\xampp\htdocs\milk\protected\controllers\ExportController.php:212)
+Stack trace:
+#0 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(286): ExportController->runAction()
+#1 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(265): ExportController->runActionWithFilters()
+#2 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): ExportController->run()
+#3 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 G:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#5 G:\DPO\xampp\htdocs\milk\index.php(13): CWebApplication->run()
+REQUEST_URI=/milk/export/mg?y=2015&ro=1&id=75
+in G:\DPO\xampp\htdocs\milk\protected\controllers\ExportController.php (212)
+in G:\DPO\xampp\htdocs\milk\index.php (13)
+2016/01/27 22:43:54 [error] [php] Uninitialized string offset: 26 (G:\DPO\xampp\htdocs\milk\protected\controllers\ExportController.php:212)
+Stack trace:
+#0 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(286): ExportController->runAction()
+#1 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(265): ExportController->runActionWithFilters()
+#2 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): ExportController->run()
+#3 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 G:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#5 G:\DPO\xampp\htdocs\milk\index.php(13): CWebApplication->run()
+REQUEST_URI=/milk/export/mg?y=2015&ro=1&id=75
+in G:\DPO\xampp\htdocs\milk\protected\controllers\ExportController.php (212)
+in G:\DPO\xampp\htdocs\milk\index.php (13)
+2016/01/27 22:46:25 [error] [php] Uninitialized string offset: 26 (G:\DPO\xampp\htdocs\milk\protected\controllers\ExportController.php:212)
+Stack trace:
+#0 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(286): ExportController->runAction()
+#1 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(265): ExportController->runActionWithFilters()
+#2 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): ExportController->run()
+#3 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 G:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#5 G:\DPO\xampp\htdocs\milk\index.php(13): CWebApplication->run()
+REQUEST_URI=/milk/export/mg?y=2015&ro=1&id=75
+in G:\DPO\xampp\htdocs\milk\protected\controllers\ExportController.php (212)
+in G:\DPO\xampp\htdocs\milk\index.php (13)
+2016/01/27 22:47:08 [error] [php] Uninitialized string offset: 26 (G:\DPO\xampp\htdocs\milk\protected\controllers\ExportController.php:212)
+Stack trace:
+#0 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(286): ExportController->runAction()
+#1 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(265): ExportController->runActionWithFilters()
+#2 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): ExportController->run()
+#3 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 G:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#5 G:\DPO\xampp\htdocs\milk\index.php(13): CWebApplication->run()
+REQUEST_URI=/milk/export/mg?y=2015&ro=1&id=75
+in G:\DPO\xampp\htdocs\milk\protected\controllers\ExportController.php (212)
+in G:\DPO\xampp\htdocs\milk\index.php (13)
+2016/01/27 22:48:12 [error] [php] Uninitialized string offset: 26 (G:\DPO\xampp\htdocs\milk\protected\controllers\ExportController.php:207)
+Stack trace:
+#0 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(286): ExportController->runAction()
+#1 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(265): ExportController->runActionWithFilters()
+#2 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): ExportController->run()
+#3 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 G:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#5 G:\DPO\xampp\htdocs\milk\index.php(13): CWebApplication->run()
+REQUEST_URI=/milk/export/mg?y=2015&ro=1&id=75
+in G:\DPO\xampp\htdocs\milk\protected\controllers\ExportController.php (207)
+in G:\DPO\xampp\htdocs\milk\index.php (13)
+2016/01/27 22:48:43 [error] [php] Uninitialized string offset: 26 (G:\DPO\xampp\htdocs\milk\protected\controllers\ExportController.php:207)
+Stack trace:
+#0 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(286): ExportController->runAction()
+#1 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(265): ExportController->runActionWithFilters()
+#2 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): ExportController->run()
+#3 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 G:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#5 G:\DPO\xampp\htdocs\milk\index.php(13): CWebApplication->run()
+REQUEST_URI=/milk/export/mg?y=2015&ro=1&id=75
+in G:\DPO\xampp\htdocs\milk\protected\controllers\ExportController.php (207)
+in G:\DPO\xampp\htdocs\milk\index.php (13)
+2016/01/27 22:49:15 [error] [php] Array to string conversion (G:\DPO\xampp\htdocs\milk\protected\controllers\ExportController.php:207)
+Stack trace:
+#0 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(286): ExportController->runAction()
+#1 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(265): ExportController->runActionWithFilters()
+#2 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): ExportController->run()
+#3 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 G:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#5 G:\DPO\xampp\htdocs\milk\index.php(13): CWebApplication->run()
+REQUEST_URI=/milk/export/mg?y=2015&ro=1&id=75
+in G:\DPO\xampp\htdocs\milk\protected\controllers\ExportController.php (207)
+in G:\DPO\xampp\htdocs\milk\index.php (13)
+2016/01/27 22:50:58 [error] [php] Uninitialized string offset: 26 (G:\DPO\xampp\htdocs\milk\protected\controllers\ExportController.php:212)
+Stack trace:
+#0 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(286): ExportController->runAction()
+#1 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(265): ExportController->runActionWithFilters()
+#2 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): ExportController->run()
+#3 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 G:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#5 G:\DPO\xampp\htdocs\milk\index.php(13): CWebApplication->run()
+REQUEST_URI=/milk/export/mg?y=2015&ro=1&id=75
+in G:\DPO\xampp\htdocs\milk\protected\controllers\ExportController.php (212)
+in G:\DPO\xampp\htdocs\milk\index.php (13)
+2016/01/27 22:53:35 [error] [php] Uninitialized string offset: 26 (G:\DPO\xampp\htdocs\milk\protected\controllers\ExportController.php:207)
+Stack trace:
+#0 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(286): ExportController->runAction()
+#1 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(265): ExportController->runActionWithFilters()
+#2 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): ExportController->run()
+#3 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 G:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#5 G:\DPO\xampp\htdocs\milk\index.php(13): CWebApplication->run()
+REQUEST_URI=/milk/export/mg?y=2015&ro=1&id=75
+in G:\DPO\xampp\htdocs\milk\protected\controllers\ExportController.php (207)
+in G:\DPO\xampp\htdocs\milk\index.php (13)
+2016/01/27 22:58:10 [error] [php] Uninitialized string offset: 26 (G:\DPO\xampp\htdocs\milk\protected\controllers\ExportController.php:214)
+Stack trace:
+#0 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(286): ExportController->runAction()
+#1 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(265): ExportController->runActionWithFilters()
+#2 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): ExportController->run()
+#3 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 G:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#5 G:\DPO\xampp\htdocs\milk\index.php(13): CWebApplication->run()
+REQUEST_URI=/milk/export/mg?y=2015&ro=1&id=75
+in G:\DPO\xampp\htdocs\milk\protected\controllers\ExportController.php (214)
+in G:\DPO\xampp\htdocs\milk\index.php (13)
+2016/01/27 22:58:33 [error] [php] Uninitialized string offset: 26 (G:\DPO\xampp\htdocs\milk\protected\controllers\ExportController.php:214)
+Stack trace:
+#0 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(286): ExportController->runAction()
+#1 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(265): ExportController->runActionWithFilters()
+#2 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): ExportController->run()
+#3 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 G:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#5 G:\DPO\xampp\htdocs\milk\index.php(13): CWebApplication->run()
+REQUEST_URI=/milk/export/mg?y=2015&ro=1&id=75
+in G:\DPO\xampp\htdocs\milk\protected\controllers\ExportController.php (214)
+in G:\DPO\xampp\htdocs\milk\index.php (13)
+2016/01/27 23:02:19 [error] [php] Uninitialized string offset: 26 (G:\DPO\xampp\htdocs\milk\protected\controllers\ExportController.php:214)
+Stack trace:
+#0 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(286): ExportController->runAction()
+#1 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(265): ExportController->runActionWithFilters()
+#2 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): ExportController->run()
+#3 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 G:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#5 G:\DPO\xampp\htdocs\milk\index.php(13): CWebApplication->run()
+REQUEST_URI=/milk/export/mg?y=2015&ro=1&id=75
+in G:\DPO\xampp\htdocs\milk\protected\controllers\ExportController.php (214)
+in G:\DPO\xampp\htdocs\milk\index.php (13)
+2016/01/27 23:02:48 [error] [php] Uninitialized string offset: 26 (G:\DPO\xampp\htdocs\milk\protected\controllers\ExportController.php:214)
+Stack trace:
+#0 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(286): ExportController->runAction()
+#1 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(265): ExportController->runActionWithFilters()
+#2 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): ExportController->run()
+#3 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 G:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#5 G:\DPO\xampp\htdocs\milk\index.php(13): CWebApplication->run()
+REQUEST_URI=/milk/export/mg?y=2015&ro=1&id=75
+in G:\DPO\xampp\htdocs\milk\protected\controllers\ExportController.php (214)
+in G:\DPO\xampp\htdocs\milk\index.php (13)
+2016/01/27 23:03:10 [error] [php] Uninitialized string offset: 26 (G:\DPO\xampp\htdocs\milk\protected\controllers\ExportController.php:214)
+Stack trace:
+#0 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(286): ExportController->runAction()
+#1 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(265): ExportController->runActionWithFilters()
+#2 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): ExportController->run()
+#3 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 G:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#5 G:\DPO\xampp\htdocs\milk\index.php(13): CWebApplication->run()
+REQUEST_URI=/milk/export/mg?y=2015&ro=1&id=75
+in G:\DPO\xampp\htdocs\milk\protected\controllers\ExportController.php (214)
+in G:\DPO\xampp\htdocs\milk\index.php (13)
+2016/01/27 23:08:24 [error] [php] Undefined variable: vm (G:\DPO\xampp\htdocs\milk\protected\controllers\ExportController.php:207)
+Stack trace:
+#0 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(286): ExportController->runAction()
+#1 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(265): ExportController->runActionWithFilters()
+#2 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): ExportController->run()
+#3 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 G:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#5 G:\DPO\xampp\htdocs\milk\index.php(13): CWebApplication->run()
+REQUEST_URI=/milk/export/mg?y=2015&ro=1&id=75
+in G:\DPO\xampp\htdocs\milk\protected\controllers\ExportController.php (207)
+in G:\DPO\xampp\htdocs\milk\index.php (13)
+2016/01/27 23:14:18 [error] [php] Uninitialized string offset: 26 (G:\DPO\xampp\htdocs\milk\protected\controllers\ExportController.php:212)
+Stack trace:
+#0 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(286): ExportController->runAction()
+#1 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(265): ExportController->runActionWithFilters()
+#2 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): ExportController->run()
+#3 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 G:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#5 G:\DPO\xampp\htdocs\milk\index.php(13): CWebApplication->run()
+REQUEST_URI=/milk/export/mg?y=2015&ro=1&id=75
+in G:\DPO\xampp\htdocs\milk\protected\controllers\ExportController.php (212)
+in G:\DPO\xampp\htdocs\milk\index.php (13)
+2016/01/27 23:15:57 [error] [php] Uninitialized string offset: 26 (G:\DPO\xampp\htdocs\milk\protected\controllers\ExportController.php:212)
+Stack trace:
+#0 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(286): ExportController->runAction()
+#1 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(265): ExportController->runActionWithFilters()
+#2 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): ExportController->run()
+#3 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 G:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#5 G:\DPO\xampp\htdocs\milk\index.php(13): CWebApplication->run()
+REQUEST_URI=/milk/export/mg?y=2015&ro=1&id=75
+in G:\DPO\xampp\htdocs\milk\protected\controllers\ExportController.php (212)
+in G:\DPO\xampp\htdocs\milk\index.php (13)
+2016/01/27 23:17:31 [error] [php] Uninitialized string offset: 26 (G:\DPO\xampp\htdocs\milk\protected\controllers\ExportController.php:212)
+Stack trace:
+#0 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(286): ExportController->runAction()
+#1 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(265): ExportController->runActionWithFilters()
+#2 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): ExportController->run()
+#3 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 G:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#5 G:\DPO\xampp\htdocs\milk\index.php(13): CWebApplication->run()
+REQUEST_URI=/milk/export/mg?y=2015&ro=1&id=75
+in G:\DPO\xampp\htdocs\milk\protected\controllers\ExportController.php (212)
+in G:\DPO\xampp\htdocs\milk\index.php (13)
+2016/01/27 23:18:44 [error] [php] Uninitialized string offset: 26 (G:\DPO\xampp\htdocs\milk\protected\controllers\ExportController.php:212)
+Stack trace:
+#0 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(286): ExportController->runAction()
+#1 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(265): ExportController->runActionWithFilters()
+#2 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): ExportController->run()
+#3 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 G:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#5 G:\DPO\xampp\htdocs\milk\index.php(13): CWebApplication->run()
+REQUEST_URI=/milk/export/mg?y=2015&ro=1&id=75
+in G:\DPO\xampp\htdocs\milk\protected\controllers\ExportController.php (212)
+in G:\DPO\xampp\htdocs\milk\index.php (13)
+2016/01/27 23:18:55 [error] [php] Uninitialized string offset: 26 (G:\DPO\xampp\htdocs\milk\protected\controllers\ExportController.php:212)
+Stack trace:
+#0 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(286): ExportController->runAction()
+#1 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(265): ExportController->runActionWithFilters()
+#2 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): ExportController->run()
+#3 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 G:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#5 G:\DPO\xampp\htdocs\milk\index.php(13): CWebApplication->run()
+REQUEST_URI=/milk/export/mg?y=2015&ro=1&id=75
+in G:\DPO\xampp\htdocs\milk\protected\controllers\ExportController.php (212)
+in G:\DPO\xampp\htdocs\milk\index.php (13)
+2016/01/27 23:19:06 [error] [php] Uninitialized string offset: 26 (G:\DPO\xampp\htdocs\milk\protected\controllers\ExportController.php:212)
+Stack trace:
+#0 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(286): ExportController->runAction()
+#1 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(265): ExportController->runActionWithFilters()
+#2 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): ExportController->run()
+#3 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 G:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#5 G:\DPO\xampp\htdocs\milk\index.php(13): CWebApplication->run()
+REQUEST_URI=/milk/export/mg?y=2015&ro=1&id=75
+in G:\DPO\xampp\htdocs\milk\protected\controllers\ExportController.php (212)
+in G:\DPO\xampp\htdocs\milk\index.php (13)
+2016/01/27 23:19:25 [error] [php] Uninitialized string offset: 26 (G:\DPO\xampp\htdocs\milk\protected\controllers\ExportController.php:212)
+Stack trace:
+#0 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(286): ExportController->runAction()
+#1 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(265): ExportController->runActionWithFilters()
+#2 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): ExportController->run()
+#3 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 G:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#5 G:\DPO\xampp\htdocs\milk\index.php(13): CWebApplication->run()
+REQUEST_URI=/milk/export/mg?y=2015&ro=1&id=75
+in G:\DPO\xampp\htdocs\milk\protected\controllers\ExportController.php (212)
+in G:\DPO\xampp\htdocs\milk\index.php (13)
+2016/01/27 23:19:38 [error] [php] Uninitialized string offset: 26 (G:\DPO\xampp\htdocs\milk\protected\controllers\ExportController.php:212)
+Stack trace:
+#0 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(286): ExportController->runAction()
+#1 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(265): ExportController->runActionWithFilters()
+#2 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): ExportController->run()
+#3 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 G:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#5 G:\DPO\xampp\htdocs\milk\index.php(13): CWebApplication->run()
+REQUEST_URI=/milk/export/mg?y=2015&ro=1&id=75
+in G:\DPO\xampp\htdocs\milk\protected\controllers\ExportController.php (212)
+in G:\DPO\xampp\htdocs\milk\index.php (13)
+2016/01/27 23:19:45 [error] [php] Uninitialized string offset: 26 (G:\DPO\xampp\htdocs\milk\protected\controllers\ExportController.php:212)
+Stack trace:
+#0 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(286): ExportController->runAction()
+#1 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(265): ExportController->runActionWithFilters()
+#2 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): ExportController->run()
+#3 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 G:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#5 G:\DPO\xampp\htdocs\milk\index.php(13): CWebApplication->run()
+REQUEST_URI=/milk/export/mg?y=2015&ro=1&id=75
+in G:\DPO\xampp\htdocs\milk\protected\controllers\ExportController.php (212)
+in G:\DPO\xampp\htdocs\milk\index.php (13)
+2016/01/27 23:21:20 [error] [php] Uninitialized string offset: 26 (G:\DPO\xampp\htdocs\milk\protected\controllers\ExportController.php:212)
+Stack trace:
+#0 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(286): ExportController->runAction()
+#1 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(265): ExportController->runActionWithFilters()
+#2 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): ExportController->run()
+#3 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 G:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#5 G:\DPO\xampp\htdocs\milk\index.php(13): CWebApplication->run()
+REQUEST_URI=/milk/export/mg?y=2015&ro=1&id=75
+in G:\DPO\xampp\htdocs\milk\protected\controllers\ExportController.php (212)
+in G:\DPO\xampp\htdocs\milk\index.php (13)
+2016/01/27 23:22:12 [error] [php] Uninitialized string offset: 29 (G:\DPO\xampp\htdocs\milk\protected\controllers\ExportController.php:213)
+Stack trace:
+#0 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(286): ExportController->runAction()
+#1 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(265): ExportController->runActionWithFilters()
+#2 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): ExportController->run()
+#3 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 G:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#5 G:\DPO\xampp\htdocs\milk\index.php(13): CWebApplication->run()
+REQUEST_URI=/milk/export/mg?y=2015&ro=1&id=75
+in G:\DPO\xampp\htdocs\milk\protected\controllers\ExportController.php (213)
+in G:\DPO\xampp\htdocs\milk\index.php (13)
+2016/01/27 23:24:24 [error] [php] Uninitialized string offset: 29 (G:\DPO\xampp\htdocs\milk\protected\controllers\ExportController.php:213)
+Stack trace:
+#0 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(286): ExportController->runAction()
+#1 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(265): ExportController->runActionWithFilters()
+#2 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): ExportController->run()
+#3 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 G:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#5 G:\DPO\xampp\htdocs\milk\index.php(13): CWebApplication->run()
+REQUEST_URI=/milk/export/mg?y=2015&ro=1&id=75
+in G:\DPO\xampp\htdocs\milk\protected\controllers\ExportController.php (213)
+in G:\DPO\xampp\htdocs\milk\index.php (13)
+2016/01/27 23:30:29 [error] [php] Uninitialized string offset: 29 (G:\DPO\xampp\htdocs\milk\protected\controllers\ExportController.php:214)
+Stack trace:
+#0 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(286): ExportController->runAction()
+#1 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(265): ExportController->runActionWithFilters()
+#2 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): ExportController->run()
+#3 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 G:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#5 G:\DPO\xampp\htdocs\milk\index.php(13): CWebApplication->run()
+REQUEST_URI=/milk/export/mg?y=2015&ro=1&id=75
+in G:\DPO\xampp\htdocs\milk\protected\controllers\ExportController.php (214)
+in G:\DPO\xampp\htdocs\milk\index.php (13)
+2016/01/27 23:30:36 [error] [php] Uninitialized string offset: 29 (G:\DPO\xampp\htdocs\milk\protected\controllers\ExportController.php:214)
+Stack trace:
+#0 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(286): ExportController->runAction()
+#1 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(265): ExportController->runActionWithFilters()
+#2 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): ExportController->run()
+#3 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 G:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#5 G:\DPO\xampp\htdocs\milk\index.php(13): CWebApplication->run()
+REQUEST_URI=/milk/export/mg?y=2015&ro=1&id=75
+in G:\DPO\xampp\htdocs\milk\protected\controllers\ExportController.php (214)
+in G:\DPO\xampp\htdocs\milk\index.php (13)
+2016/01/27 23:54:07 [error] [php] Undefined variable: time (G:\DPO\xampp\htdocs\milk\protected\controllers\ExportController.php:468)
+Stack trace:
+#0 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(286): ExportController->runAction()
+#1 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(265): ExportController->runActionWithFilters()
+#2 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): ExportController->run()
+#3 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 G:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#5 G:\DPO\xampp\htdocs\milk\index.php(13): CWebApplication->run()
+REQUEST_URI=/milk/export/mg?y=2015&ro=1&id=75
+in G:\DPO\xampp\htdocs\milk\protected\controllers\ExportController.php (468)
+in G:\DPO\xampp\htdocs\milk\index.php (13)
+2016/01/28 06:54:09 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/js/summary.js".' in G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/js/summa...')
+#1 G:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#2 G:\DPO\xampp\htdocs\milk\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/milk/assets/js/summary.js
+HTTP_REFERER=http://localhost/milk/Bud/Summary
+---
+2016/01/28 06:54:24 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/js/summary.js".' in G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/js/summa...')
+#1 G:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#2 G:\DPO\xampp\htdocs\milk\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/milk/assets/js/summary.js
+HTTP_REFERER=http://localhost/milk/Bud/Summary
+---
+2016/01/28 06:54:50 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/js/summary.js".' in G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/js/summa...')
+#1 G:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#2 G:\DPO\xampp\htdocs\milk\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/milk/assets/js/summary.js
+HTTP_REFERER=http://localhost/milk/Bud/Summary
+---
+2016/01/28 06:55:38 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/js/summary.js".' in G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/js/summa...')
+#1 G:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#2 G:\DPO\xampp\htdocs\milk\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/milk/assets/js/summary.js
+HTTP_REFERER=http://localhost/milk/Bud/Summary
+---
+2016/01/28 06:56:04 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/js/summary.js".' in G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/js/summa...')
+#1 G:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#2 G:\DPO\xampp\htdocs\milk\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/milk/assets/js/summary.js
+HTTP_REFERER=http://localhost/milk/Bud/Summary
+---
+2016/01/28 06:56:16 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/js/summary.js".' in G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/js/summa...')
+#1 G:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#2 G:\DPO\xampp\htdocs\milk\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/milk/assets/js/summary.js
+HTTP_REFERER=http://localhost/milk/Bud/Summary
+---
+2016/01/28 06:58:24 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/js/summary.js".' in G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/js/summa...')
+#1 G:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#2 G:\DPO\xampp\htdocs\milk\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/milk/assets/js/summary.js
+HTTP_REFERER=http://localhost/milk/Bud/Summary
+---
+2016/01/28 06:59:44 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/js/summary.js".' in G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/js/summa...')
+#1 G:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#2 G:\DPO\xampp\htdocs\milk\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/milk/assets/js/summary.js
+HTTP_REFERER=http://localhost/milk/Bud/Summary
+---
+2016/01/28 07:05:26 [error] [php] Undefined variable: years (G:\DPO\xampp\htdocs\milk\protected\views\Bud\Summary.php:16)
+Stack trace:
+#0 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(869): BudController->renderFile()
+#1 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(782): BudController->renderPartial()
+#2 G:\DPO\xampp\htdocs\milk\protected\controllers\BudController.php(632): BudController->render()
+#3 G:\DPO\xampp\htdocs\Yii\framework\web\actions\CInlineAction.php(49): BudController->actionSummary()
+#4 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#5 G:\DPO\xampp\htdocs\Yii\framework\web\filters\CFilterChain.php(133): BudController->runAction()
+#6 G:\DPO\xampp\htdocs\Yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#7 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#8 G:\DPO\xampp\htdocs\Yii\framework\web\filters\CInlineFilter.php(58): BudController->filterAccessControl()
+#9 G:\DPO\xampp\htdocs\Yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#10 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(291): CFilterChain->run()
+#11 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(265): BudController->runActionWithFilters()
+#12 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): BudController->run()
+#13 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#14 G:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#15 G:\DPO\xampp\htdocs\milk\index.php(13): CWebApplication->run()
+REQUEST_URI=/milk/Bud/Summary
+in G:\DPO\xampp\htdocs\milk\protected\views\Bud\Summary.php (16)
+in G:\DPO\xampp\htdocs\milk\protected\controllers\BudController.php (632)
+in G:\DPO\xampp\htdocs\milk\index.php (13)
+2016/01/28 07:15:42 [error] [php] Undefined variable: years (G:\DPO\xampp\htdocs\milk\protected\views\Bud\Summary.php:16)
+Stack trace:
+#0 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(869): BudController->renderFile()
+#1 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(782): BudController->renderPartial()
+#2 G:\DPO\xampp\htdocs\milk\protected\controllers\BudController.php(638): BudController->render()
+#3 G:\DPO\xampp\htdocs\Yii\framework\web\actions\CInlineAction.php(49): BudController->actionSummary()
+#4 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#5 G:\DPO\xampp\htdocs\Yii\framework\web\filters\CFilterChain.php(133): BudController->runAction()
+#6 G:\DPO\xampp\htdocs\Yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#7 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#8 G:\DPO\xampp\htdocs\Yii\framework\web\filters\CInlineFilter.php(58): BudController->filterAccessControl()
+#9 G:\DPO\xampp\htdocs\Yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#10 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(291): CFilterChain->run()
+#11 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(265): BudController->runActionWithFilters()
+#12 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): BudController->run()
+#13 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#14 G:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#15 G:\DPO\xampp\htdocs\milk\index.php(13): CWebApplication->run()
+REQUEST_URI=/milk/Bud/Summary
+in G:\DPO\xampp\htdocs\milk\protected\views\Bud\Summary.php (16)
+in G:\DPO\xampp\htdocs\milk\protected\controllers\BudController.php (638)
+in G:\DPO\xampp\htdocs\milk\index.php (13)
+2016/01/28 07:16:17 [error] [php] Array to string conversion (G:\DPO\xampp\htdocs\milk\protected\views\Bud\Summary.php:17)
+Stack trace:
+#0 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(869): BudController->renderFile()
+#1 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(782): BudController->renderPartial()
+#2 G:\DPO\xampp\htdocs\milk\protected\controllers\BudController.php(638): BudController->render()
+#3 G:\DPO\xampp\htdocs\Yii\framework\web\actions\CInlineAction.php(49): BudController->actionSummary()
+#4 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#5 G:\DPO\xampp\htdocs\Yii\framework\web\filters\CFilterChain.php(133): BudController->runAction()
+#6 G:\DPO\xampp\htdocs\Yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#7 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#8 G:\DPO\xampp\htdocs\Yii\framework\web\filters\CInlineFilter.php(58): BudController->filterAccessControl()
+#9 G:\DPO\xampp\htdocs\Yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#10 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(291): CFilterChain->run()
+#11 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(265): BudController->runActionWithFilters()
+#12 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): BudController->run()
+#13 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#14 G:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#15 G:\DPO\xampp\htdocs\milk\index.php(13): CWebApplication->run()
+REQUEST_URI=/milk/Bud/Summary
+in G:\DPO\xampp\htdocs\milk\protected\views\Bud\Summary.php (17)
+in G:\DPO\xampp\htdocs\milk\protected\controllers\BudController.php (638)
+in G:\DPO\xampp\htdocs\milk\index.php (13)
+2016/01/28 09:42:19 [error] [php] Undefined index: did (G:\DPO\xampp\htdocs\milk\protected\controllers\DataController.php:2780)
+Stack trace:
+#0 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(286): DataController->runAction()
+#1 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(265): DataController->runActionWithFilters()
+#2 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): DataController->run()
+#3 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 G:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#5 G:\DPO\xampp\htdocs\milk\index.php(13): CWebApplication->run()
+REQUEST_URI=/milk/Data/FillDivInYear
+in G:\DPO\xampp\htdocs\milk\protected\controllers\DataController.php (2780)
+in G:\DPO\xampp\htdocs\milk\index.php (13)
+2016/02/10 21:45:34 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "index".' in G:\DPO\xampp\htdocs\Yii\framework\web\CController.php:483
+Stack trace:
+#0 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(270): CController->missingAction('')
+#1 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): CController->run('')
+#2 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('export')
+#3 G:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#4 G:\DPO\xampp\htdocs\milk\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/milk/export/
+---
+2016/02/10 21:50:14 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "1".' in G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('1')
+#1 G:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#2 G:\DPO\xampp\htdocs\milk\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/milk/export/mg?y=2015&r=1&id=37
+HTTP_REFERER=http://localhost/milk/Bud/Summary
+---
+2016/02/10 21:50:35 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "1".' in G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('1')
+#1 G:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#2 G:\DPO\xampp\htdocs\milk\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/milk/export/mg?y=2015&r=1&id=37
+HTTP_REFERER=http://localhost/milk/Bud/Summary
+---

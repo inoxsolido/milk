@@ -2755,12 +2755,8 @@ ORDER BY erp_id ASC;";
             }else{
                 $sql = "";
                 if($exportType == "month_goal"){
-                    $sql = "SELECT * 
-    FROM tb_approve ap
-    INNER JOIN tb_division d ON ap.division_id = d.division_id 
-    WHERE ap.`year` = $year ";
                     if($targetType == "div")
-                        $sql = "SELECT  `year`, dp.division_id as pid, dp.division_name as pname, AVG(IFNULL(approve_lv,0)) as approve, dp.erp_id
+                        $sql = "SELECT  `year`, dp.division_id as did, dp.division_name as dname, AVG(IFNULL(approve_lv,0)) as approve, dp.erp_id
 	FROM tb_division dp  
 	INNER JOIN tb_division dc ON dp.division_id = dc.parent_division AND dc.division_level < 3 
 	INNER JOIN tb_approve ap ON dc.division_id = ap.division_id
@@ -2768,18 +2764,34 @@ ORDER BY erp_id ASC;";
 	GROUP BY dp.division_id 
         ORDER BY erp_id ";
                     else{
-                        
+                        $sql = "SELECT ay.`year`, dc.division_id as did, dc.division_name as dname, approve_lv as approve, MAX(month_goal_id) as monthgoal, erp_id 
+FROM tb_division dc  
+JOIN tb_approve ap ON ap.division_id = dc.division_id 
+JOIN tb_acc_year ay ON ay.`year` = ap.`year` 
+LEFT JOIN tb_month_goal mg ON mg.division_id = dc.division_id AND mg.acc_id = ay.acc_id 
+WHERE ay.`year` = $year AND dc.division_level < 3
+GROUP BY dc.division_id 
+ORDER BY erp_id ASC";
+                    }
+                    $result = Yii::app()->db->createCommand($sql)->queryAll();
+                    $return['d'] = array();
+                    $i = 0;
+                    if(count($result)){
+                        foreach($result as $row){
+                            $return['d'][$i]['id'] = $row['did'];
+                            $return['d'][$i]['name'] = $row['dname'];
+                            $i++;
+                        }
                     }
                 }
-                $deps = "SELECT * 
-FROM tb_approve ap
-INNER JOIN tb_division d ON ap.division_id = d.division_id 
-WHERE ap.`year` = $year";
+                $return['round']=$year_resource['round'];
+                echo json_encode($return, JSON_FORCE_OBJECT);
             }
             
             
         }else{
             $return['error']="No year or No Type of export";
+            echo json_encode($return, JSON_FORCE_OBJECT);
         }
     }
 
