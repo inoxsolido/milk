@@ -7,6 +7,10 @@
  * @property integer $group_id
  * @property string $group_name
  * @property integer $type_id
+ *
+ * The followings are the available model relations:
+ * @property TbAccount[] $tbAccounts
+ * @property TbType $type
  */
 class TbGroup extends CActiveRecord
 {
@@ -43,6 +47,8 @@ class TbGroup extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+			'tbAccounts' => array(self::HAS_MANY, 'TbAccount', 'group_id'),
+			'type' => array(self::BELONGS_TO, 'TbType', 'type_id'),
 		);
 	}
 
@@ -52,9 +58,9 @@ class TbGroup extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'group_id' => 'รหัสหมวด',
-			'group_name' => 'ชื่อหมวด',
-			'type_id' => 'รหัสประเภท',
+			'group_id' => 'ไอดีหมวดงบประมาณ',
+			'group_name' => 'ชื่อหมวดงบประมาณ',
+			'type_id' => 'ไอดีประเภทงบประมาณ',
 		);
 	}
 

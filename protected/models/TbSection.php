@@ -6,6 +6,9 @@
  * The followings are the available columns in table 'tb_section':
  * @property integer $section_id
  * @property string $section_name
+ *
+ * The followings are the available model relations:
+ * @property TbDivision[] $tbDivisions
  */
 class TbSection extends CActiveRecord
 {
@@ -42,6 +45,7 @@ class TbSection extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+			'tbDivisions' => array(self::HAS_MANY, 'TbDivision', 'section'),
 		);
 	}
 
@@ -51,8 +55,8 @@ class TbSection extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'section_id' => 'Section',
-			'section_name' => 'Section Name',
+			'section_id' => 'ไอดีด้าน',
+			'section_name' => 'ชื่อด้าน',
 		);
 	}
 

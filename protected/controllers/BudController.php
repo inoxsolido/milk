@@ -87,11 +87,9 @@ class BudController extends Controller
         {
             if (Yii::app()->user->isAdmin)
             {
-
-                $sql = "SELECT division_id, d.division_name, parent_division, p.par_name FROM tb_division d "
-                        . "LEFT JOIN (SELECT division_id as ppar_id, division_name as par_name FROM tb_division) p ON d.parent_division = p.ppar_id ";
-                $sqldiv = $sql . " WHERE division_level = 3 ORDER BY d.erp_id ASC ";
-                $sqldep = $sql . " WHERE division_level < 3 ORDER BY d.erp_id ASC ";
+                
+                $sqldep = "SELECT d.division_id, d.division_name FROM tb_division d WHERE division_level < 3 ORDER BY erp_id ASC";
+                $sqldiv = "SELECT d.division_id, d.division_name FROM tb_division d WHERE division_level = 3 ORDER BY erp_id ASC";
                 $div = Yii::app()->db->createCommand($sqldiv)->queryAll();
                 $dep = Yii::app()->db->createCommand($sqldep)->queryAll();
 

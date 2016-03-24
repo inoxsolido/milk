@@ -1,5 +1,5 @@
 $(function () {
-    ReqData();
+    ReqData(0);
     $("#regis").click(function () {
         $("#mregis").modal('show');
     });
@@ -177,6 +177,7 @@ $(function () {
         }
     });
     $("#add").click(function () {
+        var scr_pos = $(window).scrollTop();
         user.focus();
         pass.focus();
         repass.focus();
@@ -228,7 +229,7 @@ $(function () {
                     $(".feedback").text("");
                     $(".feedback").parent().removeClass("has-error");
                     $(".feedback").parent().removeClass("has-success");
-                    ReqData();
+                    ReqData( scr_pos );
                 } else {
                     alert("การเพิ่มข้อมูลไม่สำเร็จ");
                 }
@@ -241,11 +242,11 @@ $(function () {
         $("#find").fadeToggle();
     });
     $("#btnfind").click(function () {
-        ReqData();
+        ReqData(0);
         $("#find").fadeToggle();
     });
     //endsearch----
-    function ReqData() {
+    function ReqData( to_pos ) {
         $("#usrbody").html('<image src="./../images/loading.gif">');
         $.post('./../data/FillUsr',
                 {
@@ -256,32 +257,43 @@ $(function () {
                         lname: $("#fdlname").val(),
                         perid: $("#fdperid").val(),
                         div: $("#fddiv").val(),
-                        par: $("#fdpar").val(),
+                        
                         pos: $("#fdpos").val()
                     }
                 },
         function (data) {
             $("#usrbody").html(data);
+            $(window).scrollTop( to_pos );
         });
     }
     //active-deactive------
     $("#usrbody").on('click', '.deactive', function () {
+        var scr_pos = $(window).scrollTop();
         $.post('./../data/usrstatechange', {
             uid: $(this).attr('data-id'),
             state: 0
         }, function (data) {
-            if (data == 'ok') {
-                ReqData();
+            if (data == 1) {
+                ReqData(scr_pos);
+            }else{
+                if(data == 'Admin zero'){
+                    alert("ไม่สามารถปิดบัญชีผู้ใช้นี้ได้\r\n เนื่องจากต้องมีบัญชี Administrator เปิดไว้อย่างน้อย 1 บัญชี")
+                }else{
+                    alert("การปิดการใช้งานล้มเหลว");
+                }
             }
         });
     });
     $("#usrbody").on('click', '.active', function () {
+        var scr_pos = $(window).scrollTop();
         $.post('./../data/usrstatechange', {
             uid: $(this).attr('data-id'),
             state: 1
         }, function (data) {
-            if (data == 'ok') {
-                ReqData();
+            if (data == 1) {
+                ReqData(scr_pos);
+            }else{
+                alert("การปิดการใช้งานล้มเหลว");
             }
         });
     });
@@ -340,6 +352,7 @@ $(function () {
         $("#medit").modal('show');
     });
     $("#btnedit").click(function () {
+        var scr_pos = $(window).scrollTop();
         euser = $("#eusername");
         var letters = /^[\u0E01-\u0E5B]+$/;
         ok = false;
@@ -389,11 +402,11 @@ $(function () {
                 edep.parent().hide();
                 ediv.parent().hide();
                 $("#medit").modal('hide');
-                ReqData();
+                ReqData(scr_pos);
             }
         });
     });
-
+    $(window).scrollTop(scr_pos);
 });
 function checkID(id) {
     if (id.length !== 13)

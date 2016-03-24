@@ -14,6 +14,10 @@
  * @property integer $division_id
  * @property integer $position_id
  * @property integer $enable
+ *
+ * The followings are the available model relations:
+ * @property TbPosition $position
+ * @property TbDivision $division
  */
 class TbUser extends CActiveRecord
 {
@@ -54,6 +58,8 @@ class TbUser extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+			'position' => array(self::BELONGS_TO, 'TbPosition', 'position_id'),
+			'division' => array(self::BELONGS_TO, 'TbDivision', 'division_id'),
 		);
 	}
 
@@ -70,9 +76,9 @@ class TbUser extends CActiveRecord
 			'lname' => 'นามสกุล',
 			'gender' => 'เพศ',
 			'person_id' => 'รหัสประจำตัวประชาชน',
-			'division_id' => 'รหัสฝ่าย',
+			'division_id' => 'รหัสสังกัด',
 			'position_id' => 'รหัสตำแหน่ง',
-			'enable' => 'กำหนดให้ใช้งาน',
+			'enable' => 'สถานะอนุญาตใช้งาน',
 		);
 	}
 

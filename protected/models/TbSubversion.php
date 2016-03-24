@@ -1,25 +1,22 @@
 <?php
 
 /**
- * This is the model class for table "tb_approve".
+ * This is the model class for table "tb_subversion".
  *
- * The followings are the available columns in table 'tb_approve':
- * @property string $year
- * @property integer $division_id
- * @property integer $round
- * @property integer $approve_lv
- *
- * The followings are the available model relations:
- * @property TbDivision $division
+ * The followings are the available columns in table 'tb_subversion':
+ * @property integer $month_goal_id
+ * @property string $quantity
+ * @property string $value
+ * @property integer $subversion
  */
-class TbApprove extends CActiveRecord
+class TbSubversion extends CActiveRecord
 {
 	/**
 	 * @return string the associated database table name
 	 */
 	public function tableName()
 	{
-		return 'tb_approve';
+		return 'tb_subversion';
 	}
 
 	/**
@@ -30,12 +27,12 @@ class TbApprove extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('year, division_id', 'required'),
-			array('division_id, round, approve_lv', 'numerical', 'integerOnly'=>true),
-			array('year', 'length', 'max'=>4),
+			array('month_goal_id, value, subversion', 'required'),
+			array('month_goal_id, subversion', 'numerical', 'integerOnly'=>true),
+			array('quantity, value', 'length', 'max'=>12),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('year, division_id, round, approve_lv', 'safe', 'on'=>'search'),
+			array('month_goal_id, quantity, value, subversion', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -47,7 +44,6 @@ class TbApprove extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'division' => array(self::BELONGS_TO, 'TbDivision', 'division_id'),
 		);
 	}
 
@@ -57,10 +53,10 @@ class TbApprove extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'year' => 'ปีงบประมาณ',
-			'division_id' => 'ไอดีสังกัด',
-			'round' => 'รอบการ adjust ปกติเป็น 1',
-			'approve_lv' => 'ระดับการยืนยัน',
+			'month_goal_id' => 'ไอดีเป้าหมายรายเดือน',
+			'quantity' => 'ปริมาณ (ตัน)',
+			'value' => 'ยอด',
+			'subversion' => 'เลขเวอร์ชั่นสำหรับเรียกคืนข้อมูล',
 		);
 	}
 
@@ -82,10 +78,10 @@ class TbApprove extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
-		$criteria->compare('year',$this->year,true);
-		$criteria->compare('division_id',$this->division_id);
-		$criteria->compare('round',$this->round);
-		$criteria->compare('approve_lv',$this->approve_lv);
+		$criteria->compare('month_goal_id',$this->month_goal_id);
+		$criteria->compare('quantity',$this->quantity,true);
+		$criteria->compare('value',$this->value,true);
+		$criteria->compare('subversion',$this->subversion);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
@@ -96,7 +92,7 @@ class TbApprove extends CActiveRecord
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!
 	 * @param string $className active record class name.
-	 * @return TbApprove the static model class
+	 * @return TbSubversion the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{

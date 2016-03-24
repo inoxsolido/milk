@@ -9,6 +9,9 @@
  * @property string $month_name_simple
  * @property string $month_name_erp
  * @property integer $quarter
+ *
+ * The followings are the available model relations:
+ * @property TbMonthGoal[] $tbMonthGoals
  */
 class TbMonth extends CActiveRecord
 {
@@ -47,6 +50,7 @@ class TbMonth extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+			'tbMonthGoals' => array(self::HAS_MANY, 'TbMonthGoal', 'month_id'),
 		);
 	}
 
@@ -59,8 +63,8 @@ class TbMonth extends CActiveRecord
 			'month_id' => 'ลำดับเดือน',
 			'month_name' => 'ชื่อเดือน',
 			'month_name_simple' => 'ชื่อย่อเดือน',
-			'month_name_erp' => 'Month Name Erp',
-			'quarter' => 'Quarter',
+			'month_name_erp' => 'ชื่อเดือนทาง erp',
+			'quarter' => 'ไตรมาศที่',
 		);
 	}
 

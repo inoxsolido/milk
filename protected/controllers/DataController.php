@@ -49,11 +49,11 @@ class DataController extends Controller
         )
         {
             $stxt = $_POST['search'];
-            $sql = "SELECT u.*, position_name, d.div_name, par_name  "
+            $sql = "SELECT u.*, position_name, d.div_name  "
                     . "FROM tb_user as u "
                     . "INNER JOIN tb_position ON  u.position_id = tb_position.position_id "
-                    . "LEFT JOIN (SELECT division_id as div_id, division_name as div_name, parent_division as par_id FROM tb_division) d ON u.division_id = d.div_id "
-                    . "LEFT JOIN (SELECT division_id as par_id, division_name as par_name FROM tb_division) p ON d.par_id = p.par_id ";
+                    . "LEFT JOIN (SELECT division_id as div_id, division_name as div_name FROM tb_division) d ON u.division_id = d.div_id ";
+                    
             if (!(empty($stxt['usr']) && empty($stxt['fname']) && empty($stxt['lname']) &&
                     empty($stxt['perid']) && empty($stxt['div']) && empty($stxt['par']) && ($stxt['pos'] == 99)))
             {
@@ -68,12 +68,12 @@ class DataController extends Controller
                     $sql .=" u.person_id LIKE '" . $stxt['perid'] . "' AND";
                 if (!empty($stxt['div']))
                     $sql .=" d.divname = '%" . $stxt['div'] . "%' AND";
-                if (!empty($stxt['par']))
-                    $sql .=" p.par_name = '%" . $stxt['par'] . "%' AND";
+                
                 if ($stxt['pos'] != 99)
                     $sql .=" u.position_id = " . $stxt['pos'] . " AND";
                 $sql = substr($sql, 0, -3);
             }
+            $sql .=" ORDER BY position_id DESC, u.enable DESC";
             //echo $sql;
             $userinfo = Yii::app()->db->createCommand($sql)->queryAll();
 
@@ -84,13 +84,13 @@ class DataController extends Controller
                     <td style="width:10%"><?= $user['username'] ?></td>
                     <td style="width:12.5%"><?= $user['fname'] ?></td>
                     <td style="width:12.5%"><?= $user['lname'] ?></td>
-                    <td style="width:12.5%"><?= $user['person_id'] ?></td>
-                    <td style="width:12.5%"><?= $user['div_name'] ?></td>
-                    <td style="width:15%"><?= $user['par_name'] ?></td>
-                    <td style="width:10%"><?= $user['position_name'] ?></td>
-                    <td style="width:15%">
-                        <button class='btn btn-sm btn-warning edit' data-id="<?= $user['user_id'] ?>">แก้ไข <span class='glyphicon glyphicon-wrench'></span></button>&nbsp;&nbsp;
-                        <?php
+                    <td style="width:20%"><?= $user['person_id'] ?></td>
+                    <td style="width:15%"><?= $user['div_name'] ?></td>
+                    
+                    <td style="width:12%"><?= $user['position_name'] ?></td>
+                    <td style="width:100px">
+                        <div class='btn-group-sm' style='width:100%'>
+                        <button class='btn btn-sm btn-warning edit' data-id="<?= $user['user_id'] ?>">แก้ไข <span class='glyphicon glyphicon-wrench'></span></button><?php
                         if ($user['enable'] == 1)
                         {
                             ?><button class='btn btn-sm btn-danger deactive' data-id="<?= $user['user_id'] ?>">ยกเลิก <span class='glyphicon glyphicon-remove'></span></button>
@@ -99,6 +99,7 @@ class DataController extends Controller
                             else if ($user['enable'] == 0)
                             {
                                 ?><button class='btn btn-sm btn-success active' data-id="<?= $user['user_id'] ?>">เปิดใช้ <span class='glyphicon glyphicon-ok'></span></button><?php } ?>
+                        </div>
                     </td>
                 </tr>
                 <?php
@@ -113,9 +114,15 @@ class DataController extends Controller
             $st = $_POST['state'];
 
             $uid = $_POST['uid'];
-            $sql = "UPDATE tb_user SET enable = $st "
-                    . "WHERE user_id = $uid";
-            echo Yii::app()->db->createCommand($sql)->execute() ? "ok" : 0;
+            //ตรวจสอบ admin ว่ามีทั้งหมดกี่คน 
+            $check = "SELECT COUNT(user_id) FROM tb_user WHERE user_id = $uid AND position_id = 3 AND enable = 1";
+            if($st == 0 && Yii::app()->db->createCommand($check)->queryScalar() == 1){
+                echo 'Admin zero';
+            }else{
+                $sql = "UPDATE tb_user SET enable = $st "
+                        . "WHERE user_id = $uid";
+                echo Yii::app()->db->createCommand($sql)->execute();
+            }
         }
     }
 

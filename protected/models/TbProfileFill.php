@@ -6,6 +6,10 @@
  * The followings are the available columns in table 'tb_profile_fill':
  * @property integer $owner_div_id
  * @property integer $division_id
+ *
+ * The followings are the available model relations:
+ * @property TbDivision $ownerDiv
+ * @property TbDivision $division
  */
 class TbProfileFill extends CActiveRecord
 {
@@ -41,6 +45,8 @@ class TbProfileFill extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+			'ownerDiv' => array(self::BELONGS_TO, 'TbDivision', 'owner_div_id'),
+			'division' => array(self::BELONGS_TO, 'TbDivision', 'division_id'),
 		);
 	}
 
@@ -50,8 +56,8 @@ class TbProfileFill extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'owner_div_id' => 'Owner Div',
-			'division_id' => 'Division',
+			'owner_div_id' => 'สังกัดที่รับผิดชอบการกรอก',
+			'division_id' => 'สังกัดที่ได้รับการกรอก',
 		);
 	}
 

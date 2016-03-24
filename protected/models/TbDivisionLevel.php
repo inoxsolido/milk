@@ -6,6 +6,9 @@
  * The followings are the available columns in table 'tb_division_level':
  * @property integer $ID
  * @property string $Description
+ *
+ * The followings are the available model relations:
+ * @property TbDivision[] $tbDivisions
  */
 class TbDivisionLevel extends CActiveRecord
 {
@@ -42,6 +45,7 @@ class TbDivisionLevel extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+			'tbDivisions' => array(self::HAS_MANY, 'TbDivision', 'division_level'),
 		);
 	}
 
@@ -51,8 +55,8 @@ class TbDivisionLevel extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'ID' => 'ID',
-			'Description' => 'Description',
+			'ID' => 'ไอดีระดับสังกัด',
+			'Description' => 'ชื่อสังกัด',
 		);
 	}
 

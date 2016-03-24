@@ -5,16 +5,19 @@
  *
  * The followings are the available columns in table 'tb_account':
  * @property integer $acc_id
- * @property integer $acc_number1
- * @property integer $acc_number2
- * @property integer $acc_number3
- * @property integer $acc_number4
  * @property string $acc_name
  * @property integer $group_id
  * @property integer $parent_acc_id
  * @property integer $order
  * @property string $acc_erp
- * @property integer $hasSum
+ * @property integer $hassum
+ *
+ * The followings are the available model relations:
+ * @property TbAccYear[] $tbAccYears
+ * @property TbAccount $parentAcc
+ * @property TbAccount[] $tbAccounts
+ * @property TbGroup $group
+ * @property TbMonthGoal[] $tbMonthGoals
  */
 class TbAccount extends CActiveRecord
 {
@@ -35,12 +38,12 @@ class TbAccount extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('acc_name, group_id, order', 'required'),
-			array('acc_number1, acc_number2, acc_number3, acc_number4, group_id, parent_acc_id, order, hasSum', 'numerical', 'integerOnly'=>true),
+			array('group_id, parent_acc_id, order, hassum', 'numerical', 'integerOnly'=>true),
 			array('acc_name', 'length', 'max'=>100),
 			array('acc_erp', 'length', 'max'=>8),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('acc_id, acc_number1, acc_number2, acc_number3, acc_number4, acc_name, group_id, parent_acc_id, order, acc_erp, hasSum', 'safe', 'on'=>'search'),
+			array('acc_id, acc_name, group_id, parent_acc_id, order, acc_erp, hassum', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -52,6 +55,11 @@ class TbAccount extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+			'tbAccYears' => array(self::HAS_MANY, 'TbAccYear', 'acc_id'),
+			'parentAcc' => array(self::BELONGS_TO, 'TbAccount', 'parent_acc_id'),
+			'tbAccounts' => array(self::HAS_MANY, 'TbAccount', 'parent_acc_id'),
+			'group' => array(self::BELONGS_TO, 'TbGroup', 'group_id'),
+			'tbMonthGoals' => array(self::HAS_MANY, 'TbMonthGoal', 'acc_id'),
 		);
 	}
 
@@ -61,17 +69,13 @@ class TbAccount extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'acc_id' => 'รหัสบัญชี ',
-			'acc_number1' => 'Acc Number1',
-			'acc_number2' => 'Acc Number2',
-			'acc_number3' => 'Acc Number3',
-			'acc_number4' => 'Acc Number4',
-			'acc_name' => 'Acc Name',
-			'group_id' => 'Group',
-			'parent_acc_id' => 'Parent Acc',
-			'order' => 'Order',
-			'acc_erp' => 'Acc Erp',
-			'hasSum' => 'Has Sum',
+			'acc_id' => 'ไอดีบัญชี',
+			'acc_name' => 'ชื่อบัญชี',
+			'group_id' => 'ไอดีหมวดงบประมาณ',
+			'parent_acc_id' => 'ไอดีบัญชีแม่',
+			'order' => 'หมายเลขลำดับ',
+			'acc_erp' => 'หมายเลข ERP ของบัญชี',
+			'hassum' => 'สถานะบัญชีว่ามีการรวมข้อมูลบัญชีลูกไว้ที่บัญชีนี้',
 		);
 	}
 
@@ -94,16 +98,12 @@ class TbAccount extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('acc_id',$this->acc_id);
-		$criteria->compare('acc_number1',$this->acc_number1);
-		$criteria->compare('acc_number2',$this->acc_number2);
-		$criteria->compare('acc_number3',$this->acc_number3);
-		$criteria->compare('acc_number4',$this->acc_number4);
 		$criteria->compare('acc_name',$this->acc_name,true);
 		$criteria->compare('group_id',$this->group_id);
 		$criteria->compare('parent_acc_id',$this->parent_acc_id);
 		$criteria->compare('order',$this->order);
 		$criteria->compare('acc_erp',$this->acc_erp,true);
-		$criteria->compare('hasSum',$this->hasSum);
+		$criteria->compare('hassum',$this->hassum);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

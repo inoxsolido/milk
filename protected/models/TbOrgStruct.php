@@ -1,25 +1,25 @@
 <?php
 
 /**
- * This is the model class for table "tb_approve".
+ * This is the model class for table "tb_org_struct".
  *
- * The followings are the available columns in table 'tb_approve':
+ * The followings are the available columns in table 'tb_org_struct':
  * @property string $year
- * @property integer $division_id
- * @property integer $round
- * @property integer $approve_lv
+ * @property integer $parent_division_id
+ * @property integer $child_division_id
  *
  * The followings are the available model relations:
- * @property TbDivision $division
+ * @property TbDivision $parentDivision
+ * @property TbDivision $childDivision
  */
-class TbApprove extends CActiveRecord
+class TbOrgStruct extends CActiveRecord
 {
 	/**
 	 * @return string the associated database table name
 	 */
 	public function tableName()
 	{
-		return 'tb_approve';
+		return 'tb_org_struct';
 	}
 
 	/**
@@ -30,12 +30,12 @@ class TbApprove extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('year, division_id', 'required'),
-			array('division_id, round, approve_lv', 'numerical', 'integerOnly'=>true),
+			array('year, parent_division_id, child_division_id', 'required'),
+			array('parent_division_id, child_division_id', 'numerical', 'integerOnly'=>true),
 			array('year', 'length', 'max'=>4),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('year, division_id, round, approve_lv', 'safe', 'on'=>'search'),
+			array('year, parent_division_id, child_division_id', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -47,7 +47,8 @@ class TbApprove extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'division' => array(self::BELONGS_TO, 'TbDivision', 'division_id'),
+			'parentDivision' => array(self::BELONGS_TO, 'TbDivision', 'parent_division_id'),
+			'childDivision' => array(self::BELONGS_TO, 'TbDivision', 'child_division_id'),
 		);
 	}
 
@@ -58,9 +59,8 @@ class TbApprove extends CActiveRecord
 	{
 		return array(
 			'year' => 'ปีงบประมาณ',
-			'division_id' => 'ไอดีสังกัด',
-			'round' => 'รอบการ adjust ปกติเป็น 1',
-			'approve_lv' => 'ระดับการยืนยัน',
+			'parent_division_id' => 'สังกัดแม่',
+			'child_division_id' => 'สังกัดที่สังกัดแม่ (สังกัดลูก)',
 		);
 	}
 
@@ -83,9 +83,8 @@ class TbApprove extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('year',$this->year,true);
-		$criteria->compare('division_id',$this->division_id);
-		$criteria->compare('round',$this->round);
-		$criteria->compare('approve_lv',$this->approve_lv);
+		$criteria->compare('parent_division_id',$this->parent_division_id);
+		$criteria->compare('child_division_id',$this->child_division_id);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
@@ -96,7 +95,7 @@ class TbApprove extends CActiveRecord
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!
 	 * @param string $className active record class name.
-	 * @return TbApprove the static model class
+	 * @return TbOrgStruct the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{

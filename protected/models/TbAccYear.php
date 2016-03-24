@@ -6,6 +6,9 @@
  * The followings are the available columns in table 'tb_acc_year':
  * @property string $year
  * @property integer $acc_id
+ *
+ * The followings are the available model relations:
+ * @property TbAccount $acc
  */
 class TbAccYear extends CActiveRecord
 {
@@ -42,6 +45,7 @@ class TbAccYear extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+			'acc' => array(self::BELONGS_TO, 'TbAccount', 'acc_id'),
 		);
 	}
 
@@ -51,8 +55,8 @@ class TbAccYear extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'year' => 'Year',
-			'acc_id' => 'Acc',
+			'year' => 'ปีงบประมาณ',
+			'acc_id' => 'ไอดีบัญชี',
 		);
 	}
 

@@ -6,6 +6,9 @@
  * The followings are the available columns in table 'tb_position':
  * @property integer $position_id
  * @property string $position_name
+ *
+ * The followings are the available model relations:
+ * @property TbUser[] $tbUsers
  */
 class TbPosition extends CActiveRecord
 {
@@ -41,6 +44,7 @@ class TbPosition extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+			'tbUsers' => array(self::HAS_MANY, 'TbUser', 'position_id'),
 		);
 	}
 

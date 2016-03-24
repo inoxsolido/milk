@@ -6,6 +6,9 @@
  * The followings are the available columns in table 'tb_type':
  * @property integer $type_id
  * @property string $type_name
+ *
+ * The followings are the available model relations:
+ * @property TbGroup[] $tbGroups
  */
 class TbType extends CActiveRecord
 {
@@ -41,6 +44,7 @@ class TbType extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+			'tbGroups' => array(self::HAS_MANY, 'TbGroup', 'type_id'),
 		);
 	}
 
@@ -50,8 +54,8 @@ class TbType extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'type_id' => 'รหัสประเภท',
-			'type_name' => 'ประเภท',
+			'type_id' => 'ไอดีประเภทงบประมาณ',
+			'type_name' => 'ชื่อประเภทงบประมาณ',
 		);
 	}
 

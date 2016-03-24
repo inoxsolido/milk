@@ -2,7 +2,7 @@
     <a class='btn btn-success btn-sm' id='regis'>เพิ่มผู้ใช้รายใหม่</a>
     <a class="btn btn-info btn-sm" id='findshow'>ค้นหา</a>
 </div>
-<div class='container' id='find'>
+<div class='container' id='find' style='display:none'>
     <br>
     <div class='form-horizontal'>
         <table class='table table-bordered form-group-sm' >
@@ -13,7 +13,7 @@
                     <th>นามสกุล</th>
                     <th>รหัสประจำตัวประชาชน</th>
                     <th>สังกัด</th>
-                    <th>ฝ่าย</th>
+
                     <th>สิทธิ์การเข้าใช้</th>
                 </tr>
             </thead>
@@ -24,7 +24,7 @@
                     <td><input type="text" class="form-control" id="fdlname"></td>
                     <td><input type="text" class="form-control" id="fdperid"></td>
                     <td><input type="text" class="form-control" id="fddiv"></td>
-                    <td><input type="text" class="form-control" id="fdpar"</td>
+
                     <td><select id="fdpos">
                             <option value="99" selected="selected">--ไม่เลือก--</option>
                             <option value="1">หัวหน้าแผนก</option>
@@ -52,7 +52,7 @@
                             <th>นามสกุล</th>
                             <th>รหัสประจำตัวประชาชน</th>
                             <th>สังกัด</th>
-                            <th>ฝ่าย</th>
+
                             <th>สิทธิ์การเข้าใช้</th>
                             <th>จัดการ</th>
                         </tr>
@@ -128,7 +128,7 @@
                         <label for='dep'>แผนก/ตำแหน่งพิเศษ</label>
                         <select id='dep'>
                             <?php foreach ($dep as $row): ?>
-                                <option value="<?= $row['division_id'] ?>"><?= $row['par_name'] ." -- ".$row['division_name']?></option>
+                                <option value="<?= $row['division_id'] ?>"><?= $row['division_name']?></option>
                             <?php endforeach; ?>
                         </select>
                     </div>
@@ -204,7 +204,7 @@
                         <label for='dep'>แผนก/ตำแหน่งพิเศษ</label>
                         <select id='edep'>
                             <?php foreach ($dep as $row): ?>
-                                <option value="<?= $row['division_id'] ?>"><?= $row['par_name'] ." -- ".$row['division_name']?></option>
+                                <option value="<?= $row['division_id'] ?>"><?= $row['division_name']?></option>
                             <?php endforeach; ?>
                         </select>
                     </div>
@@ -221,5 +221,8 @@
 <style>
     .feedback{
         color:red;
+    }
+    .edit, .deactive, .active{
+        width:50%
     }
 </style>
