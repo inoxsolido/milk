@@ -9,17 +9,13 @@
             <thead>
                 <tr>
                     <th>ตำแหน่ง/แผนก/กอง/ฝ่าย ที่รับผิดชอบ</th>
-                    <th>ฝ่ายที่สังกัด</th>
                     <th>ตำแหน่ง/แผนก/กอง/ฝ่าย ที่ได้รับการกรอก</th>
-                    <th>ฝ่ายที่สังกัด</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
                     <td><input type="text" class="form-control" id="fdowner"></td>
-                    <td><input type="text" class="form-control" id="fdownerpar"></td>
                     <td><input type="text" class="form-control" id="fdtarget"></td>
-                    <td><input type="text" class="form-control" id="fdtargetpar"></td>
                 </tr>
                 <tr>
                     <td colspan="4"><a id='btnfind' class='btn btn-default btn-block btn-sm'>ค้นหา <span class='glyphicon glyphicon-search'></span></a></td>

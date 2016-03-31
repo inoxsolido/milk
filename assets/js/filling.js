@@ -3,10 +3,8 @@ $(function () {
         $("#fillingbody").html('<image src="./../images/loading.gif" >');
         search = {
             owner: $("#fdowner").val(),
-            ownerpar: $("#fdownerpar").val(),
             target: $("#fdtarget").val(),
-            targetpar: $("#fdtargetpar").val()
-        }
+        };
         $.post('./../data/FillFilling',
                 {
                     ajax: 0,

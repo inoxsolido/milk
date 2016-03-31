@@ -461,39 +461,40 @@ class DataController extends Controller
     {
         if (isset($_POST['ajax']))
         {
-            $sql = "SELECT tb_profile_fill.owner_div_id as pk1, tb_profile_fill.division_id as pk2, ow.own_name, ow.own_par_name, "
-                    . "tp.tar_name, tp.tar_par_name "
+            $sql = "SELECT tb_profile_fill.owner_div_id as pk1, tb_profile_fill.division_id as pk2, ow.own_name "
+                    . ",tp.tar_name "
                     . "FROM tb_profile_fill "
-                    . "INNER JOIN (SELECT division_id as div_id, division_name as own_name, own_par_name FROM tb_division d "
-                    . "LEFT JOIN (SELECT division_id as o_div_id, division_name as own_par_name FROM tb_division) oo ON d.parent_division = oo.o_div_id "
+                    . "INNER JOIN (SELECT division_id as div_id, division_name as own_name FROM tb_division d "
+                    //. "LEFT JOIN (SELECT division_id as o_div_id, division_name as own_par_name FROM tb_division) oo ON d.parent_division = oo.o_div_id "
                     . ") ow ON tb_profile_fill.owner_div_id = ow.div_id "
-                    . "INNER JOIN (SELECT division_id as div_id, division_name as tar_name, tar_par_name FROM tb_division d "
-                    . "LEFT JOIN (SELECT division_id as t_div_id, division_name as tar_par_name FROM tb_division) tt ON tt.t_div_id = d.parent_division "
+                    . "INNER JOIN (SELECT division_id as div_id, division_name as tar_name FROM tb_division d "
+                    //. "LEFT JOIN (SELECT division_id as t_div_id, division_name as tar_par_name FROM tb_division) tt ON tt.t_div_id = d.parent_division "
                     . ") tp ON tb_profile_fill.division_id = tp.div_id";
-            if (isset($_POST['search']['owner']) && isset($_POST['target']) && isset($_POST['search']['ownerpar']) && isset($_POST['search']['targetpar']))
-                if (!empty($_POST['search']['owner']) || !empty($_POST['search']['target']) || !empty($_POST['search']['ownerpar']) || !empty($_POST['search']['targetpar']))
-                {
+            if (!empty($_POST['searchtxt']['owner']) || !empty($_POST['searchtxt']['target'])){
                     $sql .= " WHERE";
-                    $s = $_POST['search'];
+                    $s = $_POST['searchtxt'];
                     if (!empty($s['owner']))
                         $sql .= " own_name LIKE '%" . $s['owner'] . "%' AND";
-                    if (!empty($s['ownerpar']))
-                        $sql .= " own_par_name LIKE '%" . $s['ownerpar'] . "%' AND";
+//                    if (!empty($s['ownerpar']))
+//                        $sql .= " own_par_name LIKE '%" . $s['ownerpar'] . "%' AND";
                     if (!empty($s['target']))
                         $sql .= " tar_name LIKE '%" . $s['target'] . "%' AND";
-                    if (!empty($s['targetpar']))
-                        $sql .= " tar_par_name LIKE '%" . $s['targetpar'] . "%' AND";
+//                    if (!empty($s['targetpar']))
+//                        $sql .= " tar_par_name LIKE '%" . $s['targetpar'] . "%' AND";
                     $sql = substr($sql, 0, -3);
                 }
+            
             $sql .= " ORDER BY own_name ASC, tar_name ASC";
             $result = Yii::app()->db->createCommand($sql)->queryAll();
+            print_r($sql);
+            print_r($_POST);
             //print_r($result);
 
             foreach ($result as $row)
             {
                 ?><tr>
-                    <td style="width:40%"><?= $row['own_name'] . " " . $row['own_par_name'] ?></td>
-                    <td style="width:40%"><?= $row['tar_name'] . " " . $row['tar_par_name'] ?></td>
+                    <td style="width:40%"><?= $row['own_name'] . " " ?></td>
+                    <td style="width:40%"><?= $row['tar_name'] . " " ?></td>
                     <td style="width:20%"><button class='btn btn-sm btn-warning edit' data-id1="<?= $row['pk1'] ?>" data-id2="<?= $row['pk2'] ?>">แก้ไข <span class='glyphicon glyphicon-wrench'></span></button>&nbsp;&nbsp;
                         <button class="btn btn-sm btn-danger delete" data-id1="<?= $row['pk1'] ?>" data-id2="<?= $row['pk2'] ?>">ลบ <span class="glyphicon glyphicon-remove"></span></button>
                     </td>
@@ -506,14 +507,13 @@ class DataController extends Controller
     {
         if (isset($_POST['ajax']))
         {
-            $sql = "SELECT division_id as div_id, division_name as div_name, div_par_name "
+            $sql = "SELECT division_id as div_id, division_name as div_name "
                     . "FROM tb_division "
-                    . "LEFT JOIN (SELECT division_id as par_id, division_name as div_par_name FROM tb_division) p "
-                    . "ON tb_division.parent_division = p.par_id ORDER BY tb_division.erp_id";
+                    . " ORDER BY tb_division.erp_id";
             $result = Yii::app()->db->createCommand($sql)->queryAll();
             foreach ($result as $row)
             {
-                ?><option value="<?= $row['div_id'] ?>"><?= $row['div_par_name'] . " -- " .  $row['div_name'] ?></option><?php
+                ?><option value="<?= $row['div_id'] ?>"><?= $row['div_name'] ?></option><?php
             }
         }
     }
@@ -522,15 +522,13 @@ class DataController extends Controller
     {
         if (isset($_POST['ajax']))
         {
-            $sql = "SELECT division_id as div_id, division_name as div_name, div_par_name "
+            $sql = "SELECT division_id as div_id, division_name as div_name "
                     . "FROM tb_division "
-                    . "LEFT JOIN (SELECT division_id as par_id, division_name as div_par_name FROM tb_division) p "
-                    . "ON tb_division.parent_division = p.par_id "
                     . "WHERE division_id NOT IN (SELECT division_id FROM tb_profile_fill) ORDER BY tb_division.erp_id";
             $result = Yii::app()->db->createCommand($sql)->queryAll();
             foreach ($result as $row)
             {
-                ?><option value="<?= $row['div_id'] ?>"><?= $row['div_par_name'] . " -- " .  $row['div_name'] ?></option><?php
+                ?><option value="<?= $row['div_id'] ?>"><?= $row['div_name'] ?></option><?php
             }
         }
     }
@@ -541,15 +539,13 @@ class DataController extends Controller
         {
             $pk1 = $_POST['pk1'];
             $pk2 = $_POST['pk2'];
-            $sql = "SELECT division_id as div_id, division_name as div_name, div_par_name "
+            $sql = "SELECT division_id as div_id, division_name as div_name "
                     . "FROM tb_division "
-                    . "LEFT JOIN (SELECT division_id as par_id, division_name as div_par_name FROM tb_division) p "
-                    . "ON tb_division.parent_division = p.par_id "
                     . "WHERE division_id NOT IN (SELECT division_id FROM tb_profile_fill) OR division_id IN (SELECT division_id FROM tb_profile_fill WHERE owner_div_id = $pk1 AND division_id = $pk2)";
             $result = Yii::app()->db->createCommand($sql)->queryAll();
             foreach ($result as $row)
             {
-                ?><option value="<?= $row['div_id'] ?>"><?= $row['div_par_name'] . " -- " .  $row['div_name'] ?></option><?php
+                ?><option value="<?= $row['div_id'] ?>"><?= $row['div_name'] ?></option><?php
                 }
             }
         }
@@ -799,7 +795,7 @@ LEFT JOIN tb_group g ON a.group_id = g.group_id ";
                 $model->group_id = $haspar == "true" ? $parent->group_id : $group;
                 $model->acc_erp = $haserp == "true" ? $erp : NULL;
                 $model->parent_acc_id = $parent ? $par : NULL;
-                $model->hasSum = intval($hassum);
+                $model->hassum = intval($hassum);
                 //จัดลำดับ 
                 //ตรวจสอบพี่น้อง
                 
@@ -832,7 +828,7 @@ LEFT JOIN tb_group g ON a.group_id = g.group_id ";
             }
             }catch(Exception $ex){
                 $transaction->rollback();
-                echo 'not';
+                echo 'not'.$ex->getMessage();
             }
         }
     }
@@ -856,7 +852,7 @@ LEFT JOIN tb_group g ON a.group_id = g.group_id ";
                     "erp" => $model->acc_erp,
                     "par" => $model->parent_acc_id,
                     "group" => $model->group_id,
-                    "hassum" => $model->hasSum,
+                    "hassum" => $model->hassum,
                     "order" =>$orderid,
                     //'sql'=>"SELECT * FROM tb_account WHERE parent_acc_id $where  AND `order` < $x ORDER BY `order`",
                 );
@@ -924,7 +920,7 @@ LEFT JOIN tb_group g ON a.group_id = g.group_id ";
                 $model->group_id = $haspar == "true" ? $parent->group_id : $group;
                 $model->acc_erp = $haserp == "true" ? $erp : NULL;
                 $model->parent_acc_id = $haspar == "true" ? $par : NULL;
-                $model->hasSum = intval($hassum);
+                $model->hassum = intval($hassum);
                 
                 $pid = $par;
                 $where = '='.$pid;
@@ -1131,7 +1127,7 @@ LEFT JOIN tb_group g ON a.group_id = g.group_id ";
                 }
                 //write approve
                 //กำหนดapproveให้ทุกdivisionที่เปิดใช้งาน
-                $divs = TbDivision::model()->findAll("division_level < 3 AND enable = 1");
+                $divs = TbDivision::model()->findAll("division_level < 3");
                 foreach($divs as $div){
                     $amodel = new TbApprove;
                     if($amodel->isNewRecord){
@@ -1150,7 +1146,7 @@ LEFT JOIN tb_group g ON a.group_id = g.group_id ";
             {
                 $transaction->rollback();
                 echo 'การบันทึกล้มเหลว';
-                //print_r($ex->getTraceAsString());
+                //print_r($ex->getMessage());
             }
         }
         else
