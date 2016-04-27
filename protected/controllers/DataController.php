@@ -201,7 +201,9 @@ class DataController extends Controller
             if (isset($_POST['searchtxt']))
                 $stxt = ($_POST['searchtxt']);
             $sql = "SELECT d.*, dl.description as dldes,sct.section_name as sectname FROM tb_division d "
-                    . "INNER JOIN tb_division_level dl ON d.division_level = dl.ID  "
+                    . "INNER JOIN tb_division_level dl ON d.division_level = dl.ID  "//AND dl.ID <= 3
+                    //. "LEFT JOIN (SELECT division_id as par_id, division_name as par_name FROM tb_division) dd "
+                    //. "ON d.parent_division = dd.par_id "
                     . "LEFT JOIN tb_section sct ON sct.section_id = d.section ";
 
             if (!empty($stxt['name']) || !empty($txt['erp']) || !empty($stxt['par']) || !empty($stxt['office']) || $stxt['status'] != 99)
@@ -230,6 +232,11 @@ class DataController extends Controller
                     <td style="width:100px"><?= $row['sectname'] ?></td>
                     <td style='width:50px'><?= $row['office_id'] ?></td>
                     <td style="width:100px"><?= $row['dldes'] ?></td>
+                    <td style="width:160px"><div class="btn-group-sm" style="width:100%">
+                            <button class='btn btn-sm btn-warning edit' style="width:50%" data-id="<?= $row['division_id'] ?>">แก้ไข <span class='glyphicon glyphicon-wrench'></span></button><?php
+                            ?><button class='btn btn-sm btn-danger delete' style="width:50%" data-id="<?= $row['division_id'] ?>">ลบ <span class='glyphicon glyphicon-remove'></span></button>
+                        </div>
+                    </td>
                 </tr><?php
             }
         }
