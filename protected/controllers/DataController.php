@@ -200,10 +200,8 @@ class DataController extends Controller
             $stxt = "";
             if (isset($_POST['searchtxt']))
                 $stxt = ($_POST['searchtxt']);
-            $sql = "SELECT d.*, dl.description as dldes,sct.section_name as sectname,par_name FROM tb_division d "
-                    . "INNER JOIN tb_division_level dl ON d.division_level = dl.ID  "//AND dl.ID <= 3
-                    . "LEFT JOIN (SELECT division_id as par_id, division_name as par_name FROM tb_division) dd "
-                    . "ON d.parent_division = dd.par_id "
+            $sql = "SELECT d.*, dl.description as dldes,sct.section_name as sectname FROM tb_division d "
+                    . "INNER JOIN tb_division_level dl ON d.division_level = dl.ID  "
                     . "LEFT JOIN tb_section sct ON sct.section_id = d.section ";
 
             if (!empty($stxt['name']) || !empty($txt['erp']) || !empty($stxt['par']) || !empty($stxt['office']) || $stxt['status'] != 99)
@@ -217,8 +215,8 @@ class DataController extends Controller
                     $sql .= " d.office_id LIKE '" . $stxt['office'] . "' AND";
                 if (($stxt['status']) != 99)
                     $sql .= " d.division_level = ".$stxt['status']." AND";
-                if (!empty($stxt['par']))
-                    $sql .= " par_name LIKE '%" . $stxt['par'] . "%' AND";
+                if (!empty($stxt['sec']))
+                    $sql .= " d.section = ".$stxt['sec']." AND";
                 $sql = substr($sql, 0, -3);
             }
             $sql .= " ORDER BY erp_id ASC, division_name ASC";
@@ -229,21 +227,9 @@ class DataController extends Controller
                 ?><tr>
                     <td style="width:200px"><?= $row['division_name'] ?></td>
                     <td style="width:50px"><?= $row['erp_id'] ?></td>
-                    <td style="width:200px"><?= $row['par_name'] ?></td>
                     <td style="width:100px"><?= $row['sectname'] ?></td>
                     <td style='width:50px'><?= $row['office_id'] ?></td>
                     <td style="width:100px"><?= $row['dldes'] ?></td>
-                    <td style="width:160px"><button class='btn btn-sm btn-warning edit' data-id="<?= $row['division_id'] ?>">แก้ไข <span class='glyphicon glyphicon-wrench'></span></button>&nbsp;&nbsp;
-                        <?php
-                        if ($row['enable'] == 1)
-                        {
-                            ?><button class='btn btn-sm btn-danger deactive' data-id="<?= $row['division_id'] ?>">ยกเลิก <span class='glyphicon glyphicon-remove'></span></button>
-                                <?php
-                            }
-                            else if ($row['enable'] == 0)
-                            {
-                                ?><button class='btn btn-sm btn-success active' data-id="<?= $row['division_id'] ?>">เปิดใช้ <span class='glyphicon glyphicon-ok'></span></button><?php } ?>
-                    </td>
                 </tr><?php
             }
         }
