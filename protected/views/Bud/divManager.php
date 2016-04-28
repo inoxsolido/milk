@@ -10,7 +10,7 @@
                     <tr>
                         <th>ชื่อตำแหน่ง/แผนก/กอง/ฝ่าย</th>
                         <th>รหัส ERP </th>
-                        <th>ฝ่ายที่สังกัด</th>
+                        <th>ด้าน</th>
                         <th>รหัสสำนักงาน</th>
                         <th>สถานะ</th>
                     </tr>
@@ -19,7 +19,12 @@
                     <tr>
                         <td><input type="text" class="form-control" id="fdname"></td>
                         <td><input type="text" class="form-control" id="fderp"></td>
-                        <td><input type="text" class="form-control" id="fdpar"></td>
+                        <td><select class="form-control" id="fdsec">
+                            <option value="1">ด้านบริหาร</option>
+                            <option value="2">ด้านอำนวยการ</option>
+                            <option value="3">ด้านกิจการโคนม</option>
+                            <option value="4">ด้านอุตสาหกรรม</option>
+                        </select></td>
                         <td><input type="text" class="form-control" id="fdof"></td>
                         <td><select id="fdstatus">
                                 <option value="99" selected="selected">--ไม่เลือก--</option>
@@ -45,7 +50,6 @@
                         <tr>
                             <th>ชื่อตำแหน่ง/แผนก/กอง/ฝ่าย</th>
                             <th>รหัส ERP </th>
-                            <th>ฝ่ายที่สังกัด</th>
                             <th>ด้าน</th>
                             <th>รหัสสำนักงาน</th>
                             <th>สถานะ</th>
@@ -87,19 +91,8 @@
                         <label class="control-label"><input type="radio" name="addstatus" value="3"/>ฝ่าย</label>
                         <label class="control-label"><input type="radio" name="addstatus" value="4"/>แผนก/กอง/ฝ่าย - รวม</label>
                     </div>
-                    <div class='form-group-sm hsub'>
-                        <label class='control-label'><input type='checkbox' id='addhassub'> มีกองที่สังกัด </label>
-                    </div>
-                    <div class="form-group-sm subp" style="display:none">
-                        <label class="control-label">ชื่อกองที่สังกัด</label>
-                        <select class="form-control" id="addsub"></select>
-                    </div>
-                    <div class="form-group-sm subo" >
-                        <label class="control-label">ชื่อฝ่ายที่สังกัด</label>
-                        <select class="form-control" id="addpar">                            
-                        </select>
-                    </div>
-                    <div class="form-group-sm section" style="display: none">
+                    
+                    <div class="form-group-sm section" >
                         <label class="control-label">ด้านที่สังกัด</label>
                         <select class="form-control" id="addsection">
                             <option value="1">ด้านบริหาร</option>
@@ -154,19 +147,7 @@
                         <label class="control-label"><input type="radio" name="editstatus" value="3"/>ฝ่าย</label>
                         <label class="control-label"><input type="radio" name="editstatus" value="4"/>แผนก/กอง/ฝ่าย - รวม</label>
                     </div>
-                    <div class='form-group-sm hsub'>
-                        <label class='control-label'><input type='checkbox' id='edithassub'> มีกองที่สังกัด </label>
-                    </div>
-                    <div class="form-group-sm subp" style="display:none">
-                        <label class="control-label">ชื่อกองที่สังกัด</label>
-                        <select class="form-control" id="editsub"></select>
-                    </div>
-                    <div class="form-group-sm subo">
-                        <label class="control-label">ชื่อกอง/ฝ่ายที่สังกัด</label>
-                        <select class="form-control" id="editpar">
-                        </select>
-                    </div>
-                    <div class="form-group-sm section" style="display: none">
+                    <div class="form-group-sm section" >
                         <label class="control-label">ด้านที่สังกัด</label>
                         <select class="form-control" id="editsection">
                             <option value="1">ด้านบริหาร</option>

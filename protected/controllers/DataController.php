@@ -233,8 +233,15 @@ class DataController extends Controller
                     <td style='width:50px'><?= $row['office_id'] ?></td>
                     <td style="width:100px"><?= $row['dldes'] ?></td>
                     <td style="width:160px"><div class="btn-group-sm" style="width:100%">
-                            <button class='btn btn-sm btn-warning edit' style="width:50%" data-id="<?= $row['division_id'] ?>">แก้ไข <span class='glyphicon glyphicon-wrench'></span></button><?php
-                            ?><button class='btn btn-sm btn-danger delete' style="width:50%" data-id="<?= $row['division_id'] ?>">ลบ <span class='glyphicon glyphicon-remove'></span></button>
+                            <button class='btn btn-sm btn-warning edit' style="width:33%" data-id="<?= $row['division_id'] ?>">แก้ไข <span class='glyphicon glyphicon-wrench'></span></button><?php
+                            if ($row['enable'] == 1)
+                            {
+                            ?><button class='btn btn-sm btn-info deactive' style="width:33%" data-id="<?= $row['division_id'] ?>">ยกเลิก <span class='glyphicon glyphicon-remove'></span></button><?php
+                            }
+                            else if ($row['enable'] == 0)
+                            {
+                                ?><button class='btn btn-sm btn-success active' style="width:33%" data-id="<?= $row['division_id'] ?>">เปิดใช้ <span class='glyphicon glyphicon-ok'></span></button><?php
+                            }?><button class='btn btn-sm btn-danger delete' style="width:33%" data-id="<?= $row['division_id'] ?>">ลบ <span class='glyphicon glyphicon-trash'></span></button>
                         </div>
                     </td>
                 </tr><?php
@@ -242,130 +249,59 @@ class DataController extends Controller
         }
     }
 
-    public function actionDivStateChange()
-    {
-        if (isset($_POST['divid']) && isset($_POST['state']))
-        {
-            $did = $_POST['divid'];
-            $st = $_POST['state'];
-
-            $sql = "UPDATE tb_division SET enable = $st WHERE division_id = $did";
-            echo Yii::app()->db->createCommand($sql)->execute() ? "ok" : 0;
-        }
-    }
-
-    public function actionFillDivParentAdd()
-    {
-        if (isset($_POST['ajax']))
-        {
-            $model = TbDivision::model()->findAll("enable=1 AND division_level = 3  ORDER BY erp_id ASC, division_name ASC");
-            //echo "<option value='0'>ไม่มีสังกัด</option>";
-            foreach ($model as $row)
-            {
-                ?><option value="<?= $row->division_id ?>"><?= $row->erp_id ?> -- <?= $row->division_name ?></option><?php
-            }
-        }
-    }
-    public function actionFillDivSubParentAdd(){
-        if(isset($_POST['ajax'])){
-            $model = TbDivision::model()->findAll("enable = 1 AND division_level = 2 ORDER BY erp_id");
-            
-            foreach ($model as $row)
-            {
-                ?><option value="<?= $row->division_id ?>"><?= $row->erp_id ?> -- <?= $row->division_name ?></option><?php
-            }
-        }
-    }
-
     public function actionAddDiv()
     {
-        if (isset($_POST['divname']) && isset($_POST['erp']) && isset($_POST['erpoffice']) && isset($_POST['par']) && isset($_POST['haserp']) && isset($_POST['dlevel']) && isset($_POST['section']))
+        if (isset($_POST['divname']) && isset($_POST['erp']) && isset($_POST['erpoffice']) && isset($_POST['haserp']) && isset($_POST['dlevel']) && isset($_POST['section']))
         {
             $name = $_POST['divname'];
             $erp = $_POST['erp'];
             $officeerp = $_POST['erpoffice'];
-            $parent = $_POST['par'];
+
             $haserp = $_POST['haserp'] == 'true' ? true : false;
             $dlevel = $_POST['dlevel'];
             $section = $_POST['section'];
-            $hassub = $_POST['hassub'] == 'true'? true: false;
-            $subparent = $_POST['subparent'];
-            $parent = $dlevel == 3 ? intval(0) : intval($parent);
-            $subparent = $hassub? intval($subparent) : intval(0);
-            if ($dlevel != 3)
-            {
-                $result = TbDivision::model()->find("division_name = '$name' AND parent_division = $parent");
-                if (count($result))
-                {
-                    echo 'dup';
-                    return;
-                }
-                if($subparent != 0){
-                    $result = TbDivision::model()->find("division_id = $subparent");
-                    $parent = $result->parent_division;
-                }
-                $result = TbDivision::model()->find("division_id = $parent");
-                $section = $result->section;
+            
+            $newRecord = new TbDivision();
+            if($newRecord->isNewRecord){
+                $newRecord->division_name = $name;
+                $newRecord->division_level = $dlevel;
+                $newRecord->section = $section;
+                if($haserp)$newRecord->erp_id = $erp;
+                $newRecord->office_id = $officeerp;
+                echo $newRecord->save(true)?'ok':'fail';
             }
-
-            //sql making
-            $sql = "INSERT INTO tb_division VALUES(NULL,'$name',";
-            if ($section == 3)
-                $sql .= "0,";
-            else
-                $sql .= "$parent,";
-
-            $sql .= "$subparent,";
-            
-            $sql .= "'$officeerp',";
-
-            if ($haserp)
-                $sql .="'$erp',";
-            else
-                $sql .="'',";
-            
-            $sql .= "$dlevel,";
-            $sql .= "$section,";
-            $sql .= "1)";
-            echo Yii::app()->db->createCommand($sql)->execute() ? 'ok' : 'fail';
         }
     }
 
     public function actionDivEdit()
     {
-        if (isset($_POST['divid']) && isset($_POST['divname']) && isset($_POST['erp']) && isset($_POST['erpoffice']) && isset($_POST['par']) && isset($_POST['haserp']) && isset($_POST['section'])&&isset($_POST['dlevel']))
+        if (isset($_POST['divid']) && isset($_POST['divname']) && isset($_POST['erp']) && isset($_POST['erpoffice']) && isset($_POST['haserp']) && isset($_POST['section'])&&isset($_POST['dlevel']))
         {
             $id = $_POST['divid'];
             $name = $_POST['divname'];
             $erp = $_POST['erp'];
             $officeerp = $_POST['erpoffice'];
-            $parent = $_POST['par'];
+            
             $haserp = $_POST['haserp'] == 'true' ? true : false;
             $section = $_POST['section'];
             $dlevel = $_POST['dlevel'];
-            $subparent = $_POST['subparent'];
-            $hassub = $_POST['hassub'] == 'true'? true: false;
-            
-            $parent = $dlevel == 3 ? intval(0) : intval($parent);
-            $subparent = $hassub? intval($subparent) : intval(0);
             
             $model = TbDivision::model()->findByPk(intval($id));
             if (count($model))
             {
 
                 $oldname = $model->division_name;
-                $oldpar = $model->parent_division;
                 $doldlevel = $model->division_level;
-                if (($oldname != $name || $parent != $oldpar))
+                if (($oldname != $name))
                 {
-                    $result = TbDivision::model()->find("division_name = '$name' AND sub_parent=$subparent AND parent_division = $parent");
+                    $result = TbDivision::model()->find("division_name = '$name'");
                     if (count($result))
                     {
                         echo 'dup';
                         return;
                     }
                 }
-                
+                /*
                 if($dlevel < $doldlevel){//เลื่อนระดับลง
                     //เช็คว่ามีลูกมั้ย
                     //ถ้ามีลูก ไม่อนุญาต
@@ -374,24 +310,17 @@ class DataController extends Controller
                         return;
                     }
                 }
+                */
                 
-                if($parent != 0){
-                    $result = TbDivision::model()->find("division_id = $parent");
-                    $section = $result->section;
-                    if($result->division_level == 2){
-                        $subparent = $parent;
-                        $parent = $result->parent_division;
-                    }
-                }
 
                 $model->division_name = $name;
-                $model->erp_id = $haserp ? $erp : '';
+                if($haserp)$model->erp_id = $erp;
                 $model->office_id = $officeerp;
-                $model->parent_division = $parent;
-                $model->sub_parent = $subparent;
                 $model->division_level = $dlevel;
                 $model->section = $section;
-                $saveResult =  $model->save() ? 1 : 0;
+                $saveResult =  $model->save() ? 'ok' : 'fail';
+                echo $saveResult;
+                /*
                 if($saveResult)
                 {
                     
@@ -414,6 +343,8 @@ class DataController extends Controller
                         echo 0;
                     }
                 }
+                 * 
+                 */
             }
             else
                 echo 0;
@@ -426,8 +357,7 @@ class DataController extends Controller
         {
             $did = $_POST['did'];
 
-            $sql = "SELECT * FROM tb_division d LEFT JOIN (SELECT division_id, division_name as par_name FROM tb_division) dd "
-                    . "ON d.parent_division = dd.division_id "
+            $sql = "SELECT * FROM tb_division d "
                     . "WHERE d.division_id = $did";
             $result = Yii::app()->db->createCommand($sql)->queryAll();
 
@@ -437,18 +367,36 @@ class DataController extends Controller
                     'divid' => $result[0]['division_id'],
                     'divname' => $result[0]['division_name'],
                     'erp_id' => $result[0]['erp_id'],
-                    'parname' => $result[0]['par_name'],
+                    
                     'office_id' => $result[0]['office_id'],
-                    'par_id' => $result[0]['parent_division'],
+                    
                     'dlevel' => $result[0]['division_level'],
                     'section' => $result[0]['section'],
-                    'sub'=>$result[0]['sub_parent']
+                    
                 );
                 echo json_encode($x);
             }
         }
     }
+    
+    public function actionDivStateChange()
+    {
+        if (isset($_POST['divid']) && isset($_POST['state']))
+        {
+            $did = $_POST['divid'];
+            $st = $_POST['state'];
 
+            $sql = "UPDATE tb_division SET enable = $st WHERE division_id = $did";
+            echo Yii::app()->db->createCommand($sql)->execute() ? "ok" : 'fail';
+        }
+    }
+    
+    public function actionDelDiv(){
+        if (isset($_POST['did'])){
+            echo TbDivision::model()->deleteByPk($_POST['did'])?'ok':'fail';
+        }
+    }
+    
     //----filling zone-----
     public function actionFillFilling()
     {

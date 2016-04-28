@@ -4,7 +4,7 @@ $(function () {
         search = {
             name: $("#fdname").val(),
             erp: $("#fderp").val(),
-            par: $("#fdpar").val(),
+            sec: $("#fdsec").val(),
             office: $("#fdof").val(),
             status: $("#fdstatus").val()
         };
@@ -16,20 +16,7 @@ $(function () {
         function (data) {
             $("#divbody").html(data);
         });
-        $.post('./../Data/FillDivParentAdd',
-                {
-                    ajax: 0
-                }, function (data) {
-            $("#addpar").html(data);
-            $("#editpar").html(data);
-        });
-        $.post('./../Data/FillDivSubParentAdd',
-                {
-                    ajax: 0
-                }, function (data) {
-            $("#addsub").html(data);
-            $("#editsub").html(data);
-        });
+        
     }
     $(".option").hide();
     function getCheckbox(checkbox)
@@ -50,26 +37,6 @@ $(function () {
     $("#btnfind").click(function () {
         ReqData();
         $("#find").fadeToggle();
-    });
-    $("#divbody").on('click', '.deactive', function () {
-        $.post('./../data/DivStateChange', {
-            divid: $(this).attr('data-id'),
-            state: 0
-        }, function (data) {
-            if (data == 'ok') {
-                ReqData();
-            }
-        });
-    });
-    $("#divbody").on('click', '.active', function () {
-        $.post('./../data/DivStateChange', {
-            divid: $(this).attr('data-id'),
-            state: 1
-        }, function (data) {
-            if (data == 'ok') {
-                ReqData();
-            }
-        });
     });
     $("#addm").click(function () {
         $("#modaladd").modal('show');
@@ -164,16 +131,7 @@ $(function () {
             $("#modaladd").find(".option").hide();
         }
     });
-    $("#addhassub").change(function (){
-        if (getCheckbox($(this)) == true)
-        {
-            $("#modaladd").find(".subp").show();
-            $("#modaladd").find(".subo").hide();
-        } else {
-            $("#modaladd").find(".subp").hide();
-            $("#modaladd").find(".subo").show();
-        }
-    });
+    
     $("input[name=addstatus]").change(function(){
         var val = $(this).val();
         if(val == 3){
@@ -181,29 +139,25 @@ $(function () {
             $("#modaladd").find(".section").show();
             $("#addhaserp").prop("checked", true).change();
             $("#addhaserp").prop("disabled", true).change();
-            $("#addhassub").prop("checked", false).change();
-            $("#addhassub").prop("disabled", true);
+            
         }else if(val == 4){
             $("#modaladd").find(".subo").show();
             $("#modaladd").find(".section").hide();
             $("#addhaserp").prop("checked", true).change();
             $("#addhaserp").prop("disabled", true).change();
-            $("#addhassub").prop("checked", false).change();
-            $("#addhassub").prop("disabled", true);
+            
         }else if(val == 1){
             $("#modaladd").find(".subo").show();
             $("#modaladd").find(".section").hide();
             $("#addhaserp").prop("checked", false).change();
             $("#addhaserp").prop("disabled", false).change();
-            $("#addhassub").prop("checked", true).change();
-            $("#addhassub").prop("disabled", false);
+            
         }else{
             $("#modaladd").find(".subo").show();
             $("#modaladd").find(".section").hide();
             $("#addhaserp").prop("checked", false).change();
             $("#addhaserp").prop("disabled", false).change();
-            $("#addhassub").prop("checked", false).change();
-            $("#addhassub").prop("disabled", true);
+            
         }
     });
     $("#adderp").keyup(function (event) {
@@ -225,7 +179,7 @@ $(function () {
         divname = $("#addname");
         diverp = $("#adderp");
         divoffice = $("#addoffice");
-        divpar = $("#addpar");
+        
         if (checkname(divname) && checkerp(diverp, getCheckbox($("#addhaserp"))) && checkerpoffice(divoffice)) {
 
             $.ajax({
@@ -236,19 +190,18 @@ $(function () {
                     divname: divname.val(),
                     erp: diverp.val(),
                     erpoffice: divoffice.val(),
-                    par: divpar.val(),
+                    
                     haserp: getCheckbox($("#addhaserp")),
                     dlevel: $("input[name=addstatus]:checked").val(),
-                    section: $("#addsection").val(),
-                    hassub: getCheckbox($("#addhassub")),
-                    subparent: $("#addsub").val()
+                    section: $("#addsection").val()
+                    
                 },
                 success: function (data) {
                     if (data == 'ok') {
                         divname.val("");
                         diverp.val("");
                         divoffice.val("");
-                        divpar.val("");
+                        
                         $("#addhaserp").prop("checked", false).change();
                         $("input[name=addstatus]").val(1).change();
                         ReqData();
@@ -287,16 +240,15 @@ $(function () {
                 $("#editname").val(d.divname).change();
                 $("input[name=editstatus]").prop("checked", false).change();
                 $("input[name=editstatus][value="+d.dlevel+"]").prop("checked", true).change();
-                
-                $("#edithaserp").prop("checked", d.erp_id != '');
+                $("#edithaserp").prop("checked", d.erp_id != null);
                 $("#editerp").val(d.erp_id).change();
                 //$("#editispos").prop("checked", d.ispos == 1 ? true : false).change();
                 $("#editoffice").val(d.office_id).change();
                 //$("#editpar").children('option[value^="' + d.divid + '"]').attr("disabled", true);
-                $("#editpar").val(d.par_id);
+                
                 $("#editsection").val(d.section);
-                $("#edithassub").prop("checked" , d.sub!=0).change();
-                $("#editsub").val(d.sub);
+                
+                
                 
             },
             dataType: 'json'
@@ -360,16 +312,7 @@ $(function () {
             return true;
         }
     }
-    $("#edithassub").change(function (){
-        if (getCheckbox($(this)) == true)
-        {
-            $("#modaledit").find(".subp").show();
-            $("#modaledit").find(".subo").hide();
-        } else {
-            $("#modaledit").find(".subp").hide();
-            $("#modaledit").find(".subo").show();
-        }
-    });
+    
     $("input[name=editstatus]").change(function(){
         var val = $(this).val();
         if(val == 3){
@@ -440,7 +383,7 @@ $(function () {
         var divname = $("#editname");
         var diverp = $("#editerp");
         var divoffice = $("#editoffice");
-        var divpar = $("#editpar");
+        
         //alert( divpar.val());
         if (checknameedit(divname) && checkerpedit(diverp, getCheckbox($("#edithaserp"))) && checkerpoffice(divoffice)) {
 
@@ -453,19 +396,17 @@ $(function () {
                     divname: divname.val(),
                     erp: diverp.val(),
                     erpoffice: divoffice.val(),
-                    par: divpar.val(),
+                    
                     haserp: getCheckbox($("#edithaserp")),
                     dlevel: $("input[name=editstatus]:checked").val(),
-                    section: $("#editsection").val(),
-                    hassub: getCheckbox($("#edithassub")),
-                    subparent: $("#editsub").val()
+                    section: $("#editsection").val()
+                    
                 },
                 success: function (data) {
-                    if (data == '1') {
+                    if (data == 'ok') {
                         divname.val("");
                         diverp.val("");
                         divoffice.val("");
-                        divpar.val("");
                         $("#edithaserp").prop("checked", false).change();
                         $("#edithaserp").prop("checked", false).change();
                         $("input[name=editstatus]").val(1).change();
@@ -484,5 +425,35 @@ $(function () {
                 }
             });
         }
+    });
+    $("#divbody").on('click', '.deactive', function () {
+        $.post('./../data/DivStateChange', {
+            divid: $(this).attr('data-id'),
+            state: 0
+        }, function (data) {
+            if (data == 'ok') {
+                ReqData();
+            }
+        });
+    });
+    $("#divbody").on('click', '.active', function () {
+        $.post('./../data/DivStateChange', {
+            divid: $(this).attr('data-id'),
+            state: 1
+        }, function (data) {
+            if (data == 'ok') {
+                ReqData();
+            }
+        });
+    });
+    $("#divbody").on('click', '.delete', function () {
+        if(confirm("การลบข้อมูลนี้อาจส่งผลกระทบกับการจัดโครงสร้างองค์กร การกรอกงบประมาณ การเรียกดูสรุปผลย้อนหลัง \r\nต้องการลบ !?"))
+        $.post('./../data/DelDiv', {
+            did: $(this).attr('data-id'),
+        }, function (data) {
+            if (data == 'ok') {
+                ReqData();
+            }
+        });
     });
 });
