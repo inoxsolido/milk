@@ -166,7 +166,8 @@ class BudController extends Controller
         {
             $acc = TbAccount::model()->findAll(array('order' => "group_id ASC, acc_name ASC"));
             $group = TbGroup::model()->findAll();
-            $this->render("AccountYearAssign", array('acc' => $acc, 'group' => $group));
+            //$this->render("AccountYearAssign", array('acc' => $acc, 'group' => $group));
+            $this->render("AccountYearAssign2");
         }
         else
         {

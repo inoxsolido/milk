@@ -961,6 +961,35 @@ LEFT JOIN tb_group g ON a.group_id = g.group_id ";
     }
 
     // AccountYearAssign
+    
+    public function actionFillAccYear(){
+        $result = Yii::app()->db->createCommand("SELECT `year`, AVG(IFNULL(approve_lv,0)) AS approve_lv "
+                . "FROM tb_approve GROUP BY `year`")->queryAll();
+        if(!count($result)){//if not found
+            ?><tr class=".danger"><td colspan="3"><hr4 class="text-danger">ยังไม่มีการเพิ่มปีงบประมาณ</hr4></td></tr><?php
+        }else{
+            foreach ($result as $r){
+                //ตรวจสอบว่าเพิ่มบัญชีไปหรือยัง
+                $check = count(TbAccYear::model()->find(['condition'=>"year = ".$r['year']]));
+                //$check = TRUE;
+                
+                ?><tr>
+                    <td><?=$r['year']+543?></td>
+                    <td><?=$r['approve_lv']!=9?'ยังไม่แล้วเสร็จ':'เสร็จสิ้นแล้ว'?></td>
+                    <td><div class="btn-group-sm" style="width:100%" year="<?=$r['year']?>">
+                            <?php if(!$check): ?>
+                            <button class="btn btn-success assign" style="width:50%; float:left;">กำหนด <i class="glyphicon glyphicon-plus"></i></button>
+                            <?php else: ?>
+                            <button class="btn btn-warning edit" style="width:50%; float:left;">แก้ไข <i class="glyphicon glyphicon-edit"></i></button>
+                            <?php endif; ?>
+                            <button class="btn btn-danger cancel" style="width:50%; float:left;">ยกเลิก <i class="glyphicon glyphicon-trash"></i></button>
+                        </div></td>
+                </tr><?php
+            }
+        }
+        
+    }
+    
     public function actionFillAccYearEmpty()
     {
         ?><div class="swMain2"><?php
@@ -1044,7 +1073,7 @@ LEFT JOIN tb_group g ON a.group_id = g.group_id ";
         {
             if (isset($_POST['year']))
             {
-                $year = $_POST['year'] - 543; //chirst
+                $year = $_POST['year']; //chirst
                 $sql = "SELECT acc_id FROM tb_acc_year WHERE `year` = $year";
                 $result = Yii::app()->db->createCommand($sql)->queryAll();
                 if (count($result))
@@ -1078,7 +1107,7 @@ LEFT JOIN tb_group g ON a.group_id = g.group_id ";
     {
         if (isset($_POST['year']) && isset($_POST['fdata']))
         {
-            $year = $_POST['year'] - 543;
+            $year = $_POST['year'];
             $form = $_POST['fdata'];
             $transaction = Yii::app()->db->beginTransaction();
             try
@@ -1098,26 +1127,26 @@ LEFT JOIN tb_group g ON a.group_id = g.group_id ";
                 }
                 //write approve
                 //กำหนดapproveให้ทุกdivisionที่เปิดใช้งาน
-                $divs = TbDivision::model()->findAll("division_level < 3");
-                foreach($divs as $div){
-                    $amodel = new TbApprove;
-                    if($amodel->isNewRecord){
-                        /* @var $div TbDivision */
-                        $amodel->division_id = $div->division_id;
-                        $amodel->year = $year;
-                        $amodel->approve_lv = intval(0);
-                        $amodel->save(true);
-                    }else{
-                        throw new Exception("Error while set approve");
-                    }
-                }
+//                $divs = TbDivision::model()->findAll("division_level < 3");
+//                foreach($divs as $div){
+//                    $amodel = new TbApprove;
+//                    if($amodel->isNewRecord){
+//                        /* @var $div TbDivision */
+//                        $amodel->division_id = $div->division_id;
+//                        $amodel->year = $year;
+//                        $amodel->approve_lv = intval(0);
+//                        $amodel->save(true);
+//                    }else{
+//                        throw new Exception("Error while set approve");
+//                    }
+//                }
                 $transaction->commit();
                 echo 'ok';
             } catch (Exception $ex)
             {
                 $transaction->rollback();
-                echo 'การบันทึกล้มเหลว';
-                //print_r($ex->getMessage());
+                //echo 'การบันทึกล้มเหลว';
+                print_r($ex->getMessage());
             }
         }
         else
@@ -1126,7 +1155,7 @@ LEFT JOIN tb_group g ON a.group_id = g.group_id ";
 
     public function actionEditAccYear() {
         if (isset($_POST['year'])) {
-            $year = $_POST['year'] - 543;
+            $year = $_POST['year'];
             $transaction = Yii::app()->db->beginTransaction();
             try {
                 //about acc_year
@@ -1161,7 +1190,14 @@ LEFT JOIN tb_group g ON a.group_id = g.group_id ";
         } else
             echo 'year was not found';
     }
-
+    public function actionDeleteAccYear(){
+        if(isset($_POST['year'])){
+            $year = $_POST['year'];
+            $result = TbAccYear::model()->deleteAll("year = $year");
+            echo 'ok';
+        } else 
+            echo 'year was not found';
+    }
     //chinfo
     public function actionAskPersonInfo()
     {

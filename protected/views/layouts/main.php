@@ -15,9 +15,13 @@
         <link rel="stylesheet" href="<?= Yii::app()->request->baseUrl ?>/assets/css/submenu.css">
         <script src="<?= Yii::app()->request->baseUrl; ?>/assets/js/submenu.js"></script>
         <script type="text/javascript">
-            $(function () {
-                $("div.loading").hide();
-            });
+            document.onreadystatechange = function(){
+                if(document.readyState == "interactive"){
+                    $(".loading").fadeIn();
+                }else if(document.readyState == "complete"){
+                    $(".loading").fadeOut();
+                }
+            };
         </script>
         <style type="text/css">
             #menu > nav{
@@ -35,11 +39,13 @@
                 margin-right:0px;
             }
             div#footer{
+                display:none;
                 margin-top: 20px;
                 height:40px;
                 width:100%;
                 bottom: 0px;
                 position:fixed;
+                z-index: 900;
 
             }
             div.loading{
@@ -89,6 +95,7 @@
     </head>
 
     <body>
+        <div class="loading"></div>
         <div id="dummy"></div>
         <div id="menu" class="sticky">
             <nav class="navbar navbar-inverse top-navbar" role="navigation">
@@ -184,7 +191,7 @@
 
             </div><!-- footer -->
         </div>
-        <div class="loading"></div>
+        
         <div id='mchinfo' class="modal fade" role="dialog">
             <div class="modal-dialog">
 
