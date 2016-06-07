@@ -28,15 +28,18 @@
                 min-height: 100%;
                 height: auto !important;
                 height: 100%;
+                padding-bottom: 40px;
                 /*margin-bottom: -40px;*/
             }
             .row{
                 margin-right:0px;
             }
             div#footer{
+                margin-top: 20px;
                 height:40px;
                 width:100%;
                 bottom: 0px;
+                position:fixed;
 
             }
             div.loading{
@@ -104,7 +107,7 @@
                         <?php 
                         $this->widget('zii.widgets.CMenu', array(
                             'items' => array(
-                                ['label' => 'กำหนดกรอบ', 'url' => Yii::app()->createAbsoluteUrl("Bud/YearGoal"), 'visible' => (Yii::app()->user->isDivision || Yii::app()->user->isAdmin)],
+                                //['label' => 'กำหนดกรอบ', 'url' => Yii::app()->createAbsoluteUrl("Bud/YearGoal"), 'visible' => (Yii::app()->user->isDivision || Yii::app()->user->isAdmin)],
                                 ['label' => 'กรอกงบประมาณ', 'url' => Yii::app()->createAbsoluteUrl("Bud/MonthGoal"), 'visible' => (Yii::app()->user->isDepartment || Yii::app()->user->isDivision)],
                                 ['label' => 'ยืนยันคำขอ', 'url' => Yii::app()->createAbsoluteUrl("Bud/Approve"), 'visible' => (Yii::app()->user->isDivision || Yii::app()->user->isAdmin)],
                                 ['label' => 'สรุปผล', 'url' => Yii::app()->createAbsoluteUrl("Bud/Summary"), 'visible' => !Yii::app()->user->isGuest],
@@ -128,6 +131,7 @@
                                     'items' => [
                                         ['label' => 'จัดการรายละเอียดสังกัด', 'url' => Yii::app()->createAbsoluteUrl("Bud/divManager"), 'class' => 'dropdown-toggle', 'role' => 'menu'],
                                         ['label' => 'จัดการการกรอกของสังกัด', 'url' => Yii::app()->createAbsoluteUrl("Bud/fillingManager")],
+                                        ['label' => 'จัดการโครงสร้างองค์กร', 'url' => Yii::app()->createAbsoluteUrl("Bud/OrgChart")],
                                     ]
                                 ],
                                 ['label' => 'จัดการผู้ใช้', 'url' => Yii::app()->createAbsoluteUrl("Bud/usermanager"), 'visible' => Yii::app()->user->isAdmin],

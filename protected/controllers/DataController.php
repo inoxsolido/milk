@@ -436,8 +436,9 @@ class DataController extends Controller
                 ?><tr>
                     <td style="width:40%"><?= $row['own_name'] . " " ?></td>
                     <td style="width:40%"><?= $row['tar_name'] . " " ?></td>
-                    <td style="width:20%"><button class='btn btn-sm btn-warning edit' data-id1="<?= $row['pk1'] ?>" data-id2="<?= $row['pk2'] ?>">แก้ไข <span class='glyphicon glyphicon-wrench'></span></button>&nbsp;&nbsp;
-                        <button class="btn btn-sm btn-danger delete" data-id1="<?= $row['pk1'] ?>" data-id2="<?= $row['pk2'] ?>">ลบ <span class="glyphicon glyphicon-remove"></span></button>
+                    <td style="width:20%"><div class="btn-group-sm" style="width:100%"><button class='btn btn-sm btn-warning edit' style="width:50%" data-id1="<?= $row['pk1'] ?>" data-id2="<?= $row['pk2'] ?>">แก้ไข <span class='glyphicon glyphicon-wrench'></span></button><?php
+                    ?><button class="btn btn-sm btn-danger delete" style="width:50%"data-id1="<?= $row['pk1'] ?>" data-id2="<?= $row['pk2'] ?>">ลบ <span class="glyphicon glyphicon-trash"></span></button>
+                        </div>
                     </td>
                 </tr><?php
             }
@@ -450,6 +451,7 @@ class DataController extends Controller
         {
             $sql = "SELECT division_id as div_id, division_name as div_name "
                     . "FROM tb_division "
+                    . "WHERE division_level <= 3"
                     . " ORDER BY tb_division.erp_id";
             $result = Yii::app()->db->createCommand($sql)->queryAll();
             foreach ($result as $row)
@@ -465,7 +467,7 @@ class DataController extends Controller
         {
             $sql = "SELECT division_id as div_id, division_name as div_name "
                     . "FROM tb_division "
-                    . "WHERE division_id NOT IN (SELECT division_id FROM tb_profile_fill) ORDER BY tb_division.erp_id";
+                    . "WHERE division_level <= 3 AND division_id NOT IN (SELECT division_id FROM tb_profile_fill) ORDER BY tb_division.erp_id";
             $result = Yii::app()->db->createCommand($sql)->queryAll();
             foreach ($result as $row)
             {
@@ -575,8 +577,15 @@ LEFT JOIN tb_group g ON a.group_id = g.group_id ";
                             <td style='width:32%'><?= $r1['acc_name'] ?></td>
                             <td style='width:15%'><?= $r1['group_name'] ?></td>
                             <td style='width:25%'><?= $r1['par_name'] ?></td>
-                            <td style="width:20%"><button class='btn btn-sm btn-warning edit' data-id="<?= $r1['acc_id'] ?>">แก้ไข <span class='glyphicon glyphicon-wrench'></span></button>&nbsp;&nbsp;
-                                <button class="btn btn-sm btn-danger delete" data-id ="<?= $r1['acc_id'] ?>">ลบ <span class="glyphicon glyphicon-remove"></span></button>
+                            <td style="width:20%"><div class="btn-group-sm" style="width:100%"><button class='btn btn-sm btn-warning edit' style="width:33%" data-id="<?= $r1['acc_id'] ?>">แก้ไข <span class='glyphicon glyphicon-wrench'></span></button><?php
+                                    if ($r1['enable'] == 1)
+                                    {
+                                    ?><button class='btn btn-sm btn-info deactive' style="width:33%" data-id ="<?= $r1['acc_id'] ?>">ยกเลิก <span class='glyphicon glyphicon-remove'></span></button><?php
+                                    }
+                                    else if ($r1['enable'] == 0)
+                                    {
+                                        ?><button class='btn btn-sm btn-success active' style="width:33%" data-id ="<?= $r1['acc_id'] ?>">เปิดใช้ <span class='glyphicon glyphicon-ok'></span></button><?php
+                                    }?><button class="btn btn-sm btn-danger delete" style="width:33%" data-id ="<?= $r1['acc_id'] ?>">ลบ <span class="glyphicon glyphicon-trash"></span></button></div>
                             </td>
                         </tr>
                         <?php $lv2 = Yii::app()->db->createCommand("$sql $where  a.parent_acc_id = ".$r1['acc_id']." $parent $order")->queryAll();
@@ -587,8 +596,15 @@ LEFT JOIN tb_group g ON a.group_id = g.group_id ";
                                 <td style='width:32%'><?= $r2['acc_name'] ?></td>
                                 <td style='width:15%'><?= $r2['group_name'] ?></td>
                                 <td style='width:25%'><?= $r2['par_name'] ?></td>
-                                <td style="width:20%"><button class='btn btn-sm btn-warning edit' data-id="<?= $r2['acc_id'] ?>">แก้ไข <span class='glyphicon glyphicon-wrench'></span></button>&nbsp;&nbsp;
-                                    <button class="btn btn-sm btn-danger delete" data-id ="<?= $r2['acc_id'] ?>">ลบ <span class="glyphicon glyphicon-remove"></span></button>
+                                <td style="width:20%"><div class="btn-group-sm" style="width:100%"><button class='btn btn-sm btn-warning edit' style="width:33%" data-id="<?= $r2['acc_id'] ?>">แก้ไข <span class='glyphicon glyphicon-wrench'></span></button><?php
+                                    if ($r2['enable'] == 1)
+                                    {
+                                    ?><button class='btn btn-sm btn-info deactive' style="width:33%" data-id ="<?= $r2['acc_id'] ?>">ยกเลิก <span class='glyphicon glyphicon-remove'></span></button><?php
+                                    }
+                                    else if ($r2['enable'] == 0)
+                                    {
+                                        ?><button class='btn btn-sm btn-success active' style="width:33%" data-id ="<?= $r2['acc_id'] ?>">เปิดใช้ <span class='glyphicon glyphicon-ok'></span></button><?php
+                                    }?><button class="btn btn-sm btn-danger delete" style="width:33%" data-id ="<?= $r2['acc_id'] ?>">ลบ <span class="glyphicon glyphicon-trash"></span></button></div>
                                 </td>
                             </tr>
                             <?php $lv3 = Yii::app()->db->createCommand("$sql $where  a.parent_acc_id = ".$r2['acc_id']." $parent $order")->queryAll();
@@ -599,8 +615,15 @@ LEFT JOIN tb_group g ON a.group_id = g.group_id ";
                                     <td style='width:32%'><?= $r3['acc_name'] ?></td>
                                     <td style='width:15%'><?= $r3['group_name'] ?></td>
                                     <td style='width:25%'><?= $r3['par_name'] ?></td>
-                                    <td style="width:20%"><button class='btn btn-sm btn-warning edit' data-id="<?= $r3['acc_id'] ?>">แก้ไข <span class='glyphicon glyphicon-wrench'></span></button>&nbsp;&nbsp;
-                                        <button class="btn btn-sm btn-danger delete" data-id ="<?= $r3['acc_id'] ?>">ลบ <span class="glyphicon glyphicon-remove"></span></button>
+                                    <td style="width:20%"><div class="btn-group-sm" style="width:100%"><button class='btn btn-sm btn-warning edit' style="width:33%" data-id="<?= $r3['acc_id'] ?>">แก้ไข <span class='glyphicon glyphicon-wrench'></span></button><?php
+                                        if ($r3['enable'] == 1)
+                                        {
+                                        ?><button class='btn btn-sm btn-info deactive' style="width:33%" data-id ="<?= $r3['acc_id'] ?>">ยกเลิก <span class='glyphicon glyphicon-remove'></span></button><?php
+                                        }
+                                        else if ($r3['enable'] == 0)
+                                        {
+                                            ?><button class='btn btn-sm btn-success active' style="width:33%" data-id ="<?= $r3['acc_id'] ?>">เปิดใช้ <span class='glyphicon glyphicon-ok'></span></button><?php
+                                        }?><button class="btn btn-sm btn-danger delete" style="width:33%" data-id ="<?= $r3['acc_id'] ?>">ลบ <span class="glyphicon glyphicon-trash"></span></button></div>
                                     </td>
                                 </tr>
                                 <?php $lv4 = Yii::app()->db->createCommand("$sql $where  a.parent_acc_id = ".$r3['acc_id']." $parent $order")->queryAll();
@@ -611,8 +634,15 @@ LEFT JOIN tb_group g ON a.group_id = g.group_id ";
                                         <td style='width:32%'><?= $r4['acc_name'] ?></td>
                                         <td style='width:15%'><?= $r4['group_name'] ?></td>
                                         <td style='width:25%'><?= $r4['par_name'] ?></td>
-                                        <td style="width:20%"><button class='btn btn-sm btn-warning edit' data-id="<?= $r4['acc_id'] ?>">แก้ไข <span class='glyphicon glyphicon-wrench'></span></button>&nbsp;&nbsp;
-                                            <button class="btn btn-sm btn-danger delete" data-id ="<?= $r4['acc_id'] ?>">ลบ <span class="glyphicon glyphicon-remove"></span></button>
+                                        <td style="width:20%"><div class="btn-group-sm" style="width:100%"><button class='btn btn-sm btn-warning edit' style="width:33%" data-id="<?= $r4['acc_id'] ?>">แก้ไข <span class='glyphicon glyphicon-wrench'></span></button><?php
+                                            if ($r4['enable'] == 1)
+                                            {
+                                            ?><button class='btn btn-sm btn-info deactive' style="width:33%" data-id ="<?= $r4['acc_id'] ?>">ยกเลิก <span class='glyphicon glyphicon-remove'></span></button><?php
+                                            }
+                                            else if ($r4['enable'] == 0)
+                                            {
+                                                ?><button class='btn btn-sm btn-success active' style="width:33%" data-id ="<?= $r4['acc_id'] ?>">เปิดใช้ <span class='glyphicon glyphicon-ok'></span></button><?php
+                                            }?><button class="btn btn-sm btn-danger delete" style="width:33%" data-id ="<?= $r4['acc_id'] ?>">ลบ <span class="glyphicon glyphicon-trash"></span></button></div>
                                         </td>
                                     </tr>
                                     <?php
@@ -2736,6 +2766,35 @@ ORDER BY erp_id ASC";
         }else{
             $return['error']="No year or No Type of export";
             echo json_encode($return, JSON_FORCE_OBJECT);
+        }
+    }
+    
+    public function actionJSONDivision(){
+        if(isset($_POST['year'])){
+            $year = $_POST['year']-543;
+        
+            //check year duplicate
+            $result = Yii::app()->db->createCommand("SELECT `year` FROM tb_org_struct WHERE `year` = $year")->queryScalar();
+            if($result){
+                echo json_encode(['error'=>'dup']);
+            }else{
+                $output = [
+                    'error' => 'none'
+                ];
+                $alldiv = TbDivision::model()->findAll(["condition" => "division_level <= 3", "order" => "erp_id ASC" ]);
+                $i[0] = intval(0);
+                $i[1] = intval(0);
+                $i[2] = intval(0);
+                $rec = [];
+                foreach ($alldiv as $div){
+                    /* @var $div TbDivision */
+                    $rec[$div->division_level][$i[$div->division_level-1]]['id'] = $div->division_id;
+                    $rec[$div->division_level][$i[$div->division_level-1]++]['name'] = $div->division_name;
+                    
+                }
+                $output['divs'] = $rec;
+                echo json_encode($output);
+            }
         }
     }
 

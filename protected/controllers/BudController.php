@@ -635,6 +635,14 @@ class BudController extends Controller
         
         $this->render("Summary", array('years' => $years));
     }
+    
+    public function actionOrgChart(){
+        $this->render("OrgChart");
+    }
+    
+    public function actionOrgTest(){
+        $this->render("org_test");
+    }
     public function actionTestSql(){
         echo '<pre>'."SELECT ay.`year`, IFNULL(approve_lv,0) as approve "
                 . "FROM tb_acc_year ay "

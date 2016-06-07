@@ -1,0 +1,42 @@
+﻿.dropdown-check-list {
+    display: inline-block;
+}
+.dropdown-check-list > .anchor {
+    position: relative;
+    cursor: pointer;
+    display: block;
+    padding: 5px 5px 5px 5px;
+}
+
+.dropdown-check-list > div.items {
+    padding: 2px;
+    display: none;
+    margin: 0;
+    border: 1px solid #ccc;
+    border-top: none;
+}
+.dropdown-check-list.visible > .items label{
+    display:block;
+    float: left;
+    width:100%;
+    text-align:left;
+    padding-left:5px;
+    margin-bottom: 0px;
+    font-weight: normal;
+}
+.dropdown-check-list.visible > .anchor {
+    color: #0094ff;
+    background-color:black;
+}
+
+.dropdown-check-list.visible > .items {
+    position:absolute;
+    background-color:white;
+    display: block;
+    z-index: 100;
+    width:200px;
+    margin-left:-11px;
+    margin-top: 6px;
+    
+
+}
