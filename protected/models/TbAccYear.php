@@ -56,7 +56,7 @@ class TbAccYear extends CActiveRecord
 	{
 		return array(
 			'year' => 'ปีงบประมาณ',
-			'acc_id' => 'ไอดีบัญชี',
+			'acc_id' => 'Reference: tb_account.acc_id',
 		);
 	}
 

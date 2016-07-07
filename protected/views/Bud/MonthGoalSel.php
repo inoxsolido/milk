@@ -12,8 +12,8 @@
 </style>
 
 <div class="container">
-    <div style="text-align: center"><h4>กำหนดเป้าหมายรายเดือน ประจำปี <?=$year+543?> รอบ<?php if($round == 1)echo "ก่อนการประชุม";else echo "หลังการประชุม";?></h4></div>
-    <div id='monthdiv' round='<?=$round?>' year='<?=$year?>' >
+    <div style="text-align: center"><label>เลือกปีงบประมาณ <input id="dpbudyear" class="datepicker"  type="text" data-provide="datepicker" data-date-language="th-th"/></label></div>
+    <div id='monthdiv' round='' year='' >
     
     </div>
 </div>

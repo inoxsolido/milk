@@ -5,9 +5,13 @@
  *
  * The followings are the available columns in table 'tb_subversion':
  * @property integer $month_goal_id
+ * @property integer $subversion
  * @property string $quantity
  * @property string $value
- * @property integer $subversion
+ * @property string $comment
+ *
+ * The followings are the available model relations:
+ * @property TbMonthGoal $monthGoal
  */
 class TbSubversion extends CActiveRecord
 {
@@ -27,12 +31,13 @@ class TbSubversion extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('month_goal_id, value, subversion', 'required'),
+			array('month_goal_id, subversion, value', 'required'),
 			array('month_goal_id, subversion', 'numerical', 'integerOnly'=>true),
 			array('quantity, value', 'length', 'max'=>12),
+			array('comment', 'length', 'max'=>255),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('month_goal_id, quantity, value, subversion', 'safe', 'on'=>'search'),
+			array('month_goal_id, subversion, quantity, value, comment', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -44,6 +49,7 @@ class TbSubversion extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+			'monthGoal' => array(self::BELONGS_TO, 'TbMonthGoal', 'month_goal_id'),
 		);
 	}
 
@@ -53,10 +59,11 @@ class TbSubversion extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'month_goal_id' => 'ไอดีเป้าหมายรายเดือน',
-			'quantity' => 'ปริมาณ (ตัน)',
-			'value' => 'ยอด',
-			'subversion' => 'เลขเวอร์ชั่นสำหรับเรียกคืนข้อมูล',
+			'month_goal_id' => 'Reference: tb_month_goal.month_goal_id',
+			'subversion' => 'เลขเวอร์ชันสำหรับเรียกคืนข้อมูล',
+			'quantity' => 'ปริมาณ(ตัน)',
+			'value' => 'มูลค่า(บาท)',
+			'comment' => 'หมายเหตุ',
 		);
 	}
 
@@ -79,9 +86,10 @@ class TbSubversion extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('month_goal_id',$this->month_goal_id);
+		$criteria->compare('subversion',$this->subversion);
 		$criteria->compare('quantity',$this->quantity,true);
 		$criteria->compare('value',$this->value,true);
-		$criteria->compare('subversion',$this->subversion);
+		$criteria->compare('comment',$this->comment,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

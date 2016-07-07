@@ -1,6 +1,7 @@
 function dropdown_checklist() {
+    $(".dropdown-check-list").children(".anchor").off("click");
+    
     $(".dropdown-check-list").children(".anchor")
-            .addClass("glyphicon-edit")
             .click(function () {
                 if ($(this).parent().hasClass("visible")) {
                     $(this).parent().removeClass("visible");
@@ -13,4 +14,7 @@ function dropdown_checklist() {
                     $(this).removeClass("glyphicon-edit");
                 }
             });
+    if(!$(".dropdown-check-list anchor").hasClass("glyphicon-minus"))
+        $(".dropdown-check-list anchor").addClass("glyphicon-edit");
+    
 }

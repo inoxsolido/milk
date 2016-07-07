@@ -10,11 +10,12 @@
  * @property string $erp_id
  * @property integer $division_level
  * @property integer $section
+ * @property integer $enable
  *
  * The followings are the available model relations:
  * @property TbApprove[] $tbApproves
- * @property TbSection $section0
  * @property TbDivisionLevel $divisionLevel
+ * @property TbSection $section0
  * @property TbMonthGoal[] $tbMonthGoals
  * @property TbOrgStruct[] $tbOrgStructs
  * @property TbOrgStruct[] $tbOrgStructs1
@@ -41,13 +42,13 @@ class TbDivision extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('division_name, office_id, division_level, section', 'required'),
-			array('division_level, section', 'numerical', 'integerOnly'=>true),
+			array('division_level, section, enable', 'numerical', 'integerOnly'=>true),
 			array('division_name', 'length', 'max'=>50),
 			array('office_id', 'length', 'max'=>2),
 			array('erp_id', 'length', 'max'=>5),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('division_id, division_name, office_id, erp_id, division_level, section', 'safe', 'on'=>'search'),
+			array('division_id, division_name, office_id, erp_id, division_level, section, enable', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -60,13 +61,13 @@ class TbDivision extends CActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
 			'tbApproves' => array(self::HAS_MANY, 'TbApprove', 'division_id'),
-			'section0' => array(self::BELONGS_TO, 'TbSection', 'section'),
 			'divisionLevel' => array(self::BELONGS_TO, 'TbDivisionLevel', 'division_level'),
+			'section0' => array(self::BELONGS_TO, 'TbSection', 'section'),
 			'tbMonthGoals' => array(self::HAS_MANY, 'TbMonthGoal', 'division_id'),
 			'tbOrgStructs' => array(self::HAS_MANY, 'TbOrgStruct', 'parent_division_id'),
 			'tbOrgStructs1' => array(self::HAS_MANY, 'TbOrgStruct', 'child_division_id'),
-			'tbProfileFills' => array(self::HAS_MANY, 'TbProfileFill', 'owner_div_id'),
-			'tbProfileFills1' => array(self::HAS_MANY, 'TbProfileFill', 'division_id'),
+			'tbProfileFills' => array(self::HAS_MANY, 'TbProfileFill', 'Operator'),
+			'tbProfileFills1' => array(self::HAS_MANY, 'TbProfileFill', 'Destination'),
 			'tbUsers' => array(self::HAS_MANY, 'TbUser', 'division_id'),
 		);
 	}
@@ -77,12 +78,13 @@ class TbDivision extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'division_id' => 'ไอดีสังกัด',
-			'division_name' => 'ชื่อสังกัด',
-			'office_id' => 'รหัส erp สำนักงาน',
-			'erp_id' => 'รหัส ERP',
-			'division_level' => 'ระดับสังกัด',
-			'section' => 'ไอดีด้าน',
+			'division_id' => 'รหัสอ้างอิงหน่วยงาน',
+			'division_name' => 'ชื่อหน่วยงาน',
+			'office_id' => 'หมายเลข ERP สำนักงาน',
+			'erp_id' => 'หมายเลข ERP',
+			'division_level' => 'Reference: tb_division_level.ID',
+			'section' => 'Refererence: tb_section.section_id',
+			'enable' => 'สถานะอนุญาตใช้งาน',
 		);
 	}
 
@@ -110,6 +112,7 @@ class TbDivision extends CActiveRecord
 		$criteria->compare('erp_id',$this->erp_id,true);
 		$criteria->compare('division_level',$this->division_level);
 		$criteria->compare('section',$this->section);
+		$criteria->compare('enable',$this->enable);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

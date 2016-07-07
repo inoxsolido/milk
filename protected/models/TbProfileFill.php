@@ -4,12 +4,12 @@
  * This is the model class for table "tb_profile_fill".
  *
  * The followings are the available columns in table 'tb_profile_fill':
- * @property integer $owner_div_id
- * @property integer $division_id
+ * @property integer $Operator
+ * @property integer $Destination
  *
  * The followings are the available model relations:
- * @property TbDivision $ownerDiv
- * @property TbDivision $division
+ * @property TbDivision $operator
+ * @property TbDivision $destination
  */
 class TbProfileFill extends CActiveRecord
 {
@@ -29,11 +29,11 @@ class TbProfileFill extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('owner_div_id, division_id', 'required'),
-			array('owner_div_id, division_id', 'numerical', 'integerOnly'=>true),
+			array('Operator, Destination', 'required'),
+			array('Operator, Destination', 'numerical', 'integerOnly'=>true),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('owner_div_id, division_id', 'safe', 'on'=>'search'),
+			array('Operator, Destination', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -45,8 +45,8 @@ class TbProfileFill extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'ownerDiv' => array(self::BELONGS_TO, 'TbDivision', 'owner_div_id'),
-			'division' => array(self::BELONGS_TO, 'TbDivision', 'division_id'),
+			'operator' => array(self::BELONGS_TO, 'TbDivision', 'Operator'),
+			'destination' => array(self::BELONGS_TO, 'TbDivision', 'Destination'),
 		);
 	}
 
@@ -56,8 +56,10 @@ class TbProfileFill extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'owner_div_id' => 'สังกัดที่รับผิดชอบการกรอก',
-			'division_id' => 'สังกัดที่ได้รับการกรอก',
+			'Operator' => 'Reference: tb_division.division_id
+หน่วยงานที่รับผิดชอบ',
+			'Destination' => 'Reference: tb_division.division_id
+หน่วยงานที่ได้รับข้อมูล',
 		);
 	}
 
@@ -79,8 +81,8 @@ class TbProfileFill extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
-		$criteria->compare('owner_div_id',$this->owner_div_id);
-		$criteria->compare('division_id',$this->division_id);
+		$criteria->compare('Operator',$this->Operator);
+		$criteria->compare('Destination',$this->Destination);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

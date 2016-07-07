@@ -5,20 +5,22 @@
  *
  * The followings are the available columns in table 'tb_month_goal':
  * @property integer $month_goal_id
- * @property integer $acc_id
- * @property string $quantity
- * @property string $value
- * @property integer $month_id
  * @property string $year
  * @property integer $round
  * @property integer $division_id
+ * @property integer $acc_id
+ * @property integer $month_id
  * @property integer $version
  * @property integer $subversion
+ * @property string $quantity
+ * @property string $value
+ * @property string $comment
  *
  * The followings are the available model relations:
  * @property TbAccount $acc
  * @property TbMonth $month
  * @property TbDivision $division
+ * @property TbSubversion[] $tbSubversions
  */
 class TbMonthGoal extends CActiveRecord
 {
@@ -38,13 +40,14 @@ class TbMonthGoal extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('acc_id, value, month_id, year, division_id', 'required'),
-			array('acc_id, month_id, round, division_id, version, subversion', 'numerical', 'integerOnly'=>true),
-			array('quantity, value', 'length', 'max'=>12),
+			array('year, division_id, acc_id, month_id, value', 'required'),
+			array('round, division_id, acc_id, month_id, version, subversion', 'numerical', 'integerOnly'=>true),
 			array('year', 'length', 'max'=>4),
+			array('quantity, value', 'length', 'max'=>12),
+			array('comment', 'length', 'max'=>255),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('month_goal_id, acc_id, quantity, value, month_id, year, round, division_id, version, subversion', 'safe', 'on'=>'search'),
+			array('month_goal_id, year, round, division_id, acc_id, month_id, version, subversion, quantity, value, comment', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -59,6 +62,7 @@ class TbMonthGoal extends CActiveRecord
 			'acc' => array(self::BELONGS_TO, 'TbAccount', 'acc_id'),
 			'month' => array(self::BELONGS_TO, 'TbMonth', 'month_id'),
 			'division' => array(self::BELONGS_TO, 'TbDivision', 'division_id'),
+			'tbSubversions' => array(self::HAS_MANY, 'TbSubversion', 'month_goal_id'),
 		);
 	}
 
@@ -68,16 +72,17 @@ class TbMonthGoal extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'month_goal_id' => 'รหัสเป้าหมายรายเดือน',
-			'acc_id' => 'รหัสบัญชี',
-			'quantity' => 'ปริมาณ (ตัน)',
-			'value' => 'ยอด',
-			'month_id' => 'ลำดับเดือน',
+			'month_goal_id' => 'รหัสอ้างอิงเป้าหมายรายเดือน (Index)',
 			'year' => 'ปี',
-			'round' => 'รอบ adjust: 1 คือรอบปกติ',
-			'division_id' => 'ไอดีสังกัด',
-			'version' => 'เวอร์ชั่นไฟล์',
-			'subversion' => 'เลขเวอร์ชั่นสำหรับเรียกคืนข้อมูล',
+			'round' => 'รอบ adjust: 0 คือรอบปกติ',
+			'division_id' => 'Reference: tb_division.division_id',
+			'acc_id' => 'Reference: tb_account.acc_id',
+			'month_id' => 'Reference: tb_month.month_id',
+			'version' => 'เวอร์ชันงบประมาณ',
+			'subversion' => 'เวอร์ชันย่อยสำหรับเรียกคืนข้อมูล',
+			'quantity' => 'ปริมาณ (ตัน)',
+			'value' => 'มูลค่า (บาท)',
+			'comment' => 'หมายเหตุ',
 		);
 	}
 
@@ -100,15 +105,16 @@ class TbMonthGoal extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('month_goal_id',$this->month_goal_id);
-		$criteria->compare('acc_id',$this->acc_id);
-		$criteria->compare('quantity',$this->quantity,true);
-		$criteria->compare('value',$this->value,true);
-		$criteria->compare('month_id',$this->month_id);
 		$criteria->compare('year',$this->year,true);
 		$criteria->compare('round',$this->round);
 		$criteria->compare('division_id',$this->division_id);
+		$criteria->compare('acc_id',$this->acc_id);
+		$criteria->compare('month_id',$this->month_id);
 		$criteria->compare('version',$this->version);
 		$criteria->compare('subversion',$this->subversion);
+		$criteria->compare('quantity',$this->quantity,true);
+		$criteria->compare('value',$this->value,true);
+		$criteria->compare('comment',$this->comment,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

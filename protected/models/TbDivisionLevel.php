@@ -56,7 +56,7 @@ class TbDivisionLevel extends CActiveRecord
 	{
 		return array(
 			'ID' => 'ไอดีระดับสังกัด',
-			'Description' => 'ชื่อสังกัด',
+			'Description' => 'คำอธิบาย',
 		);
 	}
 

@@ -1,5 +1,4 @@
-<link href="<?= Yii::app()->request->baseUrl ?>/assets/css/datepicker.css" rel="stylesheet" type="text/css"/>
-<link href="<?= Yii::app()->request->baseUrl ?>/assets/css/jquery-checktree.css" ref="stylesheet" type="text/css" />
+<link href="<?= Yii::app()->request->baseUrl ?>/assets/css/jquery-checktree.css" rel="stylesheet" type="text/css" />
 <link href="<?= Yii::app()->request->baseUrl ?>/assets/css/smart_wizard.css" rel="stylesheet" type="text/css"/>
 <link href="<?= Yii::app()->request->baseUrl ?>/assets/css/multilevelcheckbox.css" rel="stylesheet" type="text/css"/>
 <style>
@@ -19,13 +18,13 @@
         <th width="200">จัดการ</th>
         </thead>
         <tbody id="yearlistbody">
-            <tr><td>Hello</td><td><button class="btn btn-success glyphicon glyphicon-plus">เพิ่ม</button></td></tr>
+            <!--<tr><td>Hello</td><td><button class="btn btn-success glyphicon glyphicon-plus">เพิ่ม</button></td></tr>-->
         </tbody>
     </table>
     <form id="accyear">
     </form>
 </div>
-
+<script src="<?= Yii::app()->request->baseUrl ?>/assets/js/getQueryParameters.js" type="text/javascript"></script>
 <script src="<?= Yii::app()->request->baseUrl ?>/assets/js/jquery-checktree.js" type="text/javascript"></script>
 <script src="<?= Yii::app()->request->baseUrl ?>/assets/js/jquery.smartWizard.js" type="text/javascript"></script>
 <script type="text/javascript" src="<?= Yii::app()->request->baseUrl ?>/assets/js/accountyearassign2.js"></script>

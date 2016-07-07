@@ -42,7 +42,7 @@
 </div>
 <div class='container' style="width:90%">
     <div class='row'>
-        <div class='table-responsive'>
+        <div class='table-responsive' style="min-width: 1214px;">
             <div>
                 <table class='table table-bordered'>
                     <thead>

@@ -5,7 +5,7 @@ $(function () {
             owner: $("#fdowner").val(),
             target: $("#fdtarget").val(),
         };
-        $.post('./../data/FillFilling',
+        $.post('./../ProfileFill/FillFilling',
                 {
                     ajax: 0,
                     searchtxt: search
@@ -13,14 +13,14 @@ $(function () {
         function (data) {
             $("#fillingbody").html(data);
         });
-        $.post('../Data/FillFillingOwner',
+        $.post('../ProfileFill/FillFillingOwner',
                 {
                     ajax: 0
                 }, function (data) {
             $("#addown").html(data);
             $("#editown").html(data);
         });
-        $.post('../Data/FillFillingTarget',
+        $.post('../ProfileFill/FillFillingTarget',
                 {
                     ajax: 0
                 }, function (data) {
@@ -46,7 +46,7 @@ $(function () {
         if (confirm("ยืนยันการลบ!?") == true)
         {
             $.ajax({
-                url: "../Data/FillingDel",
+                url: "../ProfileFill/FillingDel",
                 async: false,
                 type: 'POST',
                 data: {
@@ -72,7 +72,7 @@ $(function () {
     });
     $("#btnadd").click(function () {
         $.ajax({
-            url: "../data/FillingAdd",
+            url: "../ProfileFill/FillingAdd",
             async: false,
             type: 'POST',
             data: {
@@ -95,7 +95,7 @@ $(function () {
         d2 = $(this).attr("data-id2");
 
         $.ajax({
-            url: "../Data/FillFillingTargetEdit",
+            url: "../ProfileFill/FillFillingTargetEdit",
             async: false,
             type: 'POST',
             data: {
@@ -115,7 +115,7 @@ $(function () {
     });
     $("#btnedit").click(function () {
         $.ajax({
-            url: "../data/FillingEdit",
+            url: "../ProfileFill/FillingEdit",
             async: false,
             type: 'POST',
             data: {

@@ -4,8 +4,8 @@
  * This is the model class for table "tb_version".
  *
  * The followings are the available columns in table 'tb_version':
- * @property integer $month_goal_id
- * @property string $value
+ * @property string $year
+ * @property integer $round
  * @property integer $version
  */
 class TbVersion extends CActiveRecord
@@ -26,12 +26,12 @@ class TbVersion extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('month_goal_id, value, version', 'required'),
-			array('month_goal_id, version', 'numerical', 'integerOnly'=>true),
-			array('value', 'length', 'max'=>10),
+			array('year, round, version', 'required'),
+			array('round, version', 'numerical', 'integerOnly'=>true),
+			array('year', 'length', 'max'=>4),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('month_goal_id, value, version', 'safe', 'on'=>'search'),
+			array('year, round, version', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -52,9 +52,9 @@ class TbVersion extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'month_goal_id' => 'Month Goal',
-			'value' => 'Value',
-			'version' => 'Version',
+			'year' => 'Reference: tb_approve.year',
+			'round' => 'Reference: tb_approve.round',
+			'version' => 'หมายเลขเวอร์ชันของรอบการจัดสรรงบประมาณ',
 		);
 	}
 
@@ -76,8 +76,8 @@ class TbVersion extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
-		$criteria->compare('month_goal_id',$this->month_goal_id);
-		$criteria->compare('value',$this->value,true);
+		$criteria->compare('year',$this->year,true);
+		$criteria->compare('round',$this->round);
 		$criteria->compare('version',$this->version);
 
 		return new CActiveDataProvider($this, array(

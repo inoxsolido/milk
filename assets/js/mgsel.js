@@ -27,6 +27,6 @@ $(function(){
         $(".loading").fadeOut();
     });
     //main
-    ReqData();
+    //ReqData();
 });
 

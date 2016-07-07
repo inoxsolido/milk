@@ -118,6 +118,7 @@
                                 ['label' => 'กรอกงบประมาณ', 'url' => Yii::app()->createAbsoluteUrl("Bud/MonthGoal"), 'visible' => (Yii::app()->user->isDepartment || Yii::app()->user->isDivision)],
                                 ['label' => 'ยืนยันคำขอ', 'url' => Yii::app()->createAbsoluteUrl("Bud/Approve"), 'visible' => (Yii::app()->user->isDivision || Yii::app()->user->isAdmin)],
                                 ['label' => 'สรุปผล', 'url' => Yii::app()->createAbsoluteUrl("Bud/Summary"), 'visible' => !Yii::app()->user->isGuest],
+                                ['label' => 'จัดการปีงบมาณ', 'url' => Yii::app()->createAbsoluteUrl("Bud/BudgetManager"), 'visible' => Yii::app()->user->isAdmin],
                                 ['label' => "จัดการบัญชี <i class='caret'></i>", 'url' => '#', 'visible' => Yii::app()->user->isAdmin,
                                     'linkOptions' => [
                                         'class' => 'dropdown-toggle',
@@ -182,7 +183,7 @@
             </nav>
 
         </div><!-- mainmenu -->
-        <div id="content" style='/*height:600px !important;*/ overflow:auto;'><?php echo $content; ?></div>
+        <div id="content" style='/*height:600px !important; overflow:auto;*/'><?php echo $content; ?></div>
         <div class="clear"></div>
         <div id="footer" style="background-color:#afd9ee; opacity: 50%;">
             <div   style="text-align: center;">

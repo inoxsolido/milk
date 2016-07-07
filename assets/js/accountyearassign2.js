@@ -14,9 +14,15 @@ $(function(){
                 $("#btnback").hide();
                 $(".loading").fadeOut();
             }
+            
         });
     }
-    function ReqNewData() {
+    function ReqNewData(method, year) {
+        if(!method) method = who;
+        else who = method;
+        if(!year) year = selYear;
+        else selYear = year;
+        
         $("#yearlist").hide();
         $("#accyear").show();
         $("#btnback").show();
@@ -25,6 +31,7 @@ $(function(){
             type: 'POST',
             async: false,
             success: function (data, textStatus, jqXHR) {
+                
                 $("#accyear").html(data);
                 $(".checkbox-tree").checktree();
                 $(".swMain2").smartWizard({
@@ -49,14 +56,14 @@ $(function(){
                 });
             }
         });
-        if (who == "edit") {
+        if (method == "edit") {
             $.ajax({
                 url: "../Data/AccYear_AccinYear",
                 type: 'POST',
                 async: false,
                 dataType: 'JSON',
                 data: {
-                    year: selYear
+                    year: year
                 }, success: function (data, textStatus, jqXHR) {
                     if (typeof (data) == 'object') {
                         var temp = [];
@@ -120,6 +127,7 @@ $(function(){
                     } else
                     {
                         alert(data);
+                        $(".loading").fadeOut();
                     }
                 }
             });
@@ -127,14 +135,24 @@ $(function(){
             $(".swMain").smartWizard("goToStep", 1);
     }
     
-    ReqData();
+    function checkParams(){
+        var params = $.getQueryParameters();
+        if(!params.method || !params.year) 
+            ReqData();
+        else 
+            ReqNewData(params.method, params.year);
+    }
+    
     //bind event
     $("#yearlist").on("click", ".assign, .edit, .cancel", function(){
         var method;
         if($(this).hasClass("assign")) method = "assign";
-        else if($(this).hasClass("edit")) method = "edit";
+        else if($(this).hasClass("edit")) {
+            method = "edit";
+            if(!confirm("การแก้ไขบัญชีที่ใช้ในปีงบประมาณจะทำให้บัญชีในการกรอกงบประมาณและการออกรายงานเปลี่ยนแปลง\r\nต้องการแก้ไข ?")) return false;
+        }
         else if($(this).hasClass("cancel")) {
-            if(confirm("การลบบัญชีที่ใช้ในปีงบประมาณออกจะทำให้บัญชีนั้นหายไปจากการออกงบประมาณของปีงบประมาณ "+($(this).parent().attr("year")+543)+"\r\nคุณต้องการที่จะลบ ?")){
+            if(confirm("การลบบัญชีที่ใช้ในปีงบประมาณออกจะทำให้บัญชีนั้นหายไปจากการออกงบประมาณของปีงบประมาณ "+(Number($(this).parent().attr("year"))+543)+"\r\nคุณต้องการที่จะลบ ?")){
                 $(".loading").show();
                 $.ajax({
                     url: "../Data/DeleteAccYear",
@@ -148,6 +166,7 @@ $(function(){
                             ReqData();
                         }else{
                             alert("การลบบัญชีล้มเหลว "+data);
+                            $(".loading").fadeOut();
                         }
                     }
                 });
@@ -158,17 +177,21 @@ $(function(){
         $(".loading").show();
         selYear = $(this).parent().attr("year");
         who = method;
-        ReqNewData()
+        ReqNewData();
         $(".loading").fadeOut();
         
     });
     $("#btnback").click(function () {
         if (confirm("ข้อมูลที่คุณกรอกค้างไว้จะหายไป\r\nคุณต้องการย้อนกลับ ?"))
         {
+            window.location.search = "";
             $("#accyear").html("").hide();
             $("#yearlist").show();
             $(this).hide();
         }
     });
+    
+    //main
+    checkParams();
 });
 

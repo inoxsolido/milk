@@ -58,9 +58,9 @@ class TbGroup extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'group_id' => 'ไอดีหมวดงบประมาณ',
+			'group_id' => 'รหัสอ้างอิงหมวดงบประมาณ',
 			'group_name' => 'ชื่อหมวดงบประมาณ',
-			'type_id' => 'ไอดีประเภทงบประมาณ',
+			'type_id' => 'Reference: tb_type.type_id',
 		);
 	}
 

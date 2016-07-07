@@ -58,9 +58,15 @@ class TbApprove extends CActiveRecord
 	{
 		return array(
 			'year' => 'ปีงบประมาณ',
-			'division_id' => 'ไอดีสังกัด',
-			'round' => 'รอบการ adjust ปกติเป็น 1',
-			'approve_lv' => 'ระดับการยืนยัน',
+			'division_id' => 'Reference tb_division.division_id',
+			'round' => 'รอบการ adjust ปกติเป็น 0',
+			'approve_lv' => 'ระดับการยืนยัน \r\n
+0: ยังไม่มีการกรอกข้อมูล \r\n
+1: กรอกข้อมูลแล้ว \r\n
+2: หัวหน้ากองยืนยัน \r\n
+3: หัวหน้าฝ่ายยืนยัน \r\n
+4: Admin ยืนยัน \r\n
+5: ปิดปีงบประมาณ \r\n',
 		);
 	}
 

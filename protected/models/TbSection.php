@@ -55,7 +55,7 @@ class TbSection extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'section_id' => 'ไอดีด้าน',
+			'section_id' => 'รหัสอ้างอิงด้าน',
 			'section_name' => 'ชื่อด้าน',
 		);
 	}

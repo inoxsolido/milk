@@ -54,7 +54,7 @@ class TbType extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'type_id' => 'ไอดีประเภทงบประมาณ',
+			'type_id' => 'รหัสอ้างอิงประเภทงบประมาณ',
 			'type_name' => 'ชื่อประเภทงบประมาณ',
 		);
 	}

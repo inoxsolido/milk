@@ -11,12 +11,13 @@
  * @property integer $order
  * @property string $acc_erp
  * @property integer $hassum
+ * @property integer $enable
  *
  * The followings are the available model relations:
  * @property TbAccYear[] $tbAccYears
+ * @property TbGroup $group
  * @property TbAccount $parentAcc
  * @property TbAccount[] $tbAccounts
- * @property TbGroup $group
  * @property TbMonthGoal[] $tbMonthGoals
  */
 class TbAccount extends CActiveRecord
@@ -38,12 +39,12 @@ class TbAccount extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('acc_name, group_id, order', 'required'),
-			array('group_id, parent_acc_id, order, hassum', 'numerical', 'integerOnly'=>true),
+			array('group_id, parent_acc_id, order, hassum, enable', 'numerical', 'integerOnly'=>true),
 			array('acc_name', 'length', 'max'=>100),
 			array('acc_erp', 'length', 'max'=>8),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('acc_id, acc_name, group_id, parent_acc_id, order, acc_erp, hassum', 'safe', 'on'=>'search'),
+			array('acc_id, acc_name, group_id, parent_acc_id, order, acc_erp, hassum, enable', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -56,9 +57,9 @@ class TbAccount extends CActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
 			'tbAccYears' => array(self::HAS_MANY, 'TbAccYear', 'acc_id'),
+			'group' => array(self::BELONGS_TO, 'TbGroup', 'group_id'),
 			'parentAcc' => array(self::BELONGS_TO, 'TbAccount', 'parent_acc_id'),
 			'tbAccounts' => array(self::HAS_MANY, 'TbAccount', 'parent_acc_id'),
-			'group' => array(self::BELONGS_TO, 'TbGroup', 'group_id'),
 			'tbMonthGoals' => array(self::HAS_MANY, 'TbMonthGoal', 'acc_id'),
 		);
 	}
@@ -69,13 +70,14 @@ class TbAccount extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'acc_id' => 'ไอดีบัญชี',
+			'acc_id' => 'รหัสอ้างอิงบัญชี',
 			'acc_name' => 'ชื่อบัญชี',
-			'group_id' => 'ไอดีหมวดงบประมาณ',
-			'parent_acc_id' => 'ไอดีบัญชีแม่',
+			'group_id' => 'Reference: tb_group.group_id',
+			'parent_acc_id' => 'Reference: tb_account.acc_id',
 			'order' => 'หมายเลขลำดับ',
 			'acc_erp' => 'หมายเลข ERP ของบัญชี',
 			'hassum' => 'สถานะบัญชีว่ามีการรวมข้อมูลบัญชีลูกไว้ที่บัญชีนี้',
+			'enable' => 'สถานะอนุญาตใช้งาน',
 		);
 	}
 
@@ -104,6 +106,7 @@ class TbAccount extends CActiveRecord
 		$criteria->compare('order',$this->order);
 		$criteria->compare('acc_erp',$this->acc_erp,true);
 		$criteria->compare('hassum',$this->hassum);
+		$criteria->compare('enable',$this->enable);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

@@ -1,4 +1,4 @@
-﻿<link href="<?= Yii::app()->request->baseUrl ?>/assets/css/datepicker.css" rel="stylesheet" type="text/css"/>
+<link href="<?= Yii::app()->request->baseUrl ?>/assets/css/dropdown-check-list.css" rel="stylesheet" type="text/css"/>
 <style>
     /*Now the CSS*/
     * {margin: 0; padding: 0;}
@@ -11,7 +11,8 @@
     }
     
     .tree-org .level-1-container{
-        overflow-x:auto;
+        overflow-x:visible;
+        min-height:400px;
     }
     
     .tree-org li {
@@ -128,35 +129,30 @@
     #medit{
         border:2px solid #c00;
     }
+    .table td, .table th{
+        vertical-align: middle !important;
+    }
 </style>
-<link href="<?= Yii::app()->request->baseUrl ?>/assets/css/dropdown-check-list.css" rel="stylesheet" type="text/css"/>
-<nav class="menu btn-group btn-group-justified">
-    <a class="btn btn-sm btn-success" id="addm" onclick="showmenuadd();">เพิ่ม <i class="glyphicon glyphicon-plus"></i></a>
-    <a class="btn btn-sm btn-warning" id="editm" onclick="showmenuedit();">แก้ไข <i class="glyphicon glyphicon-edit"></i></a>
+<nav id="saveopt" class="menu" style="display:none">
+    <button id="btnback" class="btn btn-info" style="float:left"><i class="glyphicon glyphicon-backward"></i> ย้อนกลับ </button>
+    <button id="btnsave" class="btn btn-success" style="float:right"><i class="glyphicon glyphicon-book" ></i> บันทึก </button>
 </nav>
-<div id="madd"  class="form-horizontal center" style="display: none">
-    <div class="from-group" >
-        <label>เพิ่มโครงสร้างองค์กรสำหรับปี </label>
-        <input id="mayear" class="datepicker"  type="text" data-provide="datepicker" data-date-language="th-th">
-        <a id="mbtnselyear" class="btn btn-sm btn-success">ตกลง <i class="glyphicon glyphicon-ok"></i></a>
-    </div>
+<div class="container">
+    <table id="yearlist" class="table table-bordered">
+        <caption>ส่วนจัดการโครงสร้างที่ใช้ในแต่ละปีงบประมาณ</caption>
+        <thead>
+        <th>ปีงบประมาณ</th>
+        <th>สถานะงบประมาณ</th>
+        <th width="200">จัดการ</th>
+        </thead>
+        <tbody id="yearlistbody">
+            <!--<tr><td>Hello</td><td><button class="btn btn-success glyphicon glyphicon-plus">เพิ่ม</button></td></tr>-->
+        </tbody>
+    </table>
 </div>
-<div id="medit"  class="form-horizontal center" style="display: none">
-    <div class="from-group" >
-        <label>แก้ไขโครงสร้างองค์กรสำหรับปี: </label>
-        <select id="meyear">
-            <option>2557</option>
-            <option>2558</option>
-            <option>2559</option>
-        </select>
-        <a class="btn btn-sm btn-success">ตกลง <i class="glyphicon glyphicon-ok"></i></a><br/>
-        <span class="text-warning" style="display: inline!important;">การแก้ไขจะส่งผลกระทบต่อการเรียกดูสรุปผล การยืนยันข้อมูล และการกำหนดเป้าหมายรายเดือน</span>
-        <span class="text-danger" style="display:block" >*สามารถลบข้อมูลได้โดยการบันทึกค่าว่าง*</span>
-    </div>
-</div>
-
 <div class="tree-org">
     <ul class="level-1-container">
+        <!--
         <li><div class="node dropdown-check-list">ฝ่ายบลา ๆ <br/>
                 <span class="anchor glyphicon " data-id=""></span>
                 <div class="items">
@@ -176,46 +172,9 @@
                 <li><div class="node">lv2</div></li>
             </ul>
         </li>
+        -->
     </ul>
 </div>
-
-<script src="<?= Yii::app()->request->baseUrl ?>/assets/js/bootstrap-datepicker.js" type="text/javascript"></script>
-<script src="<?= Yii::app()->request->baseUrl ?>/assets/js/bootstrap-datepicker-thai.js" type="text/javascript"></script>
-<script src="<?= Yii::app()->request->baseUrl ?>/assets/js/locales/bootstrap-datepicker.th.js" type="text/javascript"></script>
+<script src="<?= Yii::app()->request->baseUrl ?>/assets/js/getQueryParameters.js" type="text/javascript"></script>
 <script src="<?= Yii::app()->request->baseUrl ?>/assets/js/dropdown-check-list.js" type="text/javascript"></script>
-<script type="text/javascript">
-        $(function () {
-            $('.datepicker').datepicker({
-                format: "yyyy",
-                viewMode: "years",
-                minViewMode: "years",
-                autoclose: true,
-                clearBtn: true,
-            });
-        });
-        var ua = false;
-        function showmenuadd()
-        {
-            ua = ua != true;
-            //clear old menu
-            $("#medit").slideUp("fast");
-            //add new menu
-            $("#madd").slideToggle("fast");
-            if (ua)
-                $(window).scrollTop(0);
-
-        }
-        var ue = false;
-        function showmenuedit()
-        {
-            ue = ue != true;
-            //clear old menu
-            $("#madd").slideUp("fast");
-            //add new menu
-            $("#medit").slideToggle("fast");
-            if (ue)
-                $(window).scrollTop();
-        }
-
-</script>
 <script src="<?= Yii::app()->request->baseUrl ?>/assets/js/orgchart.js" type="text/javascript"></script>

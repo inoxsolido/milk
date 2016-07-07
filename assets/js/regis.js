@@ -203,7 +203,7 @@ $(function () {
             ok = 1;
         }
         if (ok) {
-            $.post('./../data/addmember', {
+            $.post('./../UserManager/addmember', {
                 u: user.val(),
                 p: pass.val(),
                 f: fname.val(),
@@ -248,7 +248,7 @@ $(function () {
     //endsearch----
     function ReqData( to_pos ) {
         $("#usrbody").html('<image src="./../images/loading.gif">');
-        $.post('./../data/FillUsr',
+        $.post('./../UserManager/FillUsr',
                 {
                     ajax: 0,
                     search: {
@@ -269,7 +269,7 @@ $(function () {
     //active-deactive------
     $("#usrbody").on('click', '.deactive', function () {
         var scr_pos = $(window).scrollTop();
-        $.post('./../data/usrstatechange', {
+        $.post('./../UserManager/usrstatechange', {
             uid: $(this).attr('data-id'),
             state: 0
         }, function (data) {
@@ -286,7 +286,7 @@ $(function () {
     });
     $("#usrbody").on('click', '.active', function () {
         var scr_pos = $(window).scrollTop();
-        $.post('./../data/usrstatechange', {
+        $.post('./../UserManager/usrstatechange', {
             uid: $(this).attr('data-id'),
             state: 1
         }, function (data) {
@@ -330,7 +330,7 @@ $(function () {
         id = eid;
 
         $.ajax({
-            url: "../Data/AskUserInfo",
+            url: "../UserManager/AskUserInfo",
             async: false,
             type: 'POST',
             data: {id: id},
@@ -376,7 +376,7 @@ $(function () {
         if (!ok)
             return;
 
-        $.post('../Data/MemberEdit',
+        $.post('../UserManager/MemberEdit',
                 {
                     uid: eid,
                     username: $("#eusername").val(),
@@ -406,7 +406,23 @@ $(function () {
             }
         });
     });
-    $(window).scrollTop(scr_pos);
+    $("#usrbody").on("click", ".del", function(){
+        if(!confirm("ยืนยันการลบบัญชีผู้ใช้")) return false;
+        var scr_pos = $(window).scrollTop();
+        $.post('./../UserManager/DeleteUser', {
+            uid: $(this).attr('data-id'),
+        }, function (data) {
+            if (data == 'ok') {
+                ReqData(scr_pos);
+            }else{
+                if(data == 'Admin zero'){
+                    alert("ไม่สามารถลบบัญชีผู้ใช้นี้ได้\r\n เนื่องจากต้องมีบัญชี Administrator อย่างน้อย 1 บัญชี")
+                }else{
+                    alert("การลบบัญฃีล้มเหลว");
+                }
+            }
+        });
+    });
 });
 function checkID(id) {
     if (id.length !== 13)

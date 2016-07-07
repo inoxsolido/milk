@@ -59,8 +59,10 @@ class TbOrgStruct extends CActiveRecord
 	{
 		return array(
 			'year' => 'ปีงบประมาณ',
-			'parent_division_id' => 'สังกัดแม่',
-			'child_division_id' => 'สังกัดที่สังกัดแม่ (สังกัดลูก)',
+			'parent_division_id' => 'Reference: tb_division.division_id \r\n
+หน่วยงานแม่',
+			'child_division_id' => 'Reference: tb_division.division_id \r\n
+หน่วยงานลูก',
 		);
 	}
 

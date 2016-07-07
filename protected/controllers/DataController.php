@@ -13,185 +13,7 @@
 class DataController extends Controller
 {
 
-    public function actionAddMember()
-    {
-        if (isset($_POST['u']))
-        {
-            $user = $_POST['u'];
-            $pass = $_POST['p'];
-            $fname = $_POST['f'];
-            $lname = $_POST['l'];
-            $perid = $_POST['pid'];
-            $pos = $_POST['pos'];
-            $dep = $_POST['dep'];
-            $div = $_POST['div'];
-            $g = $_POST['g'];
-            $d = $pos == 3 ? NULL : $pos == 2 ? $div : $dep;
-            $pass = Yii::app()->Encryption->EncryptPassword($pass);
-            $result = Yii::app()->db->createCommand("INSERT INTO tb_user VALUES("
-                            . "NULL,'$user','$pass','$fname','$lname','$g',"
-                            . "'$perid',$d,'$pos',1)")->execute();
-            if ($result == 1)
-            {
-                echo 'ok';
-            }
-            else
-            {
-                echo 'not ok';
-            }
-        }
-    }
-
-    public function actionFillUsr()
-    {
-        if (isset($_POST['ajax']) && isset($_POST['search']['usr']) && isset($_POST['search']['fname']) && isset($_POST['search']['lname']) &&
-                isset($_POST['search']['perid']) && isset($_POST['search']['div']) && isset($_POST['search']['pos'])
-        )
-        {
-            $stxt = $_POST['search'];
-            $sql = "SELECT u.*, position_name, d.div_name  "
-                    . "FROM tb_user as u "
-                    . "INNER JOIN tb_position ON  u.position_id = tb_position.position_id "
-                    . "LEFT JOIN (SELECT division_id as div_id, division_name as div_name FROM tb_division) d ON u.division_id = d.div_id ";
-                    
-            if (!(empty($stxt['usr']) && empty($stxt['fname']) && empty($stxt['lname']) &&
-                    empty($stxt['perid']) && empty($stxt['div']) && empty($stxt['par']) && ($stxt['pos'] == 99)))
-            {
-                $sql .= "WHERE ";
-                if (!empty($stxt['usr']))
-                    $sql .= " u.username LIKE '%" . $stxt['usr'] . "%' AND";
-                if (!empty($stxt['fname']))
-                    $sql .=" u.fname LIKE '%" . $stxt['fname'] . "%' AND";
-                if (!empty($stxt['lname']))
-                    $sql .=" u.lname LIKE '%" . $stxt['lname'] . "%' AND";
-                if (!empty($stxt['perid']))
-                    $sql .=" u.person_id LIKE '" . $stxt['perid'] . "' AND";
-                if (!empty($stxt['div']))
-                    $sql .=" d.divname = '%" . $stxt['div'] . "%' AND";
-                
-                if ($stxt['pos'] != 99)
-                    $sql .=" u.position_id = " . $stxt['pos'] . " AND";
-                $sql = substr($sql, 0, -3);
-            }
-            $sql .=" ORDER BY position_id DESC, u.enable DESC";
-            //echo $sql;
-            $userinfo = Yii::app()->db->createCommand($sql)->queryAll();
-
-            foreach ($userinfo as $user)
-            {
-                ?>
-                <tr>
-                    <td style="width:10%"><?= $user['username'] ?></td>
-                    <td style="width:12.5%"><?= $user['fname'] ?></td>
-                    <td style="width:12.5%"><?= $user['lname'] ?></td>
-                    <td style="width:20%"><?= $user['person_id'] ?></td>
-                    <td style="width:15%"><?= $user['div_name'] ?></td>
-                    
-                    <td style="width:12%"><?= $user['position_name'] ?></td>
-                    <td style="width:100px">
-                        <div class='btn-group-sm' style='width:100%'>
-                        <button class='btn btn-sm btn-warning edit' data-id="<?= $user['user_id'] ?>">แก้ไข <span class='glyphicon glyphicon-wrench'></span></button><?php
-                        if ($user['enable'] == 1)
-                        {
-                            ?><button class='btn btn-sm btn-danger deactive' data-id="<?= $user['user_id'] ?>">ยกเลิก <span class='glyphicon glyphicon-remove'></span></button>
-                                <?php
-                            }
-                            else if ($user['enable'] == 0)
-                            {
-                                ?><button class='btn btn-sm btn-success active' data-id="<?= $user['user_id'] ?>">เปิดใช้ <span class='glyphicon glyphicon-ok'></span></button><?php } ?>
-                        </div>
-                    </td>
-                </tr>
-                <?php
-            }
-        }
-    }
-
-    public function actionUsrstatechange()
-    {
-        if (isset($_POST['uid']) && isset($_POST['state']))
-        {
-            $st = $_POST['state'];
-
-            $uid = $_POST['uid'];
-            //ตรวจสอบ admin ว่ามีทั้งหมดกี่คน 
-            $check = "SELECT COUNT(user_id) FROM tb_user WHERE user_id = $uid AND position_id = 3 AND enable = 1";
-            if($st == 0 && Yii::app()->db->createCommand($check)->queryScalar() == 1){
-                echo 'Admin zero';
-            }else{
-                $sql = "UPDATE tb_user SET enable = $st "
-                        . "WHERE user_id = $uid";
-                echo Yii::app()->db->createCommand($sql)->execute();
-            }
-        }
-    }
-
-    public function actionAskUserInfo()
-    {
-        if (isset($_POST['id']))
-        {
-            $id = $_POST['id'];
-            $model = TbUser::model()->findByPk(intval($id));
-
-            $result = array(
-                "user" => $model->username,
-                "perid" => $model->person_id,
-                "fname" => $model->fname,
-                "lname" => $model->lname,
-                "pos" => $model->position_id,
-                "div" => $model->division_id,
-                "gen" => $model->gender
-            );
-            echo json_encode($result);
-        }
-    }
-
-    public function actionMemberEdit()
-    {
-        if (isset($_POST['uid']))
-        {
-            $uid = $_POST['uid'];
-            $user = $_POST['username'];
-            $pass = $_POST['password'];
-            $fname = $_POST['fname'];
-            $lname = $_POST['lname'];
-            $perid = $_POST['perid'];
-            $pos = $_POST['pos'];
-            $dep = $_POST['dep'];
-            $div = $_POST['div'];
-            $gen = $_POST['gen'];
-            $oldusrname = TbUser::model()->findByPk(intval($uid))->username;
-            $chkusrdup = TbUser::model()->findAll("username = '$user' AND username <> '$oldusrname'");
-            if (count($chkusrdup) != 0)
-            {
-                echo 'usrdup';
-                return;
-            }
-            $oldperid = TbUser::model()->findByPk(intval($uid))->person_id;
-            $chkperiddup = TbUser::model()->findAll("person_id = '$perid' AND person_id <> '$oldperid'");
-            if (count($chkperiddup) != 0)
-            {
-                echo 'perdup';
-                return;
-            }
-
-            $model = TbUser::model()->findByPk($uid);
-            $model->username = $user;
-            if ($pass != "")
-                $model->password = Yii::app()->Encryption->EncryptPassword($pass);
-            $model->fname = $fname;
-            $model->lname = $lname;
-            $model->gender = $gen;
-            $model->person_id = $perid;
-            $model->position_id = $pos;
-            $model->division_id = $pos == 3 ? NULL : $pos == 2 ? $div : $dep;
-            $result = $model->save();
-            if ($result == 1)
-            {
-                echo 'ok';
-            }
-        }
-    }
+    
 
     public function actionFillDiv()
     {
@@ -397,138 +219,7 @@ class DataController extends Controller
         }
     }
     
-    //----filling zone-----
-    public function actionFillFilling()
-    {
-        if (isset($_POST['ajax']))
-        {
-            $sql = "SELECT tb_profile_fill.owner_div_id as pk1, tb_profile_fill.division_id as pk2, ow.own_name "
-                    . ",tp.tar_name "
-                    . "FROM tb_profile_fill "
-                    . "INNER JOIN (SELECT division_id as div_id, division_name as own_name FROM tb_division d "
-                    //. "LEFT JOIN (SELECT division_id as o_div_id, division_name as own_par_name FROM tb_division) oo ON d.parent_division = oo.o_div_id "
-                    . ") ow ON tb_profile_fill.owner_div_id = ow.div_id "
-                    . "INNER JOIN (SELECT division_id as div_id, division_name as tar_name FROM tb_division d "
-                    //. "LEFT JOIN (SELECT division_id as t_div_id, division_name as tar_par_name FROM tb_division) tt ON tt.t_div_id = d.parent_division "
-                    . ") tp ON tb_profile_fill.division_id = tp.div_id";
-            if (!empty($_POST['searchtxt']['owner']) || !empty($_POST['searchtxt']['target'])){
-                    $sql .= " WHERE";
-                    $s = $_POST['searchtxt'];
-                    if (!empty($s['owner']))
-                        $sql .= " own_name LIKE '%" . $s['owner'] . "%' AND";
-//                    if (!empty($s['ownerpar']))
-//                        $sql .= " own_par_name LIKE '%" . $s['ownerpar'] . "%' AND";
-                    if (!empty($s['target']))
-                        $sql .= " tar_name LIKE '%" . $s['target'] . "%' AND";
-//                    if (!empty($s['targetpar']))
-//                        $sql .= " tar_par_name LIKE '%" . $s['targetpar'] . "%' AND";
-                    $sql = substr($sql, 0, -3);
-                }
-            
-            $sql .= " ORDER BY own_name ASC, tar_name ASC";
-            $result = Yii::app()->db->createCommand($sql)->queryAll();
-            print_r($sql);
-            print_r($_POST);
-            //print_r($result);
-
-            foreach ($result as $row)
-            {
-                ?><tr>
-                    <td style="width:40%"><?= $row['own_name'] . " " ?></td>
-                    <td style="width:40%"><?= $row['tar_name'] . " " ?></td>
-                    <td style="width:20%"><div class="btn-group-sm" style="width:100%"><button class='btn btn-sm btn-warning edit' style="width:50%" data-id1="<?= $row['pk1'] ?>" data-id2="<?= $row['pk2'] ?>">แก้ไข <span class='glyphicon glyphicon-wrench'></span></button><?php
-                    ?><button class="btn btn-sm btn-danger delete" style="width:50%"data-id1="<?= $row['pk1'] ?>" data-id2="<?= $row['pk2'] ?>">ลบ <span class="glyphicon glyphicon-trash"></span></button>
-                        </div>
-                    </td>
-                </tr><?php
-            }
-        }
-    }
-
-    public function actionFillFillingOwner()
-    {
-        if (isset($_POST['ajax']))
-        {
-            $sql = "SELECT division_id as div_id, division_name as div_name "
-                    . "FROM tb_division "
-                    . "WHERE division_level <= 3"
-                    . " ORDER BY tb_division.erp_id";
-            $result = Yii::app()->db->createCommand($sql)->queryAll();
-            foreach ($result as $row)
-            {
-                ?><option value="<?= $row['div_id'] ?>"><?= $row['div_name'] ?></option><?php
-            }
-        }
-    }
-
-    public function actionFillFillingTarget()
-    {
-        if (isset($_POST['ajax']))
-        {
-            $sql = "SELECT division_id as div_id, division_name as div_name "
-                    . "FROM tb_division "
-                    . "WHERE division_level <= 3 AND division_id NOT IN (SELECT division_id FROM tb_profile_fill) ORDER BY tb_division.erp_id";
-            $result = Yii::app()->db->createCommand($sql)->queryAll();
-            foreach ($result as $row)
-            {
-                ?><option value="<?= $row['div_id'] ?>"><?= $row['div_name'] ?></option><?php
-            }
-        }
-    }
-
-    public function actionFillFillingTargetEdit()
-    {
-        if (isset($_POST['ajax']) && isset($_POST['pk1']) && isset($_POST['pk2']))
-        {
-            $pk1 = $_POST['pk1'];
-            $pk2 = $_POST['pk2'];
-            $sql = "SELECT division_id as div_id, division_name as div_name "
-                    . "FROM tb_division "
-                    . "WHERE division_id NOT IN (SELECT division_id FROM tb_profile_fill) OR division_id IN (SELECT division_id FROM tb_profile_fill WHERE owner_div_id = $pk1 AND division_id = $pk2)";
-            $result = Yii::app()->db->createCommand($sql)->queryAll();
-            foreach ($result as $row)
-            {
-                ?><option value="<?= $row['div_id'] ?>"><?= $row['div_name'] ?></option><?php
-                }
-            }
-        }
-
-        public function actionFillingDel()
-        {
-            if (isset($_POST['ajax']) && isset($_POST['id']) && !empty($_POST['id']['id1']) && !empty($_POST['id']['id2']))
-            {
-                echo TbProfileFill::model()->deleteByPk(array('owner_div_id' => $_POST['id']['id1'], 'division_id' => $_POST['id']['id2']));
-            }
-        }
-
-        public function actionFillingAdd()
-        {
-            if (isset($_POST['pk1']) && isset($_POST['pk2']))
-            {
-                $pk1 = intval($_POST['pk1']);
-                $pk2 = intval($_POST['pk2']);
-
-                $sql = "INSERT INTO tb_profile_fill VALUES ($pk1,$pk2)";
-                echo Yii::app()->db->createCommand($sql)->execute() ? 1 : 0;
-            }
-        }
-
-        public function actionFillingEdit()
-        {
-            if (isset($_POST['pk1']) && isset($_POST['pk2']) && isset($_POST['val1']) && isset($_POST['val2']))
-            {
-                $pk1 = $_POST['pk1'];
-                $pk2 = $_POST['pk2'];
-                $val1 = $_POST['val1'];
-                $val2 = $_POST['val2'];
-
-                $model = TbProfileFill::model()->findByPk(array("owner_div_id" => $pk1, "division_id" => $pk2));
-
-                $model->owner_div_id = $val1;
-                $model->division_id = $val2;
-                echo $model->save() ? 1 : 0;
-            }
-        }
+    
 
         //----account-----
         //--search
@@ -978,11 +669,11 @@ LEFT JOIN tb_group g ON a.group_id = g.group_id ";
                     <td><?=$r['approve_lv']!=9?'ยังไม่แล้วเสร็จ':'เสร็จสิ้นแล้ว'?></td>
                     <td><div class="btn-group-sm" style="width:100%" year="<?=$r['year']?>">
                             <?php if(!$check): ?>
-                            <button class="btn btn-success assign" style="width:50%; float:left;">กำหนด <i class="glyphicon glyphicon-plus"></i></button>
+                            <button class="btn btn-success assign" style="width:100%; float:left;">กำหนด <i class="glyphicon glyphicon-plus"></i></button>
                             <?php else: ?>
-                            <button class="btn btn-warning edit" style="width:50%; float:left;">แก้ไข <i class="glyphicon glyphicon-edit"></i></button>
+                            <button class="btn btn-warning edit" style="width:50%; float:left;">แก้ไข <i class="glyphicon glyphicon-edit"></i></button><?php
+                            ?><button class="btn btn-danger cancel" style="width:50%; float:left;">ยกเลิก <i class="glyphicon glyphicon-trash"></i></button>
                             <?php endif; ?>
-                            <button class="btn btn-danger cancel" style="width:50%; float:left;">ยกเลิก <i class="glyphicon glyphicon-trash"></i></button>
                         </div></td>
                 </tr><?php
             }
@@ -1109,6 +800,13 @@ LEFT JOIN tb_group g ON a.group_id = g.group_id ";
         {
             $year = $_POST['year'];
             $form = $_POST['fdata'];
+            //check year exist
+            
+            if(!count(TbApprove::model()->find("year = $year"))){
+                echo 'year does not exist';
+                return false;
+            }
+            
             $transaction = Yii::app()->db->beginTransaction();
             try
             {
@@ -1156,6 +854,13 @@ LEFT JOIN tb_group g ON a.group_id = g.group_id ";
     public function actionEditAccYear() {
         if (isset($_POST['year'])) {
             $year = $_POST['year'];
+            
+            //check year exist
+            if(!count(TbApprove::model()->find("year = $year"))){
+                echo 'year does not exist';
+                return false;
+            }
+            
             $transaction = Yii::app()->db->beginTransaction();
             try {
                 //about acc_year
@@ -2375,13 +2080,13 @@ ORDER BY erp_id ASC;";
         }
     }
     public function actionFillMonthGoalDiv(){
-        if(!(isset($_POST['year']) && isset($_POST['round']))){
+        if(!(isset($_POST['year']))){
             echo 'Error: Missing parameter';
             return false;
         }
         //dump
         $year = $_POST['year'];
-        $round = $_POST['round'];
+        
         //cus
         $userdiv = Yii::app()->user->UserDiv;
 
@@ -2805,33 +2510,6 @@ ORDER BY erp_id ASC";
         }
     }
     
-    public function actionJSONDivision(){
-        if(isset($_POST['year'])){
-            $year = $_POST['year']-543;
-        
-            //check year duplicate
-            $result = Yii::app()->db->createCommand("SELECT `year` FROM tb_org_struct WHERE `year` = $year")->queryScalar();
-            if($result){
-                echo json_encode(['error'=>'dup']);
-            }else{
-                $output = [
-                    'error' => 'none'
-                ];
-                $alldiv = TbDivision::model()->findAll(["condition" => "division_level <= 3", "order" => "erp_id ASC" ]);
-                $i[0] = intval(0);
-                $i[1] = intval(0);
-                $i[2] = intval(0);
-                $rec = [];
-                foreach ($alldiv as $div){
-                    /* @var $div TbDivision */
-                    $rec[$div->division_level][$i[$div->division_level-1]]['id'] = $div->division_id;
-                    $rec[$div->division_level][$i[$div->division_level-1]++]['name'] = $div->division_name;
-                    
-                }
-                $output['divs'] = $rec;
-                echo json_encode($output);
-            }
-        }
-    }
+    
 
 }

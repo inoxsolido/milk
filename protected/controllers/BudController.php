@@ -177,13 +177,18 @@ class BudController extends Controller
         }
     }
 
-    public function actionMonthGoal()
+    public function actionMonthGoal(){
+        $this->render("MonthGoalSel");
+    }
+    
+    public function actionMonthGoalold()
     {
         $userid = Yii::app()->user->UserId;
         $userdiv = Yii::app()->user->UserDiv;
         $resource = TbApprove::model()->findAll("division_id = $userdiv");
         
         $yearresource = Yii::app()->Resource->YearResource;
+        print_r($yearresource);
         if(empty($yearresource)){
             echo 'ขณะนี้ระบบยังไม่เปิดให้กรอกข้อมูล <a href="#" onclick="window.history.back();">ย้อนกลับ</a>';
         }else{
@@ -639,6 +644,10 @@ class BudController extends Controller
     
     public function actionOrgChart(){
         $this->render("OrgChart");
+    }
+    
+    public function actionBudgetManager(){
+        $this->render("BudgetManager");
     }
     
     public function actionOrgTest(){
