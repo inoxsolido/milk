@@ -738,6 +738,7 @@ LEFT JOIN tb_group g ON a.group_id = g.group_id ";
                                                                                         {
                                                                                             ?><li><?php
                                                                                             ?><label><input type="checkbox" name="<?= $lv4->acc_id ?>"/><?= $lv4->acc_name ?></label><?php
+                                                                                            
                                                                                             ?></li><?php
                                                                                     }
                                                                                     ?></ul><?php
@@ -1835,14 +1836,14 @@ ORDER BY erp_id ASC;";
                                             ?><li><?php
                                             ?><label><input type="checkbox" name="<?= $lv1->acc_id ?>" /><?= $lv1->acc_name ?></label><?php
                                             if (!$this->hasChild($lv1->acc_id)){ 
-                                                                                                ?>:&nbsp;
-                                                                                                <div style="display:none" class="txtacc">
-                                                                                                    <input type="text" name="acc-<?= $lv1->acc_id ?>" >
-                                                                                                    <span class="text-danger err"></span>
-                                                                                                </div>
-                                                                                                <?php }else{ ?>
-                                                                                                &nbsp;<a href="#" class="sh" tabindex="-1"><i class="glyphicon glyphicon-minus"></i></a>
-                                                                                                <?php }
+                                                ?>:&nbsp;
+                                                <div style="display:none" class="txtacc">
+                                                    <input type="text" name="acc-<?= $lv1->acc_id ?>" >
+                                                    <span class="text-danger err"></span>
+                                                </div>
+                                                <?php }else{ ?>
+                                                &nbsp;<a href="#" class="sh" tabindex="-1"><i class="glyphicon glyphicon-minus"></i></a>
+                                            <?php }
                                             $resultlv2 = TbAccount::model()->findAll(array('condition' => "parent_acc_id = $lv1->acc_id $in", 'order' => "acc_name ASC"));
                                             if (count($resultlv2))
                                             {
@@ -2386,46 +2387,7 @@ ORDER BY erp_id ASC;";
             print_r($ex);
         }
     }
-    public function actionMgInfo(){
-        if(!(isset($_POST['year'])&&isset($_POST['cid']))){
-            echo 'Error: Missing parameter';
-            return false;
-        }
-        //var dump
-        $year = $_POST['year'];
-        $cid = $_POST['cid'];
-        
-        $predata = array();
-        $result = TbMonthGoal::model()->findAll("year = $year AND division_id = $cid");
-        if(!empty($result)){
-            $i = intval(0);
-            foreach($result as $row){
-                $predata[$i]['accid'] = $row['acc_id'];
-                $predata[$i]['month'] = $row["month_id"];
-                $predata[$i++]['value'] = $row['value']; 
-            }
-            echo json_encode($predata);
-        }else{
-            echo 'error';
-        }
-    }
-    public function actionMgFillVersionSelector(){
-        @$cid = $_POST['div'];
-        @$year = $_POST['year'];
-        $versions = Yii::app()->Resource->getAllVersionOfDep($cid, $year);
-        if (count($versions))
-        {
-            ?><option value="0">เลือกเวอร์ชั่น</option><?php
-            foreach ($versions as $ver)
-            {
-                ?><option value="<?= $ver['version'] ?>"><?= $ver['version'] ?></option><?php
-            }
-        }
-        else
-        {
-            ?><option value="0">--ไม่มีเวอร์ชั่นสำหรับปีนี้--</option><?php
-        }
-    }
+    
     
     public function actionMgFillValueFromVersion(){
         if(!(isset($_POST['year'])&&isset($_POST['cid'])&&isset($_POST['ver']))){
@@ -2509,6 +2471,8 @@ ORDER BY erp_id ASC";
             echo json_encode($return, JSON_FORCE_OBJECT);
         }
     }
+    
+   
     
     
 
