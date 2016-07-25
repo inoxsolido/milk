@@ -21918,3 +21918,2022 @@ Stack trace:
 REQUEST_URI=/milk/monthgoal/fillyear
 in G:\DPO\xampp\htdocs\milk\protected\controllers\MonthGoalController.php (34)
 in G:\DPO\xampp\htdocs\milk\index.php (13)
+2016/07/07 13:01:10 [error] [exception.CException] exception 'CException' with message 'CWebApplication and its behaviors do not have a method or closure named "createCommand".' in G:\DPO\xampp\htdocs\Yii\framework\base\CComponent.php:266
+Stack trace:
+#0 G:\DPO\xampp\htdocs\milk\protected\controllers\MonthGoalController.php(54): CComponent->__call('createCommand', Array)
+#1 G:\DPO\xampp\htdocs\milk\protected\controllers\MonthGoalController.php(54): CWebApplication->createCommand('\r\n             ...')
+#2 G:\DPO\xampp\htdocs\Yii\framework\web\actions\CInlineAction.php(49): MonthGoalController->actionFillJobList()
+#3 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#5 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): CController->run('filljoblist')
+#7 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('MonthGoal/FillJ...')
+#8 G:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#9 G:\DPO\xampp\htdocs\milk\index.php(13): CApplication->run()
+#10 {main}
+REQUEST_URI=/milk/MonthGoal/FillJobList
+HTTP_REFERER=http://localhost/milk/Bud/MonthGoal
+---
+2016/07/07 13:08:05 [error] [exception.CException] exception 'CException' with message 'CWebApplication and its behaviors do not have a method or closure named "createCommand".' in G:\DPO\xampp\htdocs\Yii\framework\base\CComponent.php:266
+Stack trace:
+#0 G:\DPO\xampp\htdocs\milk\protected\controllers\MonthGoalController.php(55): CComponent->__call('createCommand', Array)
+#1 G:\DPO\xampp\htdocs\milk\protected\controllers\MonthGoalController.php(55): CWebApplication->createCommand('\r\n             ...')
+#2 G:\DPO\xampp\htdocs\Yii\framework\web\actions\CInlineAction.php(49): MonthGoalController->actionFillJobList()
+#3 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#5 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): CController->run('filljoblist')
+#7 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('MonthGoal/FillJ...')
+#8 G:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#9 G:\DPO\xampp\htdocs\milk\index.php(13): CApplication->run()
+#10 {main}
+REQUEST_URI=/milk/MonthGoal/FillJobList
+HTTP_REFERER=http://localhost/milk/Bud/MonthGoal
+---
+2016/07/07 13:08:34 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'dpo_budget.tb_month_goal' doesn't exist. The SQL statement executed was: 
+                SELECT pf.destination, dd.division_name, month_goal_id
+                FROM tb_profile_fill pf
+                INNER JOIN tb_division dd ON pf.destination = dd.division_id 
+                LEFT JOIN tb_month_goal mg ON pf.deestination = mg.division_id AND mg.year = 2015 AND mg.round = 1 AND mg.version = 1 
+                WHERE pf.Operator = 69 
+                .
+in G:\DPO\xampp\htdocs\milk\protected\controllers\MonthGoalController.php (55)
+in G:\DPO\xampp\htdocs\milk\index.php (13)
+2016/07/07 13:08:34 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'dpo_budget.tb_month_goal' doesn't exist. The SQL statement executed was: 
+                SELECT pf.destination, dd.division_name, month_goal_id
+                FROM tb_profile_fill pf
+                INNER JOIN tb_division dd ON pf.destination = dd.division_id 
+                LEFT JOIN tb_month_goal mg ON pf.deestination = mg.division_id AND mg.year = 2015 AND mg.round = 1 AND mg.version = 1 
+                WHERE pf.Operator = 69 
+                ' in G:\DPO\xampp\htdocs\Yii\framework\db\CDbCommand.php:543
+Stack trace:
+#0 G:\DPO\xampp\htdocs\Yii\framework\db\CDbCommand.php(396): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 G:\DPO\xampp\htdocs\milk\protected\controllers\MonthGoalController.php(55): CDbCommand->queryAll()
+#2 G:\DPO\xampp\htdocs\Yii\framework\web\actions\CInlineAction.php(49): MonthGoalController->actionFillJobList()
+#3 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#5 G:\DPO\xampp\htdocs\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): CController->run('filljoblist')
+#7 G:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('MonthGoal/FillJ...')
+#8 G:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#9 G:\DPO\xampp\htdocs\milk\index.php(13): CApplication->run()
+#10 {main}
+REQUEST_URI=/milk/MonthGoal/FillJobList
+HTTP_REFERER=http://localhost/milk/Bud/MonthGoal
+---
+2016/07/08 09:29:32 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection: SQLSTATE[HY000] [1049] Unknown database 'dpo_budget'' in D:\DPO\xampp\htdocs\Yii\framework\db\CDbConnection.php:399
+Stack trace:
+#0 D:\DPO\xampp\htdocs\Yii\framework\db\CDbConnection.php(347): CDbConnection->open()
+#1 D:\DPO\xampp\htdocs\Yii\framework\db\CDbConnection.php(325): CDbConnection->setActive(true)
+#2 D:\DPO\xampp\htdocs\Yii\framework\base\CModule.php(394): CDbConnection->init()
+#3 D:\DPO\xampp\htdocs\Yii\framework\base\CModule.php(103): CModule->getComponent('db')
+#4 D:\DPO\xampp\htdocs\milk\protected\controllers\BudController.php(25): CModule->__get('db')
+#5 D:\DPO\xampp\htdocs\Yii\framework\web\CController.php(1144): BudController->accessRules()
+#6 D:\DPO\xampp\htdocs\Yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#7 D:\DPO\xampp\htdocs\Yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#8 D:\DPO\xampp\htdocs\Yii\framework\web\CController.php(291): CFilterChain->run()
+#9 D:\DPO\xampp\htdocs\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#10 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): CController->run('')
+#11 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('')
+#12 D:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#13 D:\DPO\xampp\htdocs\milk\index.php(13): CApplication->run()
+#14 {main}
+REQUEST_URI=/milk/
+---
+2016/07/08 11:18:07 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'pf.deestination' in 'on clause'. The SQL statement executed was: 
+                SELECT pf.destination, dd.division_name, month_goal_id
+                FROM tb_profile_fill pf
+                INNER JOIN tb_division dd ON pf.destination = dd.division_id 
+                LEFT JOIN tb_month_goal mg ON pf.deestination = mg.division_id AND mg.year = 2015 AND mg.round = 1 AND mg.version = 1 
+                WHERE pf.Operator = 69 
+                .
+in D:\DPO\xampp\htdocs\milk\protected\controllers\MonthGoalController.php (55)
+in D:\DPO\xampp\htdocs\milk\index.php (13)
+2016/07/08 11:18:07 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'pf.deestination' in 'on clause'. The SQL statement executed was: 
+                SELECT pf.destination, dd.division_name, month_goal_id
+                FROM tb_profile_fill pf
+                INNER JOIN tb_division dd ON pf.destination = dd.division_id 
+                LEFT JOIN tb_month_goal mg ON pf.deestination = mg.division_id AND mg.year = 2015 AND mg.round = 1 AND mg.version = 1 
+                WHERE pf.Operator = 69 
+                ' in D:\DPO\xampp\htdocs\Yii\framework\db\CDbCommand.php:543
+Stack trace:
+#0 D:\DPO\xampp\htdocs\Yii\framework\db\CDbCommand.php(396): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 D:\DPO\xampp\htdocs\milk\protected\controllers\MonthGoalController.php(55): CDbCommand->queryAll()
+#2 D:\DPO\xampp\htdocs\Yii\framework\web\actions\CInlineAction.php(49): MonthGoalController->actionFillJobList()
+#3 D:\DPO\xampp\htdocs\Yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 D:\DPO\xampp\htdocs\Yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#5 D:\DPO\xampp\htdocs\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): CController->run('filljoblist')
+#7 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('MonthGoal/FillJ...')
+#8 D:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#9 D:\DPO\xampp\htdocs\milk\index.php(13): CApplication->run()
+#10 {main}
+REQUEST_URI=/milk/MonthGoal/FillJobList
+HTTP_REFERER=http://localhost/milk/Bud/MonthGoal
+---
+2016/07/08 11:19:16 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'pf.deestination' in 'on clause'. The SQL statement executed was: 
+                SELECT pf.destination, dd.division_name, month_goal_id
+                FROM tb_profile_fill pf
+                INNER JOIN tb_division dd ON pf.destination = dd.division_id 
+                LEFT JOIN tb_month_goal mg ON pf.deestination = mg.division_id AND mg.year = 2016 AND mg.round = 1 AND mg.version = 1 
+                WHERE pf.Operator = 69 
+                .
+in D:\DPO\xampp\htdocs\milk\protected\controllers\MonthGoalController.php (55)
+in D:\DPO\xampp\htdocs\milk\index.php (13)
+2016/07/08 11:19:16 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'pf.deestination' in 'on clause'. The SQL statement executed was: 
+                SELECT pf.destination, dd.division_name, month_goal_id
+                FROM tb_profile_fill pf
+                INNER JOIN tb_division dd ON pf.destination = dd.division_id 
+                LEFT JOIN tb_month_goal mg ON pf.deestination = mg.division_id AND mg.year = 2016 AND mg.round = 1 AND mg.version = 1 
+                WHERE pf.Operator = 69 
+                ' in D:\DPO\xampp\htdocs\Yii\framework\db\CDbCommand.php:543
+Stack trace:
+#0 D:\DPO\xampp\htdocs\Yii\framework\db\CDbCommand.php(396): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 D:\DPO\xampp\htdocs\milk\protected\controllers\MonthGoalController.php(55): CDbCommand->queryAll()
+#2 D:\DPO\xampp\htdocs\Yii\framework\web\actions\CInlineAction.php(49): MonthGoalController->actionFillJobList()
+#3 D:\DPO\xampp\htdocs\Yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 D:\DPO\xampp\htdocs\Yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#5 D:\DPO\xampp\htdocs\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): CController->run('filljoblist')
+#7 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('MonthGoal/FillJ...')
+#8 D:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#9 D:\DPO\xampp\htdocs\milk\index.php(13): CApplication->run()
+#10 {main}
+REQUEST_URI=/milk/MonthGoal/FillJobList
+HTTP_REFERER=http://localhost/milk/Bud/MonthGoal
+---
+2016/07/08 11:19:43 [error] [php] Undefined variable: r (D:\DPO\xampp\htdocs\milk\protected\controllers\MonthGoalController.php:71)
+Stack trace:
+#0 D:\DPO\xampp\htdocs\Yii\framework\web\CController.php(286): MonthGoalController->runAction()
+#1 D:\DPO\xampp\htdocs\Yii\framework\web\CController.php(265): MonthGoalController->runActionWithFilters()
+#2 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): MonthGoalController->run()
+#3 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 D:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#5 D:\DPO\xampp\htdocs\milk\index.php(13): CWebApplication->run()
+REQUEST_URI=/milk/MonthGoal/FillJobList
+in D:\DPO\xampp\htdocs\milk\protected\controllers\MonthGoalController.php (71)
+in D:\DPO\xampp\htdocs\milk\index.php (13)
+2016/07/08 11:20:48 [error] [php] Undefined index: year (D:\DPO\xampp\htdocs\milk\protected\controllers\MonthGoalController.php:71)
+Stack trace:
+#0 D:\DPO\xampp\htdocs\Yii\framework\web\CController.php(286): MonthGoalController->runAction()
+#1 D:\DPO\xampp\htdocs\Yii\framework\web\CController.php(265): MonthGoalController->runActionWithFilters()
+#2 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): MonthGoalController->run()
+#3 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 D:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#5 D:\DPO\xampp\htdocs\milk\index.php(13): CWebApplication->run()
+REQUEST_URI=/milk/MonthGoal/FillJobList
+in D:\DPO\xampp\htdocs\milk\protected\controllers\MonthGoalController.php (71)
+in D:\DPO\xampp\htdocs\milk\index.php (13)
+2016/07/08 12:07:12 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/js/mgsel.js'assets/js/jquery.redirectPost.js".' in D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/js/mgsel...')
+#1 D:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#2 D:\DPO\xampp\htdocs\milk\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/milk/assets/js/mgsel.js'assets/js/jquery.redirectPost.js
+HTTP_REFERER=http://localhost/milk/Bud/MonthGoal
+---
+2016/07/08 12:07:12 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/js/mgsel.js'assets/js/jquery.redirectPost.js".' in D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/js/mgsel...')
+#1 D:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#2 D:\DPO\xampp\htdocs\milk\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/milk/assets/js/mgsel.js'assets/js/jquery.redirectPost.js
+HTTP_REFERER=http://localhost/milk/Bud/MonthGoal
+---
+2016/07/08 12:09:47 [error] [exception.CException] exception 'CException' with message 'BudController cannot find the requested view "Bud/MonthgoalInput".' in D:\DPO\xampp\htdocs\Yii\framework\web\CController.php:878
+Stack trace:
+#0 D:\DPO\xampp\htdocs\milk\protected\views\Bud\MonthGoalSel.php(27): CController->renderPartial('Bud/MonthgoalIn...', Array)
+#1 D:\DPO\xampp\htdocs\Yii\framework\web\CBaseController.php(126): require('D:\\DPO\\xampp\\ht...')
+#2 D:\DPO\xampp\htdocs\Yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('D:\\DPO\\xampp\\ht...', NULL, true)
+#3 D:\DPO\xampp\htdocs\Yii\framework\web\CController.php(869): CBaseController->renderFile('D:\\DPO\\xampp\\ht...', NULL, true)
+#4 D:\DPO\xampp\htdocs\Yii\framework\web\CController.php(782): CController->renderPartial('MonthGoalSel', NULL, true)
+#5 D:\DPO\xampp\htdocs\milk\protected\controllers\BudController.php(181): CController->render('MonthGoalSel')
+#6 D:\DPO\xampp\htdocs\Yii\framework\web\actions\CInlineAction.php(49): BudController->actionMonthGoal()
+#7 D:\DPO\xampp\htdocs\Yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#8 D:\DPO\xampp\htdocs\Yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#9 D:\DPO\xampp\htdocs\Yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#10 D:\DPO\xampp\htdocs\Yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#11 D:\DPO\xampp\htdocs\Yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#12 D:\DPO\xampp\htdocs\Yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#13 D:\DPO\xampp\htdocs\Yii\framework\web\CController.php(291): CFilterChain->run()
+#14 D:\DPO\xampp\htdocs\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#15 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): CController->run('monthgoal')
+#16 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('Bud/MonthGoal')
+#17 D:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#18 D:\DPO\xampp\htdocs\milk\index.php(13): CApplication->run()
+#19 {main}
+REQUEST_URI=/milk/Bud/MonthGoal
+HTTP_REFERER=http://localhost/milk/Bud/MonthGoal
+---
+2016/07/08 12:13:04 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'dpo_budget.tb_mg_limit' doesn't exist. The SQL statement executed was: SELECT  IFNULL(ac1.acc_id,0) as ac1, IFNULL(ac2.acc_id,0) as ac2, IFNULL(ac3.acc_id,0) as ac3, IFNULL(ac4.acc_id,0) as ac4
+                            FROM tb_division dc 
+                            JOIN tb_division dp ON dp.division_id = dc.parent_division 
+                            JOIN tb_mg_limit mgl ON mgl.division = dc.division_id AND `year` = undefined AND round = undefined
+                            JOIN tb_account ac1 ON ac1.acc_id = mgl.acc_id
+                            LEFT JOIN tb_account ac2 ON ac2.acc_id = ac1.parent_acc_id 
+                            LEFT JOIN tb_account ac3 ON ac3.acc_id = ac2.parent_acc_id
+                            LEFT JOIN tb_account ac4 ON ac4.acc_id = ac3.parent_acc_id
+                            WHERE dc.division_id = 69.
+in D:\DPO\xampp\htdocs\milk\protected\controllers\DataController.php (2185)
+in D:\DPO\xampp\htdocs\milk\index.php (13)
+2016/07/08 12:13:04 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'dpo_budget.tb_mg_limit' doesn't exist. The SQL statement executed was: SELECT  IFNULL(ac1.acc_id,0) as ac1, IFNULL(ac2.acc_id,0) as ac2, IFNULL(ac3.acc_id,0) as ac3, IFNULL(ac4.acc_id,0) as ac4
+                            FROM tb_division dc 
+                            JOIN tb_division dp ON dp.division_id = dc.parent_division 
+                            JOIN tb_mg_limit mgl ON mgl.division = dc.division_id AND `year` = undefined AND round = undefined
+                            JOIN tb_account ac1 ON ac1.acc_id = mgl.acc_id
+                            LEFT JOIN tb_account ac2 ON ac2.acc_id = ac1.parent_acc_id 
+                            LEFT JOIN tb_account ac3 ON ac3.acc_id = ac2.parent_acc_id
+                            LEFT JOIN tb_account ac4 ON ac4.acc_id = ac3.parent_acc_id
+                            WHERE dc.division_id = 69' in D:\DPO\xampp\htdocs\Yii\framework\db\CDbCommand.php:543
+Stack trace:
+#0 D:\DPO\xampp\htdocs\Yii\framework\db\CDbCommand.php(396): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 D:\DPO\xampp\htdocs\milk\protected\controllers\DataController.php(2185): CDbCommand->queryAll()
+#2 D:\DPO\xampp\htdocs\Yii\framework\web\actions\CInlineAction.php(49): DataController->actionFillMonthGoalInput()
+#3 D:\DPO\xampp\htdocs\Yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 D:\DPO\xampp\htdocs\Yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#5 D:\DPO\xampp\htdocs\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): CController->run('fillmonthgoalin...')
+#7 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('Data/FillMonthG...')
+#8 D:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#9 D:\DPO\xampp\htdocs\milk\index.php(13): CApplication->run()
+#10 {main}
+REQUEST_URI=/milk/Data/FillMonthGoalInput
+HTTP_REFERER=http://localhost/milk/Bud/MonthGoal
+---
+2016/07/11 05:28:54 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'dpo_budget.tb_mg_limit' doesn't exist. The SQL statement executed was: SELECT  IFNULL(ac1.acc_id,0) as ac1, IFNULL(ac2.acc_id,0) as ac2, IFNULL(ac3.acc_id,0) as ac3, IFNULL(ac4.acc_id,0) as ac4
+                            FROM tb_division dc 
+                            JOIN tb_division dp ON dp.division_id = dc.parent_division 
+                            JOIN tb_mg_limit mgl ON mgl.division = dc.division_id AND `year` = undefined AND round = undefined
+                            JOIN tb_account ac1 ON ac1.acc_id = mgl.acc_id
+                            LEFT JOIN tb_account ac2 ON ac2.acc_id = ac1.parent_acc_id 
+                            LEFT JOIN tb_account ac3 ON ac3.acc_id = ac2.parent_acc_id
+                            LEFT JOIN tb_account ac4 ON ac4.acc_id = ac3.parent_acc_id
+                            WHERE dc.division_id = 69.
+in D:\DPO\xampp\htdocs\milk\protected\controllers\DataController.php (2185)
+in D:\DPO\xampp\htdocs\milk\index.php (13)
+2016/07/11 05:28:54 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'dpo_budget.tb_mg_limit' doesn't exist. The SQL statement executed was: SELECT  IFNULL(ac1.acc_id,0) as ac1, IFNULL(ac2.acc_id,0) as ac2, IFNULL(ac3.acc_id,0) as ac3, IFNULL(ac4.acc_id,0) as ac4
+                            FROM tb_division dc 
+                            JOIN tb_division dp ON dp.division_id = dc.parent_division 
+                            JOIN tb_mg_limit mgl ON mgl.division = dc.division_id AND `year` = undefined AND round = undefined
+                            JOIN tb_account ac1 ON ac1.acc_id = mgl.acc_id
+                            LEFT JOIN tb_account ac2 ON ac2.acc_id = ac1.parent_acc_id 
+                            LEFT JOIN tb_account ac3 ON ac3.acc_id = ac2.parent_acc_id
+                            LEFT JOIN tb_account ac4 ON ac4.acc_id = ac3.parent_acc_id
+                            WHERE dc.division_id = 69' in D:\DPO\xampp\htdocs\Yii\framework\db\CDbCommand.php:543
+Stack trace:
+#0 D:\DPO\xampp\htdocs\Yii\framework\db\CDbCommand.php(396): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 D:\DPO\xampp\htdocs\milk\protected\controllers\DataController.php(2185): CDbCommand->queryAll()
+#2 D:\DPO\xampp\htdocs\Yii\framework\web\actions\CInlineAction.php(49): DataController->actionFillMonthGoalInput()
+#3 D:\DPO\xampp\htdocs\Yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 D:\DPO\xampp\htdocs\Yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#5 D:\DPO\xampp\htdocs\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): CController->run('fillmonthgoalin...')
+#7 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('Data/FillMonthG...')
+#8 D:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#9 D:\DPO\xampp\htdocs\milk\index.php(13): CApplication->run()
+#10 {main}
+REQUEST_URI=/milk/Data/FillMonthGoalInput
+HTTP_REFERER=http://localhost/milk/Bud/MonthGoal
+---
+2016/07/11 05:30:43 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'dpo_budget.tb_mg_limit' doesn't exist. The SQL statement executed was: SELECT  IFNULL(ac1.acc_id,0) as ac1, IFNULL(ac2.acc_id,0) as ac2, IFNULL(ac3.acc_id,0) as ac3, IFNULL(ac4.acc_id,0) as ac4
+                            FROM tb_division dc 
+                            JOIN tb_division dp ON dp.division_id = dc.parent_division 
+                            JOIN tb_mg_limit mgl ON mgl.division = dc.division_id AND `year` = undefined AND round = undefined
+                            JOIN tb_account ac1 ON ac1.acc_id = mgl.acc_id
+                            LEFT JOIN tb_account ac2 ON ac2.acc_id = ac1.parent_acc_id 
+                            LEFT JOIN tb_account ac3 ON ac3.acc_id = ac2.parent_acc_id
+                            LEFT JOIN tb_account ac4 ON ac4.acc_id = ac3.parent_acc_id
+                            WHERE dc.division_id = 69.
+in D:\DPO\xampp\htdocs\milk\protected\controllers\DataController.php (2185)
+in D:\DPO\xampp\htdocs\milk\index.php (13)
+2016/07/11 05:30:43 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'dpo_budget.tb_mg_limit' doesn't exist. The SQL statement executed was: SELECT  IFNULL(ac1.acc_id,0) as ac1, IFNULL(ac2.acc_id,0) as ac2, IFNULL(ac3.acc_id,0) as ac3, IFNULL(ac4.acc_id,0) as ac4
+                            FROM tb_division dc 
+                            JOIN tb_division dp ON dp.division_id = dc.parent_division 
+                            JOIN tb_mg_limit mgl ON mgl.division = dc.division_id AND `year` = undefined AND round = undefined
+                            JOIN tb_account ac1 ON ac1.acc_id = mgl.acc_id
+                            LEFT JOIN tb_account ac2 ON ac2.acc_id = ac1.parent_acc_id 
+                            LEFT JOIN tb_account ac3 ON ac3.acc_id = ac2.parent_acc_id
+                            LEFT JOIN tb_account ac4 ON ac4.acc_id = ac3.parent_acc_id
+                            WHERE dc.division_id = 69' in D:\DPO\xampp\htdocs\Yii\framework\db\CDbCommand.php:543
+Stack trace:
+#0 D:\DPO\xampp\htdocs\Yii\framework\db\CDbCommand.php(396): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 D:\DPO\xampp\htdocs\milk\protected\controllers\DataController.php(2185): CDbCommand->queryAll()
+#2 D:\DPO\xampp\htdocs\Yii\framework\web\actions\CInlineAction.php(49): DataController->actionFillMonthGoalInput()
+#3 D:\DPO\xampp\htdocs\Yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 D:\DPO\xampp\htdocs\Yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#5 D:\DPO\xampp\htdocs\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): CController->run('fillmonthgoalin...')
+#7 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('Data/FillMonthG...')
+#8 D:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#9 D:\DPO\xampp\htdocs\milk\index.php(13): CApplication->run()
+#10 {main}
+REQUEST_URI=/milk/Data/FillMonthGoalInput
+HTTP_REFERER=http://localhost/milk/Bud/MonthGoal
+---
+2016/07/11 05:30:47 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'dpo_budget.tb_mg_limit' doesn't exist. The SQL statement executed was: SELECT  IFNULL(ac1.acc_id,0) as ac1, IFNULL(ac2.acc_id,0) as ac2, IFNULL(ac3.acc_id,0) as ac3, IFNULL(ac4.acc_id,0) as ac4
+                            FROM tb_division dc 
+                            JOIN tb_division dp ON dp.division_id = dc.parent_division 
+                            JOIN tb_mg_limit mgl ON mgl.division = dc.division_id AND `year` = undefined AND round = undefined
+                            JOIN tb_account ac1 ON ac1.acc_id = mgl.acc_id
+                            LEFT JOIN tb_account ac2 ON ac2.acc_id = ac1.parent_acc_id 
+                            LEFT JOIN tb_account ac3 ON ac3.acc_id = ac2.parent_acc_id
+                            LEFT JOIN tb_account ac4 ON ac4.acc_id = ac3.parent_acc_id
+                            WHERE dc.division_id = 69.
+in D:\DPO\xampp\htdocs\milk\protected\controllers\DataController.php (2185)
+in D:\DPO\xampp\htdocs\milk\index.php (13)
+2016/07/11 05:30:47 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'dpo_budget.tb_mg_limit' doesn't exist. The SQL statement executed was: SELECT  IFNULL(ac1.acc_id,0) as ac1, IFNULL(ac2.acc_id,0) as ac2, IFNULL(ac3.acc_id,0) as ac3, IFNULL(ac4.acc_id,0) as ac4
+                            FROM tb_division dc 
+                            JOIN tb_division dp ON dp.division_id = dc.parent_division 
+                            JOIN tb_mg_limit mgl ON mgl.division = dc.division_id AND `year` = undefined AND round = undefined
+                            JOIN tb_account ac1 ON ac1.acc_id = mgl.acc_id
+                            LEFT JOIN tb_account ac2 ON ac2.acc_id = ac1.parent_acc_id 
+                            LEFT JOIN tb_account ac3 ON ac3.acc_id = ac2.parent_acc_id
+                            LEFT JOIN tb_account ac4 ON ac4.acc_id = ac3.parent_acc_id
+                            WHERE dc.division_id = 69' in D:\DPO\xampp\htdocs\Yii\framework\db\CDbCommand.php:543
+Stack trace:
+#0 D:\DPO\xampp\htdocs\Yii\framework\db\CDbCommand.php(396): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 D:\DPO\xampp\htdocs\milk\protected\controllers\DataController.php(2185): CDbCommand->queryAll()
+#2 D:\DPO\xampp\htdocs\Yii\framework\web\actions\CInlineAction.php(49): DataController->actionFillMonthGoalInput()
+#3 D:\DPO\xampp\htdocs\Yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 D:\DPO\xampp\htdocs\Yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#5 D:\DPO\xampp\htdocs\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): CController->run('fillmonthgoalin...')
+#7 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('Data/FillMonthG...')
+#8 D:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#9 D:\DPO\xampp\htdocs\milk\index.php(13): CApplication->run()
+#10 {main}
+REQUEST_URI=/milk/Data/FillMonthGoalInput
+HTTP_REFERER=http://localhost/milk/Bud/MonthGoal
+---
+2016/07/11 05:30:54 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'dpo_budget.tb_mg_limit' doesn't exist. The SQL statement executed was: SELECT  IFNULL(ac1.acc_id,0) as ac1, IFNULL(ac2.acc_id,0) as ac2, IFNULL(ac3.acc_id,0) as ac3, IFNULL(ac4.acc_id,0) as ac4
+                            FROM tb_division dc 
+                            JOIN tb_division dp ON dp.division_id = dc.parent_division 
+                            JOIN tb_mg_limit mgl ON mgl.division = dc.division_id AND `year` = undefined AND round = undefined
+                            JOIN tb_account ac1 ON ac1.acc_id = mgl.acc_id
+                            LEFT JOIN tb_account ac2 ON ac2.acc_id = ac1.parent_acc_id 
+                            LEFT JOIN tb_account ac3 ON ac3.acc_id = ac2.parent_acc_id
+                            LEFT JOIN tb_account ac4 ON ac4.acc_id = ac3.parent_acc_id
+                            WHERE dc.division_id = 69.
+in D:\DPO\xampp\htdocs\milk\protected\controllers\DataController.php (2185)
+in D:\DPO\xampp\htdocs\milk\index.php (13)
+2016/07/11 05:30:54 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'dpo_budget.tb_mg_limit' doesn't exist. The SQL statement executed was: SELECT  IFNULL(ac1.acc_id,0) as ac1, IFNULL(ac2.acc_id,0) as ac2, IFNULL(ac3.acc_id,0) as ac3, IFNULL(ac4.acc_id,0) as ac4
+                            FROM tb_division dc 
+                            JOIN tb_division dp ON dp.division_id = dc.parent_division 
+                            JOIN tb_mg_limit mgl ON mgl.division = dc.division_id AND `year` = undefined AND round = undefined
+                            JOIN tb_account ac1 ON ac1.acc_id = mgl.acc_id
+                            LEFT JOIN tb_account ac2 ON ac2.acc_id = ac1.parent_acc_id 
+                            LEFT JOIN tb_account ac3 ON ac3.acc_id = ac2.parent_acc_id
+                            LEFT JOIN tb_account ac4 ON ac4.acc_id = ac3.parent_acc_id
+                            WHERE dc.division_id = 69' in D:\DPO\xampp\htdocs\Yii\framework\db\CDbCommand.php:543
+Stack trace:
+#0 D:\DPO\xampp\htdocs\Yii\framework\db\CDbCommand.php(396): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 D:\DPO\xampp\htdocs\milk\protected\controllers\DataController.php(2185): CDbCommand->queryAll()
+#2 D:\DPO\xampp\htdocs\Yii\framework\web\actions\CInlineAction.php(49): DataController->actionFillMonthGoalInput()
+#3 D:\DPO\xampp\htdocs\Yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 D:\DPO\xampp\htdocs\Yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#5 D:\DPO\xampp\htdocs\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): CController->run('fillmonthgoalin...')
+#7 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('Data/FillMonthG...')
+#8 D:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#9 D:\DPO\xampp\htdocs\milk\index.php(13): CApplication->run()
+#10 {main}
+REQUEST_URI=/milk/Data/FillMonthGoalInput
+HTTP_REFERER=http://localhost/milk/Bud/MonthGoal
+---
+2016/07/11 05:31:55 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'dpo_budget.tb_mg_limit' doesn't exist. The SQL statement executed was: SELECT  IFNULL(ac1.acc_id,0) as ac1, IFNULL(ac2.acc_id,0) as ac2, IFNULL(ac3.acc_id,0) as ac3, IFNULL(ac4.acc_id,0) as ac4
+                            FROM tb_division dc 
+                            JOIN tb_division dp ON dp.division_id = dc.parent_division 
+                            JOIN tb_mg_limit mgl ON mgl.division = dc.division_id AND `year` = undefined AND round = undefined
+                            JOIN tb_account ac1 ON ac1.acc_id = mgl.acc_id
+                            LEFT JOIN tb_account ac2 ON ac2.acc_id = ac1.parent_acc_id 
+                            LEFT JOIN tb_account ac3 ON ac3.acc_id = ac2.parent_acc_id
+                            LEFT JOIN tb_account ac4 ON ac4.acc_id = ac3.parent_acc_id
+                            WHERE dc.division_id = 69.
+in D:\DPO\xampp\htdocs\milk\protected\controllers\DataController.php (2185)
+in D:\DPO\xampp\htdocs\milk\index.php (13)
+2016/07/11 05:31:55 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'dpo_budget.tb_mg_limit' doesn't exist. The SQL statement executed was: SELECT  IFNULL(ac1.acc_id,0) as ac1, IFNULL(ac2.acc_id,0) as ac2, IFNULL(ac3.acc_id,0) as ac3, IFNULL(ac4.acc_id,0) as ac4
+                            FROM tb_division dc 
+                            JOIN tb_division dp ON dp.division_id = dc.parent_division 
+                            JOIN tb_mg_limit mgl ON mgl.division = dc.division_id AND `year` = undefined AND round = undefined
+                            JOIN tb_account ac1 ON ac1.acc_id = mgl.acc_id
+                            LEFT JOIN tb_account ac2 ON ac2.acc_id = ac1.parent_acc_id 
+                            LEFT JOIN tb_account ac3 ON ac3.acc_id = ac2.parent_acc_id
+                            LEFT JOIN tb_account ac4 ON ac4.acc_id = ac3.parent_acc_id
+                            WHERE dc.division_id = 69' in D:\DPO\xampp\htdocs\Yii\framework\db\CDbCommand.php:543
+Stack trace:
+#0 D:\DPO\xampp\htdocs\Yii\framework\db\CDbCommand.php(396): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 D:\DPO\xampp\htdocs\milk\protected\controllers\DataController.php(2185): CDbCommand->queryAll()
+#2 D:\DPO\xampp\htdocs\Yii\framework\web\actions\CInlineAction.php(49): DataController->actionFillMonthGoalInput()
+#3 D:\DPO\xampp\htdocs\Yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 D:\DPO\xampp\htdocs\Yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#5 D:\DPO\xampp\htdocs\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): CController->run('fillmonthgoalin...')
+#7 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('Data/FillMonthG...')
+#8 D:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#9 D:\DPO\xampp\htdocs\milk\index.php(13): CApplication->run()
+#10 {main}
+REQUEST_URI=/milk/Data/FillMonthGoalInput
+HTTP_REFERER=http://localhost/milk/Bud/MonthGoal
+---
+2016/07/11 05:32:59 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'dpo_budget.tb_mg_limit' doesn't exist. The SQL statement executed was: SELECT  IFNULL(ac1.acc_id,0) as ac1, IFNULL(ac2.acc_id,0) as ac2, IFNULL(ac3.acc_id,0) as ac3, IFNULL(ac4.acc_id,0) as ac4
+                            FROM tb_division dc 
+                            JOIN tb_division dp ON dp.division_id = dc.parent_division 
+                            JOIN tb_mg_limit mgl ON mgl.division = dc.division_id AND `year` = undefined AND round = undefined
+                            JOIN tb_account ac1 ON ac1.acc_id = mgl.acc_id
+                            LEFT JOIN tb_account ac2 ON ac2.acc_id = ac1.parent_acc_id 
+                            LEFT JOIN tb_account ac3 ON ac3.acc_id = ac2.parent_acc_id
+                            LEFT JOIN tb_account ac4 ON ac4.acc_id = ac3.parent_acc_id
+                            WHERE dc.division_id = 69.
+in D:\DPO\xampp\htdocs\milk\protected\controllers\DataController.php (2185)
+in D:\DPO\xampp\htdocs\milk\index.php (13)
+2016/07/11 05:32:59 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'dpo_budget.tb_mg_limit' doesn't exist. The SQL statement executed was: SELECT  IFNULL(ac1.acc_id,0) as ac1, IFNULL(ac2.acc_id,0) as ac2, IFNULL(ac3.acc_id,0) as ac3, IFNULL(ac4.acc_id,0) as ac4
+                            FROM tb_division dc 
+                            JOIN tb_division dp ON dp.division_id = dc.parent_division 
+                            JOIN tb_mg_limit mgl ON mgl.division = dc.division_id AND `year` = undefined AND round = undefined
+                            JOIN tb_account ac1 ON ac1.acc_id = mgl.acc_id
+                            LEFT JOIN tb_account ac2 ON ac2.acc_id = ac1.parent_acc_id 
+                            LEFT JOIN tb_account ac3 ON ac3.acc_id = ac2.parent_acc_id
+                            LEFT JOIN tb_account ac4 ON ac4.acc_id = ac3.parent_acc_id
+                            WHERE dc.division_id = 69' in D:\DPO\xampp\htdocs\Yii\framework\db\CDbCommand.php:543
+Stack trace:
+#0 D:\DPO\xampp\htdocs\Yii\framework\db\CDbCommand.php(396): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 D:\DPO\xampp\htdocs\milk\protected\controllers\DataController.php(2185): CDbCommand->queryAll()
+#2 D:\DPO\xampp\htdocs\Yii\framework\web\actions\CInlineAction.php(49): DataController->actionFillMonthGoalInput()
+#3 D:\DPO\xampp\htdocs\Yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 D:\DPO\xampp\htdocs\Yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#5 D:\DPO\xampp\htdocs\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): CController->run('fillmonthgoalin...')
+#7 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('Data/FillMonthG...')
+#8 D:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#9 D:\DPO\xampp\htdocs\milk\index.php(13): CApplication->run()
+#10 {main}
+REQUEST_URI=/milk/Data/FillMonthGoalInput
+HTTP_REFERER=http://localhost/milk/Bud/MonthGoal
+---
+2016/07/11 05:33:08 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'dpo_budget.tb_mg_limit' doesn't exist. The SQL statement executed was: SELECT  IFNULL(ac1.acc_id,0) as ac1, IFNULL(ac2.acc_id,0) as ac2, IFNULL(ac3.acc_id,0) as ac3, IFNULL(ac4.acc_id,0) as ac4
+                            FROM tb_division dc 
+                            JOIN tb_division dp ON dp.division_id = dc.parent_division 
+                            JOIN tb_mg_limit mgl ON mgl.division = dc.division_id AND `year` = undefined AND round = undefined
+                            JOIN tb_account ac1 ON ac1.acc_id = mgl.acc_id
+                            LEFT JOIN tb_account ac2 ON ac2.acc_id = ac1.parent_acc_id 
+                            LEFT JOIN tb_account ac3 ON ac3.acc_id = ac2.parent_acc_id
+                            LEFT JOIN tb_account ac4 ON ac4.acc_id = ac3.parent_acc_id
+                            WHERE dc.division_id = 69.
+in D:\DPO\xampp\htdocs\milk\protected\controllers\DataController.php (2185)
+in D:\DPO\xampp\htdocs\milk\index.php (13)
+2016/07/11 05:33:08 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'dpo_budget.tb_mg_limit' doesn't exist. The SQL statement executed was: SELECT  IFNULL(ac1.acc_id,0) as ac1, IFNULL(ac2.acc_id,0) as ac2, IFNULL(ac3.acc_id,0) as ac3, IFNULL(ac4.acc_id,0) as ac4
+                            FROM tb_division dc 
+                            JOIN tb_division dp ON dp.division_id = dc.parent_division 
+                            JOIN tb_mg_limit mgl ON mgl.division = dc.division_id AND `year` = undefined AND round = undefined
+                            JOIN tb_account ac1 ON ac1.acc_id = mgl.acc_id
+                            LEFT JOIN tb_account ac2 ON ac2.acc_id = ac1.parent_acc_id 
+                            LEFT JOIN tb_account ac3 ON ac3.acc_id = ac2.parent_acc_id
+                            LEFT JOIN tb_account ac4 ON ac4.acc_id = ac3.parent_acc_id
+                            WHERE dc.division_id = 69' in D:\DPO\xampp\htdocs\Yii\framework\db\CDbCommand.php:543
+Stack trace:
+#0 D:\DPO\xampp\htdocs\Yii\framework\db\CDbCommand.php(396): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 D:\DPO\xampp\htdocs\milk\protected\controllers\DataController.php(2185): CDbCommand->queryAll()
+#2 D:\DPO\xampp\htdocs\Yii\framework\web\actions\CInlineAction.php(49): DataController->actionFillMonthGoalInput()
+#3 D:\DPO\xampp\htdocs\Yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 D:\DPO\xampp\htdocs\Yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#5 D:\DPO\xampp\htdocs\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): CController->run('fillmonthgoalin...')
+#7 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('Data/FillMonthG...')
+#8 D:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#9 D:\DPO\xampp\htdocs\milk\index.php(13): CApplication->run()
+#10 {main}
+REQUEST_URI=/milk/Data/FillMonthGoalInput
+HTTP_REFERER=http://localhost/milk/Bud/MonthGoal
+---
+2016/07/11 05:34:48 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'dpo_budget.tb_mg_limit' doesn't exist. The SQL statement executed was: SELECT  IFNULL(ac1.acc_id,0) as ac1, IFNULL(ac2.acc_id,0) as ac2, IFNULL(ac3.acc_id,0) as ac3, IFNULL(ac4.acc_id,0) as ac4
+                            FROM tb_division dc 
+                            JOIN tb_division dp ON dp.division_id = dc.parent_division 
+                            JOIN tb_mg_limit mgl ON mgl.division = dc.division_id AND `year` = undefined AND round = undefined
+                            JOIN tb_account ac1 ON ac1.acc_id = mgl.acc_id
+                            LEFT JOIN tb_account ac2 ON ac2.acc_id = ac1.parent_acc_id 
+                            LEFT JOIN tb_account ac3 ON ac3.acc_id = ac2.parent_acc_id
+                            LEFT JOIN tb_account ac4 ON ac4.acc_id = ac3.parent_acc_id
+                            WHERE dc.division_id = 69.
+in D:\DPO\xampp\htdocs\milk\protected\controllers\DataController.php (2185)
+in D:\DPO\xampp\htdocs\milk\index.php (13)
+2016/07/11 05:34:48 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'dpo_budget.tb_mg_limit' doesn't exist. The SQL statement executed was: SELECT  IFNULL(ac1.acc_id,0) as ac1, IFNULL(ac2.acc_id,0) as ac2, IFNULL(ac3.acc_id,0) as ac3, IFNULL(ac4.acc_id,0) as ac4
+                            FROM tb_division dc 
+                            JOIN tb_division dp ON dp.division_id = dc.parent_division 
+                            JOIN tb_mg_limit mgl ON mgl.division = dc.division_id AND `year` = undefined AND round = undefined
+                            JOIN tb_account ac1 ON ac1.acc_id = mgl.acc_id
+                            LEFT JOIN tb_account ac2 ON ac2.acc_id = ac1.parent_acc_id 
+                            LEFT JOIN tb_account ac3 ON ac3.acc_id = ac2.parent_acc_id
+                            LEFT JOIN tb_account ac4 ON ac4.acc_id = ac3.parent_acc_id
+                            WHERE dc.division_id = 69' in D:\DPO\xampp\htdocs\Yii\framework\db\CDbCommand.php:543
+Stack trace:
+#0 D:\DPO\xampp\htdocs\Yii\framework\db\CDbCommand.php(396): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 D:\DPO\xampp\htdocs\milk\protected\controllers\DataController.php(2185): CDbCommand->queryAll()
+#2 D:\DPO\xampp\htdocs\Yii\framework\web\actions\CInlineAction.php(49): DataController->actionFillMonthGoalInput()
+#3 D:\DPO\xampp\htdocs\Yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 D:\DPO\xampp\htdocs\Yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#5 D:\DPO\xampp\htdocs\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): CController->run('fillmonthgoalin...')
+#7 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('Data/FillMonthG...')
+#8 D:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#9 D:\DPO\xampp\htdocs\milk\index.php(13): CApplication->run()
+#10 {main}
+REQUEST_URI=/milk/Data/FillMonthGoalInput
+HTTP_REFERER=http://localhost/milk/Bud/MonthGoal
+---
+2016/07/11 05:34:51 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'dpo_budget.tb_mg_limit' doesn't exist. The SQL statement executed was: SELECT  IFNULL(ac1.acc_id,0) as ac1, IFNULL(ac2.acc_id,0) as ac2, IFNULL(ac3.acc_id,0) as ac3, IFNULL(ac4.acc_id,0) as ac4
+                            FROM tb_division dc 
+                            JOIN tb_division dp ON dp.division_id = dc.parent_division 
+                            JOIN tb_mg_limit mgl ON mgl.division = dc.division_id AND `year` = undefined AND round = undefined
+                            JOIN tb_account ac1 ON ac1.acc_id = mgl.acc_id
+                            LEFT JOIN tb_account ac2 ON ac2.acc_id = ac1.parent_acc_id 
+                            LEFT JOIN tb_account ac3 ON ac3.acc_id = ac2.parent_acc_id
+                            LEFT JOIN tb_account ac4 ON ac4.acc_id = ac3.parent_acc_id
+                            WHERE dc.division_id = 69.
+in D:\DPO\xampp\htdocs\milk\protected\controllers\DataController.php (2185)
+in D:\DPO\xampp\htdocs\milk\index.php (13)
+2016/07/11 05:34:51 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'dpo_budget.tb_mg_limit' doesn't exist. The SQL statement executed was: SELECT  IFNULL(ac1.acc_id,0) as ac1, IFNULL(ac2.acc_id,0) as ac2, IFNULL(ac3.acc_id,0) as ac3, IFNULL(ac4.acc_id,0) as ac4
+                            FROM tb_division dc 
+                            JOIN tb_division dp ON dp.division_id = dc.parent_division 
+                            JOIN tb_mg_limit mgl ON mgl.division = dc.division_id AND `year` = undefined AND round = undefined
+                            JOIN tb_account ac1 ON ac1.acc_id = mgl.acc_id
+                            LEFT JOIN tb_account ac2 ON ac2.acc_id = ac1.parent_acc_id 
+                            LEFT JOIN tb_account ac3 ON ac3.acc_id = ac2.parent_acc_id
+                            LEFT JOIN tb_account ac4 ON ac4.acc_id = ac3.parent_acc_id
+                            WHERE dc.division_id = 69' in D:\DPO\xampp\htdocs\Yii\framework\db\CDbCommand.php:543
+Stack trace:
+#0 D:\DPO\xampp\htdocs\Yii\framework\db\CDbCommand.php(396): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 D:\DPO\xampp\htdocs\milk\protected\controllers\DataController.php(2185): CDbCommand->queryAll()
+#2 D:\DPO\xampp\htdocs\Yii\framework\web\actions\CInlineAction.php(49): DataController->actionFillMonthGoalInput()
+#3 D:\DPO\xampp\htdocs\Yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 D:\DPO\xampp\htdocs\Yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#5 D:\DPO\xampp\htdocs\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): CController->run('fillmonthgoalin...')
+#7 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('Data/FillMonthG...')
+#8 D:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#9 D:\DPO\xampp\htdocs\milk\index.php(13): CApplication->run()
+#10 {main}
+REQUEST_URI=/milk/Data/FillMonthGoalInput
+HTTP_REFERER=http://localhost/milk/Bud/MonthGoal
+---
+2016/07/11 05:35:05 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'dpo_budget.tb_mg_limit' doesn't exist. The SQL statement executed was: SELECT  IFNULL(ac1.acc_id,0) as ac1, IFNULL(ac2.acc_id,0) as ac2, IFNULL(ac3.acc_id,0) as ac3, IFNULL(ac4.acc_id,0) as ac4
+                            FROM tb_division dc 
+                            JOIN tb_division dp ON dp.division_id = dc.parent_division 
+                            JOIN tb_mg_limit mgl ON mgl.division = dc.division_id AND `year` = undefined AND round = undefined
+                            JOIN tb_account ac1 ON ac1.acc_id = mgl.acc_id
+                            LEFT JOIN tb_account ac2 ON ac2.acc_id = ac1.parent_acc_id 
+                            LEFT JOIN tb_account ac3 ON ac3.acc_id = ac2.parent_acc_id
+                            LEFT JOIN tb_account ac4 ON ac4.acc_id = ac3.parent_acc_id
+                            WHERE dc.division_id = 69.
+in D:\DPO\xampp\htdocs\milk\protected\controllers\DataController.php (2185)
+in D:\DPO\xampp\htdocs\milk\index.php (13)
+2016/07/11 05:35:05 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'dpo_budget.tb_mg_limit' doesn't exist. The SQL statement executed was: SELECT  IFNULL(ac1.acc_id,0) as ac1, IFNULL(ac2.acc_id,0) as ac2, IFNULL(ac3.acc_id,0) as ac3, IFNULL(ac4.acc_id,0) as ac4
+                            FROM tb_division dc 
+                            JOIN tb_division dp ON dp.division_id = dc.parent_division 
+                            JOIN tb_mg_limit mgl ON mgl.division = dc.division_id AND `year` = undefined AND round = undefined
+                            JOIN tb_account ac1 ON ac1.acc_id = mgl.acc_id
+                            LEFT JOIN tb_account ac2 ON ac2.acc_id = ac1.parent_acc_id 
+                            LEFT JOIN tb_account ac3 ON ac3.acc_id = ac2.parent_acc_id
+                            LEFT JOIN tb_account ac4 ON ac4.acc_id = ac3.parent_acc_id
+                            WHERE dc.division_id = 69' in D:\DPO\xampp\htdocs\Yii\framework\db\CDbCommand.php:543
+Stack trace:
+#0 D:\DPO\xampp\htdocs\Yii\framework\db\CDbCommand.php(396): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 D:\DPO\xampp\htdocs\milk\protected\controllers\DataController.php(2185): CDbCommand->queryAll()
+#2 D:\DPO\xampp\htdocs\Yii\framework\web\actions\CInlineAction.php(49): DataController->actionFillMonthGoalInput()
+#3 D:\DPO\xampp\htdocs\Yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 D:\DPO\xampp\htdocs\Yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#5 D:\DPO\xampp\htdocs\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): CController->run('fillmonthgoalin...')
+#7 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('Data/FillMonthG...')
+#8 D:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#9 D:\DPO\xampp\htdocs\milk\index.php(13): CApplication->run()
+#10 {main}
+REQUEST_URI=/milk/Data/FillMonthGoalInput
+HTTP_REFERER=http://localhost/milk/Bud/MonthGoal
+---
+2016/07/11 05:36:57 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'dpo_budget.tb_mg_limit' doesn't exist. The SQL statement executed was: SELECT  IFNULL(ac1.acc_id,0) as ac1, IFNULL(ac2.acc_id,0) as ac2, IFNULL(ac3.acc_id,0) as ac3, IFNULL(ac4.acc_id,0) as ac4
+                            FROM tb_division dc 
+                            JOIN tb_division dp ON dp.division_id = dc.parent_division 
+                            JOIN tb_mg_limit mgl ON mgl.division = dc.division_id AND `year` = undefined AND round = undefined
+                            JOIN tb_account ac1 ON ac1.acc_id = mgl.acc_id
+                            LEFT JOIN tb_account ac2 ON ac2.acc_id = ac1.parent_acc_id 
+                            LEFT JOIN tb_account ac3 ON ac3.acc_id = ac2.parent_acc_id
+                            LEFT JOIN tb_account ac4 ON ac4.acc_id = ac3.parent_acc_id
+                            WHERE dc.division_id = 69.
+in D:\DPO\xampp\htdocs\milk\protected\controllers\DataController.php (2185)
+in D:\DPO\xampp\htdocs\milk\index.php (13)
+2016/07/11 05:36:57 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'dpo_budget.tb_mg_limit' doesn't exist. The SQL statement executed was: SELECT  IFNULL(ac1.acc_id,0) as ac1, IFNULL(ac2.acc_id,0) as ac2, IFNULL(ac3.acc_id,0) as ac3, IFNULL(ac4.acc_id,0) as ac4
+                            FROM tb_division dc 
+                            JOIN tb_division dp ON dp.division_id = dc.parent_division 
+                            JOIN tb_mg_limit mgl ON mgl.division = dc.division_id AND `year` = undefined AND round = undefined
+                            JOIN tb_account ac1 ON ac1.acc_id = mgl.acc_id
+                            LEFT JOIN tb_account ac2 ON ac2.acc_id = ac1.parent_acc_id 
+                            LEFT JOIN tb_account ac3 ON ac3.acc_id = ac2.parent_acc_id
+                            LEFT JOIN tb_account ac4 ON ac4.acc_id = ac3.parent_acc_id
+                            WHERE dc.division_id = 69' in D:\DPO\xampp\htdocs\Yii\framework\db\CDbCommand.php:543
+Stack trace:
+#0 D:\DPO\xampp\htdocs\Yii\framework\db\CDbCommand.php(396): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 D:\DPO\xampp\htdocs\milk\protected\controllers\DataController.php(2185): CDbCommand->queryAll()
+#2 D:\DPO\xampp\htdocs\Yii\framework\web\actions\CInlineAction.php(49): DataController->actionFillMonthGoalInput()
+#3 D:\DPO\xampp\htdocs\Yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 D:\DPO\xampp\htdocs\Yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#5 D:\DPO\xampp\htdocs\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): CController->run('fillmonthgoalin...')
+#7 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('Data/FillMonthG...')
+#8 D:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#9 D:\DPO\xampp\htdocs\milk\index.php(13): CApplication->run()
+#10 {main}
+REQUEST_URI=/milk/Data/FillMonthGoalInput
+HTTP_REFERER=http://localhost/milk/Bud/MonthGoal
+---
+2016/07/11 05:37:00 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'dpo_budget.tb_mg_limit' doesn't exist. The SQL statement executed was: SELECT  IFNULL(ac1.acc_id,0) as ac1, IFNULL(ac2.acc_id,0) as ac2, IFNULL(ac3.acc_id,0) as ac3, IFNULL(ac4.acc_id,0) as ac4
+                            FROM tb_division dc 
+                            JOIN tb_division dp ON dp.division_id = dc.parent_division 
+                            JOIN tb_mg_limit mgl ON mgl.division = dc.division_id AND `year` = 2015 AND round = 1
+                            JOIN tb_account ac1 ON ac1.acc_id = mgl.acc_id
+                            LEFT JOIN tb_account ac2 ON ac2.acc_id = ac1.parent_acc_id 
+                            LEFT JOIN tb_account ac3 ON ac3.acc_id = ac2.parent_acc_id
+                            LEFT JOIN tb_account ac4 ON ac4.acc_id = ac3.parent_acc_id
+                            WHERE dc.division_id = 69.
+in D:\DPO\xampp\htdocs\milk\protected\controllers\DataController.php (2185)
+in D:\DPO\xampp\htdocs\milk\index.php (13)
+2016/07/11 05:37:00 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'dpo_budget.tb_mg_limit' doesn't exist. The SQL statement executed was: SELECT  IFNULL(ac1.acc_id,0) as ac1, IFNULL(ac2.acc_id,0) as ac2, IFNULL(ac3.acc_id,0) as ac3, IFNULL(ac4.acc_id,0) as ac4
+                            FROM tb_division dc 
+                            JOIN tb_division dp ON dp.division_id = dc.parent_division 
+                            JOIN tb_mg_limit mgl ON mgl.division = dc.division_id AND `year` = 2015 AND round = 1
+                            JOIN tb_account ac1 ON ac1.acc_id = mgl.acc_id
+                            LEFT JOIN tb_account ac2 ON ac2.acc_id = ac1.parent_acc_id 
+                            LEFT JOIN tb_account ac3 ON ac3.acc_id = ac2.parent_acc_id
+                            LEFT JOIN tb_account ac4 ON ac4.acc_id = ac3.parent_acc_id
+                            WHERE dc.division_id = 69' in D:\DPO\xampp\htdocs\Yii\framework\db\CDbCommand.php:543
+Stack trace:
+#0 D:\DPO\xampp\htdocs\Yii\framework\db\CDbCommand.php(396): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 D:\DPO\xampp\htdocs\milk\protected\controllers\DataController.php(2185): CDbCommand->queryAll()
+#2 D:\DPO\xampp\htdocs\Yii\framework\web\actions\CInlineAction.php(49): DataController->actionFillMonthGoalInput()
+#3 D:\DPO\xampp\htdocs\Yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 D:\DPO\xampp\htdocs\Yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#5 D:\DPO\xampp\htdocs\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): CController->run('fillmonthgoalin...')
+#7 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('Data/FillMonthG...')
+#8 D:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#9 D:\DPO\xampp\htdocs\milk\index.php(13): CApplication->run()
+#10 {main}
+REQUEST_URI=/milk/Data/FillMonthGoalInput
+HTTP_REFERER=http://localhost/milk/Bud/MonthGoal
+---
+2016/07/11 05:37:04 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'dpo_budget.tb_mg_limit' doesn't exist. The SQL statement executed was: SELECT  IFNULL(ac1.acc_id,0) as ac1, IFNULL(ac2.acc_id,0) as ac2, IFNULL(ac3.acc_id,0) as ac3, IFNULL(ac4.acc_id,0) as ac4
+                            FROM tb_division dc 
+                            JOIN tb_division dp ON dp.division_id = dc.parent_division 
+                            JOIN tb_mg_limit mgl ON mgl.division = dc.division_id AND `year` = 2016 AND round = 1
+                            JOIN tb_account ac1 ON ac1.acc_id = mgl.acc_id
+                            LEFT JOIN tb_account ac2 ON ac2.acc_id = ac1.parent_acc_id 
+                            LEFT JOIN tb_account ac3 ON ac3.acc_id = ac2.parent_acc_id
+                            LEFT JOIN tb_account ac4 ON ac4.acc_id = ac3.parent_acc_id
+                            WHERE dc.division_id = 69.
+in D:\DPO\xampp\htdocs\milk\protected\controllers\DataController.php (2185)
+in D:\DPO\xampp\htdocs\milk\index.php (13)
+2016/07/11 05:37:04 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'dpo_budget.tb_mg_limit' doesn't exist. The SQL statement executed was: SELECT  IFNULL(ac1.acc_id,0) as ac1, IFNULL(ac2.acc_id,0) as ac2, IFNULL(ac3.acc_id,0) as ac3, IFNULL(ac4.acc_id,0) as ac4
+                            FROM tb_division dc 
+                            JOIN tb_division dp ON dp.division_id = dc.parent_division 
+                            JOIN tb_mg_limit mgl ON mgl.division = dc.division_id AND `year` = 2016 AND round = 1
+                            JOIN tb_account ac1 ON ac1.acc_id = mgl.acc_id
+                            LEFT JOIN tb_account ac2 ON ac2.acc_id = ac1.parent_acc_id 
+                            LEFT JOIN tb_account ac3 ON ac3.acc_id = ac2.parent_acc_id
+                            LEFT JOIN tb_account ac4 ON ac4.acc_id = ac3.parent_acc_id
+                            WHERE dc.division_id = 69' in D:\DPO\xampp\htdocs\Yii\framework\db\CDbCommand.php:543
+Stack trace:
+#0 D:\DPO\xampp\htdocs\Yii\framework\db\CDbCommand.php(396): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 D:\DPO\xampp\htdocs\milk\protected\controllers\DataController.php(2185): CDbCommand->queryAll()
+#2 D:\DPO\xampp\htdocs\Yii\framework\web\actions\CInlineAction.php(49): DataController->actionFillMonthGoalInput()
+#3 D:\DPO\xampp\htdocs\Yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 D:\DPO\xampp\htdocs\Yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#5 D:\DPO\xampp\htdocs\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): CController->run('fillmonthgoalin...')
+#7 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('Data/FillMonthG...')
+#8 D:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#9 D:\DPO\xampp\htdocs\milk\index.php(13): CApplication->run()
+#10 {main}
+REQUEST_URI=/milk/Data/FillMonthGoalInput
+HTTP_REFERER=http://localhost/milk/Bud/MonthGoal
+---
+2016/07/11 05:52:46 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'dpo_budget.tb_mg_limit' doesn't exist. The SQL statement executed was: SELECT  IFNULL(ac1.acc_id,0) as ac1, IFNULL(ac2.acc_id,0) as ac2, IFNULL(ac3.acc_id,0) as ac3, IFNULL(ac4.acc_id,0) as ac4
+                            FROM tb_division dc 
+                            JOIN tb_division dp ON dp.division_id = dc.parent_division 
+                            JOIN tb_mg_limit mgl ON mgl.division = dc.division_id AND `year` = 2016 AND round = 1
+                            JOIN tb_account ac1 ON ac1.acc_id = mgl.acc_id
+                            LEFT JOIN tb_account ac2 ON ac2.acc_id = ac1.parent_acc_id 
+                            LEFT JOIN tb_account ac3 ON ac3.acc_id = ac2.parent_acc_id
+                            LEFT JOIN tb_account ac4 ON ac4.acc_id = ac3.parent_acc_id
+                            WHERE dc.division_id = 69.
+in D:\DPO\xampp\htdocs\milk\protected\controllers\DataController.php (2185)
+in D:\DPO\xampp\htdocs\milk\index.php (13)
+2016/07/11 05:52:46 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'dpo_budget.tb_mg_limit' doesn't exist. The SQL statement executed was: SELECT  IFNULL(ac1.acc_id,0) as ac1, IFNULL(ac2.acc_id,0) as ac2, IFNULL(ac3.acc_id,0) as ac3, IFNULL(ac4.acc_id,0) as ac4
+                            FROM tb_division dc 
+                            JOIN tb_division dp ON dp.division_id = dc.parent_division 
+                            JOIN tb_mg_limit mgl ON mgl.division = dc.division_id AND `year` = 2016 AND round = 1
+                            JOIN tb_account ac1 ON ac1.acc_id = mgl.acc_id
+                            LEFT JOIN tb_account ac2 ON ac2.acc_id = ac1.parent_acc_id 
+                            LEFT JOIN tb_account ac3 ON ac3.acc_id = ac2.parent_acc_id
+                            LEFT JOIN tb_account ac4 ON ac4.acc_id = ac3.parent_acc_id
+                            WHERE dc.division_id = 69' in D:\DPO\xampp\htdocs\Yii\framework\db\CDbCommand.php:543
+Stack trace:
+#0 D:\DPO\xampp\htdocs\Yii\framework\db\CDbCommand.php(396): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 D:\DPO\xampp\htdocs\milk\protected\controllers\DataController.php(2185): CDbCommand->queryAll()
+#2 D:\DPO\xampp\htdocs\Yii\framework\web\actions\CInlineAction.php(49): DataController->actionFillMonthGoalInput()
+#3 D:\DPO\xampp\htdocs\Yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 D:\DPO\xampp\htdocs\Yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#5 D:\DPO\xampp\htdocs\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): CController->run('fillmonthgoalin...')
+#7 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('Data/FillMonthG...')
+#8 D:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#9 D:\DPO\xampp\htdocs\milk\index.php(13): CApplication->run()
+#10 {main}
+REQUEST_URI=/milk/Data/FillMonthGoalInput
+HTTP_REFERER=http://localhost/milk/Bud/MonthGoal
+---
+2016/07/11 05:53:00 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "monthgoalform".' in D:\DPO\xampp\htdocs\Yii\framework\web\CController.php:483
+Stack trace:
+#0 D:\DPO\xampp\htdocs\Yii\framework\web\CController.php(270): CController->missingAction('monthgoalform')
+#1 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): CController->run('monthgoalform')
+#2 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('MonthGoal/Month...')
+#3 D:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#4 D:\DPO\xampp\htdocs\milk\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/milk/MonthGoal/MonthGoalForm
+HTTP_REFERER=http://localhost/milk/Bud/MonthGoal
+---
+2016/07/11 05:53:01 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "monthgoalform".' in D:\DPO\xampp\htdocs\Yii\framework\web\CController.php:483
+Stack trace:
+#0 D:\DPO\xampp\htdocs\Yii\framework\web\CController.php(270): CController->missingAction('monthgoalform')
+#1 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): CController->run('monthgoalform')
+#2 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('MonthGoal/Month...')
+#3 D:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#4 D:\DPO\xampp\htdocs\milk\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/milk/MonthGoal/MonthGoalForm
+HTTP_REFERER=http://localhost/milk/Bud/MonthGoal
+---
+2016/07/11 05:53:52 [error] [exception.CException] exception 'CException' with message 'MonthGoalController cannot find the requested view "MonthGoalInput".' in D:\DPO\xampp\htdocs\Yii\framework\web\CController.php:878
+Stack trace:
+#0 D:\DPO\xampp\htdocs\milk\protected\controllers\MonthGoalController.php(101): CController->renderPartial('MonthGoalInput', Array)
+#1 D:\DPO\xampp\htdocs\Yii\framework\web\actions\CInlineAction.php(49): MonthGoalController->actionMonthGoalForm()
+#2 D:\DPO\xampp\htdocs\Yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#3 D:\DPO\xampp\htdocs\Yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#4 D:\DPO\xampp\htdocs\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#5 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): CController->run('monthgoalform')
+#6 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('MonthGoal/Month...')
+#7 D:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#8 D:\DPO\xampp\htdocs\milk\index.php(13): CApplication->run()
+#9 {main}
+REQUEST_URI=/milk/MonthGoal/MonthGoalForm
+HTTP_REFERER=http://localhost/milk/Bud/MonthGoal
+---
+2016/07/11 05:54:41 [error] [exception.CException] exception 'CException' with message 'MonthGoalController cannot find the requested view "Bud/MonthGoalInput".' in D:\DPO\xampp\htdocs\Yii\framework\web\CController.php:878
+Stack trace:
+#0 D:\DPO\xampp\htdocs\milk\protected\controllers\MonthGoalController.php(101): CController->renderPartial('Bud/MonthGoalIn...', Array)
+#1 D:\DPO\xampp\htdocs\Yii\framework\web\actions\CInlineAction.php(49): MonthGoalController->actionMonthGoalForm()
+#2 D:\DPO\xampp\htdocs\Yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#3 D:\DPO\xampp\htdocs\Yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#4 D:\DPO\xampp\htdocs\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#5 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): CController->run('monthgoalform')
+#6 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('MonthGoal/Month...')
+#7 D:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#8 D:\DPO\xampp\htdocs\milk\index.php(13): CApplication->run()
+#9 {main}
+REQUEST_URI=/milk/MonthGoal/MonthGoalForm
+HTTP_REFERER=http://localhost/milk/Bud/MonthGoal
+---
+2016/07/11 05:56:59 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'dpo_budget.tb_mg_limit' doesn't exist. The SQL statement executed was: SELECT  IFNULL(ac1.acc_id,0) as ac1, IFNULL(ac2.acc_id,0) as ac2, IFNULL(ac3.acc_id,0) as ac3, IFNULL(ac4.acc_id,0) as ac4
+                            FROM tb_division dc 
+                            JOIN tb_division dp ON dp.division_id = dc.parent_division 
+                            JOIN tb_mg_limit mgl ON mgl.division = dc.division_id AND `year` = 2015 AND round = 1
+                            JOIN tb_account ac1 ON ac1.acc_id = mgl.acc_id
+                            LEFT JOIN tb_account ac2 ON ac2.acc_id = ac1.parent_acc_id 
+                            LEFT JOIN tb_account ac3 ON ac3.acc_id = ac2.parent_acc_id
+                            LEFT JOIN tb_account ac4 ON ac4.acc_id = ac3.parent_acc_id
+                            WHERE dc.division_id = 69.
+in D:\DPO\xampp\htdocs\milk\protected\controllers\DataController.php (2185)
+in D:\DPO\xampp\htdocs\milk\index.php (13)
+2016/07/11 05:56:59 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'dpo_budget.tb_mg_limit' doesn't exist. The SQL statement executed was: SELECT  IFNULL(ac1.acc_id,0) as ac1, IFNULL(ac2.acc_id,0) as ac2, IFNULL(ac3.acc_id,0) as ac3, IFNULL(ac4.acc_id,0) as ac4
+                            FROM tb_division dc 
+                            JOIN tb_division dp ON dp.division_id = dc.parent_division 
+                            JOIN tb_mg_limit mgl ON mgl.division = dc.division_id AND `year` = 2015 AND round = 1
+                            JOIN tb_account ac1 ON ac1.acc_id = mgl.acc_id
+                            LEFT JOIN tb_account ac2 ON ac2.acc_id = ac1.parent_acc_id 
+                            LEFT JOIN tb_account ac3 ON ac3.acc_id = ac2.parent_acc_id
+                            LEFT JOIN tb_account ac4 ON ac4.acc_id = ac3.parent_acc_id
+                            WHERE dc.division_id = 69' in D:\DPO\xampp\htdocs\Yii\framework\db\CDbCommand.php:543
+Stack trace:
+#0 D:\DPO\xampp\htdocs\Yii\framework\db\CDbCommand.php(396): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 D:\DPO\xampp\htdocs\milk\protected\controllers\DataController.php(2185): CDbCommand->queryAll()
+#2 D:\DPO\xampp\htdocs\Yii\framework\web\actions\CInlineAction.php(49): DataController->actionFillMonthGoalInput()
+#3 D:\DPO\xampp\htdocs\Yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 D:\DPO\xampp\htdocs\Yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#5 D:\DPO\xampp\htdocs\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): CController->run('fillmonthgoalin...')
+#7 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('Data/FillMonthG...')
+#8 D:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#9 D:\DPO\xampp\htdocs\milk\index.php(13): CApplication->run()
+#10 {main}
+REQUEST_URI=/milk/Data/FillMonthGoalInput
+HTTP_REFERER=http://localhost/milk/Bud/MonthGoal
+---
+2016/07/11 05:59:25 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'dpo_budget.tb_mg_limit' doesn't exist. The SQL statement executed was: SELECT  IFNULL(ac1.acc_id,0) as ac1, IFNULL(ac2.acc_id,0) as ac2, IFNULL(ac3.acc_id,0) as ac3, IFNULL(ac4.acc_id,0) as ac4
+                            FROM tb_division dc 
+                            JOIN tb_division dp ON dp.division_id = dc.parent_division 
+                            JOIN tb_mg_limit mgl ON mgl.division = dc.division_id AND `year` = 2015 AND round = 1
+                            JOIN tb_account ac1 ON ac1.acc_id = mgl.acc_id
+                            LEFT JOIN tb_account ac2 ON ac2.acc_id = ac1.parent_acc_id 
+                            LEFT JOIN tb_account ac3 ON ac3.acc_id = ac2.parent_acc_id
+                            LEFT JOIN tb_account ac4 ON ac4.acc_id = ac3.parent_acc_id
+                            WHERE dc.division_id = 69.
+in D:\DPO\xampp\htdocs\milk\protected\controllers\DataController.php (2185)
+in D:\DPO\xampp\htdocs\milk\index.php (13)
+2016/07/11 05:59:25 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'dpo_budget.tb_mg_limit' doesn't exist. The SQL statement executed was: SELECT  IFNULL(ac1.acc_id,0) as ac1, IFNULL(ac2.acc_id,0) as ac2, IFNULL(ac3.acc_id,0) as ac3, IFNULL(ac4.acc_id,0) as ac4
+                            FROM tb_division dc 
+                            JOIN tb_division dp ON dp.division_id = dc.parent_division 
+                            JOIN tb_mg_limit mgl ON mgl.division = dc.division_id AND `year` = 2015 AND round = 1
+                            JOIN tb_account ac1 ON ac1.acc_id = mgl.acc_id
+                            LEFT JOIN tb_account ac2 ON ac2.acc_id = ac1.parent_acc_id 
+                            LEFT JOIN tb_account ac3 ON ac3.acc_id = ac2.parent_acc_id
+                            LEFT JOIN tb_account ac4 ON ac4.acc_id = ac3.parent_acc_id
+                            WHERE dc.division_id = 69' in D:\DPO\xampp\htdocs\Yii\framework\db\CDbCommand.php:543
+Stack trace:
+#0 D:\DPO\xampp\htdocs\Yii\framework\db\CDbCommand.php(396): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 D:\DPO\xampp\htdocs\milk\protected\controllers\DataController.php(2185): CDbCommand->queryAll()
+#2 D:\DPO\xampp\htdocs\Yii\framework\web\actions\CInlineAction.php(49): DataController->actionFillMonthGoalInput()
+#3 D:\DPO\xampp\htdocs\Yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 D:\DPO\xampp\htdocs\Yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#5 D:\DPO\xampp\htdocs\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): CController->run('fillmonthgoalin...')
+#7 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('Data/FillMonthG...')
+#8 D:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#9 D:\DPO\xampp\htdocs\milk\index.php(13): CApplication->run()
+#10 {main}
+REQUEST_URI=/milk/Data/FillMonthGoalInput
+HTTP_REFERER=http://localhost/milk/Bud/MonthGoal
+---
+2016/07/11 05:59:44 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'dpo_budget.tb_mg_limit' doesn't exist. The SQL statement executed was: SELECT  IFNULL(ac1.acc_id,0) as ac1, IFNULL(ac2.acc_id,0) as ac2, IFNULL(ac3.acc_id,0) as ac3, IFNULL(ac4.acc_id,0) as ac4
+                            FROM tb_division dc 
+                            JOIN tb_division dp ON dp.division_id = dc.parent_division 
+                            JOIN tb_mg_limit mgl ON mgl.division = dc.division_id AND `year` = 2015 AND round = 1
+                            JOIN tb_account ac1 ON ac1.acc_id = mgl.acc_id
+                            LEFT JOIN tb_account ac2 ON ac2.acc_id = ac1.parent_acc_id 
+                            LEFT JOIN tb_account ac3 ON ac3.acc_id = ac2.parent_acc_id
+                            LEFT JOIN tb_account ac4 ON ac4.acc_id = ac3.parent_acc_id
+                            WHERE dc.division_id = 69.
+in D:\DPO\xampp\htdocs\milk\protected\controllers\DataController.php (2185)
+in D:\DPO\xampp\htdocs\milk\index.php (13)
+2016/07/11 05:59:44 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'dpo_budget.tb_mg_limit' doesn't exist. The SQL statement executed was: SELECT  IFNULL(ac1.acc_id,0) as ac1, IFNULL(ac2.acc_id,0) as ac2, IFNULL(ac3.acc_id,0) as ac3, IFNULL(ac4.acc_id,0) as ac4
+                            FROM tb_division dc 
+                            JOIN tb_division dp ON dp.division_id = dc.parent_division 
+                            JOIN tb_mg_limit mgl ON mgl.division = dc.division_id AND `year` = 2015 AND round = 1
+                            JOIN tb_account ac1 ON ac1.acc_id = mgl.acc_id
+                            LEFT JOIN tb_account ac2 ON ac2.acc_id = ac1.parent_acc_id 
+                            LEFT JOIN tb_account ac3 ON ac3.acc_id = ac2.parent_acc_id
+                            LEFT JOIN tb_account ac4 ON ac4.acc_id = ac3.parent_acc_id
+                            WHERE dc.division_id = 69' in D:\DPO\xampp\htdocs\Yii\framework\db\CDbCommand.php:543
+Stack trace:
+#0 D:\DPO\xampp\htdocs\Yii\framework\db\CDbCommand.php(396): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 D:\DPO\xampp\htdocs\milk\protected\controllers\DataController.php(2185): CDbCommand->queryAll()
+#2 D:\DPO\xampp\htdocs\Yii\framework\web\actions\CInlineAction.php(49): DataController->actionFillMonthGoalInput()
+#3 D:\DPO\xampp\htdocs\Yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 D:\DPO\xampp\htdocs\Yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#5 D:\DPO\xampp\htdocs\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): CController->run('fillmonthgoalin...')
+#7 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('Data/FillMonthG...')
+#8 D:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#9 D:\DPO\xampp\htdocs\milk\index.php(13): CApplication->run()
+#10 {main}
+REQUEST_URI=/milk/Data/FillMonthGoalInput
+HTTP_REFERER=http://localhost/milk/Bud/MonthGoal
+---
+2016/07/11 06:26:54 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'dpo_budget.tb_mg_limit' doesn't exist. The SQL statement executed was: SELECT  IFNULL(ac1.acc_id,0) as ac1, IFNULL(ac2.acc_id,0) as ac2, IFNULL(ac3.acc_id,0) as ac3, IFNULL(ac4.acc_id,0) as ac4
+                            FROM tb_division dc 
+                            JOIN tb_division dp ON dp.division_id = dc.parent_division 
+                            JOIN tb_mg_limit mgl ON mgl.division = dc.division_id AND `year` = 2015 AND round = 1
+                            JOIN tb_account ac1 ON ac1.acc_id = mgl.acc_id
+                            LEFT JOIN tb_account ac2 ON ac2.acc_id = ac1.parent_acc_id 
+                            LEFT JOIN tb_account ac3 ON ac3.acc_id = ac2.parent_acc_id
+                            LEFT JOIN tb_account ac4 ON ac4.acc_id = ac3.parent_acc_id
+                            WHERE dc.division_id = 69.
+in D:\DPO\xampp\htdocs\milk\protected\controllers\DataController.php (2185)
+in D:\DPO\xampp\htdocs\milk\index.php (13)
+2016/07/11 06:26:54 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'dpo_budget.tb_mg_limit' doesn't exist. The SQL statement executed was: SELECT  IFNULL(ac1.acc_id,0) as ac1, IFNULL(ac2.acc_id,0) as ac2, IFNULL(ac3.acc_id,0) as ac3, IFNULL(ac4.acc_id,0) as ac4
+                            FROM tb_division dc 
+                            JOIN tb_division dp ON dp.division_id = dc.parent_division 
+                            JOIN tb_mg_limit mgl ON mgl.division = dc.division_id AND `year` = 2015 AND round = 1
+                            JOIN tb_account ac1 ON ac1.acc_id = mgl.acc_id
+                            LEFT JOIN tb_account ac2 ON ac2.acc_id = ac1.parent_acc_id 
+                            LEFT JOIN tb_account ac3 ON ac3.acc_id = ac2.parent_acc_id
+                            LEFT JOIN tb_account ac4 ON ac4.acc_id = ac3.parent_acc_id
+                            WHERE dc.division_id = 69' in D:\DPO\xampp\htdocs\Yii\framework\db\CDbCommand.php:543
+Stack trace:
+#0 D:\DPO\xampp\htdocs\Yii\framework\db\CDbCommand.php(396): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 D:\DPO\xampp\htdocs\milk\protected\controllers\DataController.php(2185): CDbCommand->queryAll()
+#2 D:\DPO\xampp\htdocs\Yii\framework\web\actions\CInlineAction.php(49): DataController->actionFillMonthGoalInput()
+#3 D:\DPO\xampp\htdocs\Yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 D:\DPO\xampp\htdocs\Yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#5 D:\DPO\xampp\htdocs\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): CController->run('fillmonthgoalin...')
+#7 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('Data/FillMonthG...')
+#8 D:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#9 D:\DPO\xampp\htdocs\milk\index.php(13): CApplication->run()
+#10 {main}
+REQUEST_URI=/milk/Data/FillMonthGoalInput
+HTTP_REFERER=http://localhost/milk/Bud/MonthGoal
+---
+2016/07/11 07:01:38 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'dpo_budget.tb_mg_limit' doesn't exist. The SQL statement executed was: SELECT  IFNULL(ac1.acc_id,0) as ac1, IFNULL(ac2.acc_id,0) as ac2, IFNULL(ac3.acc_id,0) as ac3, IFNULL(ac4.acc_id,0) as ac4
+                            FROM tb_division dc 
+                            JOIN tb_division dp ON dp.division_id = dc.parent_division 
+                            JOIN tb_mg_limit mgl ON mgl.division = dc.division_id AND `year` = 2015 AND round = 1
+                            JOIN tb_account ac1 ON ac1.acc_id = mgl.acc_id
+                            LEFT JOIN tb_account ac2 ON ac2.acc_id = ac1.parent_acc_id 
+                            LEFT JOIN tb_account ac3 ON ac3.acc_id = ac2.parent_acc_id
+                            LEFT JOIN tb_account ac4 ON ac4.acc_id = ac3.parent_acc_id
+                            WHERE dc.division_id = 69.
+in D:\DPO\xampp\htdocs\milk\protected\controllers\MonthGoalController.php (137)
+in D:\DPO\xampp\htdocs\milk\index.php (13)
+2016/07/11 07:01:38 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'dpo_budget.tb_mg_limit' doesn't exist. The SQL statement executed was: SELECT  IFNULL(ac1.acc_id,0) as ac1, IFNULL(ac2.acc_id,0) as ac2, IFNULL(ac3.acc_id,0) as ac3, IFNULL(ac4.acc_id,0) as ac4
+                            FROM tb_division dc 
+                            JOIN tb_division dp ON dp.division_id = dc.parent_division 
+                            JOIN tb_mg_limit mgl ON mgl.division = dc.division_id AND `year` = 2015 AND round = 1
+                            JOIN tb_account ac1 ON ac1.acc_id = mgl.acc_id
+                            LEFT JOIN tb_account ac2 ON ac2.acc_id = ac1.parent_acc_id 
+                            LEFT JOIN tb_account ac3 ON ac3.acc_id = ac2.parent_acc_id
+                            LEFT JOIN tb_account ac4 ON ac4.acc_id = ac3.parent_acc_id
+                            WHERE dc.division_id = 69' in D:\DPO\xampp\htdocs\Yii\framework\db\CDbCommand.php:543
+Stack trace:
+#0 D:\DPO\xampp\htdocs\Yii\framework\db\CDbCommand.php(396): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 D:\DPO\xampp\htdocs\milk\protected\controllers\MonthGoalController.php(137): CDbCommand->queryAll()
+#2 D:\DPO\xampp\htdocs\Yii\framework\web\actions\CInlineAction.php(49): MonthGoalController->actionFillMonthGoalInput()
+#3 D:\DPO\xampp\htdocs\Yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 D:\DPO\xampp\htdocs\Yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#5 D:\DPO\xampp\htdocs\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): CController->run('fillmonthgoalin...')
+#7 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('MonthGoal/FillM...')
+#8 D:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#9 D:\DPO\xampp\htdocs\milk\index.php(13): CApplication->run()
+#10 {main}
+REQUEST_URI=/milk/MonthGoal/FillMonthGoalInput
+HTTP_REFERER=http://localhost/milk/Bud/MonthGoal
+---
+2016/07/11 07:09:49 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'dpo_budget.tb_mg_limit' doesn't exist. The SQL statement executed was: SHOW FULL COLUMNS FROM `tb_mg_limit`.
+in D:\DPO\xampp\htdocs\milk\protected\controllers\MonthGoalController.php (273)
+in D:\DPO\xampp\htdocs\milk\protected\controllers\MonthGoalController.php (235)
+in D:\DPO\xampp\htdocs\milk\index.php (13)
+2016/07/11 07:09:49 [error] [exception.CDbException] exception 'CDbException' with message 'The table "tb_mg_limit" for active record class "TbMgLimit" cannot be found in the database.' in D:\DPO\xampp\htdocs\Yii\framework\db\ar\CActiveRecord.php:2385
+Stack trace:
+#0 D:\DPO\xampp\htdocs\Yii\framework\db\ar\CActiveRecord.php(411): CActiveRecordMetaData->__construct(Object(TbMgLimit))
+#1 D:\DPO\xampp\htdocs\Yii\framework\db\ar\CActiveRecord.php(661): CActiveRecord->getMetaData()
+#2 D:\DPO\xampp\htdocs\Yii\framework\db\ar\CActiveRecord.php(1490): CActiveRecord->getTableSchema()
+#3 D:\DPO\xampp\htdocs\milk\protected\controllers\MonthGoalController.php(273): CActiveRecord->findByPk(Array)
+#4 D:\DPO\xampp\htdocs\milk\protected\controllers\MonthGoalController.php(235): MonthGoalController->caninput('2015', '1', '69', '9')
+#5 D:\DPO\xampp\htdocs\Yii\framework\web\actions\CInlineAction.php(49): MonthGoalController->actionFillMonthGoalInput()
+#6 D:\DPO\xampp\htdocs\Yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#7 D:\DPO\xampp\htdocs\Yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#8 D:\DPO\xampp\htdocs\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#9 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): CController->run('fillmonthgoalin...')
+#10 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('MonthGoal/FillM...')
+#11 D:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#12 D:\DPO\xampp\htdocs\milk\index.php(13): CApplication->run()
+#13 {main}
+REQUEST_URI=/milk/MonthGoal/FillMonthGoalInput
+HTTP_REFERER=http://localhost/milk/Bud/MonthGoal
+---
+2016/07/11 07:09:49 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/images/loader.gif".' in D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/images/l...')
+#1 D:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#2 D:\DPO\xampp\htdocs\milk\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/milk/assets/images/loader.gif
+HTTP_REFERER=http://localhost/milk/assets/css/smart_wizard.css
+---
+2016/07/11 07:23:56 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'dc.parent_division' in 'where clause'. The SQL statement executed was: SELECT ay.`year`, dc.division_id as cid, dc.division_name as cname, approve_lv as approve, MAX(month_goal_id) as monthgoal, erp_id 
+FROM tb_division dc  
+JOIN tb_approve ap ON ap.division_id = dc.division_id 
+JOIN tb_acc_year ay ON ay.`year` = ap.`year` 
+LEFT JOIN tb_month_goal mg ON mg.division_id = dc.division_id AND mg.acc_id = ay.acc_id 
+WHERE ay.`year` = 2015 AND dc.parent_division = 69 
+GROUP BY dc.division_id 
+ORDER BY erp_id ASC;.
+in D:\DPO\xampp\htdocs\milk\protected\controllers\DataController.php (1334)
+in D:\DPO\xampp\htdocs\milk\index.php (13)
+2016/07/11 07:23:56 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'dc.parent_division' in 'where clause'. The SQL statement executed was: SELECT ay.`year`, dc.division_id as cid, dc.division_name as cname, approve_lv as approve, MAX(month_goal_id) as monthgoal, erp_id 
+FROM tb_division dc  
+JOIN tb_approve ap ON ap.division_id = dc.division_id 
+JOIN tb_acc_year ay ON ay.`year` = ap.`year` 
+LEFT JOIN tb_month_goal mg ON mg.division_id = dc.division_id AND mg.acc_id = ay.acc_id 
+WHERE ay.`year` = 2015 AND dc.parent_division = 69 
+GROUP BY dc.division_id 
+ORDER BY erp_id ASC;' in D:\DPO\xampp\htdocs\Yii\framework\db\CDbCommand.php:543
+Stack trace:
+#0 D:\DPO\xampp\htdocs\Yii\framework\db\CDbCommand.php(396): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 D:\DPO\xampp\htdocs\milk\protected\controllers\DataController.php(1334): CDbCommand->queryAll()
+#2 D:\DPO\xampp\htdocs\Yii\framework\web\actions\CInlineAction.php(49): DataController->actionFillApproveDiv()
+#3 D:\DPO\xampp\htdocs\Yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 D:\DPO\xampp\htdocs\Yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#5 D:\DPO\xampp\htdocs\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): CController->run('fillapprovediv')
+#7 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('Data/FillApprov...')
+#8 D:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#9 D:\DPO\xampp\htdocs\milk\index.php(13): CApplication->run()
+#10 {main}
+REQUEST_URI=/milk/Data/FillApproveDiv
+HTTP_REFERER=http://localhost/milk/Bud/Approve
+---
+2016/07/11 09:43:46 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/images/loader.gif".' in D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/images/l...')
+#1 D:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#2 D:\DPO\xampp\htdocs\milk\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/milk/assets/images/loader.gif
+HTTP_REFERER=http://localhost/milk/assets/css/smart_wizard.css
+---
+2016/07/11 10:00:42 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "fillmonthgoalinputnew".' in D:\DPO\xampp\htdocs\Yii\framework\web\CController.php:483
+Stack trace:
+#0 D:\DPO\xampp\htdocs\Yii\framework\web\CController.php(270): CController->missingAction('fillmonthgoalin...')
+#1 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): CController->run('fillmonthgoalin...')
+#2 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('MonthGoal/FillM...')
+#3 D:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#4 D:\DPO\xampp\htdocs\milk\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/milk/MonthGoal/FillMonthGoalInputNew
+HTTP_REFERER=http://localhost/milk/Bud/MonthGoal
+---
+2016/07/11 10:01:09 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "fillmonthgoalinputnew".' in D:\DPO\xampp\htdocs\Yii\framework\web\CController.php:483
+Stack trace:
+#0 D:\DPO\xampp\htdocs\Yii\framework\web\CController.php(270): CController->missingAction('fillmonthgoalin...')
+#1 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): CController->run('fillmonthgoalin...')
+#2 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('MonthGoal/FillM...')
+#3 D:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#4 D:\DPO\xampp\htdocs\milk\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/milk/MonthGoal/FillMonthGoalInputNew
+HTTP_REFERER=http://localhost/milk/Bud/MonthGoal
+---
+2016/07/11 10:01:18 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "fillmonthgoalinputnew".' in D:\DPO\xampp\htdocs\Yii\framework\web\CController.php:483
+Stack trace:
+#0 D:\DPO\xampp\htdocs\Yii\framework\web\CController.php(270): CController->missingAction('fillmonthgoalin...')
+#1 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): CController->run('fillmonthgoalin...')
+#2 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('MonthGoal/FillM...')
+#3 D:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#4 D:\DPO\xampp\htdocs\milk\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/milk/MonthGoal/FillMonthGoalInputNew
+HTTP_REFERER=http://localhost/milk/Bud/MonthGoal
+---
+2016/07/11 10:02:00 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "fillmonthgoalinputnew".' in D:\DPO\xampp\htdocs\Yii\framework\web\CController.php:483
+Stack trace:
+#0 D:\DPO\xampp\htdocs\Yii\framework\web\CController.php(270): CController->missingAction('fillmonthgoalin...')
+#1 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): CController->run('fillmonthgoalin...')
+#2 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('MonthGoal/FillM...')
+#3 D:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#4 D:\DPO\xampp\htdocs\milk\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/milk/MonthGoal/FillMonthGoalInputNew
+HTTP_REFERER=http://localhost/milk/Bud/MonthGoal
+---
+2016/07/11 10:02:48 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "fillmonthgoalinput".' in D:\DPO\xampp\htdocs\Yii\framework\web\CController.php:483
+Stack trace:
+#0 D:\DPO\xampp\htdocs\Yii\framework\web\CController.php(270): CController->missingAction('fillmonthgoalin...')
+#1 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): CController->run('fillmonthgoalin...')
+#2 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('MonthGoal/FillM...')
+#3 D:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#4 D:\DPO\xampp\htdocs\milk\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/milk/MonthGoal/FillMonthGoalInput
+HTTP_REFERER=http://localhost/milk/Bud/MonthGoal
+---
+2016/07/11 10:02:49 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "fillmonthgoalinput".' in D:\DPO\xampp\htdocs\Yii\framework\web\CController.php:483
+Stack trace:
+#0 D:\DPO\xampp\htdocs\Yii\framework\web\CController.php(270): CController->missingAction('fillmonthgoalin...')
+#1 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): CController->run('fillmonthgoalin...')
+#2 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('MonthGoal/FillM...')
+#3 D:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#4 D:\DPO\xampp\htdocs\milk\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/milk/MonthGoal/FillMonthGoalInput
+HTTP_REFERER=http://localhost/milk/Bud/MonthGoal
+---
+2016/07/11 10:02:50 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "fillmonthgoalinput".' in D:\DPO\xampp\htdocs\Yii\framework\web\CController.php:483
+Stack trace:
+#0 D:\DPO\xampp\htdocs\Yii\framework\web\CController.php(270): CController->missingAction('fillmonthgoalin...')
+#1 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): CController->run('fillmonthgoalin...')
+#2 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('MonthGoal/FillM...')
+#3 D:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#4 D:\DPO\xampp\htdocs\milk\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/milk/MonthGoal/FillMonthGoalInput
+HTTP_REFERER=http://localhost/milk/Bud/MonthGoal
+---
+2016/07/11 10:02:50 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "fillmonthgoalinput".' in D:\DPO\xampp\htdocs\Yii\framework\web\CController.php:483
+Stack trace:
+#0 D:\DPO\xampp\htdocs\Yii\framework\web\CController.php(270): CController->missingAction('fillmonthgoalin...')
+#1 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): CController->run('fillmonthgoalin...')
+#2 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('MonthGoal/FillM...')
+#3 D:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#4 D:\DPO\xampp\htdocs\milk\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/milk/MonthGoal/FillMonthGoalInput
+HTTP_REFERER=http://localhost/milk/Bud/MonthGoal
+---
+2016/07/11 10:02:50 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "fillmonthgoalinput".' in D:\DPO\xampp\htdocs\Yii\framework\web\CController.php:483
+Stack trace:
+#0 D:\DPO\xampp\htdocs\Yii\framework\web\CController.php(270): CController->missingAction('fillmonthgoalin...')
+#1 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): CController->run('fillmonthgoalin...')
+#2 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('MonthGoal/FillM...')
+#3 D:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#4 D:\DPO\xampp\htdocs\milk\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/milk/MonthGoal/FillMonthGoalInput
+HTTP_REFERER=http://localhost/milk/Bud/MonthGoal
+---
+2016/07/11 10:02:51 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "fillmonthgoalinput".' in D:\DPO\xampp\htdocs\Yii\framework\web\CController.php:483
+Stack trace:
+#0 D:\DPO\xampp\htdocs\Yii\framework\web\CController.php(270): CController->missingAction('fillmonthgoalin...')
+#1 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): CController->run('fillmonthgoalin...')
+#2 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('MonthGoal/FillM...')
+#3 D:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#4 D:\DPO\xampp\htdocs\milk\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/milk/MonthGoal/FillMonthGoalInput
+HTTP_REFERER=http://localhost/milk/Bud/MonthGoal
+---
+2016/07/11 10:02:51 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "fillmonthgoalinput".' in D:\DPO\xampp\htdocs\Yii\framework\web\CController.php:483
+Stack trace:
+#0 D:\DPO\xampp\htdocs\Yii\framework\web\CController.php(270): CController->missingAction('fillmonthgoalin...')
+#1 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): CController->run('fillmonthgoalin...')
+#2 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('MonthGoal/FillM...')
+#3 D:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#4 D:\DPO\xampp\htdocs\milk\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/milk/MonthGoal/FillMonthGoalInput
+HTTP_REFERER=http://localhost/milk/Bud/MonthGoal
+---
+2016/07/11 10:05:12 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/images/loader.gif".' in D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/images/l...')
+#1 D:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#2 D:\DPO\xampp\htdocs\milk\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/milk/assets/images/loader.gif
+HTTP_REFERER=http://localhost/milk/assets/css/smart_wizard.css
+---
+2016/07/11 10:17:14 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/images/loader.gif".' in D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/images/l...')
+#1 D:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#2 D:\DPO\xampp\htdocs\milk\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/milk/assets/images/loader.gif
+HTTP_REFERER=http://192.168.1.20/milk/assets/css/smart_wizard.css
+---
+2016/07/11 10:24:20 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 5. The SQL statement executed was: 
+                SELECT pf.destination, dd.division_name, month_goal_id
+                FROM tb_profile_fill pf
+                INNER JOIN tb_division dd ON pf.destination = dd.division_id 
+                LEFT JOIN tb_month_goal mg ON pf.destination = mg.division_id AND mg.year = 2015 AND mg.round = 1 AND mg.version = 1 
+                WHERE pf.Operator =  
+                .
+in D:\DPO\xampp\htdocs\milk\protected\controllers\MonthGoalController.php (55)
+in D:\DPO\xampp\htdocs\milk\index.php (13)
+2016/07/11 10:24:20 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 5. The SQL statement executed was: 
+                SELECT pf.destination, dd.division_name, month_goal_id
+                FROM tb_profile_fill pf
+                INNER JOIN tb_division dd ON pf.destination = dd.division_id 
+                LEFT JOIN tb_month_goal mg ON pf.destination = mg.division_id AND mg.year = 2015 AND mg.round = 1 AND mg.version = 1 
+                WHERE pf.Operator =  
+                ' in D:\DPO\xampp\htdocs\Yii\framework\db\CDbCommand.php:543
+Stack trace:
+#0 D:\DPO\xampp\htdocs\Yii\framework\db\CDbCommand.php(396): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 D:\DPO\xampp\htdocs\milk\protected\controllers\MonthGoalController.php(55): CDbCommand->queryAll()
+#2 D:\DPO\xampp\htdocs\Yii\framework\web\actions\CInlineAction.php(49): MonthGoalController->actionFillJobList()
+#3 D:\DPO\xampp\htdocs\Yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 D:\DPO\xampp\htdocs\Yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#5 D:\DPO\xampp\htdocs\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): CController->run('filljoblist')
+#7 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('MonthGoal/FillJ...')
+#8 D:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#9 D:\DPO\xampp\htdocs\milk\index.php(13): CApplication->run()
+#10 {main}
+REQUEST_URI=/milk/MonthGoal/FillJobList
+HTTP_REFERER=http://localhost/milk/Bud/MonthGoal
+---
+2016/07/11 10:39:02 [error] [php] Undefined variable: lv4 (D:\DPO\xampp\htdocs\milk\protected\controllers\MonthGoalController.php:412)
+Stack trace:
+#0 D:\DPO\xampp\htdocs\Yii\framework\web\CController.php(286): MonthGoalController->runAction()
+#1 D:\DPO\xampp\htdocs\Yii\framework\web\CController.php(265): MonthGoalController->runActionWithFilters()
+#2 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): MonthGoalController->run()
+#3 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 D:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#5 D:\DPO\xampp\htdocs\milk\index.php(13): CWebApplication->run()
+REQUEST_URI=/milk/MonthGoal/FillMonthGoalInputNew
+in D:\DPO\xampp\htdocs\milk\protected\controllers\MonthGoalController.php (412)
+in D:\DPO\xampp\htdocs\milk\index.php (13)
+2016/07/11 10:55:30 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "fillmonthgoalinputnewnew".' in D:\DPO\xampp\htdocs\Yii\framework\web\CController.php:483
+Stack trace:
+#0 D:\DPO\xampp\htdocs\Yii\framework\web\CController.php(270): CController->missingAction('fillmonthgoalin...')
+#1 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): CController->run('fillmonthgoalin...')
+#2 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('MonthGoal/FillM...')
+#3 D:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#4 D:\DPO\xampp\htdocs\milk\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/milk/MonthGoal/FillMonthGoalInputNewNew
+HTTP_REFERER=http://localhost/milk/Bud/MonthGoal
+---
+2016/07/11 11:02:38 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'acc_id IN (1, 2, 3, 9, 10, 11, 12, 13, 14, 15, 16, 18, 21, 22, 23, 24, 25, 26, 2' at line 1. The SQL statement executed was: SELECT * FROM `tb_account` `t` WHERE parent_acc_id = 1  acc_id IN (1, 2, 3, 9, 10, 11, 12, 13, 14, 15, 16, 18, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98) ORDER BY acc_name ASC.
+in D:\DPO\xampp\htdocs\milk\protected\controllers\MonthGoalController.php (553)
+in D:\DPO\xampp\htdocs\milk\index.php (13)
+2016/07/11 11:02:38 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'acc_id IN (1, 2, 3, 9, 10, 11, 12, 13, 14, 15, 16, 18, 21, 22, 23, 24, 25, 26, 2' at line 1. The SQL statement executed was: SELECT * FROM `tb_account` `t` WHERE parent_acc_id = 1  acc_id IN (1, 2, 3, 9, 10, 11, 12, 13, 14, 15, 16, 18, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98) ORDER BY acc_name ASC' in D:\DPO\xampp\htdocs\Yii\framework\db\CDbCommand.php:543
+Stack trace:
+#0 D:\DPO\xampp\htdocs\Yii\framework\db\CDbCommand.php(396): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 D:\DPO\xampp\htdocs\Yii\framework\db\ar\CActiveRecord.php(1356): CDbCommand->queryAll()
+#2 D:\DPO\xampp\htdocs\Yii\framework\db\ar\CActiveRecord.php(1475): CActiveRecord->query(Object(CDbCriteria), true)
+#3 D:\DPO\xampp\htdocs\milk\protected\controllers\MonthGoalController.php(553): CActiveRecord->findAll(Array)
+#4 D:\DPO\xampp\htdocs\Yii\framework\web\actions\CInlineAction.php(49): MonthGoalController->actionFillMonthGoalInputNewNew()
+#5 D:\DPO\xampp\htdocs\Yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#6 D:\DPO\xampp\htdocs\Yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#7 D:\DPO\xampp\htdocs\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): CController->run('fillmonthgoalin...')
+#9 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('MonthGoal/FillM...')
+#10 D:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#11 D:\DPO\xampp\htdocs\milk\index.php(13): CApplication->run()
+#12 {main}
+REQUEST_URI=/milk/MonthGoal/FillMonthGoalInputNewNew
+HTTP_REFERER=http://localhost/milk/Bud/MonthGoal
+---
+2016/07/11 11:03:12 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'acc_id IN (1, 2, 3, 9, 10, 11, 12, 13, 14, 15, 16, 18, 21, 22, 23, 24, 25, 26, 2' at line 1. The SQL statement executed was: SELECT * FROM `tb_account` `t` WHERE parent_acc_id = 1  acc_id IN (1, 2, 3, 9, 10, 11, 12, 13, 14, 15, 16, 18, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98) ORDER BY acc_name ASC.
+in D:\DPO\xampp\htdocs\milk\protected\controllers\MonthGoalController.php (553)
+in D:\DPO\xampp\htdocs\milk\index.php (13)
+2016/07/11 11:03:12 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'acc_id IN (1, 2, 3, 9, 10, 11, 12, 13, 14, 15, 16, 18, 21, 22, 23, 24, 25, 26, 2' at line 1. The SQL statement executed was: SELECT * FROM `tb_account` `t` WHERE parent_acc_id = 1  acc_id IN (1, 2, 3, 9, 10, 11, 12, 13, 14, 15, 16, 18, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98) ORDER BY acc_name ASC' in D:\DPO\xampp\htdocs\Yii\framework\db\CDbCommand.php:543
+Stack trace:
+#0 D:\DPO\xampp\htdocs\Yii\framework\db\CDbCommand.php(396): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 D:\DPO\xampp\htdocs\Yii\framework\db\ar\CActiveRecord.php(1356): CDbCommand->queryAll()
+#2 D:\DPO\xampp\htdocs\Yii\framework\db\ar\CActiveRecord.php(1475): CActiveRecord->query(Object(CDbCriteria), true)
+#3 D:\DPO\xampp\htdocs\milk\protected\controllers\MonthGoalController.php(553): CActiveRecord->findAll(Array)
+#4 D:\DPO\xampp\htdocs\Yii\framework\web\actions\CInlineAction.php(49): MonthGoalController->actionFillMonthGoalInputNewNew()
+#5 D:\DPO\xampp\htdocs\Yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#6 D:\DPO\xampp\htdocs\Yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#7 D:\DPO\xampp\htdocs\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): CController->run('fillmonthgoalin...')
+#9 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('MonthGoal/FillM...')
+#10 D:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#11 D:\DPO\xampp\htdocs\milk\index.php(13): CApplication->run()
+#12 {main}
+REQUEST_URI=/milk/MonthGoal/FillMonthGoalInputNewNew
+HTTP_REFERER=http://localhost/milk/Bud/MonthGoal
+---
+2016/07/11 11:04:04 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'AND acc_id IN (1, 2, 3, 9, 10, 11, 12, 13, 14, 15, 16, 18, 21, 22, 23, 24, 25, 2' at line 1. The SQL statement executed was: SELECT * FROM `tb_account` `t` WHERE parent_acc_id IS NULL AND  AND acc_id IN (1, 2, 3, 9, 10, 11, 12, 13, 14, 15, 16, 18, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98) ORDER BY `order` ASC .
+in D:\DPO\xampp\htdocs\milk\protected\controllers\MonthGoalController.php (536)
+in D:\DPO\xampp\htdocs\milk\index.php (13)
+2016/07/11 11:04:04 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'AND acc_id IN (1, 2, 3, 9, 10, 11, 12, 13, 14, 15, 16, 18, 21, 22, 23, 24, 25, 2' at line 1. The SQL statement executed was: SELECT * FROM `tb_account` `t` WHERE parent_acc_id IS NULL AND  AND acc_id IN (1, 2, 3, 9, 10, 11, 12, 13, 14, 15, 16, 18, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98) ORDER BY `order` ASC ' in D:\DPO\xampp\htdocs\Yii\framework\db\CDbCommand.php:543
+Stack trace:
+#0 D:\DPO\xampp\htdocs\Yii\framework\db\CDbCommand.php(396): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 D:\DPO\xampp\htdocs\Yii\framework\db\ar\CActiveRecord.php(1356): CDbCommand->queryAll()
+#2 D:\DPO\xampp\htdocs\Yii\framework\db\ar\CActiveRecord.php(1475): CActiveRecord->query(Object(CDbCriteria), true)
+#3 D:\DPO\xampp\htdocs\milk\protected\controllers\MonthGoalController.php(536): CActiveRecord->findAll('parent_acc_id I...')
+#4 D:\DPO\xampp\htdocs\Yii\framework\web\actions\CInlineAction.php(49): MonthGoalController->actionFillMonthGoalInputNewNew()
+#5 D:\DPO\xampp\htdocs\Yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#6 D:\DPO\xampp\htdocs\Yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#7 D:\DPO\xampp\htdocs\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): CController->run('fillmonthgoalin...')
+#9 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('MonthGoal/FillM...')
+#10 D:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#11 D:\DPO\xampp\htdocs\milk\index.php(13): CApplication->run()
+#12 {main}
+REQUEST_URI=/milk/MonthGoal/FillMonthGoalInputNewNew
+HTTP_REFERER=http://localhost/milk/Bud/MonthGoal
+---
+2016/07/12 05:46:43 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'dc.parent_division' in 'on clause'. The SQL statement executed was: SELECT  `year`, dp.division_id as pid, dp.division_name as pname, AVG(IFNULL(approve_lv,0)) as approve, dp.erp_id
+	FROM tb_division dp  
+	INNER JOIN tb_division dc ON dp.division_id = dc.parent_division AND dc.division_level < 3 
+	INNER JOIN tb_approve ap ON dc.division_id = ap.division_id
+	WHERE `year` = 2015  
+	GROUP BY dp.division_id 
+        ORDER BY erp_id .
+in D:\DPO\xampp\htdocs\milk\protected\controllers\DataController.php (1442)
+in D:\DPO\xampp\htdocs\milk\index.php (13)
+2016/07/12 05:46:43 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'dc.parent_division' in 'on clause'. The SQL statement executed was: SELECT  `year`, dp.division_id as pid, dp.division_name as pname, AVG(IFNULL(approve_lv,0)) as approve, dp.erp_id
+	FROM tb_division dp  
+	INNER JOIN tb_division dc ON dp.division_id = dc.parent_division AND dc.division_level < 3 
+	INNER JOIN tb_approve ap ON dc.division_id = ap.division_id
+	WHERE `year` = 2015  
+	GROUP BY dp.division_id 
+        ORDER BY erp_id ' in D:\DPO\xampp\htdocs\Yii\framework\db\CDbCommand.php:543
+Stack trace:
+#0 D:\DPO\xampp\htdocs\Yii\framework\db\CDbCommand.php(396): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 D:\DPO\xampp\htdocs\milk\protected\controllers\DataController.php(1442): CDbCommand->queryAll()
+#2 D:\DPO\xampp\htdocs\Yii\framework\web\actions\CInlineAction.php(49): DataController->actionFillApproveAdmin()
+#3 D:\DPO\xampp\htdocs\Yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 D:\DPO\xampp\htdocs\Yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#5 D:\DPO\xampp\htdocs\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): CController->run('fillapproveadmi...')
+#7 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('Data/FillApprov...')
+#8 D:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#9 D:\DPO\xampp\htdocs\milk\index.php(13): CApplication->run()
+#10 {main}
+REQUEST_URI=/milk/Data/FillApproveAdmin
+HTTP_REFERER=http://localhost/milk/Bud/Approve
+---
+2016/07/12 05:47:01 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'dc.parent_division' in 'where clause'. The SQL statement executed was: SELECT ay.`year`, dc.division_id as cid, dc.division_name as cname, approve_lv as approve, MAX(month_goal_id) as monthgoal, erp_id 
+FROM tb_division dc  
+JOIN tb_approve ap ON ap.division_id = dc.division_id 
+JOIN tb_acc_year ay ON ay.`year` = ap.`year` 
+LEFT JOIN tb_month_goal mg ON mg.division_id = dc.division_id AND mg.acc_id = ay.acc_id 
+WHERE ay.`year` = 2015 AND dc.parent_division = 69 
+GROUP BY dc.division_id 
+ORDER BY erp_id ASC;.
+in D:\DPO\xampp\htdocs\milk\protected\controllers\DataController.php (1335)
+in D:\DPO\xampp\htdocs\milk\index.php (13)
+2016/07/12 05:47:01 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'dc.parent_division' in 'where clause'. The SQL statement executed was: SELECT ay.`year`, dc.division_id as cid, dc.division_name as cname, approve_lv as approve, MAX(month_goal_id) as monthgoal, erp_id 
+FROM tb_division dc  
+JOIN tb_approve ap ON ap.division_id = dc.division_id 
+JOIN tb_acc_year ay ON ay.`year` = ap.`year` 
+LEFT JOIN tb_month_goal mg ON mg.division_id = dc.division_id AND mg.acc_id = ay.acc_id 
+WHERE ay.`year` = 2015 AND dc.parent_division = 69 
+GROUP BY dc.division_id 
+ORDER BY erp_id ASC;' in D:\DPO\xampp\htdocs\Yii\framework\db\CDbCommand.php:543
+Stack trace:
+#0 D:\DPO\xampp\htdocs\Yii\framework\db\CDbCommand.php(396): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 D:\DPO\xampp\htdocs\milk\protected\controllers\DataController.php(1335): CDbCommand->queryAll()
+#2 D:\DPO\xampp\htdocs\Yii\framework\web\actions\CInlineAction.php(49): DataController->actionFillApproveDiv()
+#3 D:\DPO\xampp\htdocs\Yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 D:\DPO\xampp\htdocs\Yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#5 D:\DPO\xampp\htdocs\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): CController->run('fillapprovediv')
+#7 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('Data/FillApprov...')
+#8 D:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#9 D:\DPO\xampp\htdocs\milk\index.php(13): CApplication->run()
+#10 {main}
+REQUEST_URI=/milk/Data/FillApproveDiv
+HTTP_REFERER=http://localhost/milk/Bud/Approve
+---
+2016/07/12 05:47:08 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/images/loader.gif".' in D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/images/l...')
+#1 D:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#2 D:\DPO\xampp\htdocs\milk\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/milk/assets/images/loader.gif
+HTTP_REFERER=http://localhost/milk/assets/css/smart_wizard.css
+---
+2016/07/12 05:54:51 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/images/loader.gif".' in D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/images/l...')
+#1 D:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#2 D:\DPO\xampp\htdocs\milk\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/milk/assets/images/loader.gif
+HTTP_REFERER=http://localhost/milk/assets/css/smart_wizard.css
+---
+2016/07/12 06:25:00 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/images/loader.gif".' in D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/images/l...')
+#1 D:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#2 D:\DPO\xampp\htdocs\milk\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/milk/assets/images/loader.gif
+HTTP_REFERER=http://localhost/milk/assets/css/smart_wizard.css
+---
+2016/07/12 07:05:33 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/images/loader.gif".' in D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/images/l...')
+#1 D:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#2 D:\DPO\xampp\htdocs\milk\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/milk/assets/images/loader.gif
+HTTP_REFERER=http://localhost/milk/Bud/MonthGoal
+---
+2016/07/12 07:06:43 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/images/loader.gif".' in D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/images/l...')
+#1 D:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#2 D:\DPO\xampp\htdocs\milk\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/milk/assets/images/loader.gif
+HTTP_REFERER=http://localhost/milk/Bud/MonthGoal
+---
+2016/07/12 09:31:35 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 5. The SQL statement executed was: 
+                SELECT pf.destination, dd.division_name, month_goal_id
+                FROM tb_profile_fill pf
+                INNER JOIN tb_division dd ON pf.destination = dd.division_id 
+                LEFT JOIN tb_month_goal mg ON pf.destination = mg.division_id AND mg.year = 2015 AND mg.round = 1 AND mg.version = 1 
+                WHERE pf.Operator =  
+                .
+in D:\DPO\xampp\htdocs\milk\protected\controllers\MonthGoalController.php (55)
+in D:\DPO\xampp\htdocs\milk\index.php (13)
+2016/07/12 09:31:35 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 5. The SQL statement executed was: 
+                SELECT pf.destination, dd.division_name, month_goal_id
+                FROM tb_profile_fill pf
+                INNER JOIN tb_division dd ON pf.destination = dd.division_id 
+                LEFT JOIN tb_month_goal mg ON pf.destination = mg.division_id AND mg.year = 2015 AND mg.round = 1 AND mg.version = 1 
+                WHERE pf.Operator =  
+                ' in D:\DPO\xampp\htdocs\Yii\framework\db\CDbCommand.php:543
+Stack trace:
+#0 D:\DPO\xampp\htdocs\Yii\framework\db\CDbCommand.php(396): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 D:\DPO\xampp\htdocs\milk\protected\controllers\MonthGoalController.php(55): CDbCommand->queryAll()
+#2 D:\DPO\xampp\htdocs\Yii\framework\web\actions\CInlineAction.php(49): MonthGoalController->actionFillJobList()
+#3 D:\DPO\xampp\htdocs\Yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 D:\DPO\xampp\htdocs\Yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#5 D:\DPO\xampp\htdocs\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): CController->run('filljoblist')
+#7 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('MonthGoal/FillJ...')
+#8 D:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#9 D:\DPO\xampp\htdocs\milk\index.php(13): CApplication->run()
+#10 {main}
+REQUEST_URI=/milk/MonthGoal/FillJobList
+HTTP_REFERER=http://localhost/milk/Bud/MonthGoal
+---
+2016/07/12 09:31:56 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/images/loader.gif".' in D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/images/l...')
+#1 D:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#2 D:\DPO\xampp\htdocs\milk\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/milk/assets/images/loader.gif
+HTTP_REFERER=http://localhost/milk/assets/css/smart_wizard.css
+---
+2016/07/12 09:44:19 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/images/loader.gif".' in D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/images/l...')
+#1 D:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#2 D:\DPO\xampp\htdocs\milk\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/milk/assets/images/loader.gif
+HTTP_REFERER=http://localhost/milk/assets/css/smart_wizard.css
+---
+2016/07/13 06:17:16 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/images/loader.gif".' in D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/images/l...')
+#1 D:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#2 D:\DPO\xampp\htdocs\milk\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/milk/assets/images/loader.gif
+HTTP_REFERER=http://localhost/milk/assets/css/smart_wizard.css
+---
+2016/07/14 10:26:28 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/images/loader.gif".' in D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/images/l...')
+#1 D:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#2 D:\DPO\xampp\htdocs\milk\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/milk/assets/images/loader.gif
+HTTP_REFERER=http://localhost/milk/assets/css/smart_wizard.css
+---
+2016/07/14 10:28:55 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/images/loader.gif".' in D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/images/l...')
+#1 D:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#2 D:\DPO\xampp\htdocs\milk\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/milk/assets/images/loader.gif
+HTTP_REFERER=http://localhost/milk/assets/css/smart_wizard.css
+---
+2016/07/14 11:51:57 [error] [php] Use of undefined constant edit - assumed 'edit' (D:\DPO\xampp\htdocs\milk\protected\controllers\MonthGoalController.php:667)
+Stack trace:
+#0 D:\DPO\xampp\htdocs\Yii\framework\web\CController.php(286): MonthGoalController->runAction()
+#1 D:\DPO\xampp\htdocs\Yii\framework\web\CController.php(265): MonthGoalController->runActionWithFilters()
+#2 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): MonthGoalController->run()
+#3 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 D:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#5 D:\DPO\xampp\htdocs\milk\index.php(13): CWebApplication->run()
+REQUEST_URI=/milk/MonthGoal/MgSave
+in D:\DPO\xampp\htdocs\milk\protected\controllers\MonthGoalController.php (667)
+in D:\DPO\xampp\htdocs\milk\index.php (13)
+2016/07/14 11:52:01 [error] [php] Use of undefined constant edit - assumed 'edit' (D:\DPO\xampp\htdocs\milk\protected\controllers\MonthGoalController.php:667)
+Stack trace:
+#0 D:\DPO\xampp\htdocs\Yii\framework\web\CController.php(286): MonthGoalController->runAction()
+#1 D:\DPO\xampp\htdocs\Yii\framework\web\CController.php(265): MonthGoalController->runActionWithFilters()
+#2 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): MonthGoalController->run()
+#3 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 D:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#5 D:\DPO\xampp\htdocs\milk\index.php(13): CWebApplication->run()
+REQUEST_URI=/milk/MonthGoal/MgSave
+in D:\DPO\xampp\htdocs\milk\protected\controllers\MonthGoalController.php (667)
+in D:\DPO\xampp\htdocs\milk\index.php (13)
+2016/07/14 11:52:18 [error] [php] Use of undefined constant edit - assumed 'edit' (D:\DPO\xampp\htdocs\milk\protected\controllers\MonthGoalController.php:667)
+Stack trace:
+#0 D:\DPO\xampp\htdocs\Yii\framework\web\CController.php(286): MonthGoalController->runAction()
+#1 D:\DPO\xampp\htdocs\Yii\framework\web\CController.php(265): MonthGoalController->runActionWithFilters()
+#2 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): MonthGoalController->run()
+#3 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 D:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#5 D:\DPO\xampp\htdocs\milk\index.php(13): CWebApplication->run()
+REQUEST_URI=/milk/MonthGoal/MgSave
+in D:\DPO\xampp\htdocs\milk\protected\controllers\MonthGoalController.php (667)
+in D:\DPO\xampp\htdocs\milk\index.php (13)
+2016/07/14 11:52:31 [error] [php] Use of undefined constant edit - assumed 'edit' (D:\DPO\xampp\htdocs\milk\protected\controllers\MonthGoalController.php:667)
+Stack trace:
+#0 D:\DPO\xampp\htdocs\Yii\framework\web\CController.php(286): MonthGoalController->runAction()
+#1 D:\DPO\xampp\htdocs\Yii\framework\web\CController.php(265): MonthGoalController->runActionWithFilters()
+#2 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): MonthGoalController->run()
+#3 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 D:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#5 D:\DPO\xampp\htdocs\milk\index.php(13): CWebApplication->run()
+REQUEST_URI=/milk/MonthGoal/MgSave
+in D:\DPO\xampp\htdocs\milk\protected\controllers\MonthGoalController.php (667)
+in D:\DPO\xampp\htdocs\milk\index.php (13)
+2016/07/14 11:52:54 [error] [system.db.CDbCommand] CDbCommand::execute() failed: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ', 2,000.00)' at line 2. The SQL statement executed was: 
+                    INSERT INTO tb_month_goal(`year`, `round`, `division_id`, `acc_id`, `month_id`, `version`, subversion, product_quantity, product_quantity_net, `value`) 
+                    VALUES(2016, 1, 70, 61, 10, 1, 1, ,, 2,000.00)
+                    .
+in D:\DPO\xampp\htdocs\milk\protected\controllers\MonthGoalController.php (686)
+in D:\DPO\xampp\htdocs\milk\index.php (13)
+2016/07/14 11:53:14 [error] [system.db.CDbCommand] CDbCommand::execute() failed: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ', 2,000.00)' at line 2. The SQL statement executed was: 
+                    INSERT INTO tb_month_goal(`year`, `round`, `division_id`, `acc_id`, `month_id`, `version`, subversion, product_quantity, product_quantity_net, `value`) 
+                    VALUES(2016, 1, 70, 61, 10, 1, 1, ,, 2,000.00)
+                    .
+in D:\DPO\xampp\htdocs\milk\protected\controllers\MonthGoalController.php (686)
+in D:\DPO\xampp\htdocs\milk\index.php (13)
+2016/07/14 12:00:53 [error] [system.db.CDbCommand] CDbCommand::execute() failed: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ', 2000)' at line 2. The SQL statement executed was: 
+                    INSERT INTO tb_month_goal(`year`, `round`, `division_id`, `acc_id`, `month_id`, `version`, subversion, product_quantity, product_quantity_net, `value`) 
+                    VALUES(2015, 1, 69, 61, 10, 1, 1, ,, 2000)
+                    .
+in D:\DPO\xampp\htdocs\milk\protected\controllers\MonthGoalController.php (686)
+in D:\DPO\xampp\htdocs\milk\index.php (13)
+2016/07/14 12:28:08 [error] [php] Undefined index: quantity_net (D:\DPO\xampp\htdocs\milk\protected\controllers\MonthGoalController.php:682)
+Stack trace:
+#0 D:\DPO\xampp\htdocs\Yii\framework\web\CController.php(286): MonthGoalController->runAction()
+#1 D:\DPO\xampp\htdocs\Yii\framework\web\CController.php(265): MonthGoalController->runActionWithFilters()
+#2 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): MonthGoalController->run()
+#3 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 D:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#5 D:\DPO\xampp\htdocs\milk\index.php(13): CWebApplication->run()
+REQUEST_URI=/milk/MonthGoal/MgSave
+in D:\DPO\xampp\htdocs\milk\protected\controllers\MonthGoalController.php (682)
+in D:\DPO\xampp\htdocs\milk\index.php (13)
+2016/07/14 12:28:51 [error] [php] Undefined index: quantity_net (D:\DPO\xampp\htdocs\milk\protected\controllers\MonthGoalController.php:682)
+Stack trace:
+#0 D:\DPO\xampp\htdocs\Yii\framework\web\CController.php(286): MonthGoalController->runAction()
+#1 D:\DPO\xampp\htdocs\Yii\framework\web\CController.php(265): MonthGoalController->runActionWithFilters()
+#2 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): MonthGoalController->run()
+#3 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 D:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#5 D:\DPO\xampp\htdocs\milk\index.php(13): CWebApplication->run()
+REQUEST_URI=/milk/MonthGoal/MgSave
+in D:\DPO\xampp\htdocs\milk\protected\controllers\MonthGoalController.php (682)
+in D:\DPO\xampp\htdocs\milk\index.php (13)
+2016/07/14 12:28:54 [error] [php] Undefined index: quantity_net (D:\DPO\xampp\htdocs\milk\protected\controllers\MonthGoalController.php:682)
+Stack trace:
+#0 D:\DPO\xampp\htdocs\Yii\framework\web\CController.php(286): MonthGoalController->runAction()
+#1 D:\DPO\xampp\htdocs\Yii\framework\web\CController.php(265): MonthGoalController->runActionWithFilters()
+#2 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): MonthGoalController->run()
+#3 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 D:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#5 D:\DPO\xampp\htdocs\milk\index.php(13): CWebApplication->run()
+REQUEST_URI=/milk/MonthGoal/MgSave
+in D:\DPO\xampp\htdocs\milk\protected\controllers\MonthGoalController.php (682)
+in D:\DPO\xampp\htdocs\milk\index.php (13)
+2016/07/14 12:30:32 [error] [php] Undefined index: quantity_net (D:\DPO\xampp\htdocs\milk\protected\controllers\MonthGoalController.php:682)
+Stack trace:
+#0 D:\DPO\xampp\htdocs\Yii\framework\web\CController.php(286): MonthGoalController->runAction()
+#1 D:\DPO\xampp\htdocs\Yii\framework\web\CController.php(265): MonthGoalController->runActionWithFilters()
+#2 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): MonthGoalController->run()
+#3 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 D:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#5 D:\DPO\xampp\htdocs\milk\index.php(13): CWebApplication->run()
+REQUEST_URI=/milk/MonthGoal/MgSave
+in D:\DPO\xampp\htdocs\milk\protected\controllers\MonthGoalController.php (682)
+in D:\DPO\xampp\htdocs\milk\index.php (13)
+2016/07/14 12:30:48 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/images/loader.gif".' in D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/images/l...')
+#1 D:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#2 D:\DPO\xampp\htdocs\milk\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/milk/assets/images/loader.gif
+HTTP_REFERER=http://localhost/milk/assets/css/smart_wizard.css
+---
+2016/07/14 12:31:55 [error] [php] Undefined index: quantity_net (D:\DPO\xampp\htdocs\milk\protected\controllers\MonthGoalController.php:682)
+Stack trace:
+#0 D:\DPO\xampp\htdocs\Yii\framework\web\CController.php(286): MonthGoalController->runAction()
+#1 D:\DPO\xampp\htdocs\Yii\framework\web\CController.php(265): MonthGoalController->runActionWithFilters()
+#2 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): MonthGoalController->run()
+#3 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 D:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#5 D:\DPO\xampp\htdocs\milk\index.php(13): CWebApplication->run()
+REQUEST_URI=/milk/MonthGoal/MgSave
+in D:\DPO\xampp\htdocs\milk\protected\controllers\MonthGoalController.php (682)
+in D:\DPO\xampp\htdocs\milk\index.php (13)
+2016/07/14 12:34:35 [error] [system.db.CDbCommand] CDbCommand::execute() failed: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ' 200)' at line 2. The SQL statement executed was: 
+                    INSERT INTO tb_month_goal(`year`, `round`, `division_id`, `acc_id`, `month_id`, `version`, subversion, product_quantity, product_quantity_net, `value`) 
+                    VALUES(2015, 1, 69, 61, 10, 1, 1, NULL, , 200)
+                    .
+in D:\DPO\xampp\htdocs\milk\protected\controllers\MonthGoalController.php (686)
+in D:\DPO\xampp\htdocs\milk\index.php (13)
+2016/07/15 07:00:17 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/images/loader.gif".' in D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/images/l...')
+#1 D:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#2 D:\DPO\xampp\htdocs\milk\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/milk/assets/images/loader.gif
+HTTP_REFERER=http://localhost/milk/assets/css/smart_wizard.css
+---
+2016/07/15 07:37:47 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/images/loader.gif".' in D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/images/l...')
+#1 D:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#2 D:\DPO\xampp\htdocs\milk\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/milk/assets/images/loader.gif
+HTTP_REFERER=http://localhost/milk/assets/css/smart_wizard.css
+---
+2016/07/15 07:39:48 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/images/loader.gif".' in D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/images/l...')
+#1 D:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#2 D:\DPO\xampp\htdocs\milk\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/milk/assets/images/loader.gif
+HTTP_REFERER=http://localhost/milk/assets/css/smart_wizard.css
+---
+2016/07/15 07:39:49 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[HY093]: Invalid parameter number: no parameters were bound. The SQL statement executed was: SELECT acc_id FROM tb_acc_year WHERE `year` = 2015?%3E.
+in D:\DPO\xampp\htdocs\milk\protected\controllers\DataController.php (770)
+in D:\DPO\xampp\htdocs\milk\index.php (13)
+2016/07/15 07:39:49 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[HY093]: Invalid parameter number: no parameters were bound. The SQL statement executed was: SELECT acc_id FROM tb_acc_year WHERE `year` = 2015?%3E' in D:\DPO\xampp\htdocs\Yii\framework\db\CDbCommand.php:543
+Stack trace:
+#0 D:\DPO\xampp\htdocs\Yii\framework\db\CDbCommand.php(396): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 D:\DPO\xampp\htdocs\milk\protected\controllers\DataController.php(770): CDbCommand->queryAll()
+#2 D:\DPO\xampp\htdocs\Yii\framework\web\actions\CInlineAction.php(49): DataController->actionAccYear_AccinYear()
+#3 D:\DPO\xampp\htdocs\Yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 D:\DPO\xampp\htdocs\Yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#5 D:\DPO\xampp\htdocs\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): CController->run('accyear_accinye...')
+#7 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('Data/AccYear_Ac...')
+#8 D:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#9 D:\DPO\xampp\htdocs\milk\index.php(13): CApplication->run()
+#10 {main}
+REQUEST_URI=/milk/Data/AccYear_AccinYear
+HTTP_REFERER=http://localhost/milk/Bud/AccountYearAssign?method=edit&year=2015?%3E
+---
+2016/07/15 10:26:35 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/images/loader.gif".' in D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/images/l...')
+#1 D:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#2 D:\DPO\xampp\htdocs\milk\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/milk/assets/images/loader.gif
+HTTP_REFERER=http://localhost/milk/assets/css/smart_wizard.css
+---
+2016/07/15 10:33:55 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/images/loader.gif".' in D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/images/l...')
+#1 D:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#2 D:\DPO\xampp\htdocs\milk\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/milk/assets/images/loader.gif
+HTTP_REFERER=http://localhost/milk/assets/css/smart_wizard.css
+---
+2016/07/15 10:33:56 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 4. The SQL statement executed was: 
+            SELECT * 
+            FROM tb_month_goal 
+            WHERE `year` = 2015 AND `round` = 1 
+                AND division_id = 69 AND version = 1 AND.
+in D:\DPO\xampp\htdocs\milk\protected\controllers\MonthGoalController.php (381)
+in D:\DPO\xampp\htdocs\milk\index.php (13)
+2016/07/15 10:33:56 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 4. The SQL statement executed was: 
+            SELECT * 
+            FROM tb_month_goal 
+            WHERE `year` = 2015 AND `round` = 1 
+                AND division_id = 69 AND version = 1 AND' in D:\DPO\xampp\htdocs\Yii\framework\db\CDbCommand.php:543
+Stack trace:
+#0 D:\DPO\xampp\htdocs\Yii\framework\db\CDbCommand.php(396): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 D:\DPO\xampp\htdocs\milk\protected\controllers\MonthGoalController.php(381): CDbCommand->queryAll()
+#2 D:\DPO\xampp\htdocs\Yii\framework\web\actions\CInlineAction.php(49): MonthGoalController->actionMgInfo()
+#3 D:\DPO\xampp\htdocs\Yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 D:\DPO\xampp\htdocs\Yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#5 D:\DPO\xampp\htdocs\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): CController->run('mginfo')
+#7 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('MonthGoal/MgInf...')
+#8 D:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#9 D:\DPO\xampp\htdocs\milk\index.php(13): CApplication->run()
+#10 {main}
+REQUEST_URI=/milk/MonthGoal/MgInfo
+HTTP_REFERER=http://localhost/milk/Bud/MonthGoal
+---
+2016/07/15 11:05:00 [error] [system.db.CDbCommand] CDbCommand::execute() failed: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AMD division_id = 69' at line 2. The SQL statement executed was: 
+                    INSERT INTO tb_subversion(month_goal_id, subversion, product_quantity, product_quantity_net, `value`) 
+                    SELECT month_goal_id, (subversion + 1), product_quantity, product_quantity_net,  `value` FROM tb_month_goal WHERE `year` = 2015 AND `round` = 1 AND `version` = 1 AMD division_id = 69
+                    .
+in D:\DPO\xampp\htdocs\milk\protected\controllers\MonthGoalController.php (337)
+in D:\DPO\xampp\htdocs\milk\index.php (13)
+2016/07/15 11:06:31 [error] [system.db.CDbCommand] CDbCommand::execute() failed: SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`dpo_budget`.`tb_subversion`, CONSTRAINT `fk_tb_subversion_tb_month_goal1` FOREIGN KEY (`month_goal_id`, `subversion`) REFERENCES `tb_month_goal` (`month_goal_id`, `subversion`) ON DELETE NO A). The SQL statement executed was: 
+                    INSERT INTO tb_subversion(month_goal_id, subversion, product_quantity, product_quantity_net, `value`) 
+                    SELECT month_goal_id, (subversion + 1), product_quantity, product_quantity_net,  `value` FROM tb_month_goal WHERE `year` = 2015 AND `round` = 1 AND `version` = 1 AND division_id = 69
+                    .
+in D:\DPO\xampp\htdocs\milk\protected\controllers\MonthGoalController.php (337)
+in D:\DPO\xampp\htdocs\milk\index.php (13)
+2016/07/15 11:12:23 [error] [system.db.CDbCommand] CDbCommand::execute() failed: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '2015-1-69-61-10-1' for key 'PRIMARY'. The SQL statement executed was: 
+                    INSERT INTO tb_month_goal(`year`, `round`, `division_id`, `acc_id`, `month_id`, `version`, subversion, product_quantity, product_quantity_net, `value`) 
+                    VALUES(2015, 1, 69, 61, 10, 1, 2, NULL, NULL, 20050)
+                    .
+in D:\DPO\xampp\htdocs\milk\protected\controllers\MonthGoalController.php (349)
+in D:\DPO\xampp\htdocs\milk\index.php (13)
+2016/07/15 11:20:22 [error] [system.db.CDbCommand] CDbCommand::execute() failed: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(`year` = 2015, `round` = 1, division_id = 69, `acc_id` = 61, `month_id` = 10, `' at line 3. The SQL statement executed was: 
+                    INSERT INTO tb_month_goal(`year`, `round`, `division_id`, `acc_id`, `month_id`, `version`, subversion, product_quantity, product_quantity_net, `value`) 
+                    VALUES(2015, 1, 69, 61, 10, 1, 2, NULL, NULL, 20050) 
+                        ON DUPLICATE KEY UPDATE (`year` = 2015, `round` = 1, division_id = 69, `acc_id` = 61, `month_id` = 10, `version` = 1, subversion = 2, product_quantity = NULL, product_quantity_net = NULL , `value` = 20050 )
+                    .
+in D:\DPO\xampp\htdocs\milk\protected\controllers\MonthGoalController.php (350)
+in D:\DPO\xampp\htdocs\milk\index.php (13)
+2016/07/15 11:42:12 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/images/loader.gif".' in D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/images/l...')
+#1 D:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#2 D:\DPO\xampp\htdocs\milk\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/milk/assets/images/loader.gif
+HTTP_REFERER=http://localhost/milk/assets/css/smart_wizard.css
+---
+2016/07/15 12:03:18 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/images/loader.gif".' in D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/images/l...')
+#1 D:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#2 D:\DPO\xampp\htdocs\milk\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/milk/assets/images/loader.gif
+HTTP_REFERER=http://localhost/milk/assets/css/smart_wizard.css
+---
+2016/07/15 12:04:27 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/images/loader.gif".' in D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/images/l...')
+#1 D:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#2 D:\DPO\xampp\htdocs\milk\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/milk/assets/images/loader.gif
+HTTP_REFERER=http://localhost/milk/assets/css/smart_wizard.css
+---
+2016/07/15 12:06:13 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/images/loader.gif".' in D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/images/l...')
+#1 D:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#2 D:\DPO\xampp\htdocs\milk\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/milk/assets/images/loader.gif
+HTTP_REFERER=http://localhost/milk/assets/css/smart_wizard.css
+---
+2016/07/15 12:19:47 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/images/loader.gif".' in D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/images/l...')
+#1 D:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#2 D:\DPO\xampp\htdocs\milk\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/milk/assets/images/loader.gif
+HTTP_REFERER=http://localhost/milk/assets/css/smart_wizard.css
+---
+2016/07/15 12:22:05 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/images/loader.gif".' in D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/images/l...')
+#1 D:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#2 D:\DPO\xampp\htdocs\milk\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/milk/assets/images/loader.gif
+HTTP_REFERER=http://localhost/milk/assets/css/smart_wizard.css
+---
+2016/07/15 12:24:23 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/images/loader.gif".' in D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/images/l...')
+#1 D:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#2 D:\DPO\xampp\htdocs\milk\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/milk/assets/images/loader.gif
+HTTP_REFERER=http://localhost/milk/assets/css/smart_wizard.css
+---
+2016/07/15 12:25:23 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/images/loader.gif".' in D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/images/l...')
+#1 D:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#2 D:\DPO\xampp\htdocs\milk\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/milk/assets/images/loader.gif
+HTTP_REFERER=http://localhost/milk/assets/css/smart_wizard.css
+---
+2016/07/15 12:26:10 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/images/loader.gif".' in D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/images/l...')
+#1 D:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#2 D:\DPO\xampp\htdocs\milk\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/milk/assets/images/loader.gif
+HTTP_REFERER=http://localhost/milk/assets/css/smart_wizard.css
+---
+2016/07/15 12:27:08 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/images/loader.gif".' in D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/images/l...')
+#1 D:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#2 D:\DPO\xampp\htdocs\milk\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/milk/assets/images/loader.gif
+HTTP_REFERER=http://localhost/milk/assets/css/smart_wizard.css
+---
+2016/07/15 12:28:01 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/images/loader.gif".' in D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/images/l...')
+#1 D:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#2 D:\DPO\xampp\htdocs\milk\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/milk/assets/images/loader.gif
+HTTP_REFERER=http://localhost/milk/assets/css/smart_wizard.css
+---
+2016/07/15 12:30:38 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/images/loader.gif".' in D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/images/l...')
+#1 D:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#2 D:\DPO\xampp\htdocs\milk\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/milk/assets/images/loader.gif
+HTTP_REFERER=http://localhost/milk/assets/css/smart_wizard.css
+---
+2016/07/15 12:32:18 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/images/loader.gif".' in D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/images/l...')
+#1 D:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#2 D:\DPO\xampp\htdocs\milk\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/milk/assets/images/loader.gif
+HTTP_REFERER=http://localhost/milk/assets/css/smart_wizard.css
+---
+2016/07/15 12:36:15 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/images/loader.gif".' in D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/images/l...')
+#1 D:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#2 D:\DPO\xampp\htdocs\milk\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/milk/assets/images/loader.gif
+HTTP_REFERER=http://localhost/milk/assets/css/smart_wizard.css
+---
+2016/07/21 09:30:21 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/images/loader.gif".' in D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/images/l...')
+#1 D:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#2 D:\DPO\xampp\htdocs\milk\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/milk/assets/images/loader.gif
+HTTP_REFERER=http://localhost/milk/assets/css/smart_wizard.css
+---
+2016/07/21 11:48:29 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/images/loader.gif".' in D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/images/l...')
+#1 D:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#2 D:\DPO\xampp\htdocs\milk\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/milk/assets/images/loader.gif
+HTTP_REFERER=http://localhost/milk/assets/css/smart_wizard.css
+---
+2016/07/21 12:03:27 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/images/loader.gif".' in D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/images/l...')
+#1 D:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#2 D:\DPO\xampp\htdocs\milk\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/milk/assets/images/loader.gif
+HTTP_REFERER=http://localhost/milk/assets/css/smart_wizard.css
+---
+2016/07/21 12:10:38 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/images/loader.gif".' in D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/images/l...')
+#1 D:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#2 D:\DPO\xampp\htdocs\milk\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/milk/assets/images/loader.gif
+HTTP_REFERER=http://localhost/milk/assets/css/smart_wizard.css
+---
+2016/07/22 06:11:34 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/images/loader.gif".' in D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/images/l...')
+#1 D:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#2 D:\DPO\xampp\htdocs\milk\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/milk/assets/images/loader.gif
+HTTP_REFERER=http://localhost/milk/assets/css/smart_wizard.css
+---
+2016/07/22 07:13:23 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/images/loader.gif".' in D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/images/l...')
+#1 D:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#2 D:\DPO\xampp\htdocs\milk\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/milk/assets/images/loader.gif
+HTTP_REFERER=http://localhost/milk/assets/css/smart_wizard.css
+---
+2016/07/22 09:53:09 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/images/loader.gif".' in D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/images/l...')
+#1 D:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#2 D:\DPO\xampp\htdocs\milk\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/milk/assets/images/loader.gif
+HTTP_REFERER=http://localhost/milk/assets/css/smart_wizard.css
+---
+2016/07/22 09:57:22 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/images/loader.gif".' in D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/images/l...')
+#1 D:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#2 D:\DPO\xampp\htdocs\milk\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/milk/assets/images/loader.gif
+HTTP_REFERER=http://localhost/milk/assets/css/smart_wizard.css
+---
+2016/07/25 07:16:03 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/images/loader.gif".' in D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/images/l...')
+#1 D:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#2 D:\DPO\xampp\htdocs\milk\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/milk/assets/images/loader.gif
+HTTP_REFERER=http://localhost/milk/assets/css/smart_wizard.css
+---
+2016/07/25 07:16:17 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "month_goal/MgVersionInfo".' in D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('month_goal/MgVe...')
+#1 D:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#2 D:\DPO\xampp\htdocs\milk\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/milk/month_goal/MgVersionInfo
+HTTP_REFERER=http://localhost/milk/Bud/MonthGoal
+---
+2016/07/25 07:22:51 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "month_goal/MgVersionInfo".' in D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('month_goal/MgVe...')
+#1 D:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#2 D:\DPO\xampp\htdocs\milk\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/milk/month_goal/MgVersionInfo
+HTTP_REFERER=http://localhost/milk/Bud/MonthGoal
+---
+2016/07/25 07:22:51 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "month_goal/MgVersionInfo".' in D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('month_goal/MgVe...')
+#1 D:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#2 D:\DPO\xampp\htdocs\milk\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/milk/month_goal/MgVersionInfo
+HTTP_REFERER=http://localhost/milk/Bud/MonthGoal
+---
+2016/07/25 07:24:23 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "month_goal/MgVersionInfo".' in D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('month_goal/MgVe...')
+#1 D:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#2 D:\DPO\xampp\htdocs\milk\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/milk/month_goal/MgVersionInfo
+HTTP_REFERER=http://localhost/milk/Bud/MonthGoal
+---
+2016/07/25 07:24:23 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "month_goal/MgVersionInfo".' in D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('month_goal/MgVe...')
+#1 D:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#2 D:\DPO\xampp\htdocs\milk\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/milk/month_goal/MgVersionInfo
+HTTP_REFERER=http://localhost/milk/Bud/MonthGoal
+---
+2016/07/25 07:24:24 [error] [php] Undefined index: cid (D:\DPO\xampp\htdocs\milk\protected\controllers\MonthGoalController.php:439)
+Stack trace:
+#0 D:\DPO\xampp\htdocs\Yii\framework\web\CController.php(286): MonthGoalController->runAction()
+#1 D:\DPO\xampp\htdocs\Yii\framework\web\CController.php(265): MonthGoalController->runActionWithFilters()
+#2 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): MonthGoalController->run()
+#3 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 D:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#5 D:\DPO\xampp\htdocs\milk\index.php(13): CWebApplication->run()
+REQUEST_URI=/milk/MonthGoal/MgVersionInfo
+in D:\DPO\xampp\htdocs\milk\protected\controllers\MonthGoalController.php (439)
+in D:\DPO\xampp\htdocs\milk\index.php (13)
+2016/07/25 07:40:46 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'dc.parent_division' in 'where clause'. The SQL statement executed was: SELECT ay.`year`, dc.division_id as cid, dc.division_name as cname, approve_lv as approve, MAX(month_goal_id) as monthgoal, erp_id 
+FROM tb_division dc  
+JOIN tb_approve ap ON ap.division_id = dc.division_id 
+JOIN tb_acc_year ay ON ay.`year` = ap.`year` 
+LEFT JOIN tb_month_goal mg ON mg.division_id = dc.division_id AND mg.acc_id = ay.acc_id 
+WHERE ay.`year` = 2015 AND dc.parent_division = 69 
+GROUP BY dc.division_id 
+ORDER BY erp_id ASC;.
+in D:\DPO\xampp\htdocs\milk\protected\controllers\DataController.php (1335)
+in D:\DPO\xampp\htdocs\milk\index.php (13)
+2016/07/25 07:40:47 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'dc.parent_division' in 'where clause'. The SQL statement executed was: SELECT ay.`year`, dc.division_id as cid, dc.division_name as cname, approve_lv as approve, MAX(month_goal_id) as monthgoal, erp_id 
+FROM tb_division dc  
+JOIN tb_approve ap ON ap.division_id = dc.division_id 
+JOIN tb_acc_year ay ON ay.`year` = ap.`year` 
+LEFT JOIN tb_month_goal mg ON mg.division_id = dc.division_id AND mg.acc_id = ay.acc_id 
+WHERE ay.`year` = 2015 AND dc.parent_division = 69 
+GROUP BY dc.division_id 
+ORDER BY erp_id ASC;' in D:\DPO\xampp\htdocs\Yii\framework\db\CDbCommand.php:543
+Stack trace:
+#0 D:\DPO\xampp\htdocs\Yii\framework\db\CDbCommand.php(396): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 D:\DPO\xampp\htdocs\milk\protected\controllers\DataController.php(1335): CDbCommand->queryAll()
+#2 D:\DPO\xampp\htdocs\Yii\framework\web\actions\CInlineAction.php(49): DataController->actionFillApproveDiv()
+#3 D:\DPO\xampp\htdocs\Yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 D:\DPO\xampp\htdocs\Yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#5 D:\DPO\xampp\htdocs\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(282): CController->run('fillapprovediv')
+#7 D:\DPO\xampp\htdocs\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('Data/FillApprov...')
+#8 D:\DPO\xampp\htdocs\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#9 D:\DPO\xampp\htdocs\milk\index.php(13): CApplication->run()
+#10 {main}
+REQUEST_URI=/milk/Data/FillApproveDiv
+HTTP_REFERER=http://localhost/milk/Bud/Approve
+---
