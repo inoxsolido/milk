@@ -2,7 +2,6 @@ ul.checktree-root, ul#tree ul {
 list-style: none;
 }
 ul.checktree-root label {
-font-weight: normal;
 position: relative;
 }
 ul.checktree-root label input {
