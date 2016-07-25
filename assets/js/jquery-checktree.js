@@ -50,12 +50,16 @@
                             rootCheckbox = parentLi.find('input[type="checkbox"]:eq(0)')
                             ;
 
-                    if (c.is(':checked') && siblingsChecked == siblingsCheckbox)
+                    if (c.is(':checked') && siblingsChecked == siblingsCheckbox){
                         rootCheckbox.prop({'checked': true, 'indeterminate': false});
+                        if($(rootCheckbox).parent().next("a.sh").children("i").hasClass("glyphicon-plus")) $(rootCheckbox).parent().next("a.sh").click();
+                    }
                     else if (siblingsChecked == 0)
                         rootCheckbox.prop({'checked': false, 'indeterminate': false});
-                    else
+                    else{
                         rootCheckbox.prop({'checked': true, 'indeterminate': true});
+                        if($(rootCheckbox).parent().next("a.sh").children("i").hasClass("glyphicon-plus")) $(rootCheckbox).parent().next("a.sh").click();
+                    }
                     //console.log(rootCheckbox);
                     checkParents(rootCheckbox);
                 }
@@ -87,6 +91,7 @@
                     div.addClass("txtshow");
                     var x=(c).parent().next("div").find("input[type=text]").focus();
                     if(x) $(x).focus();
+                    if($(c).parent().next("a.sh").children("i").hasClass("glyphicon-plus")) $(c).parent().next("a.sh").click();
                 } else {
                     div.hide();
                     div.removeClass("txtshow");

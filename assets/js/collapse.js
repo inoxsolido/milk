@@ -4,7 +4,8 @@
  * and open the template in the editor.
  */
 function ulcollapse(target){
-    target.on("click",function(){
+    target.on("click",function(e){
+        e.preventDefault();
         var sib = $(this).siblings('ul');
         var icon = $(this).children('i');
         var state = icon.hasClass("glyphicon-plus");//if plus mean next to show (minus)
