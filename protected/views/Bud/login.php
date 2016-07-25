@@ -59,6 +59,7 @@
                 function (data) {
                     $(".loading").hide();
                     if (data == '1') {
+                        $(".loading").show();
                         $(".error").text("");
                         location.reload();
                     }
