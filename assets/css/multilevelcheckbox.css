@@ -1,4 +1,4 @@
 ul.checkbox-tree, ul.checkbox-tree  ul{
-    list-style:none;
+    list-style:none !important;
     padding-left: 40px;
 }
