@@ -37,7 +37,7 @@
   margin: 0;
   padding:5px;    
   border: 1px solid #CCC; 
-  font: normal 12px Verdana, Arial, Helvetica, sans-serif; 
+  /*font: normal 12px Verdana, Arial, Helvetica, sans-serif; */
   color:#5A5655;   
   background-color:#F8F8F8;  
   height: 355px;
@@ -75,7 +75,7 @@
   margin:0;   
   border:1px solid #E0E0E0;
   padding:5px;   
-  font: bold 16px Verdana, Arial, Helvetica, sans-serif; 
+  /*font: bold 16px Verdana, Arial, Helvetica, sans-serif;*/ 
   color:#5A5655;   
   background-color:#E0E0E0;
   clear:both;
@@ -127,7 +127,7 @@
   width:30px;
   text-align: center;
   padding: 0 5px 5px;
-  font: bold 45px Verdana, Arial, Helvetica, sans-serif;
+  /*font: bold 45px Verdana, Arial, Helvetica, sans-serif;*/
 }
 .swMain ul.anchor li a .stepDesc{
   position:relative;
@@ -346,7 +346,7 @@
   margin: 0;
   padding:5px;    
   border: 1px solid #CCC; 
-  font: normal 12px Verdana, Arial, Helvetica, sans-serif; 
+  /*font: normal 12px Verdana, Arial, Helvetica, sans-serif;*/ 
   color:#5A5655;   
   background-color:#F8F8F8;  
   height:430px;
@@ -384,7 +384,7 @@
   margin:0;   
   border:1px solid #E0E0E0;
   padding:5px;   
-  font: bold 16px Verdana, Arial, Helvetica, sans-serif; 
+  /*font: bold 16px Verdana, Arial, Helvetica, sans-serif;*/ 
   color:#5A5655;   
   background-color:#E0E0E0;
   clear:both;
