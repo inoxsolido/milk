@@ -1,6 +1,3 @@
-<link href="<?= Yii::app()->request->baseUrl ?>/assets/css/datepicker.css" rel="stylesheet" type="text/css"/>
-<link href="<?= Yii::app()->request->baseUrl ?>/assets/css/smart_wizard.css" rel="stylesheet" type="text/css"/>
-<link href="<?= Yii::app()->request->baseUrl ?>/assets/css/multilevelcheckbox.css" rel="stylesheet" type="text/css"/>
 <style type="text/css">
     .center{
         margin: auto 5px 0px auto;
@@ -40,6 +37,7 @@
         color: red;
     }
 </style>
+<!-- version 
 <div class="btn-group btn-group-justified menu">
     <a class="btn btn-warning btn-sm" id='verm'  onclick="$('#mver').slideToggle('fast'); $(window).scrollTop(0);">เลือกเวอร์ชั่นก่อนหน้า</a>
 </div>
@@ -54,29 +52,12 @@
         <a id="msubmit" class="btn btn-sm btn-success">ตกลง <i class="glyphicon glyphicon-ok"></i></a>
     </div>
 </div>
+-->
 <div class="container">
     <div style="text-align:center"><h4><?=$method=='edit'?'แก้ไข':'กำหนด'?>กรอบงบประมาณรายปีสำหรับ <?= $cname ?> ประจำปี <?= $year + 543 ?></h4></div>
     <div id="mginput" year="<?= $year ?>" round="<?= $round ?>" method="<?= $method ?>" cid="<?= $cid ?>" url="<?=Yii::app()->createAbsoluteUrl("Bud/MonthGoal")?>">
         
     </div>
 </div>
-<script src="<?= Yii::app()->request->baseUrl ?>/assets/js/bootstrap-datepicker.js" type="text/javascript"></script>
-<script src="<?= Yii::app()->request->baseUrl ?>/assets/js/bootstrap-datepicker-thai.js" type="text/javascript"></script>
-<script src="<?= Yii::app()->request->baseUrl ?>/assets/js/locales/bootstrap-datepicker.th.js" type="text/javascript"></script>
-<script type="text/javascript">
-        $(function () {
-            $('.datepicker').datepicker({
-                format: "yyyy",
-                viewMode: "years",
-                minViewMode: "years",
-                autoclose: true,
-                clearBtn: true
-            });
-        });
-</script>
-<script src="<?= Yii::app()->request->baseUrl ?>/assets/js/collapse.js" type="text/javascript"></script>
-<script src="<?= Yii::app()->request->baseUrl ?>/assets/js/jquery.smartWizard.js" type="text/javascript"></script>
-<script src="<?= Yii::app()->request->baseUrl ?>/assets/js/numeral.min.js" type="text/javascript"></script>
-<script src="<?= Yii::app()->request->baseUrl ?>/assets/js/decimalFixdown.js" type="text/javascript"></script>
-<script type="text/javascript">numeral.defaultFormat('0,0.00');</script>
+
 <script src='<?= Yii::app()->request->baseUrl ?>/assets/js/mginput.js' type='text/javascript'></script>

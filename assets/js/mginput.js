@@ -1,3 +1,38 @@
+function trig_mg_ulcollapse(target){
+    target.on("click",function(e){
+        e.preventDefault();
+        var twins = $(this).parent().children("label").children(".chkacc");
+        twins = $(twins).attr("name");
+        $(".chkacc[name="+twins+"]").parent().parent().children("a.sh").trigger("uicollapse");
+    });
+}
+function mg_ulcollapse(target){
+    target.bind("uicollapse",function(e){
+        var sib = $(this).siblings('ul');
+        var icon = $(this).children('i');
+        var state = icon.hasClass("glyphicon-plus");//if plus mean next to show (minus)
+        if(state)
+        {
+            sib.slideDown();
+            icon.removeClass("glyphicon-plus");
+            icon.addClass("glyphicon-minus");
+        }else{
+            sib.slideUp();
+            icon.removeClass("glyphicon-minus");
+            icon.addClass("glyphicon-plus");
+        }
+    });
+}
+function mg_checktree(target){
+    
+}
+function trig_mg_checktree(target){
+    target.on("click", function(e){
+        var twins = $(this).attr("name");
+        $(".chkacc[name="+twins+"]").prop({checked: $(this).is(":checked")}).change();
+    });
+}
+
 $(function () {
     var year = $("#mginput").attr("year");
     var round = $("#mginput").attr("round");
@@ -5,8 +40,8 @@ $(function () {
     var method = $("#mginput").attr("method");
 
     function chkinputasdecimal(input, msg) {
-        var val = input.val().replace(',', '').replace(',', '').replace(',', '');
-        var sib = input.siblings('span.err');
+        var val = $(input).val().replace(',', '').replace(',', '').replace(',', '');
+        var sib = $(input).siblings('span.err');
         var letter = /^-{0,1}\d+\.?\d{0,}$/;
         if (!msg && letter.test(val)) {
             return true;
@@ -19,48 +54,10 @@ $(function () {
             sib.text("  กรุณากรอกค่าเป็นจำนวนเต็มหรือทศนิยม");
             return false;
         }
+        sib.text("");
         return true;
     }
     function formatDec(input, ignornull) {
-//        var strval = String(input.val().replace(',', '').replace(',', '').replace(',', ''));
-//        strval = String(Number(strval));
-//        var len = strval.length;
-//        if (chkinputasdecimal(input, false) || ignornull) {
-//            var flagfloat = false;
-//            var dp = 0;
-//            if (strval != null) {
-//                //get resource to know it has dot then if has how many precision
-//                for (var i = 0; i < len; i++) {
-//                    if (strval[i] == '.') {
-//                        flagfloat = true;
-//                    } else if (flagfloat) {
-//                        dp++;
-//                    }
-//                }
-//                //natural formating
-//                for(var i = 0,ri = (strval.length-1)-(dp)-(flagfloat?1:0); ri>=0; i++,ri--){
-//                    if(i!=0 && i % 3 == 0){
-//                        strval = strval.substr(0,(ri+1))+','+strval.substr((ri+1),strval.length);
-//                    }
-//                }
-//                
-//                //add float
-//                if (flagfloat) {
-//                    if(dp > 2){
-//                        //del float
-//                        strval = strval.substr(0,strval.length-(dp-2));
-//                    }
-//                    for (var i = 0; i < (2 - dp); i++) {
-//                        strval += '0';
-//                    }
-//                } else {
-//                    strval += '.00';
-//                }
-//            } else {
-//                strval = '0.00';
-//            }
-//            input.val(String(strval));
-//        }
         if(input.val()=="")return false;
         input.val(numeral(input.val()).floor().format('0,0.00'));
     }
@@ -80,64 +77,6 @@ $(function () {
         }
         return false;
     }
-    function sumNow() {
-        var data = serializeData();
-        var out = [];
-        if (!data)
-            return false;
-        for (var i in data) {
-            var accid = data[i].accid;
-            var temp = numeral(0);
-            for (var j in data) {
-                if (data[j].accid == accid){
-                    temp.add(numeral(data[j].value).floor().value());
-                }
-            }
-            out.push({accid: accid, value: temp.value()});
-        }
-        //update
-        for (var i in out) {
-            $(".current[aid=" + out[i].accid + "] > input").val(out[i].value);
-            formatDec($(".current[aid=" + out[i].accid + "] > input"));
-        }
-        return out;
-
-    }
-    function chkOver(curinput, full, goto, popup) {
-        var aid = $(curinput).parent().attr("aid");
-        var limit = numeral($(curinput).parent().siblings("span.limit").children().val()).floor().value();
-        
-        //var current = $(curinput).val().replace(',', '').replace(',', '').replace(',', '');
-        var current = numeral($(curinput).val()).floor().value();
-        //current = Number(current);
-        if (full) {
-            if (current == limit) {
-                return true;
-            } else {
-                if (current > limit) {
-                    if(popup)
-                        alert("ยอดรวมของงบประมาณมีค่ามากกว่าเป้าหมายรายปีที่ได้กำหนดไว้ กรุณากลับไปแก้ไข");
-                } else if (current < limit) {
-                    if(popup){
-                        alert("ยอดรวมของงบประมาณมีค่าน้อยกว่าเป้าหมายรายปีที่ได้กำหนดไว้ กรุณากลับไปแก้ไข" + current + "  " + limit);
-                    }
-                }
-                if (goto == true)
-                    gototab($("input[name=acc-" + aid + "][month]")[0]);
-                return false;
-            }
-        } else {
-            if (current > limit) {
-                if(popup)
-                    alert("ยอดรวมของงบประมาณมีค่ามากกว่าเป้าหมายรายปีที่ได้กำหนดไว้ กรุณากลับไปแก้ไข");
-                if (goto == true)
-                    gototab($("input[name=acc-" + aid + "][month]")[0]);
-                return false;
-            } else {
-                return true;
-            }
-        }
-    }
     function gototab(txtbox) {
         //get month
         console.log(txtbox);
@@ -153,9 +92,10 @@ $(function () {
         txtbox.focus();
     }
     function ReqData() {
+        console.log(method);
         $(".loading").show();
         $.ajax({
-            url: "../../../Data/FillMonthGoalInput",
+            url: "../MonthGoal/FillMonthGoalInputNewNew",
             type: 'POST',
             async: false,
             data: {
@@ -165,6 +105,8 @@ $(function () {
             },
             success: function (data, textStatus, jqXHR) {
                 $("#mginput").html(data);
+                $(".checkbox-tree").checktree();
+                trig_mg_checktree($(".chkacc"));
                 $(".swMain2").smartWizard({
                     selected: 0, // Selected Step, 0 = first step   
                     keyNavigation: false, // Enable/Disable key navigation(left and right keys are used if enabled)
@@ -190,37 +132,46 @@ $(function () {
                         if (month > 12)
                             month = current - 3;
                         var input = $("input[month=" + month + "]")[0];
-                        if ($("input[month=" + month + "]:focus").length == 0)
-                            input.focus();
+                        if ($("input[month=" + month + "]:visible:focus").length == 0)
+                            $("input[month=" + month + "]:visible:first").focus();
                     }, // triggers when showing a step
                     onFinish: onFinish // triggers when Finish button is clicked 
                 });
-                ulcollapse($(".sh"));
+                mg_ulcollapse($(".sh"));
+                trig_mg_ulcollapse($(".sh"));
+                
             }
         });
         //get info if method is 'edit'
         if (method == 'edit') {
             $.ajax({
-                url: "../../../Data/MgInfo",
+                url: "../MonthGoal/MgInfo",
                 async: false,
                 type: 'POST',
                 data: {
                     year: year,
                     round: round,
-                    cid: cid,
-                    method: method
+                    cid: cid
                 }, success: function (data, textStatus, jqXHR) {
                     if (data == "error") {
                         alert("ไม่สามารถเรียกข้อมูลเดิมมาได้ กรุณาลบ แล้วทำการกำหนดค่าใหม่");
                         return false;
                     } else {
+                        //collapse all
+                        $("#step-1").find(".sh").click();
                         for (var i in data) {
                             var accid = data[i].accid,
                                     month = data[i].month,
+                                    quantity = data[i].quantity,
+                                    quantity_net = data[i].quantity_net,
                                     value = data[i].value
                                     ;
+                            //change state of checkbox (checktree)
+                            if(month==10){$("#step-1").find("input[name="+accid+"]").prop({checked: false}).click();}
                             //assign value
-                            $("input[type=text][name=acc-" + accid + "][month=" + month + "]").val(value).change();
+                            $("input[type=text][name=acc-" + accid + "][month=" + month + "][cat=v]").val(value).change();
+                            if(quantity != null) $("input[type=text][name=acc-" + accid + "][month=" + month + "][cat=q]").val(quantity).change();
+                            if(quantity_net != null) $("input[type=text][name=acc-" + accid + "][month=" + month + "][cat=n]").val(quantity_net).change();
                         }
                         $("input[type=text][name=acc-" + data[0].accid + "][month=10]").focus();
                     }
@@ -231,108 +182,249 @@ $(function () {
         $(".loading").hide();
     }
     function onFinish() {
-        //console.log(serializeData());
-        $(".loading").show();
-        var correct = true;
-        $("input[name^='acc-'][month]").each(function () {
-            if (!chkinputasdecimal($(this))) {
-                alert("กรุณากรอกข้อมูลให้ครบถ้วนสมบูรณ์");
-                //$(this).focus();
-                gototab($(this));
-                correct = false;
-                return false;
-            }
+        
+        //collect acc_id selected
+        var accs = [];
+        var selected_acc = $("#step-1").find("input[type=checkbox].chkacc:checked");
+        if(!selected_acc.length){
+            alert("กรุณาเลือกและกรอกข้อมูลงบประมาณอย่างน้อย 1 บัญชีก่อนทำการบันทึก");
+            $(".swMain2").smartWizard("goToStep", 1);
+            return false;
+        }
+        $(selected_acc).each(function(){
+            accs.push($(this).attr("name"));
         });
-        if (!correct) {
-            $(".loading").hide();
-            return false;
-        }
-        correct = true;
-        var out = sumNow();
-        for (var i in out) {
-            var accid = out[i].accid;
-            var curinput = $("span[aid=" + accid + "].current").children("input");
-            if (!chkOver(curinput, true, true, true)) {
-                correct = false;
-                $(".loading").hide();
-                return false;
-            }
-        }
-        if (!correct) {
-            $(".loading").hide();
-            return false;
-        }
-        var predata = serializeData();
-        //console.log(predata);return;
-        if (!predata) {
-            alert("serializaData has fail");
-            $(".loading").hide();
-            return false;
-        } else {
-            $.ajax({
-                url: "../../../Data/MgSave",
-                async: false,
-                type: 'POST',
-                data: {
-                    year: year,
-                    round: round,
-                    cid: cid,
-                    detail: predata,
-                    method: method
-                }, success: function (data, textStatus, jqXHR) {
-                    if (data == 1) {
-                        alert("บันทึกสำเร็จ");
-                        window.location = $("#mginput").attr("url");
-                    } else {
-                        alert("บันทึกล้มเหลว");
-                        console.log(data);
-                    }
-                    $(".loading").hide();
-                }
+        delete(selected_acc);
+        var package_passed = true;
+        //get value and quanlity from txtbox follow acc_id by month into package
+        var package = [];
+        for (var i in accs){
+            //check empty value
+            var empty_input = $("input[name=acc-"+accs[i]+"][month]").filter(function(){return !$(this).val();});
+            if(empty_input.length) {chkinputasdecimal(empty_input[0]);gototab(empty_input[0]); package_passed = false; return false;}
+            delete(empty_input);
+            $("input[name=acc-"+accs[i]+"][month][cat]").each(function(){
+                var acc_id  = $(this).attr("name").replace("acc-", '');
+                var month = $(this).attr("month");
+                var value,quantity, quantity_net;
+                if($(this).attr('cat')=='v')
+                    value = numeral($(this).val()).value();
+                else if($(this).attr('cat')=='q')
+                    quantity = numeral($(this).val()).value();
+                else 
+                    quantity_net = numeral($(this).val()).value();
+                
+                package.push({acc_id: acc_id, 
+                    month: month, 
+                    value: value, 
+                    quantity: quantity, 
+                    quantity_net: quantity_net});
             });
         }
-
+        if(!package_passed) return false;
+        //send package data to php
+        $.ajax({
+            url: "../MonthGoal/MgSave",
+            type: 'POST',
+            async: false,
+            data:{
+                year: year,
+                round: round,
+                cid: cid,
+                method: method,
+                detail: package
+            },
+            beforeSend: function (xhr) {
+                $('.loading').show();
+            },
+            success: function (data, textStatus, jqXHR) {
+                if(data == 'ok'){
+                    alert("การบันทึกข้อมูลสำเร็จ");
+                    $("#monthgoalform").html("").hide();
+                    $("#selbudyear").change();
+                    $("#selector").show();
+                    $("#saveopt").hide();
+                }else{
+                    alert("การบันทึกข้อมูลล้มเหลว กรุณาลองอีกครั้ง");
+                    console.log(data);
+                }
+            },complete: function (jqXHR, textStatus) {
+                $(".loading").hide();
+            }
+        });
     }
+  
     //version
     function ReqVersion() {
         $(".loading").show();
         $.ajax({
-            url: "../../../Data/MgFillVersionSelector",
+            url: "../MonthGoal/MgFillVersionSelector",
             type: 'POST',
             async: false,
             data: {
-                year: $("#iyear").val() - 543,
-                div: cid
+                cid: cid
             }, success: function (data, textStatus, jqXHR) {
-                $("#iver").html(data);
-            }
+                if(data.error == 'empty'){
+                    $("#btn_recover").hide();
+                }else{
+                    $("#btn_recover").show();
+                    $("#select_r_year").html("");
+                    $("#select_r_round").html("");
+                    $("#select_r_version").html("");
+                    $("#select_r_subversion").html("");
+                    
+                    var vs = data.info;
+                    console.log(vs);
+                    
+                    for (var year in vs){
+                        var y = $("<option/>", {value: year}).text(Number(year)+543);
+                        $("#select_r_year").append(y);
+                        delete(y);
+                        
+                        for(var round in vs[year]){
+                            var r = $("<option/>", {value: round, year: year}).text(round).hide();
+                            $("#select_r_round").append(r);
+                            delete(r);
+                            
+                            for(var version in vs[year][round]){
+                                var ver = $("<option/>", {value: version, year: year, round: round}).text(version).hide();
+                                $("#select_r_version").append(ver);
+                                delete(ver);
+                                
+                                for(var i in vs[year][round][version]){
+                                    var subversion = vs[year][round][version][i];
+                                    var sub = $("<option/>", {value: subversion, year: year, round: round, version: version}).text(subversion).hide();
+                                    $("#select_r_subversion").append(sub);
+                                    delete(sub);
+                                    
+                                }
+                            }
+                        }
+                    }
+//                    for (var i in vs){
+//                        var v = vs[i];
+//                        var y = $("<option/>", {value: v.year}).text(Number(v.year)+543);
+//                        var r = $("<option/>", {value: v.round, year: v.year}).text(v.round).hide();
+//                        var ver = $("<option/>", {value: v.version, year: v.year, round: v.round}).text(v.version).hide();
+//                        var sub = $("<option/>", {value: v.subversion, year: v.year, round: v.round, version: v.version}).text(v.subversion).hide();
+//                        
+//                        $("#select_r_year").append(y);
+//                        $("#select_r_round").append(r);
+//                        $("#select_r_version").append(ver);
+//                        $("#select_r_subversion").append(sub);
+//                    }
+                    $("#select_r_year").val("");
+                    $("#select_r_round").val("");
+                    $("#select_r_version").val("");
+                    $("#select_r_subversion").val("");
+                    
+                }
+            },dataType: 'json'
         });
         $(".loading").hide();
     }
-    function input_change_not_alert(input){
-        formatDec($(input), true);
-        if (chkinputasdecimal($(input), false)) {
-            sumNow();
-            //checkoverflow 
-            var currents = $(input).siblings("span.current").children("input");
-        }
-    }
+
     //event
+    $("#select_r_year").unbind();
+    $("#select_r_round").unbind();
+    $("#select_r_version").unbind();
+    $("#select_r_subversion").unbind();
+    $("#select_r_year").on("click, change", function(){
+        var year = $(this).val();
+        //hide all option of round
+        $("#select_r_round option").hide();
+        $("#select_r_version option").hide();
+        $("#select_r_subversion option").hide();
+        $("#select_r_round").val("");
+        $("#select_r_version").val("");
+        $("#select_r_subversion").val("");
+        $("#select_r_round option[year="+year+"]").show();
+    });
+    $("#select_r_round").on("click, change", function(){
+        var year = $("#select_r_year").val();
+        var round = $(this).val();
+        $("#select_r_version option").hide();
+        $("#select_r_subversion option").hide();
+        $("#select_r_version").val("");
+        $("#select_r_subversion").val("");
+        $("#select_r_version option[year="+year+"][round="+round+"]").show();
+        console.log("#select_r_version option[year="+year+"][round="+round+"]");
+        
+    });
+    $("#select_r_version").on("click, change", function(){
+        var year = $("#select_r_year").val();
+        var round = $("#select_r_round").val();
+        var version = $(this).val();
+        $("#select_r_subversion option").hide();
+        $("#select_r_subversion").val("");
+        $("#select_r_subversion option[year="+year+"][round="+round+"][version="+version+"]").show();
+        console.log("#select_r_subversion option[year="+year+"][round="+round+"][version="+version+"]");
+    });
+    $("#btn_recover_ok").click(function(){
+        var subversion = $("#select_r_subversion").val();
+        
+        if(subversion === null){
+            alert("กรุณาเลือกเวอร์ชันการเรียกคืนข้อมูลก่อนตกลง");
+            return false;
+        }else{
+            //request month_goal info for subversion
+            var year = $("#select_r_year").val();
+            var round = $("#select_r_round").val();
+            var version = $("#select_r_version").val();
+            $.ajax({
+                url: "../MonthGoal/MgVersionInfo",
+                type: 'POST',
+                async: false,
+                beforeSend: function (xhr) {
+                    $(".loading").show();
+                },
+                complete: function (jqXHR, textStatus) {
+                    $(".loading").hide();
+                },
+                dataType: 'json',
+                data:{
+                    year: year,
+                    round: round,
+                    version: version,
+                    subversion: subversion,
+                    cid: cid
+                },
+                success: function (data, textStatus, jqXHR) {
+                    if(data.error == 'empty'){
+                        alert("ไม่พบข้อมูลการเรียกคืน");
+                        
+                    }else{
+                        $("#step-1").find("input[type=checkbox]").prop({checked: false}).click();
+                        $("#step-1").find(".sh").removeClass("glyphicon-plus").removeClass("glyphicon-minus").addClass("glyphicon-minus").click();
+                        //fill info to input 
+                        var info = data.info;
+                        for(var i in info){
+                            var accid = info[i].acc_id;
+                            var month = info[i].month_id;
+                            var quantity = info[i].quantity;
+                            var quantity_net = info[i].quantity_net;
+                            var value = info[i].value;
+                            
+                            if(month==10){$("#step-1").find("input[name="+accid+"]").prop({checked: false}).click();}
+                            //assign value
+                            $("input[type=text][name=acc-" + accid + "][month=" + month + "][cat=v]").val(value).change();
+                            if(quantity != null) $("input[type=text][name=acc-" + accid + "][month=" + month + "][cat=q]").val(quantity).change();
+                            if(quantity_net != null) $("input[type=text][name=acc-" + accid + "][month=" + month + "][cat=n]").val(quantity_net).change();
+                        }
+                    }
+                }
+            });
+        }
+    });
+    
     $("#mginput").on("change", "input[name^='acc-'][month]", function () {
         formatDec($(this), false);
         if (chkinputasdecimal($(this), false)) {
-            sumNow();
+            //sumNow();
             //checkoverflow 
-            var currents = $(this).siblings("span.current").children("input");
-            
-            if(!chkOver(currents, false, false, false))
-                $(this).siblings("span.err").text(" ยอดรวมของงบประมาณมีค่ามากกว่าเป้าหมายรายปีที่ได้กำหนดไว้");
-            else{
-                $(this).siblings("span.err").text("");
-            }
         }
     });
-    $("#mginput").on("focusout", "input[name^='acc-'][month]", function () {
+    $("#mginput").on("focusout change", "input[name^='acc-'][month]", function () {
         chkinputasdecimal($(this), true);
     });
     $("#msubmit").click(function () {
@@ -342,7 +434,7 @@ $(function () {
             alert("กรุณาเลือกเวอร์ชั่นก่อนตกลง");
         } else {
             $.ajax({
-                url: "../../../Data/MgFillValueFromVersion",
+                url: "../Data/MgFillValueFromVersion",
                 type: 'POST',
                 async: false,
                 data: {
@@ -406,7 +498,19 @@ $(function () {
             }
         }
     });
+    
+    
+    
     //main
     ReqData();
+    ReqVersion();
+    
+    $("#btnsave").unbind();
+    $("#btnsave").click(function(){
+        if(confirm("ยืนยันการบันทึก")){
+            $("#btn_recover_close").click();
+            onFinish();
+        }
+    });
 
 });
